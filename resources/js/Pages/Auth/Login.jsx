@@ -14,7 +14,7 @@ export default function Login({ status, canResetPassword }) {
         remember: false,
     });
 
-    const submit = (e) => {
+    const onsubmit = (e) => {
         e.preventDefault();
 
         post(route('login'), {
@@ -32,100 +32,89 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
+            <div className="container py-5 py-sm-7">
 
-            <Form onSubmit={submit}>
-
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="name@example.com" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
-                </Form.Group>
-
-                <Button type="submit">Login</Button>
-            </Form>
-
-            <form onSubmit={submit}>
+                <Link className="d-flex justify-content-center mb-5" href="#!">
+                    <img className="zi-2" src='/images/odw-logo.png' alt="Image Description" style={{ width: '4rem' }} />
+                </Link>
 
 
-                {/* <PersonFillLock size={100} /> */}
-                <h3>Login With Your Email</h3>
-                <i class="bi bi-file-lock2-fill"></i>
-                <p>Don't have an account? Create Account</p>
-                <div className='login-inputs'>
-                    <input type='email' placeholder='Email Address' className='form-control' /><br></br>
-                    <input type='password' placeholder='Password' />
+                <div className="mx-auto" style={{ maxWidth: '30rem' }}>
+
+                    <div className="card card-lg mb-5">
+                        <div className="card-body">
+
+                            <form onSubmit={onsubmit} noValidate>
+
+                                <div className="text-center">
+                                    <div className="mb-5">
+                                        <h1 className="display-5">Sign in</h1>
+                                        <p>Don't have an account yet? <Link className="link" href={route('register')}>Sign up here</Link></p>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div className="mb-4">
+                                    <InputLabel htmlFor="email" className="form-label" value="Email" />
+
+                                    <TextInput
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        value={data.email}
+                                        className="form-control form-control-lg"
+
+                                        placeholder="email@address.com"
+                                        onChange={(e) => setData('email', e.target.value)}
+                                    />
+
+                                    <InputError message={errors.password} className="mt-2" />
+                                </div>
+
+
+
+
+                                <div className="mb-4">
+                                    <InputLabel htmlFor="password" className="form-label" value="Password" />
+
+                                    <TextInput
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        value={data.password}
+                                        className="form-control form-control-lg"
+                                        autoComplete="current-password"
+                                        placeholder="8+ characters required"
+                                        onChange={(e) => setData('password', e.target.value)}
+                                    />
+
+                                    <InputError message={errors.password} className="mt-2" />
+                                </div>
+                                <div className="d-grid">
+
+                                    <PrimaryButton className="btn btn-primary btn-lg" disabled={processing}>
+                                        Log in
+                                    </PrimaryButton>
+
+
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
                 </div>
-                <div className='forgot-password'>
-                    <p>Frogot Password?</p>
-                </div>
+
+            </div>
 
 
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4 block">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) =>
-                                setData('remember', e.target.checked)
-                            }
-                        />
-                        <span className="ms-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
-                    </label>
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
+          
         </GuestLayout>
     );
 }

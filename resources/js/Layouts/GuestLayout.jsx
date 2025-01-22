@@ -1,19 +1,21 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
-
+import * as Logo from '../../../public/images/odw-logo.png';
 export default function GuestLayout({ children }) {
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
+        <>
 
-                </Link>
-            </div>
+            
 
-            <div className='login'>
+
+            <main id="content" role="main" className="main">
+
                 {children}
-                
-            </div>
-        </div>
+
+            </main>
+
+        </>
+
+
     );
 }
