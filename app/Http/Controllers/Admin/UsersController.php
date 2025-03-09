@@ -17,14 +17,40 @@ class UsersController extends Controller
     public function index()
     {
 
-        return ClinicUser::all();
+        // dd(ClinicUser::with('user', 'branch.clinic')->paginate(5));
+        $user = auth()->user();
 
-        // return Inertia::render(
-        //     'Admin/Users/Index',
-        //     [
-        //         'users' => ClinicUser::with('user', 'branch.clinic')->paginate(5),
-        //     ]
-        // );
+        if ($user->role === 'super_admin') {
+            $users = ClinicUser::with('user.branch.clinic')->paginate(5);
+        } else {
+
+            $clinicUser = $user->clinicUsers()->first();
+            if (!$clinicUser) {
+                return response()->json([], 403); // No clinic assigned
+            }
+
+            $clinicId = $clinicUser->clinic_id;
+            $branchId = $clinicUser->branch_id;
+
+            $users = User::with('branch.clinic')
+                ->whereHas('clinicUsers', function ($query) use ($clinicId, $branchId) {
+                    $query->where('clinic_id', $clinicId);
+
+                    if (!is_null($branchId)) {
+                        $query->where('branch_id', $branchId);
+                    }
+                })
+                ->paginate(5);
+        }
+
+        // return $users;
+
+        return Inertia::render(
+            'Admin/Users/Index',
+            [
+                'users' => $users,
+            ]
+        );
     }
 
     /**

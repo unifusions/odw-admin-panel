@@ -33,7 +33,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
     return (
         <>
-{console.log(user)}
+
          
                 <div className="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
@@ -99,7 +99,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                             <a className="navbar-dropdown-account-wrapper" href="#!" id="accountNavbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>
                                                 <div className="avatar avatar-sm avatar-dark avatar-circle" >
 
-                                                    <span className="avatar-initials ">{Array.from(user.name)[0]}</span>
+                                                    <span className="avatar-initials ">{user.name && Array.from(user.name)[0]}</span>
 
 
 

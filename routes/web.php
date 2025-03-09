@@ -22,6 +22,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -88,3 +90,9 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
 });
 
 require __DIR__ . '/auth.php';
+
+Route::middleware('api')->prefix('api')->group(function () {
+    require __DIR__ . '/api.php';
+});
+
+

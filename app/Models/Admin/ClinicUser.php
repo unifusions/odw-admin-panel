@@ -14,24 +14,26 @@ class ClinicUser extends Model
 
     protected $fillable = ['user_id', 'clinic_id', 'clinic_branch_id', 'role'];
 
-    protected static function booted()
-    {
-        if(auth()->check()){
-            static::addGlobalScope('clinic', function (Builder $builder) {
+    // protected static function booted()
+    // {
+    //     if(auth()->check()){
+    //         static::addGlobalScope('clinic', function (Builder $builder) {
                
-                $user =auth()->user();
-                
-                if ($user && !in_array($user->role, ['super_admin', 'patient'])) {
-                    // $clinicId = ClinicUser::where('user_id', $user->id)->value('clinic_id');
-                    dd($user->clinicUser);
-                    if ($clinicId) {
-                        $builder->where('clinic_id', $clinicId);
-                    }
-                }
-            });
-        }
+    //             $user = auth()->user();
+    //             // // dd($user);
+    //             $mainuser = User::with('clinicuser')->find('user_id', $user->id);
+    //             dd($mainuser);
+    //             if ($user && !in_array($user->role, ['super_admin', 'patient'])) {
+    //                 $clinicId = ClinicUser::where('user_id', $user->id)->value('clinic_id');
+                   
+    //                 if ($clinicId) {
+    //                     $builder->where('clinic_id', $clinicId);
+    //                 }
+    //             }
+    //         });
+    //     }
         
-    }
+    // }
 
     public function clinic()
     {

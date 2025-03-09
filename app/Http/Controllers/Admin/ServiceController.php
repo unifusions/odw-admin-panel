@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DentalService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +14,11 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Services/Index');
+        // dd(DentalService::paginate(25))
+        return Inertia::render('Admin/Services/Index',[
+            'services' => DentalService::paginate(25),
+        ]
+    );
     }
 
     /**
@@ -29,7 +34,16 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->input());
+
+     $dentalService = DentalService::create([
+        'name' =>  $request->name,
+        'desc' => $request->desc,
+        'cost' => $request->cost,
+     ]);
+
+     return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);
+
     }
 
     /**

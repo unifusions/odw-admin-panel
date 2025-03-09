@@ -1,5 +1,7 @@
+import PageHeader from "@/Components/PageHeader";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
 import { Head } from "@inertiajs/react"
+import AddDentist from "./AddDentist";
 
 export default function Index() {
     const dentists =
@@ -59,6 +61,9 @@ export default function Index() {
             header='Dentists'
 
         >
+            <PageHeader>
+                <AddDentist />
+            </PageHeader>
             <Head title="Dentists" />
 
             <div class="table-responsive datatable-custom">

@@ -11,7 +11,7 @@ export default function Index() {
     const { flash, clinics } = usePage().props;
     const showToast = useToast();
 
-    { console.log(clinics) }
+    
 
     return (
         <AuthenticatedLayout header='Clinics'>

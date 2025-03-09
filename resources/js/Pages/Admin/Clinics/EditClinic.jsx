@@ -69,7 +69,6 @@ export default function EditClinic({ clinic }) {
 
             </div>
 
-            {console.log(clinic)}
         </AuthenticatedLayout >
     )
 }

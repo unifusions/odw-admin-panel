@@ -123,14 +123,14 @@ const Sidebar = () => {
 
 
                             {menuItems.map((item, index) => (
-                                <Fragment key={index}>
+                                <Fragment key={`section-${index}`}>
                                     {item.section && <>
                                         <span className="dropdown-header mt-4">{item.section}</span>
                                     </>}
 
 
-                                    {item.links.map((link) => <>
-                                        <div className="nav-item" key={link.path}>
+                                    {item.links.map((link, linkIndex) => <>
+                                        <div className="nav-item" key={linkIndex}>
 
 
                                             <Link href={link.path} className={`nav-link ${url === link.path ? 'active' : ''}`} >

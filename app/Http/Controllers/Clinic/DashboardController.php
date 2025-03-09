@@ -14,8 +14,11 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
+        
         // return Clinic::all();
-        return Inertia::render('Clinic/Dashboard', 
-    ['clinic' => Clinic::all()]);
+        return Inertia::render(
+            'Clinic/Dashboard',
+            ['clinic' => Clinic::all()]
+        );
     }
 }

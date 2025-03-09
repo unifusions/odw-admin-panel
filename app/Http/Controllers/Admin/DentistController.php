@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Clinic;
+use App\Models\Admin\DentalService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -21,7 +23,26 @@ class DentistController extends Controller
      */
     public function create()
     {
-        //
+
+        $data = [
+            'clinics' => Clinic::all()->map(function ($item){
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name
+                ];
+            }),
+            'services' => DentalService::all()->map(function($item){
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name
+                ];
+            })
+        ];
+        
+        return response()->json($data);
+
+        // return inertia('',$data) ;
+        // return redirect()->back()->with($data);
     }
 
     /**

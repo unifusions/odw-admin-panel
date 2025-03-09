@@ -9,9 +9,9 @@ export default function Breadcrumbs() {
     return (
         <>
 
-            <nav aria-label="breadcrumb">
+            <nav>
 
-                <ol class="breadcrumb breadcrumb-no-gutter">
+                <ol className="breadcrumb breadcrumb-no-gutter">
 
                     {breadcrumbs.map((crumb, index) => (
                         <li key={index} className='breadcrumb-item'>
