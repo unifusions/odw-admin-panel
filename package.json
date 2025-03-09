@@ -18,12 +18,19 @@
         "vite": "^6.0"
     },
     "dependencies": {
+        "@fullcalendar/bootstrap5": "^6.1.15",
         "@fullcalendar/daygrid": "^6.1.15",
         "@fullcalendar/interaction": "^6.1.15",
         "@fullcalendar/react": "^6.1.15",
         "@fullcalendar/timegrid": "^6.1.15",
         "bootstrap": "^5.3.3",
         "bootstrap-icons": "^1.11.3",
-        "react-bootstrap": "^2.10.6"
+        "chart.js": "^4.4.8",
+        "date-fns": "^4.1.0",
+        "react-bootstrap": "^2.10.6",
+        "react-chartjs-2": "^5.3.0",
+        "react-flatpickr": "^3.10.13",
+        "react-toastify": "^11.0.5",
+        "vite-plugin-commonjs": "^0.10.4"
     }
 }

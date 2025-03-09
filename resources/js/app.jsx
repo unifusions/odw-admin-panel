@@ -1,6 +1,6 @@
 import '../css/app.css';
 import './bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle'
+import  'bootstrap/dist/js/bootstrap.bundle'
 // import 'bootstrap/dist/css/bootstrap.css';
 
 import { createInertiaApp } from '@inertiajs/react';
@@ -8,6 +8,10 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+// useEffect(() => {
+//     window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle");
+//   }, []);
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
