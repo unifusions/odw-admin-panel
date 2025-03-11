@@ -30,7 +30,12 @@ export default function AuthenticatedLayout({ header, children }) {
             toast.success(flash.message);
         }
     }, [flash.message]);
-
+    useEffect(() => {
+    
+        if (flash.failed) {
+            toast.error(flash.failed);
+        }
+    }, [flash.failed]);
     return (
         <>
 

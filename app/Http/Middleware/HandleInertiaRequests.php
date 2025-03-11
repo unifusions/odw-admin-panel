@@ -37,7 +37,8 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'flash' => [
-                'message' => fn() => $request->session()->get('message')
+                'message' => fn() => $request->session()->get('message'),
+                'failed' => fn() => $request->session()->get('failed')
             ],
             'breadcrumbs' => $this->generateBreadcrumbs()
         ];
@@ -75,6 +76,24 @@ class HandleInertiaRequests extends Middleware
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                
             ],
+
+            'clinics.branches.create' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Clinics', 'url' => route('clinics.index')],
+                ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
+                ['name' => optional($clinic)->name ?? 'Branches', 'url' => $clinic ? route('clinics.branches.create', $clinic) : '#'],
+               
+            ],
+
+            'clinics.users.create' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Clinics', 'url' => route('clinics.index')],
+                ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
+                ['name' => optional($clinic)->name ?? 'Users', 'url' => $clinic ? route('clinics.users.create', $clinic) : '#'],
+               
+            ],
+
+
             'appointments.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Appointments', 'url' => route('appointments.index')],

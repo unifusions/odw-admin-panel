@@ -2,7 +2,7 @@
 
 namespace App\Models\Admin;
 
-
+use App\ClinicScope;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

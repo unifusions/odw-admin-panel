@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\Clinic\ClinicBranchController;
+use App\Http\Controllers\Admin\Clinic\ClinicUserController;
 use App\Http\Controllers\Admin\ClinicsBranchesListController;
 use App\Http\Controllers\Admin\ClinicsController;
 use App\Http\Controllers\Admin\ClinicsListController;
@@ -58,6 +60,8 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::resource('patients', PatientsController::class);
 
     Route::resource('clinics', ClinicsController::class);
+    Route::resource('clinics.branches', ClinicBranchController::class);
+    Route::resource('clinics.users', ClinicUserController::class);
     
     Route::get('/allclinics', ClinicsListController::class)->name('clinicslist');
     Route::get('/clinicbranches/{clinic}', ClinicsBranchesListController::class  );
@@ -74,7 +78,7 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 
 Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(function () {
     Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.dashboard');
-    Route::resource('clinic-users', UsersController::class);
+    Route::resource('users', UsersController::class);
 });
 
 // Route::middleware(['auth', 'role:clinic_user'])->group(function () {

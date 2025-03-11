@@ -20,39 +20,41 @@ trait ClinicScope
                 // Check if a user is authenticated
                 $user = auth()->user();
 
+              
+                // if ($clinicId) {
+                //     $builder->where('id', $clinicId);
+                // }
+
+                // if ($clinicId) {
+                //     $builder->whereHas('clinicUsers', function ($query) use ($clinicId) {
+                //         $query->where('clinic_id', $clinicId);
+                //     });
+
+                //     // $builder->where('facility_id', auth()->user()->facility_id);
+
+                // }
                 if ($user && !in_array($user->role, ['super_admin', 'patient'])) {
-                   
-
-                    // if ($clinicId) {
-                    //     $builder->where('id', $clinicId);
-                    // }
-
-                    // if ($clinicId) {
-                    //     $builder->whereHas('clinicUsers', function ($query) use ($clinicId) {
-                    //         $query->where('clinic_id', $clinicId);
-                    //     });
-
-                    //     // $builder->where('facility_id', auth()->user()->facility_id);
-
-                    // }
-
                     $modelTable = (new static())->getTable(); // Get the current model's table
+
+                    if (request()->isMethod('post')) {
+                        return;
+                    }
+    
+
+                    
                     $clinicId = ClinicUser::where('user_id', $user->id)->value('clinic_id');
                     if ($clinicId) {
 
-                      
+
                         if (Schema::hasColumn($modelTable, 'clinic_id')) {
 
                             $builder->where('clinic_id', $clinicId);
-                        }
-                        elseif ($modelTable === 'users') {
+                        } elseif ($modelTable === 'users') {
 
-                        $builder->whereHas('clinicUsers', function ($query) use ($clinicId) {
-                            $query->where('clinic_id', $clinicId);
-                        });
-
-                        }
-                        elseif ($modelTable === 'clinics') {
+                            $builder->whereHas('clinicUsers', function ($query) use ($clinicId) {
+                                $query->where('clinic_id', $clinicId);
+                            });
+                        } elseif ($modelTable === 'clinics') {
                             $builder->where('id', $clinicId);
                         }
                     }

@@ -11,7 +11,7 @@ export default function Index() {
     const { flash, clinics } = usePage().props;
     const showToast = useToast();
 
-    
+
 
     return (
         <AuthenticatedLayout header='Clinics'>
@@ -41,7 +41,7 @@ export default function Index() {
                                         </>
                                         : <>
                                             <td>
-                                                <a class="d-flex align-items-center" href="../user-profile.html">
+                                                <a class="d-flex align-items-center" href="#">
                                                     <div class="avatar avatar-soft-primary avatar-circle">
                                                         <span class="avatar-initials">{Array.from(clinic.name)[0]}</span>
                                                     </div>

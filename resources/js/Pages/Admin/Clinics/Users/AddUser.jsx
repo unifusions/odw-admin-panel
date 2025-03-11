@@ -1,19 +1,13 @@
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
-import { useForm, usePage } from "@inertiajs/react";
-import { useRef, useState } from "react";
+import { useForm } from "@inertiajs/react";
+import axios from "axios";
+import { useEffect, useState, useRef } from "react"
 
-export default function AddUser() {
-
-
-    const user = usePage().props.auth.user;
-    const [clinics, setClinics] = useState([]);
-    const [brnaches, setBranches] = useState([]);
-    const [loading, setLoading] = useState(false);
+export default function AddUser({ clinic }) {
 
     const modalRef = useRef(null);
-
     const { data, setData, post, processing, errors, reset } = useForm({
         full_name: '',
         email: '',
@@ -21,92 +15,59 @@ export default function AddUser() {
         password: '',
         password_confirmation: '',
         branch_id: '',
-        clinic_id: '',
+
         role: '',
 
     });
 
-
     const closeModal = () => {
 
         const modal = bootstrap.Modal.getInstance(modalRef.current)
+
         reset();
         modal.toggle();
 
     }
 
-    const fetchClinics = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get('/admin/allclinics');
-            setClinics(response.data);
-
-
-
-        } catch (error) {
-            console.error('Error Fetching Data', error)
-        }
-        finally {
-            setLoading(false); ``
-        }
-    }
-
-    const fetchBranhces = async (clinicId) => {
-        try {
-            const response = await axios.get(`/admin/clinicbranches/${clinicId}`);
-            setBranches(response.data);
-        }
-
-        catch (error) {
-            console.error('Error Fetching Data', error)
-        }
-        finally {
-
-        }
-    }
-
-    const handleClinicSelect = (event) => {
-        const clinic_id = event.target.value;
-        setData('clinic_id', clinic_id);
-        fetchBranhces(clinic_id);
-
-    }
     const onsubmit = (e) => {
-
-        const postUrl  = user.role==="super_admin" ? 'clinic-users.store':'users.store';
-       
         e.preventDefault();
 
-       
-        post(route(postUrl), {
-            onFinish: closeModal
-
+        post(route('clinics.users.store', clinic), {
+            onFinish: closeModal,
+            onError: (errors) => {
+                console.log(errors)
+            },
         });
     };
 
+
+
+
+
+
     return (
         <>
+            <div className="d-grid mb-3">
 
-            <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClinicModal" onClick={fetchClinics}>
-                <i className="bi-hospital me-1"></i> Add User
-            </button>
+                <button className="btn btn-white btn-dashed-outline" data-bs-toggle="modal" data-bs-target="#addClinicModal"><i class="bi-plus"></i> Add User</button>
+
+            </div>
 
             <div id="addClinicModal" className="modal fade modal-lg" ref={modalRef}>
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Add User</h5>
+                            <h5 className="modal-title" id="exampleModalCenterTitle">Add Clinic</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
+
 
                             <form action="" onSubmit={onsubmit} noValidate>
 
 
                                 <div className="row mb-4">
-
                                     <InputLabel htmlFor="full_name" className="form-label col-sm-3 col-form-label" value="Full Name" />
-
                                     <div class="col-sm-9">
 
                                         <TextInput
@@ -119,6 +80,7 @@ export default function AddUser() {
                                         />
 
                                     </div>
+
                                 </div>
 
                                 <div className="row mb-4">
@@ -218,22 +180,7 @@ export default function AddUser() {
                                 </div>
 
 
-                                <div className="row mb-4">
-                                    <label htmlFor="clinic_master" className="col-sm-3 col-form-label form-label">Clinic </label>
 
-                                    <div className="col-sm-9">
-                                        <select name="" id="clinic_master" className="form-select" onChange={handleClinicSelect} value={data.clinic_id} >
-                                            <option value=""></option>
-                                            {clinics.map((clinic) =>
-                                                <option key={clinic.id} value={clinic.id}>
-                                                    {clinic.name}
-                                                </option>
-                                            )}
-                                        </select>
-
-
-                                    </div>
-                                </div>
 
                                 <div className="row mb-4">
                                     <label htmlFor="clinic_branch" className="col-sm-3 col-form-label form-label">Branch </label>
@@ -243,8 +190,8 @@ export default function AddUser() {
                                             onChange={(e) =>
                                                 setData('branch_id', e.target.value)
                                             } value={data.branch_id}>
-                                            <option value=""></option>
-                                            {brnaches.map((branch) =>
+                                            <option value="">Select Clinic Branch</option>
+                                            {clinic.branches.map((branch) =>
                                                 <option key={branch.id} value={branch.id}>
                                                     {branch.name}
                                                 </option>
@@ -254,9 +201,6 @@ export default function AddUser() {
 
                                     </div>
                                 </div>
-
-
-
                                 <div className="row mb-4">
                                     <label for="phoneLabel" className="col-sm-3 col-form-label form-label">Role </label>
 
@@ -274,16 +218,16 @@ export default function AddUser() {
                                     </div>
                                 </div>
 
-                                <div className="row mb-4">
-                                    <div className="col-sm-12 text-end">
-                                        <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-primary">Save User</button>
-                                    </div>
+
+
+
+                                <div className="text-end">
+                                    <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-primary">Save Clinic</button>
+
                                 </div>
 
                             </form>
-
-
                         </div>
 
 
