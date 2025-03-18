@@ -2,27 +2,14 @@ import PageHeader from "@/Components/PageHeader";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import AddService from "./AddService";
+import EditService from "./EditService";
 
 export default function Index() {
-    const {services} = usePage().props
-    // const SERVICES = [
-    //     { name: 'Dental Implants', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Regular Check-ups and Professional Cleaning', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Complete Smile Makeover', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Invisalign', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Dental Crowns', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Preventive Treatment', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Pediatric Treatment', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Teeth Whitening', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Dentures', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Over Dentures', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Root Canal', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Tooth Extractions', cost: '$ 500', other: '$ 750' },
-    //     { name: 'Dental Fillings', cost: '$ 500', other: '$ 750' },
-    // ];
+    const { services } = usePage().props
+   
     return (
         <AuthenticatedLayout header='Services'>
-            {console.log(services)}
+        
             <Head title="Services" />
             <PageHeader>
                 <AddService />
@@ -34,10 +21,10 @@ export default function Index() {
                 >
                     <thead class="thead-light">
                         <tr>
-                            <th>Services</th>
+                            <th colSpan={2}>Services</th>
                             <th>ODW Cost</th>
-                            <th>Other Cost</th>
-
+                            <th>Average National Cost</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -45,10 +32,25 @@ export default function Index() {
                         {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
-                                    <td>{item.name}</td>
-                                    <td>{item.cost}</td>
-                                    <td>{item.other}</td>
+                                    <td> <div className="avatar ">
+                                                <img class="avatar-img" src={`/storage/${item.image_path}`} alt="Image Description" height={42} width={42} />
+                                                {/* <span className="avatar-initials">
+                                                    {dentist.full_name.charAt(0)}
+                                                </span> */}
+                                            </div></td>
+                                    <td className="text-wrap">
+                                        <div className="d-flex align-items-center">
+                                           
+                                            <div className="ms-3">
+                                                <span class="d-block h5 text-inherit mb-0"> {item.name} </span>
+                                                <span class="d-block fs-5 text-body">{item.desc}</span>
+                                            </div>
+                                        </div>
 
+                                    </td>
+                                    <td>$ {item.cost}</td>
+                                    <td>$ {item.avg_cost}</td>
+                                    <td><EditService service= {item} /></td>
                                 </tr>
                             ))
                         }

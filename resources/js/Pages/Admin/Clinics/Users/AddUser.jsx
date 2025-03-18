@@ -49,7 +49,7 @@ export default function AddUser({ clinic }) {
         <>
             <div className="d-grid mb-3">
 
-                <button className="btn btn-white btn-dashed-outline" data-bs-toggle="modal" data-bs-target="#addClinicModal"><i class="bi-plus"></i> Add User</button>
+                <button className="btn  btn-outline-primary  btn-dashed-outline" data-bs-toggle="modal" data-bs-target="#addClinicModal"><i class="bi-plus"></i> Add User</button>
 
             </div>
 

@@ -27,6 +27,7 @@ class ClinicBranch extends Model
     }
 
 
+    
 
 
     public function users()
@@ -39,6 +40,10 @@ class ClinicBranch extends Model
     }
     public function services(){
         return $this->hasMany(ClinicService::class);
+    }
+
+    public function dentalservices(){
+        return $this->hasMany(ClinicDentalService::class);
     }
 
     public function zipCode()

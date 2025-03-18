@@ -76,6 +76,13 @@ class HandleInertiaRequests extends Middleware
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                
             ],
+           'clinics.branches.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Clinics', 'url' => route('clinics.index')],
+                ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
+                ['name' => optional($clinic)->name ?? 'Branches', 'url' => $clinic ? route('clinics.branches.index', $clinic) : '#'],
+               
+            ],
 
             'clinics.branches.create' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
@@ -84,6 +91,15 @@ class HandleInertiaRequests extends Middleware
                 ['name' => optional($clinic)->name ?? 'Branches', 'url' => $clinic ? route('clinics.branches.create', $clinic) : '#'],
                
             ],
+            
+            'clinics.users.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Clinics', 'url' => route('clinics.index')],
+                ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
+                ['name' => optional($clinic)->name ?? 'Users', 'url' => $clinic ? route('clinics.users.index', $clinic) : '#'],
+               
+            ],
+
 
             'clinics.users.create' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
@@ -92,6 +108,15 @@ class HandleInertiaRequests extends Middleware
                 ['name' => optional($clinic)->name ?? 'Users', 'url' => $clinic ? route('clinics.users.create', $clinic) : '#'],
                
             ],
+
+            'clinics.services.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Clinics', 'url' => route('clinics.index')],
+                ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
+                ['name' => optional($clinic)->name ?? 'Services', 'url' => $clinic ? route('clinics.services.index', $clinic) : '#'],
+               
+            ],
+
 
 
             'appointments.index' => [

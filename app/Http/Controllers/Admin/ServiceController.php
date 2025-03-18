@@ -15,10 +15,12 @@ class ServiceController extends Controller
     public function index()
     {
         // dd(DentalService::paginate(25))
-        return Inertia::render('Admin/Services/Index',[
-            'services' => DentalService::paginate(25),
-        ]
-    );
+        return Inertia::render(
+            'Admin/Services/Index',
+            [
+                'services' => DentalService::paginate(25),
+            ]
+        );
     }
 
     /**
@@ -36,14 +38,13 @@ class ServiceController extends Controller
     {
         // dd($request->input());
 
-     $dentalService = DentalService::create([
-        'name' =>  $request->name,
-        'desc' => $request->desc,
-        'cost' => $request->cost,
-     ]);
+        $dentalService = DentalService::create([
+            'name' =>  $request->name,
+            'desc' => $request->desc,
+            'cost' => $request->cost,
+        ]);
 
-     return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);
-
+        return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);
     }
 
     /**
@@ -57,7 +58,7 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(DentalService $service)
     {
         //
     }
@@ -65,9 +66,20 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, DentalService $service)
     {
-        //
+
+        $inputs = $request->input('data');
+        // dd();
+        $service->name = $inputs['name'] ?? $service->name;
+        $service->desc = $inputs['desc'] ?? $service->desc;
+        $service->cost = $inputs['cost'] ?? $service->cost;
+        $service->avg_cost = $inputs['avg_cost'] ?? $service->avg_cost;
+        if ($request->hasFile('image_path'))
+            $service->image_path = $request->file('image_path')->store('uploads/services', 'public');
+        $service->save();
+        $message = $service->name . ' has been updated successfully';
+        return redirect()->back()->with(['message' =>$message]);
     }
 
     /**

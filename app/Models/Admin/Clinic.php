@@ -25,6 +25,7 @@ class Clinic extends Model
     }
 
     
+    
 
 
     public function users()

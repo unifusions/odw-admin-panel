@@ -94,7 +94,7 @@ export default function AddBranchModal({ clinic }) {
     return (
         <>
             <div className="d-grid mb-3">
-                <button className="btn btn-white btn-dashed-outline" data-bs-toggle="modal" onClick={fetchStates} data-bs-target="#addClinicModal"><i class="bi-plus"></i> Add Branch</button>
+                <button className="btn btn-outline-primary btn-dashed-outline" data-bs-toggle="modal" onClick={fetchStates} data-bs-target="#addClinicModal"><i class="bi-plus"></i> Add Branch</button>
 
             </div>
 

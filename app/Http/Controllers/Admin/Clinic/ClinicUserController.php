@@ -15,9 +15,14 @@ class ClinicUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Clinic $clinic)
     {
-       
+        $clinic->load('branches.zipcode.city.state', 'branches.dentists', 'branches.services', 'users.user', 'users.branch');
+        return Inertia::render('Admin/Clinics/Users/Index', [
+            'clinic' => $clinic,
+            'branches' => $clinic->branches,
+            'users'=> $clinic->users
+        ]);
     }
 
     /**

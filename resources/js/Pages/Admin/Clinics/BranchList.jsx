@@ -1,16 +1,17 @@
 export default function BranchList({ branches }) {
     return (
         <>
-            {branches.map((branch) => {
+            {branches.map((branch, index) => {
                 return (
                     <>
+
                         <div className="card mb-3">
                             <div className="card-body">
-                                <div className="d-flex mb-3">
+                                <div className="d-flex mb-3 align-items-start">
                                     <div className="me-2">
-                                        <h3 class="mb-0 me-3">{branch.name}</h3>
+                                        <h3 class="mb-0 me-3">{branch.name} </h3>{index === 0 && <span class="badge bg-info">Main Branch</span>}
 
-                                        {console.log(branch)}
+
                                         {/* 
                                         <div className="avatar-group avatar-group-sm">
                                             <span className="avatar avatar-circle">
@@ -58,7 +59,7 @@ export default function BranchList({ branches }) {
                                 </div>
 
                                 <div className="row mb-3 border-bottom border-secondary-subtle">
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <p className="d-block text-body">
                                             {branch.address_line_1}<br />
                                             {branch.address_line_2}<br />
@@ -66,7 +67,7 @@ export default function BranchList({ branches }) {
                                             {branch.zipcode.city.state.name}
                                         </p>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <ul className="list-group list-group-flush list-group-no-gutters">
                                             <li className="list-group-item">
                                                 <ul className="list-unstyled list-py-2 text-body">
@@ -75,6 +76,15 @@ export default function BranchList({ branches }) {
                                                 </ul>
                                             </li>
                                         </ul>
+
+                                    </div>
+
+                                    <div className="col-md-4">
+                                        {console.log(branch)}
+
+                                        {branch.dentalservices.map((service) =>
+                                            <span class="badge bg-soft-dark text-dark me-2 mb-2">{service.dentalservice.name}</span>
+                                        )}
 
                                     </div>
                                 </div>
@@ -105,7 +115,7 @@ export default function BranchList({ branches }) {
                                     <div className="col-4">
 
                                         <div className="text-center">
-                                            <span className="d-block h4 mb-1">{branch.services.length}</span>
+                                            <span className="d-block h4 mb-1">{branch.dentalservices.length}</span>
                                             <span className="d-block fs-6">Services</span>
                                         </div>
 

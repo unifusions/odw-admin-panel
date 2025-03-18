@@ -15,9 +15,13 @@ class ClinicBranchController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Clinic $clinic)
     {
-        //
+        $clinic->load('branches.zipcode.city.state', 'branches.dentists', 'branches.dentalservices.dentalservice');
+        return Inertia::render('Admin/Clinics/AddBranch', [
+            'clinic' => $clinic,
+            'branches' => $clinic->branches
+        ]);
     }
 
     /**
@@ -25,11 +29,7 @@ class ClinicBranchController extends Controller
      */
     public function create(Clinic $clinic)
     {
-        $clinic->load('branches.zipcode.city.state', 'branches.dentists', 'branches.services');
-        return Inertia::render('Admin/Clinics/AddBranch', [
-            'clinic' => $clinic,
-            'branches' => $clinic->branches
-        ]);
+      
     }
 
     /**

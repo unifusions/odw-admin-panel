@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\Clinic\ClinicBranchController;
+use App\Http\Controllers\Admin\Clinic\ClinicServiceController;
 use App\Http\Controllers\Admin\Clinic\ClinicUserController;
 use App\Http\Controllers\Admin\ClinicsBranchesListController;
 use App\Http\Controllers\Admin\ClinicsController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\Clinic\DashboardController as ClinicDashboardController;
+use App\Http\Controllers\DentalServicesController;
 use App\Http\Controllers\Patient\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
@@ -37,6 +39,7 @@ Route::get('/', function () {
 
 Route::get('/states', StatesController::class);
 Route::get('/cities/{state}', CitiesController::class );
+Route::get('/dental-services', DentalServicesController::class);
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
@@ -62,6 +65,7 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::resource('clinics', ClinicsController::class);
     Route::resource('clinics.branches', ClinicBranchController::class);
     Route::resource('clinics.users', ClinicUserController::class);
+    Route::resource('clinics.services', ClinicServiceController::class);
     
     Route::get('/allclinics', ClinicsListController::class)->name('clinicslist');
     Route::get('/clinicbranches/{clinic}', ClinicsBranchesListController::class  );

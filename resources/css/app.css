@@ -19730,12 +19730,14 @@ input[type=number] {
     height: inherit
 }
 
-.avatar-uploader {
+.avatar-uploader, .avatar-delete {
     cursor: pointer;
     display: inline-block;
     transition: .2s;
     margin-bottom: 0
 }
+
+
 
 .avatar-uploader-input {
     position: absolute;
@@ -19751,7 +19753,7 @@ input[type=number] {
     transition: .2s
 }
 
-.avatar-uploader-trigger {
+.avatar-uploader-trigger, .avatar-delete-trigger {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -19759,7 +19761,7 @@ input[type=number] {
     border-radius: 50%
 }
 
-.avatar-uploader-icon {
+.avatar-uploader-icon{
     display: -ms-inline-flexbox;
     display: inline-flex;
     -ms-flex-negative: 0;
@@ -19774,9 +19776,16 @@ input[type=number] {
     transition: .2s
 }
 
+
+
 .avatar-uploader:hover .avatar-uploader-icon {
     color: #fff;
-    background-color: #377dff
+    background-color: #377dff;
+}
+
+.avatar-delete-icon:hover {
+    color: #fff;
+    background-color: #ed4c78 !important;
 }
 
 .avatar-lg .avatar-uploader-icon {

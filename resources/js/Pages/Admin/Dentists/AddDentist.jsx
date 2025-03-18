@@ -18,7 +18,7 @@ export default function AddDentist() {
         name: '',
         phone: '',
         email: '',
-        services:[],
+        services:[],    
 
     });
 
