@@ -6,6 +6,7 @@ import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { Button, Form } from 'react-bootstrap';
+
 import odwLogo from '../../../../public/images/odw-logo.png';
 
 export default function Login({ status, canResetPassword }) {
@@ -36,7 +37,7 @@ export default function Login({ status, canResetPassword }) {
             <div className="container py-5 py-sm-7">
 
                 <Link className="d-flex justify-content-center mb-5" href="#!">
-                    <img className="zi-2" src={`public/${odwLogo}`} alt="Image Description" style={{ width: '4rem' }} />
+                    <img className="zi-2" src={odwLogo} alt="Image Description" style={{ width: '4rem' }} />
                 </Link>
 
 
