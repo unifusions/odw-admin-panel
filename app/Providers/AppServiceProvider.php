@@ -32,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
                 return $this->redirectTo($request);
             });
         });
+
+        
     }
 
     protected function redirectTo(Request $request)
