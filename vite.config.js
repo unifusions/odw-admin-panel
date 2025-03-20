@@ -12,6 +12,7 @@ export default defineConfig({
         react(),
         commonjs(),
     ],
+    base: '/public',
     optimizeDeps: {
         include: [
           'bootstrap', // Add bootstrap here
