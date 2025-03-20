@@ -206,7 +206,7 @@ export default function Index({ events }) {
                         <div>{title}</div>
 
                         <div className='text-muted mb-3 fs-10'>
-                            {startTime} > {endTime}
+                            {startTime} - {endTime}
                         </div>
 
                         <span className="bg-white rounded-3 py-1 px-2 border-solid">{services.join(", ")}</span>

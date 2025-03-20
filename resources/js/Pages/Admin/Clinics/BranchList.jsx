@@ -59,7 +59,7 @@ export default function BranchList({ branches }) {
                                 </div>
 
                                 <div className="row mb-3 border-bottom border-secondary-subtle">
-                                    <div className="col-md-4">
+                                    <div className="col-md-3">
                                         <p className="d-block text-body">
                                             {branch.address_line_1}<br />
                                             {branch.address_line_2}<br />
@@ -67,9 +67,23 @@ export default function BranchList({ branches }) {
                                             {branch.zipcode.city.state.name}
                                         </p>
                                     </div>
-                                    <div className="col-md-4">
+                                    <div className="col-md-3">
+                                    <ul className="list-group list-group-flush list-group-no-gutters">
+                                            <li className="list-group-item">
+                                                <h5> Working Hours</h5>
+                                                <ul className="list-unstyled list-py-2 text-body">
+                                                    <li><i className="bi-at me-2"></i> {branch.email}</li>
+                                                    <li><i className="bi-phone me-2"></i>{branch.phone}</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div className="col-md-3">
+
                                         <ul className="list-group list-group-flush list-group-no-gutters">
                                             <li className="list-group-item">
+                                                <h5> Contact</h5>
                                                 <ul className="list-unstyled list-py-2 text-body">
                                                     <li><i className="bi-at me-2"></i> {branch.email}</li>
                                                     <li><i className="bi-phone me-2"></i>{branch.phone}</li>
@@ -79,8 +93,8 @@ export default function BranchList({ branches }) {
 
                                     </div>
 
-                                    <div className="col-md-4">
-                                        {console.log(branch)}
+                                    <div className="col-md-3">
+
 
                                         {branch.dentalservices.map((service) =>
                                             <span class="badge bg-soft-dark text-dark me-2 mb-2">{service.dentalservice.name}</span>

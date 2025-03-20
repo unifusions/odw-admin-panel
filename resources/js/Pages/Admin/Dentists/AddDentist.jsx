@@ -16,6 +16,7 @@ export default function AddDentist() {
     const [branches, setBranches] = useState([]);
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        practise_from: '',
         phone: '',
         email: '',
         services:[],    
@@ -94,7 +95,7 @@ export default function AddDentist() {
                                             id="dentistName"
                                             type="date"
                                             name="dentist_name"
-                                            value={data.name}
+                                            value={data.practise_from}
                                             className="form-control "
                                             placeholder=""
                                             onChange={(e) => setData('practise_from', e.target.value)}

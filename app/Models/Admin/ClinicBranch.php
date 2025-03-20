@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\ClinicDentist;
 use App\Models\ClinicService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +28,20 @@ class ClinicBranch extends Model
     }
 
 
-    
+
+    public function getAvailableSlots($date)
+    {
+        $openingTime = Carbon::parse($this->opening_time);
+        $closingTime = Carbon::parse($this->closing_time);
+        $slots = [];
+
+        while ($openingTime < $closingTime) {
+            $slot = $openingTime->format('H:i') . ' - ' . $openingTime->addMinutes(30)->format('H:i');
+            $slots[] = $slot;
+        }
+
+        return $slots;
+    }
 
 
     public function users()
@@ -35,14 +49,17 @@ class ClinicBranch extends Model
         return $this->hasMany(ClinicUser::class, 'branch_id');
     }
 
-    public function dentists(){
+    public function dentists()
+    {
         return $this->hasMany(ClinicDentist::class);
     }
-    public function services(){
+    public function services()
+    {
         return $this->hasMany(ClinicService::class);
     }
 
-    public function dentalservices(){
+    public function dentalservices()
+    {
         return $this->hasMany(ClinicDentalService::class);
     }
 
@@ -60,5 +77,4 @@ class ClinicBranch extends Model
     {
         return $this->hasOneThrough(State::class, City::class, 'id', 'id', 'city_id', 'state_id');
     }
-    
 }
