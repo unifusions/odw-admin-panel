@@ -13,7 +13,7 @@ export default function ServiceList({ clinic, dentalservices }) {
                             <div className="row">
                                 <div className="col-auto">
                                     {service.image_path && <>
-                                        <img src={`/storage/${service.image_path}`} alt="" width={50} />
+                                        <img src={service.image_path} alt="" width={50} />
 
                                     </>}
                                 </div>
