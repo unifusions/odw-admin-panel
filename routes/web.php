@@ -99,8 +99,8 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
 
 require __DIR__ . '/auth.php';
 
-Route::middleware('api')->prefix('api')->group(function () {
-    require __DIR__ . '/api.php';
-});
+// Route::middleware('api')->prefix('api')->group(function () {
+//     require __DIR__ . '/api.php';
+// });
 
 
