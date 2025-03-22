@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\DentalService;
+use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -18,7 +19,11 @@ class ServiceController extends Controller
         return Inertia::render(
             'Admin/Services/Index',
             [
-                'services' => DentalService::paginate(25),
+                'services' => DentalService::paginate(25)->through(function ($service) {
+                    if ($service->image_path)
+                        $service->image_path = Storage::disk('public')->url($service->image_path);
+                    return $service;
+                }),
             ]
         );
     }
@@ -79,7 +84,7 @@ class ServiceController extends Controller
             $service->image_path = $request->file('image_path')->store('uploads/services', 'public');
         $service->save();
         $message = $service->name . ' has been updated successfully';
-        return redirect()->back()->with(['message' =>$message]);
+        return redirect()->back()->with(['message' => $message]);
     }
 
     /**
