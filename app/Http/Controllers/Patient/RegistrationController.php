@@ -21,6 +21,7 @@ class RegistrationController extends Controller
             $status = true;
             $message = 'OTP sent for login verification';
         } else {
+            $status = false;
             $message = 'OTP sent for new registration';
         }
 
