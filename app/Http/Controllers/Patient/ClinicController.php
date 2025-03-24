@@ -13,6 +13,7 @@ class ClinicController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return response()->json(Clinic::all());
+
+        return response()->json(Clinic::with('branches')->get());
     }
 }
