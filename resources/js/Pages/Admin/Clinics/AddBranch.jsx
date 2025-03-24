@@ -8,7 +8,7 @@ export default function AddBranch({ clinic, branches }) {
             <ClinicLayout clinic={clinic} >
              
                 <AddBranchModal clinic={clinic} />
-                <BranchList branches={branches} />
+                <BranchList branches={branches} clinic={clinic} />
             </ClinicLayout>
         </>
     )

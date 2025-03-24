@@ -1,11 +1,12 @@
-export default function BranchList({ branches }) {
+import { Link } from "@inertiajs/react"
+
+export default function BranchList({ branches, clinic }) {
     return (
         <>
             {branches.map((branch, index) => {
                 return (
                     <>
-
-                        <div className="card mb-3">
+                                        <div className="card mb-3">
                             <div className="card-body">
                                 <div className="d-flex mb-3 align-items-start">
                                     <div className="me-2">
@@ -36,21 +37,15 @@ export default function BranchList({ branches }) {
                                             </button>
 
                                             <div className="dropdown-menu dropdown-menu-end" aria-labelledby="kanbanProjectsGridDropdown1" >
-                                                <a className="dropdown-item" href="#" draggable="false">
-                                                    <i className="bi-pencil dropdown-item-icon"></i> Rename project
-                                                </a>
-                                                <a className="dropdown-item" href="#" draggable="false">
-                                                    <i className="bi-star dropdown-item-icon"></i> Add to favorites
-                                                </a>
-                                                <a className="dropdown-item" href="#" draggable="false">
-                                                    <i className="bi-archive dropdown-item-icon"></i> Archive project
-                                                </a>
+                                                <Link href={route('clinics.branches.edit', {clinic, branch})} className="dropdown-item">
+                                                    <i className="bi-pencil dropdown-item-icon"></i> Edit Branch Details</Link>
+
 
                                                 <div className="dropdown-divider"></div>
 
                                                 <a className="dropdown-item text-danger" href="#" draggable="false">
                                                     <i className="bi-trash dropdown-item-icon text-danger"></i>
-                                                    Remove
+                                                    Delete Branch
                                                 </a>
                                             </div>
                                         </div>
@@ -68,7 +63,7 @@ export default function BranchList({ branches }) {
                                         </p>
                                     </div>
                                     <div className="col-md-3">
-                                    <ul className="list-group list-group-flush list-group-no-gutters">
+                                        <ul className="list-group list-group-flush list-group-no-gutters">
                                             <li className="list-group-item">
                                                 <h5> Working Hours</h5>
                                                 <ul className="list-unstyled list-py-2 text-body">

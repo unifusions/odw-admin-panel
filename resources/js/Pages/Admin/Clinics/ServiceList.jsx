@@ -20,12 +20,12 @@ export default function ServiceList({ clinic, dentalservices }) {
                                 <div className="col-sm">
                                     <h2 className="fw-normal mb-1" >{service.service}</h2>
                                     <ul className="list-inline list-separator">
-                                    {service.branches.map((branch, bIndex) => (
-                                        <li className="list-inline-item" key={bIndex}>{branch}</li>
-                                    ))}
-                                </ul>
+                                        {service.branches.map((branch, bIndex) => (
+                                            <li className="list-inline-item" key={bIndex}>{branch}</li>
+                                        ))}
+                                    </ul>
                                 </div>
-                               
+
                             </div>
 
 
