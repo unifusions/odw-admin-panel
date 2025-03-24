@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Patient\ClinicController;
 use App\Http\Controllers\Patient\DentalServiceController;
 use App\Http\Controllers\Patient\RegistrationController;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/clinics', ClinicController::class);
 
 
 Route::middleware('auth:sanctum')->group(function(){
