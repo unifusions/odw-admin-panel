@@ -167,7 +167,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
                     <main id="content" role="main" className="main">
 
-                        <div className="content container">
+                        <div className="content container-fluid">
 
                             {/* <div className="page-header"> */}
                             {/* <div className="row align-items-center"> */}

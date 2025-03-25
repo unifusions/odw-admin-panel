@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Appointment;
 use App\Models\ClinicDentist;
 use App\Models\ClinicService;
 use Carbon\Carbon;
@@ -29,17 +30,30 @@ class ClinicBranch extends Model
 
 
 
-    public function getAvailableSlots($date)
+    public function getAvailableSlots($date, $doctorId)
     {
         $openingTime = Carbon::parse($this->opening_time);
         $closingTime = Carbon::parse($this->closing_time);
         $slots = [];
-
         while ($openingTime < $closingTime) {
-            $slot = $openingTime->format('H:i') . ' - ' . $openingTime->addMinutes(30)->format('H:i');
-            $slots[] = $slot;
-        }
+            $slot = $openingTime->format('H:i');
 
+            // Check if the slot is already booked for the given date and doctor
+            $isBooked = Appointment::where('appointment_date', $date)
+                ->where('time_slot', $slot)
+                ->when($doctorId, function ($query) use ($doctorId) {
+                    $query->where('doctor_id', $doctorId);
+                }, function ($query) {
+                    $query->whereNull('doctor_id'); // If doctor is assigned later
+                })
+                ->exists();
+
+            if (!$isBooked) {
+                $slots[] = $slot;
+            }
+
+            $openingTime->addMinutes(30); // Half-hour slots
+        }
         return $slots;
     }
 

@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\Admin\AppointmentController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\Clinic\DashboardController as ClinicDashboardController;
 use App\Http\Controllers\DentalServicesController;
+use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\Patient\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
@@ -95,6 +97,10 @@ Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(
 
 Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('patient.dashboard');
+    Route::get('/appointments',[ PatientAppointmentController::class, 'index'])->name('patient.appointments.index');
+    Route::get('/appointments/{branch}',[ PatientAppointmentController::class, 'clinicView'])->name('patient.appointments.clinic');
+    Route::get('/appointments/{branch}/slots',[ PatientAppointmentController::class, 'getAvailableSlots'])->name('patient.appointments.slots');
+    Route::post('/appointments/{branch}/bookappointment',[ PatientAppointmentController::class, 'bookAppointment'])->name('patient.appointments.booking');
 });
 
 require __DIR__ . '/auth.php';

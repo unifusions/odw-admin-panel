@@ -657,25 +657,6 @@ export default function PatientAuthenticatedLayout({ header, children }) {
 
                     <div className="content container">
 
-                        {/* <div className="page-header"> */}
-                        {/* <div className="row align-items-center"> */}
-                        {/* <div className="col-sm mb-2 mb-sm-0">
-                                    <h1 className="page-header-title">
-                                        {header && (<>{header}</>)
-                                        }</h1>
-                                </div> */}
-
-
-                        {/* <div className="col-sm-auto">
-                               <a className="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#inviteUserModal">
-                                   <i className="bi-person-plus-fill me-1"></i> Invite users
-                               </a>
-                           </div> */}
-
-                        {/* </div> */}
-
-                        {/* </div> */}
-
 
                         {children}
 

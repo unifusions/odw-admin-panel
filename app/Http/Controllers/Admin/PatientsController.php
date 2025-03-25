@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +14,10 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Patients/Index');
+        return Inertia::render(
+            'Admin/Patients/Index',
+            ['patients' => Patient::paginate(25)]
+        );
     }
 
     /**
@@ -22,7 +26,6 @@ class PatientsController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Patients/PatientProfile');
-
     }
 
     /**
@@ -38,7 +41,7 @@ class PatientsController extends Controller
      */
     public function show(string $id)
     {
-       return Inertia::render('Admin/Patients/PatientProfile');
+        return Inertia::render('Admin/Patients/PatientProfile');
     }
 
     /**

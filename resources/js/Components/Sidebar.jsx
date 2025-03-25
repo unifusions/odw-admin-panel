@@ -93,7 +93,8 @@ const Sidebar = () => {
             {
                 section: false,
                 links: [
-                    { name: 'Dashboard', path: '/patient/dashboard' }
+                    { name: 'Dashboard', path: '/patient/dashboard',  icon: 'bi-house-door'  },
+                    { name: 'Appointments', path: '/patient/appointments', icon: 'bi-calendar2-week' }
                 ]
             }
         ]

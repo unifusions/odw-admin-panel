@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-import { Head } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 
 
 
@@ -16,8 +16,8 @@ import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 import Breadcrumbs from '@/Components/Breadcrumbs';
 
 
-export default function Index({ events }) {
-
+export default function Index({ appointments, events }) {
+    const [currentDate, setCurrentDate] = useState(new Date());
     const serviceColors = {
         "Teeth Cleaning": "#4CAF50",  // Green
         "Cavity Treatment": "#FF9800", // Orange
@@ -27,161 +27,36 @@ export default function Index({ events }) {
         "Tooth Extraction": "#F44336" // Red
     };
 
-    // const [calendarEvents, setCalendarEvents] = useState(events);
-    const [calendarEvents, setCalendarEvents] = useState([
-        {
-            "id": "1",
-            "title": "Michael",
-            "start": "2025-02-22T09:00:00",
-            "end": "2025-02-22T09:30:00",
-            "className": "bg-soft-danger text-danger",
-            "extendedProps": {
-                "full_name": "Michael Johnson",
-                "age": 32,
-                "gender": "Male",
-                "location": "New York",
-                "services": ["Teeth Cleaning"]
-            },
-            // color: serviceColors["Root Canal"]
-        },
-        {
-            "id": "2",
-            "title": "Emily",
-            "start": "2025-02-22T10:00:00",
-            "end": "2025-02-22T10:30:00",
-            "className": "bg-soft-info text-info",
-            "extendedProps": {
-                "full_name": "Emily Davis",
-                "age": 28,
-                "gender": "Female",
-                "location": "Los Angeles",
-                "services": ["Root Canal", "Braces Consultation"]
-            }
-        },
-        {
-            "id": "3",
-            "title": "Daniel",
-            "start": "2025-02-23T11:30:00",
-            "end": "2025-02-23T12:00:00",
-            "className": "bg-soft-secondary text-secondary",
-            "extendedProps": {
-                "full_name": "Daniel Smith",
-                "age": 41,
-                "gender": "Male",
-                "location": "Chicago",
-                "services": ["Dental Implants"]
-            }
-        },
-        {
-            "id": "4",
-            "title": "Jessica",
-            "start": "2025-02-24T13:00:00",
-            "end": "2025-02-24T13:30:00",
-            "className": "bg-soft-warning text-warning",
+    useEffect(() => {
+        fetchAppointments(currentDate);
+    }, [currentDate]);
 
-            "extendedProps": {
-                "full_name": "Jessica Martinez",
-                "age": 29,
-                "gender": "Female",
-                "location": "Houston",
-                "services": ["Teeth Whitening", "Tooth Extraction"]
-            }
-        },
-        {
-            "id": "5",
-            "title": "Christopher",
-            "start": "2025-02-25T15:00:00",
-            "end": "2025-02-25T15:30:00",
-            "extendedProps": {
-                "full_name": "Christopher Brown",
-                "age": 38,
-                "gender": "Male",
-                "location": "Phoenix",
-                "services": ["Teeth Cleaning"]
-            }
-        },
-        {
-            "id": "6",
-            "title": "Ashley",
-            "start": "2025-02-26T09:30:00",
-            "end": "2025-02-26T10:00:00",
-            "extendedProps": {
-                "full_name": "Ashley Wilson",
-                "age": 30,
-                "gender": "Female",
-                "location": "Philadelphia",
-                "services": ["Braces Consultation"]
-            }
-        },
-        {
-            "id": "7",
-            "title": "Matthew",
-            "start": "2025-02-27T12:00:00",
-            "end": "2025-02-27T12:30:00",
-            "className": "fc-event-danger",
-            "extendedProps": {
-                "full_name": "Matthew Anderson",
-                "age": 45,
-                "gender": "Male",
-                "location": "San Antonio",
-                "services": ["Root Canal"]
-            }
-        },
-        {
-            "id": "8",
-            "title": "Sarah",
-            "start": "2025-02-28T14:30:00",
-            "end": "2025-02-28T15:00:00",
-            "extendedProps": {
-                "full_name": "Sarah Thomas",
-                "age": 37,
-                "gender": "Female",
-                "location": "San Diego",
-                "services": ["Dental Surgery"]
-            }
-        },
-        {
-            "id": "9",
-            "title": "James",
-            "start": "2025-03-01T16:00:00",
-            "end": "2025-03-01T16:30:00",
-            "extendedProps": {
-                "full_name": "James White",
-                "age": 50,
-                "gender": "Male",
-                "location": "Dallas",
-                "services": ["Tooth Extraction"]
-            }
-        },
-        {
-            "id": "10",
-            "title": "Megan",
-            "start": "2025-03-01T11:00:00",
-            "end": "2025-03-02T11:30:00",
-            "extendedProps": {
-                "full_name": "Megan Harris",
-                "age": 26,
-                "gender": "Female",
-                "location": "San Jose",
-                "services": ["Teeth Whitening"]
-            }
-        }
-    ]
-    );
 
-    // const hexToRgbA = (hex, opacity) => {
-    //     let c;
-    //     if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-    //         c = hex.substring(1).split('');
-    //         if (c.length === 3) {
-    //             c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-    //         }
-    //         c = `0x${c.join('')}`;
-    //         return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',')},${opacity})`;
-    //     }
-    //     throw new Error('Bad Hex');
-    // };
+    const fetchAppointments = (date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Ensure 2-digit format
 
+        router.reload({
+            data: { year: year, month:month },
+            only: ['appointments'],
+            preserveScroll: true,
+            preserveState: true
+        })
+
+        // router.reload(
+        //     , {}, {
+        //     preserveState: true,
+        //     onSuccess: (response) => {
+        //         setAppointments(response.props.appointments);
+        //     },
+        // });
+    };
+
+    const handleDatesSet = (info) => {
+        setCurrentDate(info.view.currentStart); // Update state when navigating months
+    };
+
+   
 
     const renderEventContent = (eventInfo) => {
         const { extendedProps, title, backgroundColor, start, end } = eventInfo.event;
@@ -221,6 +96,7 @@ export default function Index({ events }) {
     };
 
     const [selectedEvent, setSelectedEvent] = useState(null);
+
     const handleEventClick = (clickInfo) => {
         setSelectedEvent({
             title: clickInfo.event.title,
@@ -266,7 +142,7 @@ export default function Index({ events }) {
                 initialView="dayGridMonth"
                 // initialView='timeGridWeek'
                 selectable={false}
-                events={calendarEvents}
+                events={appointments}
                 select={handleDateSelect}
                 contentClassNames="fullcalendar-custom"
                 eventClick={handleEventClick}
@@ -276,6 +152,7 @@ export default function Index({ events }) {
                 // initialView="timeGridDay"
                 slotMinTime="08:00:00" // Start time for day view
                 slotMaxTime="18:00:00" // End time for day view
+                datesSet={handleDatesSet}
             />
 
             <div className="modal fade" id="eventModal" tabIndex="-1" aria-hidden="true">

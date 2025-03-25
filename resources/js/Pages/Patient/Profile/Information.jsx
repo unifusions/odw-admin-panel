@@ -45,15 +45,8 @@ export default function Information() {
                             </button>
                         </div>
 
-                        <div id="navbarVerticalNavMenu" className="collapse navbar-collapse" style="">
-                            <ul id="navbarSettings" className="js-sticky-block js-scrollspy card card-navbar-nav nav nav-tabs nav-lg nav-vertical" data-hs-sticky-block-options="{
-                     &quot;parentSelector&quot;: &quot;#navbarVerticalNavMenu&quot;,
-                     &quot;targetSelector&quot;: &quot;#header&quot;,
-                     &quot;breakpoint&quot;: &quot;lg&quot;,
-                     &quot;startPoint&quot;: &quot;#navbarVerticalNavMenu&quot;,
-                     &quot;endPoint&quot;: &quot;#stickyBlockEndPoint&quot;,
-                     &quot;stickyOffsetTop&quot;: 20
-                   }" style="">
+                        <div id="navbarVerticalNavMenu" className="collapse navbar-collapse" >
+                            <ul id="navbarSettings" className="js-sticky-block js-scrollspy card card-navbar-nav nav nav-tabs nav-lg nav-vertical" >
                                 <li className="nav-item">
                                     <a className="nav-link" href="#content">
                                         <i className="bi-person nav-icon"></i> Basic information
@@ -540,13 +533,7 @@ export default function Information() {
                                                             <img className="avatar avatar-xss avatar-circle me-2" src="./assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="United Kingdom Flag" />
                                                             <span className="text-truncate">United Kingdom</span></span><input className="items-placeholder" tabindex="-1" placeholder="" />
                                                     </div>
-                                                    <div className="tom-select-custom">
-                                                        <div className="ts-dropdown single plugin-change_listener plugin-hs_smart_position plugin-dropdown_input" style="display: none;">
-                                                            <div className="dropdown-input-wrap"><input type="select-one" autocomplete="off" size="1" tabindex="-1" className="dropdown-input" /></div>
-                                                            <div role="listbox" tabindex="-1" className="ts-dropdown-content" id="locationLabel-ts-dropdown" aria-labelledby="locationLabel-ts-label">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
 
@@ -748,9 +735,8 @@ export default function Information() {
                                                         <span>English (UK)</span></span>
                                                         <input type="select-one" autocomplete="off" size="1" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="languageLabel-ts-dropdown"
                                                             id="languageLabel-ts-control" aria-labelledby="languageLabel-ts-label" /></div>
-                                                    <div className="tom-select-custom"><div className="ts-dropdown single plugin-change_listener plugin-hs_smart_position" style="display: none;">
-                                                        <div role="listbox" tabindex="-1" className="ts-dropdown-content" id="languageLabel-ts-dropdown" aria-labelledby="languageLabel-ts-label"></div>
-                                                    </div></div></div>
+
+                                                </div>
                                             </div>
 
                                         </div>
@@ -1060,7 +1046,7 @@ export default function Information() {
                                   }" id="tomselect-4" tabindex="-1">
 
                                                     <option value="whenToSendNotification2">Only when I'm online</option>
-                                                    <option value="whenToSendNotification1">Always</option></select><div className="ts-wrapper js-select form-select single plugin-change_listener plugin-hs_smart_position input-hidden full has-items" style="width: 15rem;"><div className="ts-control"><div data-value="whenToSendNotification1" className="item" data-ts-item="">Always</div></div><div className="tom-select-custom"><div className="ts-dropdown single plugin-change_listener plugin-hs_smart_position" style="display: none;"><div role="listbox" tabindex="-1" className="ts-dropdown-content" id="tomselect-4-ts-dropdown"></div></div></div></div>
+                                                    <option value="whenToSendNotification1">Always</option></select>
                                             </div>
 
                                         </div>
@@ -1084,7 +1070,8 @@ export default function Information() {
                                                             <option value="EveryDay">Every day</option>
 
                                                             <option value="Never">Never</option>
-                                                            <option value="weekdays" selected="">Weekdays</option></select><div className="ts-wrapper js-select form-select single plugin-change_listener plugin-hs_smart_position input-hidden full has-items"><div className="ts-control"><div data-value="weekdays" className="item" data-ts-item="">Weekdays</div></div><div className="tom-select-custom"><div className="ts-dropdown single plugin-change_listener plugin-hs_smart_position" style="display: none;"><div role="listbox" tabindex="-1" className="ts-dropdown-content" id="tomselect-5-ts-dropdown"></div></div></div></div>
+                                                            <option value="weekdays" selected="">Weekdays</option></select>
+                                                      
                                                     </div>
 
                                                 </div>
@@ -1180,7 +1167,7 @@ export default function Information() {
                                                         <div className="col-auto">
                                                             <div className="form-check form-switch">
                                                                 <input className="form-check-input" type="checkbox" id="connectedAccounts1" />
-                                                                    <label className="form-check-label" for="connectedAccounts1"></label>
+                                                                <label className="form-check-label" for="connectedAccounts1"></label>
                                                             </div>
                                                         </div>
 
@@ -1207,7 +1194,7 @@ export default function Information() {
                                                         <div className="col-auto">
                                                             <div className="form-check form-switch">
                                                                 <input className="form-check-input" type="checkbox" id="connectedAccounts2" />
-                                                                    <label className="form-check-label" for="connectedAccounts2"></label>
+                                                                <label className="form-check-label" for="connectedAccounts2"></label>
                                                             </div>
                                                         </div>
 
@@ -1234,7 +1221,7 @@ export default function Information() {
                                                         <div className="col-auto">
                                                             <div className="form-check form-switch">
                                                                 <input className="form-check-input" type="checkbox" id="connectedAccounts3" checked="" />
-                                                                    <label className="form-check-label" for="connectedAccounts3"></label>
+                                                                <label className="form-check-label" for="connectedAccounts3"></label>
                                                             </div>
                                                         </div>
 
@@ -1261,7 +1248,7 @@ export default function Information() {
                                                         <div className="col-auto">
                                                             <div className="form-check form-switch">
                                                                 <input className="form-check-input" type="checkbox" id="connectedAccounts4" checked="" />
-                                                                    <label className="form-check-label" for="connectedAccounts4"></label>
+                                                                <label className="form-check-label" for="connectedAccounts4"></label>
                                                             </div>
                                                         </div>
 
@@ -1288,7 +1275,7 @@ export default function Information() {
                                                         <div className="col-auto">
                                                             <div className="form-check form-switch">
                                                                 <input className="form-check-input" type="checkbox" id="connectedAccounts5" />
-                                                                    <label className="form-check-label" for="connectedAccounts5"></label>
+                                                                <label className="form-check-label" for="connectedAccounts5"></label>
                                                             </div>
                                                         </div>
 
