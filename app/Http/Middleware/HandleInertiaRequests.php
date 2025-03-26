@@ -54,7 +54,8 @@ class HandleInertiaRequests extends Middleware
         $clinic = request()->route('clinic');
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
-            'clinic_admin' => route('clinic.dashboard')
+            'clinic_admin' => route('clinic.dashboard'),
+            'clinic_user' => route('clinic.dashboard')
         ];
 
         $dashboardUrl = $dashboardRoutes[$role]?? route('home');

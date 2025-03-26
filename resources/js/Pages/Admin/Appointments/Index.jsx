@@ -14,9 +14,10 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 import Breadcrumbs from '@/Components/Breadcrumbs';
+import PendingAppointments from './PendingAppointments';
 
 
-export default function Index({ appointments, events }) {
+export default function Index({ appointments, pendingAppointments }) {
     const [currentDate, setCurrentDate] = useState(new Date());
     const serviceColors = {
         "Teeth Cleaning": "#4CAF50",  // Green
@@ -37,7 +38,7 @@ export default function Index({ appointments, events }) {
         const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Ensure 2-digit format
 
         router.reload({
-            data: { year: year, month:month },
+            data: { year: year, month: month },
             only: ['appointments'],
             preserveScroll: true,
             preserveState: true
@@ -56,7 +57,7 @@ export default function Index({ appointments, events }) {
         setCurrentDate(info.view.currentStart); // Update state when navigating months
     };
 
-   
+
 
     const renderEventContent = (eventInfo) => {
         const { extendedProps, title, backgroundColor, start, end } = eventInfo.event;
@@ -67,8 +68,7 @@ export default function Index({ appointments, events }) {
 
         return (
             <div className="custom-event text-truncate" style={{
-                // backgroundColor: eventInfo.event.backgroundColor,
-                // borderRadius: "4px",
+              
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
@@ -137,6 +137,11 @@ export default function Index({ appointments, events }) {
         >
             <Head title="Appointments" />
             <Breadcrumbs />
+
+            {pendingAppointments > 0 && <PendingAppointments pendingEvents={pendingAppointments} />
+
+            }
+
             <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"

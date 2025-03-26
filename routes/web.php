@@ -2,6 +2,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\Clinic\AppointmentController as AdminClinicAppointmentController;
 use App\Http\Controllers\Admin\Clinic\ClinicBranchController;
 use App\Http\Controllers\Admin\Clinic\ClinicServiceController;
 use App\Http\Controllers\Admin\Clinic\ClinicUserController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Admin\SecondOpinionController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CitiesController;
+use App\Http\Controllers\Clinic\AppointmentController as ClinicAppointmentController;
 use App\Http\Controllers\Clinic\DashboardController as ClinicDashboardController;
 use App\Http\Controllers\DentalServicesController;
 use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
@@ -85,6 +87,8 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(function () {
     Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.dashboard');
     Route::resource('users', UsersController::class);
+    Route::get('/appointments',[ AdminClinicAppointmentController::class, 'index']);
+    Route::get('/appointments/pending',[ AdminClinicAppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
 });
 
 // Route::middleware(['auth', 'role:clinic_user'])->group(function () {
@@ -104,6 +108,10 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('preview-notification', function () {
+   return view('mail.appointmentconfirmation');
+   }); 
 
 // Route::middleware('api')->prefix('api')->group(function () {
 //     require __DIR__ . '/api.php';
