@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Appointment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -24,6 +25,11 @@ class DentalService extends Model
     public function clinicservices()
     {
         return $this->hasMany(ClinicDentalService::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
     // public function setImagePathAttribute($value)
     // {

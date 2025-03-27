@@ -66,13 +66,13 @@ export default function Login({ status, canResetPassword }) {
                                         type="email"
                                         name="email"
                                         value={data.email}
-                                        className="form-control form-control-lg"
+                                        className={errors.email && 'is-invalid'}
 
                                         placeholder="email@address.com"
                                         onChange={(e) => setData('email', e.target.value)}
                                     />
 
-                                    <InputError message={errors.password} className="mt-2" />
+                                    <InputError message={errors.email} className="mt-2" />
                                 </div>
 
 
@@ -86,7 +86,7 @@ export default function Login({ status, canResetPassword }) {
                                         type="password"
                                         name="password"
                                         value={data.password}
-                                        className="form-control form-control-lg"
+                                        className={errors.password && 'is-invalid'}
                                         autoComplete="current-password"
                                         placeholder="8+ characters required"
                                         onChange={(e) => setData('password', e.target.value)}
@@ -116,7 +116,7 @@ export default function Login({ status, canResetPassword }) {
             </div>
 
 
-          
+
         </GuestLayout>
     );
 }
