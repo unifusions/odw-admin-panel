@@ -57,10 +57,7 @@ const Sidebar = () => {
                 links:
                     [
                         { name: 'Dashboard', path: '/clinic/admin/dashboard', icon: 'bi-house-door' },
-                        {
-                            name: 'Appointments', path: '/clinic/admin/appointments', icon: 'bi-calendar2-week'
-
-                        },
+                        { name: 'Appointments', path: '/clinic/admin/appointments', icon: 'bi-calendar2-week' },
                         { name: 'Manage Staff', path: '/clinic/admin/manage-staffs', icon: 'bi-person-bounding-box' },
 
 
@@ -93,7 +90,7 @@ const Sidebar = () => {
             {
                 section: false,
                 links: [
-                    { name: 'Dashboard', path: '/patient/dashboard',  icon: 'bi-house-door'  },
+                    { name: 'Dashboard', path: '/patient/dashboard', icon: 'bi-house-door' },
                     { name: 'Appointments', path: '/patient/appointments', icon: 'bi-calendar2-week' }
                 ]
             }
@@ -134,7 +131,7 @@ const Sidebar = () => {
                                         <div className="nav-item" key={linkIndex}>
 
 
-                                            <Link href={link.path} className={`nav-link ${url === link.path ? 'active' : ''}`} >
+                                            <Link href={link.path} className={`nav-link ${url.split('?')[0] === link.path ? 'active' : ''}`} >
                                                 {link.icon && <i className={`nav-icon ${link.icon ?? ''}`}></i>}
                                                 {link.svgIcon && link.svgIcon}
                                                 <span className="nav-link-title">{link.name}</span>

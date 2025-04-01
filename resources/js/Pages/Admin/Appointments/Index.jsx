@@ -68,15 +68,13 @@ export default function Index({ appointments, pendingAppointments }) {
 
         return (
             <div className="custom-event text-truncate" style={{
-              
+
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
             }}>
                 <div className="d-flex align-items-top">
-                    <div class="avatar  avatar-circle me-3" style={{ backgroundColor: bgColor }}>
-                        <span class="avatar-initials"> {title.charAt(0)}</span>
-                    </div>
+                
                     <div>
                         <div>{title}</div>
 
@@ -84,11 +82,10 @@ export default function Index({ appointments, pendingAppointments }) {
                             {startTime} - {endTime}
                         </div>
 
-                        <span className="bg-white rounded-3 py-1 px-2 border-solid">{services.join(", ")}</span>
                     </div>
                 </div>
 
-                <strong></strong> <br />
+
 
 
             </div>

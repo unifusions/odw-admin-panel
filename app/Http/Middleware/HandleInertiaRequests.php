@@ -55,7 +55,8 @@ class HandleInertiaRequests extends Middleware
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
-            'clinic_user' => route('clinic.dashboard')
+            'clinic_user' => route('clinic.dashboard'),
+            'patient' => route('patient.dashboard'),
         ];
 
         $dashboardUrl = $dashboardRoutes[$role]?? route('home');
@@ -100,7 +101,6 @@ class HandleInertiaRequests extends Middleware
                 ['name' => optional($clinic)->name ?? 'Users', 'url' => $clinic ? route('clinics.users.index', $clinic) : '#'],
                
             ],
-
 
             'clinics.users.create' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
