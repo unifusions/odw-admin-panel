@@ -35,9 +35,8 @@ export default function Login({ status, canResetPassword }) {
 
             <div className="container py-5 py-sm-7">
 
-                <Link className="d-flex justify-content-center mb-5" href="#!">
-                    <img className="zi-2" src='/images/odw-logo.png' alt="Image Description" style={{ width: '4rem' }} />
-                </Link>
+                <div className="d-flex justify-content-center   mb-5">   <img className="zi-2" src='/images/odw-logo.png' alt="Image Description" style={{ width: '4rem' }} /></div>
+
 
 
                 <div className="mx-auto" style={{ maxWidth: '30rem' }}>
@@ -50,7 +49,7 @@ export default function Login({ status, canResetPassword }) {
                                 <div className="text-center">
                                     <div className="mb-5">
                                         <h1 className="display-5">Sign in</h1>
-                                        <p>Don't have an account yet? <Link className="link" href={route('register')}>Sign up here</Link></p>
+                                       
                                     </div>
 
 
