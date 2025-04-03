@@ -13,7 +13,7 @@ class RegistrationController extends Controller
 {
     public function login(Request $request)
     {
-        $input = $request->input('identifier'); // 'identifier' is either email or phone
+        $input = $request->input('email'); // 'identifier' is either email or phone
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             // It's an email
