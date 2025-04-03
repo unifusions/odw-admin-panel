@@ -21,7 +21,7 @@ class Clinic extends Model
 
     public function branches()
     {
-        return $this->hasMany(ClinicBranch::class,'clinic_id');
+        return $this->hasMany(ClinicBranch::class,'clinic_id', 'id');
     }
 
     
