@@ -17,6 +17,7 @@ class RegistrationController extends Controller
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             // It's an email
+            $status = true;
             $user = User::where('email', $input)->first();
         } elseif (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
             // It's a phone number (7-15 digits, allowing optional + at the start)
@@ -29,8 +30,10 @@ class RegistrationController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        // Continue with authentication (e.g., send OTP or verify password)
-        return response()->json(['message' => 'User found', 'user' => $user]);
+        $otp = rand(100000, 999999);
+        $key = 'otp_' . $request->email;
+        Cache::put($key, $otp, now()->addMinutes(10));
+        return response()->json(['status' => $status, 'otp' => $otp]);
     }
     public function register(Request $request)
     {
