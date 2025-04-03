@@ -40,7 +40,7 @@ class RegistrationController extends Controller
 
         if ($user) {
             $status = true;
-            return response()->json(['error' => 'Already registered. Login using Phone or Email']);
+            return response()->json(['error' => 'Already registered. Login using Phone or Email'], 409);
         } else {
             $status = false;
             $message = 'OTP sent for new registration';
