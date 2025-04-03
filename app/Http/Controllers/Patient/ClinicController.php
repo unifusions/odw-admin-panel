@@ -13,7 +13,11 @@ class ClinicController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $clinics = Clinic::with('branches')->get();
 
+        foreach ($clinics as $clinic) {
+            \Log::info('Clinic ID: ' . $clinic->id . ' - Branches: ' . json_encode($clinic->branches));
+        }
         return response()->json(Clinic::with('branches')->get()->toArray());
     }
 }
