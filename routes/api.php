@@ -14,7 +14,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/clinics', ClinicController::class);
+// Route::get('/clinics', ClinicController::class);
 
 
 Route::middleware('auth:sanctum')->group(function(){
