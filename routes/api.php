@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/verify-otp', [RegistrationController::class, 'verifyOtp']);
+Route::post('/login', [RegistrationController::class, 'login']);
 Route::post('/register', [RegistrationController::class, 'register']);
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -18,5 +19,5 @@ Route::get('/clinics', ClinicController::class);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dental-services', DentalServiceController::class);
-   
+    
 });
