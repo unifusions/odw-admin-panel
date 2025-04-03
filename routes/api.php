@@ -16,8 +16,8 @@ Route::get('/user', function (Request $request) {
 
 // Route::get('/clinics', ClinicController::class);
 
-
+Route::get('/clinics', ClinicController::class);
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dental-services', DentalServiceController::class);
-    Route::get('/clinics', ClinicController::class);
+   
 });
