@@ -1,15 +1,22 @@
+import ImageUploader from "@/Components/ImageUploader";
+import InputLabel from "@/Components/InputLabel";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
-import { useRef, useState } from "react"
-
+import { useRef, useState, useCallback } from "react"
+import { useDropzone } from 'react-dropzone';
 export default function AddService() {
 
     const modalRef = useRef(null);
+    const [preview, setPreview] = useState('');
+    const [image, setImage] = useState('');
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         desc: '',
-        cost: ''
+        cost: '',
+        image_path: '',
+        image_file: null,
+        avg_cost: ''
     })
     const [loading, setLoading] = useState(false);
 
@@ -18,13 +25,14 @@ export default function AddService() {
         const modal = bootstrap.Modal.getInstance(modalRef.current)
         reset();
         modal.toggle();
-       
+
     }
 
     const onsubmit = (e) => {
         e.preventDefault();
 
         post(route('services.store'), {
+            forceFormData: true,
             onFinish: closeModal
 
         });
@@ -52,7 +60,13 @@ export default function AddService() {
                             <form action="" onSubmit={onsubmit} noValidate>
 
 
+                                <div className="row mb-4">
 
+                                    <InputLabel htmlFor="" className="form-label col-sm-3 col-form-label" value="Service Icon" />
+                                    <div class="col-sm-9">
+                                        <ImageUploader onFileSelect={(file) => setData('image_file', file)} />
+                                    </div>
+                                </div>
 
 
                                 <div className="row mb-4">
@@ -122,7 +136,25 @@ export default function AddService() {
                                 </div>
 
 
+                                <div className="row mb-4">
 
+                                    <InputLabel htmlFor="avgCost" className="form-label col-sm-3 col-form-label" value="Average Cost" />
+
+                                    <div className="col-sm-9">
+                                        <TextInput
+                                            id="avgCost"
+                                            type="number"
+                                            name="cost"
+                                            value={data.avg_cost}
+                                            className="form-control "
+                                            placeholder="Average Cost"
+                                            onChange={(e) => setData('avg_cost', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+                                </div>
 
                                 <div className="text-end">
                                     <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>

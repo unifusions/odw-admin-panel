@@ -7,12 +7,12 @@ import { useRef } from "react"
 import { useDropzone } from 'react-dropzone';
 import { router } from "@inertiajs/react";
 import ServiceModal from "./serviceModal";
+import ImageUploader from "@/Components/ImageUploader";
+import TextArea from "@/Components/TextArea";
 
 export default function EditService({ service }) {
 
 
-    const [image, setImage] = useState(null);
-    const [preview, setPreview] = useState(service.image_path ? `/storage/${service.image_path}` : null);
 
     const [activeModal, setActiveModal] = useState(null);
     const modalRef = useRef(null);
@@ -34,13 +34,6 @@ export default function EditService({ service }) {
         setActiveModal(null);
     };
 
-    const onDrop = useCallback(acceptedFiles => {
-        const file = acceptedFiles[0];
-        setImage(file);
-        setPreview(URL.createObjectURL(file));
-        setData('image_path', file)
-    }, []);
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const onsubmit = (e) => {
         e.preventDefault();
@@ -86,35 +79,16 @@ export default function EditService({ service }) {
                 ref={modalRef} // Pass ref to CustomModal
             >
 
-              
+
                 <form action="" onSubmit={onsubmit} noValidate>
 
 
                     <div className="row mb-4">
 
-                        <InputLabel htmlFor="full_name" className="form-label col-sm-3 col-form-label" value="Service Icon" />
+                        <InputLabel htmlFor="" className="form-label col-sm-3 col-form-label" value="Service Icon" />
                         <div class="col-sm-9">
                             <div class="d-flex align-items-center">
-
-                                {preview ?
-                                    <>
-                                        <label class="avatar avatar-xxl avatar-circle avatar-delete" for="editAvatarUploaderModal">
-                                            <img src={preview} alt="Preview" className="avatar-img" />
-                                            <span class="avatar-uploader-trigger" onClick={() => setPreview(null)}>
-                                                <i class="bi-x-lg avatar-uploader-icon shadow-sm avatar-delete-icon"></i>
-                                            </span>
-                                        </label>
-                                    </> :
-                                    <div {...getRootProps()} className="js-dropzone row dz-dropzone dz-dropzone-card">
-                                        <input {...getInputProps()} />
-                                        {isDragActive ? <p>Drop the files here ...</p> : <>
-
-                                            <h5 className="text-center">Drag and drop your file here</h5>
-
-                                            <p class="mb-2 text-center" >or</p>
-                                            <span class="btn btn-white btn-sm">Browse files</span></>}
-                                    </div>
-                                }
+                                <ImageUploader onFileSelect={(file) => setData('image_path', file)} existingImage={data.image_path} />
                             </div>
                         </div>
                     </div>
@@ -138,7 +112,26 @@ export default function EditService({ service }) {
                         </div>
                     </div>
 
+                    <div className="row mb-4">
+                        <label for="desc" className="col-sm-3 col-form-label form-label">Description
+                        </label>
 
+                        <div className="col-sm-9">
+
+
+
+                            <TextArea
+                                name="desc"
+                                className="form-control"
+                                value={data.desc}
+                                onChange={(e) => setData('desc', e.target.value)}
+                            />
+
+
+
+
+                        </div>
+                    </div>
 
                     <div className="row mb-4">
                         <label for="serviceCost" className="col-sm-3 col-form-label form-label">Cost

@@ -11,6 +11,27 @@ use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
+    public function login(Request $request)
+    {
+        $input = $request->input('identifier'); // 'identifier' is either email or phone
+
+        if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
+            // It's an email
+            $user = User::where('email', $input)->first();
+        } elseif (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
+            // It's a phone number (7-15 digits, allowing optional + at the start)
+            $user = User::where('phone', $input)->first();
+        } else {
+            return response()->json(['error' => 'Invalid email or phone number'], 400);
+        }
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Continue with authentication (e.g., send OTP or verify password)
+        return response()->json(['message' => 'User found', 'user' => $user]);
+    }
     public function register(Request $request)
     {
         // Check if user exists
@@ -19,7 +40,7 @@ class RegistrationController extends Controller
 
         if ($user) {
             $status = true;
-            $message = 'OTP sent for login verification';
+            return response()->json(['error' => 'Already registered. Login using Phone or Email']);
         } else {
             $status = false;
             $message = 'OTP sent for new registration';

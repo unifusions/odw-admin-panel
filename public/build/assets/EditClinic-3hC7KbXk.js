@@ -1,1 +1,0 @@
-import{j as i}from"./app-C0UgdLe1.js";import o from"./ClinicLayout-BP9d9Uf5.js";import"./Breadcrumbs-Dt-LOoTD.js";import"./AuthenticatedLayout-B8OL5FSe.js";import"./index-xUiKZQ86.js";import"./Sidebar-CYmu830Y.js";import"./DentistIcon-CL5bnzfO.js";function e({clinic:t}){return i.jsx(o,{clinic:t})}export{e as default};

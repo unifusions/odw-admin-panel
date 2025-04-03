@@ -42,12 +42,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->input());
-
+        $image_path = '';
+        if ($request->hasFile('image_file'))
+            $image_path = $request->file('image_file')->store('uploads/services', 'public');
         $dentalService = DentalService::create([
             'name' =>  $request->name,
             'desc' => $request->desc,
             'cost' => $request->cost,
+            'image_path' => $image_path,
+            'avg_cost' => $request->avg_cost
         ]);
 
         return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);
