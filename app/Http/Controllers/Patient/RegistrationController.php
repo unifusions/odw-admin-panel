@@ -81,7 +81,7 @@ class RegistrationController extends Controller
 
         // Register or authenticate user
         $user = User::updateOrCreate(
-            ['email' => $request->email],
+            ['email' => $request->email, 'phone' => $request->phone],
             ['password' => Hash::make(uniqid())]
         );
 
