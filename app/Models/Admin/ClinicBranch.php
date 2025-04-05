@@ -69,13 +69,14 @@ class ClinicBranch extends Model
     }
     public function services()
     {
-        return $this->hasMany(ClinicService::class);
+        return $this->hasManyThrough(DentalService::class, ClinicDentalService::class, 'clinic_branch_id', 'id', 'id', 'dental_service_id');
     }
 
     public function dentalservices()
     {
         return $this->hasMany(ClinicDentalService::class);
     }
+
 
     public function zipCode()
     {

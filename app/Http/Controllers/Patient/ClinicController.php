@@ -16,8 +16,12 @@ class ClinicController extends Controller
         $clinics = Clinic::all()->map(fn($clinic) => [
             'id' => $clinic->id,
             "name" => $clinic->name,
-            "logo"=> $clinic->logo,
-            'branches'=> $clinic->branches,
+            "logo" => $clinic->logo,
+            'branches' => $clinic->branches->map(fn($branch) => [
+                'id' => $branch->id, // Assuming your Branch model has an 'id'
+                'name' => $branch->name, // Assuming your Branch model has a 'name'
+                'services' => $branch->services,
+            ]),
         ]);
 
         return response()->json($clinics);
