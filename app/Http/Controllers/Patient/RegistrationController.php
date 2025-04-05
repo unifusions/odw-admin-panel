@@ -78,7 +78,7 @@ class RegistrationController extends Controller
         if (Cache::get($key) != $otpDigits) {
             return response()->json(['message' => $otpDigits], 400);
         }
-
+        return response()->json(['message' => 'it works']);
         // Register or authenticate user
         $user = User::updateOrCreate(
             ['email' => $request->email, 'phone' => $request->phone],
