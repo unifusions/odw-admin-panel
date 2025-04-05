@@ -18,8 +18,11 @@ class ClinicController extends Controller
             "name" => $clinic->name,
             "logo" => $clinic->logo,
             'branches' => $clinic->branches->map(fn($branch) => [
-                'id' => $branch->id, // Assuming your Branch model has an 'id'
-                'name' => $branch->name, // Assuming your Branch model has a 'name'
+                'id' => $branch->id, 
+                'name' => $branch->name, 
+                'address_line_1' => $branch->address_line_1,
+                'address_line_2' => $branch->address_line_2,
+                
                 'services' => $branch->services,
             ]),
         ]);
