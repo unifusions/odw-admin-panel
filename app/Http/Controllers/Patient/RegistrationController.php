@@ -18,7 +18,7 @@ class RegistrationController extends Controller
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             // It's an email
             $status = true;
-            $user = User::where('email', $input)->first();
+            $user = User::where('email', operator: $input)->first();
         } elseif (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
             // It's a phone number (7-15 digits, allowing optional + at the start)
             $user = User::where('phone', $input)->first();
@@ -78,12 +78,12 @@ class RegistrationController extends Controller
         if (Cache::get($key) != $otpDigits) {
             return response()->json(['message' => $otpDigits], 400);
         }
-        return response()->json(['message' => 'it works']);
-        // Register or authenticate user
+     // Register or authenticate user
         $user = User::updateOrCreate(
             ['email' => $request->email, 'phone' => $request->phone],
             ['name' => $request->fullname,
-                'password' => Hash::make(uniqid())]
+                'password' => Hash::make(uniqid()),
+                'status'=> 1]
         );
 
         Cache::forget($key);
