@@ -77,11 +77,14 @@ class RegistrationController extends Controller
         //     return response()->json(['message' => 'Invalid input', 'errors' => $validator->errors()], 422);
         // }
 
-        $user =  User::where('email', $request->email)
+        $userExists =  User::where('email', $request->email)
             ->orWhere('phone', $request->phone)
             ->exists();
 
-        if ($user) {
+        if ($userExists) {
+            $user = User::where('email', $request->email)
+                ->orWhere('phone', $request->phone)
+                ->first();
             $otpDigits = implode("", $request->otp);
             $key =  'otp_' . $request->email;
             if (Cache::get($key) != $otpDigits) {
