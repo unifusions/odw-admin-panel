@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SecondOpinion;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +14,10 @@ class SecondOpinionController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/SecondOpinion/Index');
+        return Inertia::render(
+            'Admin/SecondOpinion/Index',
+            ['secondopinions' => SecondOpinion::with('patient.user')->orderBy('status')->paginate(25)]
+        );
     }
 
     /**
@@ -35,9 +39,17 @@ class SecondOpinionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(SecondOpinion $second_opinion)
     {
-        //
+       
+        // dd($second_opinion->patient()->with('user'));
+        return Inertia::render(
+            'Admin/SecondOpinion/Show',
+            [
+                'secondopinion' => $second_opinion->load('patient.user'),
+              
+            ]
+        );
     }
 
     /**

@@ -1,8 +1,12 @@
 
+import Pagination from "@/Components/Pagination";
+import SOStatus from "@/Components/SOStatus";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
-import { Head } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 
-export default function SecondOpinion(second) {
+export default function SecondOpinion() {
+
+    const { secondopinions } = usePage().props;
     return (
         < AuthenticatedLayout
             header='Second Opinion'
@@ -10,133 +14,84 @@ export default function SecondOpinion(second) {
         >
             <Head title="2nd Opinion" />
 
-            <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-                    data-hs-datatables-options='{
-                 "order": []
-               }'>
-                    <thead class="thead-light">
+            <div className="table-responsive datatable-custom">
+                <table className="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                    <thead className="thead-light">
                         <tr>
                             <th>Name</th>
                             <th>Service</th>
-                            <th>Location</th>
                             <th>Status</th>
+                            <th>Action</th>
+
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="../user-profile.html">
-                                    <div class="avatar avatar-soft-primary avatar-circle">
-                                        <span class="avatar-initials">A</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <span class="d-block h5 text-inherit mb-0">Amanda Harvey 
-                                        {/* <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> */}
-                                        </span>
-                                        <span class="d-block fs-5 text-body">amanda@example.com</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="d-block h5 mb-0">Dental Implants</span>
-                                {/* <span class="d-block fs-5">Human resources</span> */}
-                            </td>
-                            <td>United Kingdom</td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>In Progress
-                            </td>
-                        </tr>
+                        {
+                            secondopinions.data.map((secondopinion) =>
+                                <tr key={secondopinion.id}>
+                                    <td>
+                                        <a className="d-flex align-items-center" href="#!">
+                                            <div className="avatar avatar-soft-primary avatar-circle">
+                                                <span className="avatar-initials">A</span>
+                                            </div>
+                                            <div className="ms-3">
+                                                <span className="d-block h5 text-inherit mb-0">{secondopinion.patient.first_name}
 
-                        <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="../user-profile.html">
-                                    <div class="avatar avatar-soft-primary avatar-circle">
-                                        <span class="avatar-initials">A</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <span class="d-block h5 text-inherit mb-0">Anne Richard</span>
-                                        <span class="d-block fs-5 text-body">anne@example.com</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="d-block h5 mb-0">Invisalign</span>
-                                {/* <span class="d-block fs-5">Branding products</span> */}
-                            </td>
-                            <td>United States</td>
-                            <td>
-                                <span class="legend-indicator bg-warning"></span>Pending
-                            </td>
-                        </tr>
+                                                    {/* <i className="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> */}
+                                                </span>
+                                                <span className="d-block fs-5 text-body">{secondopinion.patient.user.email}</span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td classNameName="text-dark ">{secondopinion.subject}</td>
+                                    <td> <SOStatus status={secondopinion.status} /> </td>
 
-                        <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="../user-profile.html">
-                                    <div class="avatar avatar-soft-primary avatar-circle">
-                                        <span class="avatar-initials">A</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <span class="d-block h5 text-inherit mb-0">David Harrison</span>
-                                        <span class="d-block fs-5 text-body">david@example.com</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="d-block h5 mb-0">Dentures</span>
-                                {/* <span class="d-block fs-5">Unknown</span> */}
-                            </td>
-                            <td>United States</td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Active
-                            </td>
-                        </tr>
+                                    <td>
 
-                        <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="../user-profile.html">
-                                    <div class="avatar avatar-soft-primary avatar-circle">
-                                        <span class="avatar-initials">A</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <span class="d-block h5 text-inherit mb-0">Finch Hoot</span>
-                                        <span class="d-block fs-5 text-body">finch@example.com</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="d-block h5 mb-0">Root Canal</span>
-                                {/* <span class="d-block fs-5">IT department</span> */}
-                            </td>
-                            <td>Argentina</td>
-                            <td>
-                                <span class="legend-indicator bg-danger"></span>Completed
-                            </td>
-                        </tr>
+                                        <div className="btn-group" role="group">
+                                            <Link className="btn btn-white btn-sm" href={route('second-opinion.show', secondopinion)} >
+                                                <i className="bi-eye"></i> View
+                                            </Link>
+                                         
 
-                        <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="../user-profile.html">
-                                    <div class="avatar avatar-soft-primary avatar-circle">
-                                        <span class="avatar-initials">B</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <span class="d-block h5 text-inherit mb-0">Bob Dean</span>
-                                        <span class="d-block fs-5 text-body">bob@example.com</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="d-block h5 mb-0">Adult Braces</span>
-                                {/* <span class="d-block fs-5">Marketing</span> */}
-                            </td>
-                            <td>Austria</td>
-                            <td>
-                                <span class="legend-indicator bg-success"></span>Active
-                            </td>
-                        </tr>
+                                            <div className="btn-group">
+                                                <button type="button" className="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty " id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="true"></button>
+
+                                                <div className="dropdown-menu dropdown-menu-end mt-1 " aria-labelledby="ordersExportDropdown1" data-popper-placement="bottom-end">
+                                                    <span className="dropdown-header">Options</span>
+                                                    <a className="js-export-copy dropdown-item" >
+                                                        <i className="bi-reply dropdown-item-icon"></i> Reply
+
+                                                    </a>
+
+                                                    <a className="js-export-copy dropdown-item" >
+                                                        <i className=" bi-file-earmark-check  dropdown-item-icon"></i>  Review
+
+                                                    </a>
+
+
+
+                                                    <div className="dropdown-divider"></div>
+                                                    <a className="dropdown-item" >
+                                                        <i className="bi-trash dropdown-item-icon"></i> Mark as Closed
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            )}
+
+
+
+
+
                     </tbody>
+                    <tfoot>
+                        <Pagination links={secondopinions.links} />
+                    </tfoot>
                 </table>
             </div>
         </AuthenticatedLayout >
