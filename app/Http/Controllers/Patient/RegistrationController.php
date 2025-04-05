@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
@@ -49,6 +50,7 @@ class RegistrationController extends Controller
                 'name' => $request->fullname,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'password' => Hash::make(uniqid()),
                 'status' => false,
 
             ]);
