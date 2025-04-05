@@ -37,14 +37,22 @@ class RegistrationController extends Controller
     }
     public function register(Request $request)
     {
-        // Check if user exists
-        $user = User::where('email', $request->email)
-            ->first();
-
-        if ($user) {
+        $userExists = User::where('email', $request->email)
+            ->orWhere('phone', $request->phone)
+            ->exists();
+        if ($userExists) {
             $status = true;
             return response()->json(['error' => 'Already registered. Login using Phone or Email'], 409);
         } else {
+
+            $newUser = User::create([
+                'name' => $request->fullname,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'status' => false,
+
+            ]);
+
             $status = false;
             $message = 'OTP sent for new registration';
         }
@@ -53,10 +61,6 @@ class RegistrationController extends Controller
         // $key = $request->email ? 'otp_'.$request->email : 'otp_'.$request->phone;
         $key = 'otp_' . $request->email;
         Cache::put($key, $otp, now()->addMinutes(10));
-
-        // TODO: Implement actual OTP sending via SMS or email
-        // Mail::to($request->email)->send(new OtpMail($otp));
-        // or send via Twilio
 
         return response()->json(['status' => $status, 'message' => $message, 'otp' => $otp]);
     }
@@ -73,22 +77,23 @@ class RegistrationController extends Controller
         //     return response()->json(['message' => 'Invalid input', 'errors' => $validator->errors()], 422);
         // }
 
-        $otpDigits = implode("", $request->otp);
-        $key =  'otp_' . $request->email;
-        if (Cache::get($key) != $otpDigits) {
-            return response()->json(['message' => $otpDigits], 400);
+        $user =  User::where('email', $request->email)
+            ->orWhere('phone', $request->phone)
+            ->exists();
+
+        if ($user) {
+            $otpDigits = implode("", $request->otp);
+            $key =  'otp_' . $request->email;
+            if (Cache::get($key) != $otpDigits) {
+                return response()->json(['message' => $otpDigits], 400);
+            }
+
+            Cache::forget($key);
+            $token = $user->createToken('authToken')->plainTextToken;
+
+            return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
+        } else {
+            return response()->json(['error' => 'Something Went Wrong'], 400);
         }
-     // Register or authenticate user
-        $user = User::updateOrCreate(
-            ['email' => $request->email, 'phone' => $request->phone],
-            ['name' => $request->fullname,
-                'password' => Hash::make(uniqid()),
-                'status'=> 1]
-        );
-
-        Cache::forget($key);
-        $token = $user->createToken('authToken')->plainTextToken;
-
-        return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
     }
 }
