@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Deal;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +14,10 @@ class DealsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Deals/Index');
+        return Inertia::render(
+            'Admin/Deals/Index',
+            ['deals' => Deal::orderBy('end_date')->paginate(25)]
+        );
     }
 
     /**

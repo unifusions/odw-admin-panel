@@ -27,7 +27,7 @@ export default function Pricing() {
 
                                         <div className="col-12 col-md col-lg-4 text-lg-end mt-3 mt-lg-0">
                                             <div className="d-grid">
-                                                <a className="btn btn-primary" href="https://themes.getbootstrap.com/product/front-admin-dashboard-template/" target="_blank">Buy for $49</a>
+                                                <a className="btn btn-primary" href="#" target="_blank">Buy for $49</a>
                                             </div>
                                         </div>
                                         {/* <!-- End Col --> */}
@@ -50,7 +50,7 @@ export default function Pricing() {
 
                                         <div className="col-12 col-md col-lg-4 text-lg-end mt-3 mt-lg-0">
                                             <div className="d-grid">
-                                                <a className="btn btn-primary" href="https://themes.getbootstrap.com/product/front-admin-dashboard-template/" target="_blank">Buy for $149</a>
+                                                <a className="btn btn-primary" href="#" target="_blank">Buy for $149</a>
                                             </div>
                                         </div>
                                         {/* <!-- End Col --> */}

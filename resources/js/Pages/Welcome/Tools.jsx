@@ -33,7 +33,7 @@ export default function Tools() {
                 {/* <!-- End Code Sample --> */}
 
                 <div className="text-center mb-7">
-                    <p>Not comfortable diving that deep? No worries, you just use the compiled CSS and examples pages! <a className="link" href="documentation/gulp.html">Learn more <i className="bi-chevron-right small"></i></a></p>
+                    <p>Not comfortable diving that deep? No worries, you just use the compiled CSS and examples pages! <a className="link" href="#">Learn more <i className="bi-chevron-right small"></i></a></p>
                 </div>
 
                 <div className="row justify-content-center">
@@ -61,7 +61,7 @@ export default function Tools() {
             </div>
 
             <div className="d-grid mx-auto" style="max-width: 15rem;">
-                <a className="btn btn-primary btn-lg" href="documentation/gulp.html">Learn more</a>
+                <a className="btn btn-primary btn-lg" href="#">Learn more</a>
             </div>
         </div>
 

@@ -23,7 +23,7 @@ export default function CardGrid() {
 
                     <div className="col-md-6 mb-4">
                         {/* <!-- Card --> */}
-                        <a className="card card-lg card-transition h-100 bg-light border-0 shadow-none overflow-hidden" href="dashboard-default-dark.html">
+                        <a className="card card-lg card-transition h-100 bg-light border-0 shadow-none overflow-hidden" href="#">
                             <div className="card-body">
                                 <h2 className="card-title h1 text-inherit"> Cost Estimator</h2>
                                 <p className="card-text lead"> Get an instant price range</p>
@@ -38,7 +38,7 @@ export default function CardGrid() {
 
                     <div className="col-md-6 mb-4">
                         {/* <!-- Card --> */}
-                        <a className="card card-lg card-transition h-100 bg-light border-0 shadow-none overflow-hidden" href="dashboard-default-dark-sidebar.html">
+                        <a className="card card-lg card-transition h-100 bg-light border-0 shadow-none overflow-hidden" href="#">
                             <div className="card-body">
                                 <h2 className="card-title h1 text-inherit"> Second Opinion</h2>
                                 <p className="card-text lead">Advice from verified experts</p>
@@ -52,7 +52,7 @@ export default function CardGrid() {
                   
 
                     <div className="col-md-6 mb-4 mb-md-0">
-                        <a className="card card-lg card-transition h-100 bg-light border-0 shadow-none overflow-hidden" href="dashboard-default-sidebar-detached.html">
+                        <a className="card card-lg card-transition h-100 bg-light border-0 shadow-none overflow-hidden" href="#">
                             <div className="card-body">
                                 <h2 className="card-title h1 text-inherit">Compare Prices </h2>
                                 <p className="card-text lead">Make informed decisions</p>

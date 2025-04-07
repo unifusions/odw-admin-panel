@@ -15,7 +15,7 @@ export default function Documentation
                         <img className="img-fluid" src="assets/svg/illustrations/docs-main-page-dark.svg" alt="Image Description" data-hs-theme-appearance="dark" />
 
                         <div className="gradient-y-lg-dark position-absolute bottom-0 start-0 end-0 w-100 d-flex justify-content-center zi-1 pb-8" style="padding-top: 13rem;">
-                            <a className="btn btn-primary btn-lg" href="documentation/index.html">Browse Documentation</a>
+                            <a className="btn btn-primary btn-lg" href="#">Browse Documentation</a>
                         </div>
                     </div>
                 </div>
