@@ -1,5 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
+import AddDeal from "./AddDeal";
 
 export default function Index() {
 
@@ -18,7 +19,7 @@ export default function Index() {
             <a class="dropdown-item" href="#">
               <i class="bi-trash dropdown-item-icon"></i> Delete
             </a>
-          
+
           </div>
         </div>
 
@@ -39,9 +40,7 @@ export default function Index() {
           </div>
 
 
-          <div className="col-sm-auto">
-            <a className="btn btn-primary" href="#!">Add Deal</a>
-          </div>
+          <AddDeal />
 
         </div>
 

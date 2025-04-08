@@ -33,7 +33,20 @@ class DealsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->alls());
+        $image_path = '';
+        if ($request->hasFile('image'))
+            $image_path = $request->file('image')->store('uploads/deals', 'public');
+        $deal = Deal::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' =>  $image_path,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'is_active' => true
+
+        ]);
+        return redirect()->back()->with(['message' => 'Deal was added']);
     }
 
     /**

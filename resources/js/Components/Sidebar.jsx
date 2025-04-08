@@ -144,63 +144,7 @@ const Sidebar = () => {
 
 
                             ))}
-                            {/* <div class="nav-item">
-                                <a class="nav-link dropdown-toggle active" href="#navbarVerticalMenuPagesEcommerceMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesEcommerceMenu" aria-expanded="true" aria-controls="navbarVerticalMenuPagesEcommerceMenu">
-                                    <i class="bi-basket nav-icon"></i>
-                                    <span class="nav-link-title">E-commerce</span>
-                                </a>
-
-                                <div id="navbarVerticalMenuPagesEcommerceMenu" class="nav-collapse collapse show" data-bs-parent="#navbarVerticalMenuPagesMenu" hs-parent-area="#navbarVerticalMenu" >
-                                    <a class="nav-link " href="./ecommerce.html">Overview</a>
-
-                                    <div id="navbarVerticalMenuPagesMenuEcommerce">
-
-                                        <div class="nav-item">
-                                            <a class="nav-link dropdown-toggle collapsed" href="#navbarVerticalMenuPagesEcommerceProductsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesEcommerceProductsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesEcommerceProductsMenu">
-                                                Products
-                                            </a>
-
-                                            <div id="navbarVerticalMenuPagesEcommerceProductsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenuEcommerce" hs-parent-area="#navbarVerticalMenuPagesEcommerceMenu">
-                                                <a class="nav-link " href="./ecommerce-products.html">Products</a>
-                                                <a class="nav-link " href="./ecommerce-product-details.html">Product Details</a>
-                                                <a class="nav-link " href="./ecommerce-add-product.html">Add Product</a>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="nav-item">
-                                            <a class="nav-link dropdown-toggle collapsed" href="#navbarVerticalMenuPagesEcommerceOrdersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesEcommerceOrdersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesEcommerceOrdersMenu">
-                                                Orders
-                                            </a>
-
-                                            <div id="navbarVerticalMenuPagesEcommerceOrdersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenuEcommerce" hs-parent-area="#navbarVerticalMenuPagesEcommerceMenu">
-                                                <a class="nav-link " href="./ecommerce-orders.html">Orders</a>
-                                                <a class="nav-link " href="./ecommerce-order-details.html">Order Details</a>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="nav-item">
-                                            <a class="nav-link dropdown-toggle collapsed" href="#navbarVerticalMenuPagesEcommerceCustomersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesEcommerceCustomersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesEcommerceCustomersMenu">
-                                                Customers
-                                            </a>
-
-                                            <div id="navbarVerticalMenuPagesEcommerceCustomersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenuEcommerce" hs-parent-area="#navbarVerticalMenuPagesEcommerceMenu">
-                                                <a class="nav-link " href="./ecommerce-customers.html">Customers</a>
-                                                <a class="nav-link " href="./ecommerce-customer-details.html">Customer Details</a>
-                                                <a class="nav-link " href="./ecommerce-add-customers.html">Add Customers</a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <a class="nav-link " href="./ecommerce-referrals.html">Referrals</a>
-                                    <a class="nav-link " href="./ecommerce-manage-reviews.html">Manage Reviews</a>
-                                    <a class="nav-link active" href="./ecommerce-checkout.html">Checkout</a>
-                                </div>
-                            </div> */}
+                           
                         </div>
                     </div>
                 </div>
