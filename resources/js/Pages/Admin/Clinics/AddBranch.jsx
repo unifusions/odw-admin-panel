@@ -9,6 +9,7 @@ export default function AddBranch({ clinic, branches }) {
              
                 <AddBranchModal clinic={clinic} />
                 <BranchList branches={branches} clinic={clinic} />
+                {console.log(branches)}
             </ClinicLayout>
         </>
     )

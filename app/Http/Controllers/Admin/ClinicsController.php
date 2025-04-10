@@ -18,23 +18,25 @@ class ClinicsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Clinics/Index',
-        [
-            // 'clinics' =>Clinic::with([
-            //     'branches' => function ($query) {
-            //         $query->with([
-            //             'zipCode' => function ($query) {
-            //                 $query->with('city.state');
-            //             },
-            //         ]);
-            //     },
-            // ])->paginate(10)
 
-            'clinics' =>Clinic::with('branches.zipCode.city.state')->paginate(10)
-          
+        return Inertia::render(
+            'Admin/Clinics/Index',
+            [
+                // 'clinics' =>Clinic::with([
+                //     'branches' => function ($query) {
+                //         $query->with([
+                //             'zipCode' => function ($query) {
+                //                 $query->with('city.state');
+                //             },
+                //         ]);
+                //     },
+                // ])->paginate(10)
 
-        ]
-    );
+                'clinics' => Clinic::with('branches.zipCode.city.state', 'branches.dentists')->paginate(10)
+
+
+            ]
+        );
     }
 
     /**
@@ -97,8 +99,16 @@ class ClinicsController extends Controller
      */
     public function edit(Clinic $clinic)
     {
-        return Inertia::render('Admin/Clinics/EditClinic', 
-        ['clinic' => $clinic]);
+
+        return Inertia::render(
+            'Admin/Clinics/EditClinic',
+            [
+                'clinic' => $clinic,
+                'branches' => $clinic->branches()->count(),
+                'users' => $clinic->users()->count(),
+                'services' => $clinic->services()->count()
+            ]
+        );
     }
 
     /**

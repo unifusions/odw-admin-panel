@@ -1,8 +1,12 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import AddDeal from "./AddDeal";
+import Lightbox from "@/Components/Lightbox";
+import { useState } from "react";
 
 export default function Index() {
+
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
   const EditButtonGroup = () => {
     return (
@@ -42,7 +46,7 @@ export default function Index() {
 
           <AddDeal />
 
-        </div>ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        </div>
 
 
 
@@ -69,7 +73,7 @@ export default function Index() {
 
         <div class="card-header card-header-content-md-between">
           <div class="mb-2 mb-md-0">
-            <form>
+            {/* <form>
 
               <div class="input-group input-group-merge input-group-flush">
                 <div class="input-group-prepend input-group-text">
@@ -78,7 +82,7 @@ export default function Index() {
                 <input id="datatableSearch" type="search" class="form-control" placeholder="Search users" aria-label="Search Deals" />
               </div>
 
-            </form>
+            </form> */}
           </div>
 
 
@@ -91,7 +95,7 @@ export default function Index() {
           <table id="datatable" class="table  ">
             <thead class="thead-light">
               <tr role="row">
-
+                <th></th>
                 <th class="" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending">Title</th>
                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">Description</th>
                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Stocks" >Start Date</th>
@@ -104,6 +108,9 @@ export default function Index() {
 
               {deals && deals.data.map((deal) =>
                 <tr>
+                  <td>
+                    <img className="avatar cursor-pointer" src={deal.image} onClick={() => setLightboxSrc(deal.image)} />
+                  </td>
                   <td>{deal.title}</td>
                   <td>{deal.description}</td>
                   <td>{deal.start_date}</td>
@@ -115,6 +122,9 @@ export default function Index() {
 
 
 
+              {lightboxSrc &&
+
+                <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />}
 
 
             </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Deal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class DealsController extends Controller
@@ -14,9 +15,16 @@ class DealsController extends Controller
      */
     public function index()
     {
+
+      
+
         return Inertia::render(
             'Admin/Deals/Index',
-            ['deals' => Deal::orderBy('end_date')->paginate(25)]
+            ['deals' => Deal::orderBy('end_date')->paginate(25)->through(function ($deal) {
+                    if ($deal->image)
+                        $deal->image = Storage::disk('public')->url($deal->image);
+                    return $deal;
+                })]
         );
     }
 

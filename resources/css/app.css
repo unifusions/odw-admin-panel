@@ -34302,3 +34302,7 @@ a:hover .text-inherit {
 .leaflet-popup {
     margin-bottom: 2.5rem
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}

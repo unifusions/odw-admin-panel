@@ -22,7 +22,7 @@ class ClinicController extends Controller
                 'name' => $branch->name, 
                 'address_line_1' => $branch->address_line_1,
                 'address_line_2' => $branch->address_line_2,
-                
+                'dentists' => $branch->dentists,
                 'services' => $branch->services,
             ]),
         ]);

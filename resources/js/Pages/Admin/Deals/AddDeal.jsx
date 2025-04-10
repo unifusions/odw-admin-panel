@@ -43,7 +43,7 @@ export default function AddDeal() {
 
         post(route('deals.store'), {
             forceFormData: true,
-            // onFinish: closeModal
+            onFinish: closeModal
         });
 
     }

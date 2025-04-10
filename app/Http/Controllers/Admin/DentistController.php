@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\DentalService;
+use App\Models\Admin\Dentist;
+use App\Models\ClinicDentist;
+use App\Models\DentistService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +18,11 @@ class DentistController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Dentists/Index');
+        // dd(Dentist::with('clinic')->paginate(25));
+        return Inertia::render(
+            'Admin/Dentists/Index',
+            ['alldentists' => Dentist::with('clinic', 'branch', 'services')->paginate(25)]
+        );
     }
 
     /**
@@ -25,20 +32,20 @@ class DentistController extends Controller
     {
 
         $data = [
-            'clinics' => Clinic::all()->map(function ($item){
+            'clinics' => Clinic::all()->map(function ($item) {
                 return [
                     'value' => $item->id,
                     'label' => $item->name
                 ];
             }),
-            'services' => DentalService::all()->map(function($item){
+            'services' => DentalService::all()->map(function ($item) {
                 return [
                     'value' => $item->id,
                     'label' => $item->name
                 ];
             })
         ];
-        
+
         return response()->json($data);
 
         // return inertia('',$data) ;
@@ -50,7 +57,34 @@ class DentistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+
+        $dentist = Dentist::create([
+            'name' => $request->name,
+            'practise_from' => $request->practise_from,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'photo' => $request->photo ?? ''
+        ]);
+        if ($request->clinic_id && $request->clinic_branch_id) {
+            $clinicDentist = ClinicDentist::create([
+                'dentist_id' => $dentist->id,
+                'clinic_id' => $request->clinic_id,
+                'clinic_branch_id' => $request->clinic_branch_id,
+            ]);
+        }
+
+        if ($request->services) {
+            foreach ($request->services as $service) {
+                DentistService::create([
+                    'dentist_id' => $dentist->id,
+                    'dental_service_id' => $service['value']
+                ]);
+            }
+        }
+
+
+        return redirect()->back()->with(['message' => 'Dentist was added']);
     }
 
     /**

@@ -65,7 +65,7 @@ class ClinicBranch extends Model
 
     public function dentists()
     {
-        return $this->hasMany(ClinicDentist::class);
+        return $this->hasMany(ClinicDentist::class, '');
     }
     public function services()
     {

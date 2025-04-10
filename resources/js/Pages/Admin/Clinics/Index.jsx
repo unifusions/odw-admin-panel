@@ -5,7 +5,6 @@ import AddClinic from "./AddClinic";
 import PageHeader from "@/Components/PageHeader";
 import { useToast } from "@/Components/ToastContext";
 import Pagination from "@/Components/Pagination";
-import ListBranches from "./ListBranches";
 
 export default function Index() {
 
@@ -58,13 +57,14 @@ export default function Index() {
 
                                     </td>
 
-                                <td>{clinic.branches.length}</td>
-
+                                    <td>{clinic.branches.length}</td>
+                                    {console.log(clinic.branches)}
                                     <td>
                                         <Link href={route('clinics.edit', clinic)} className="btn btn-white btn-sm fw-bold">   <i class="bi-pencil-fill me-1"></i> Edit</Link></td>
                                 </tr>
+
                             )}
-                     
+
 
 
 

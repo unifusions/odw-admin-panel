@@ -19,7 +19,9 @@ export default function AddDentist() {
         practise_from: '',
         phone: '',
         email: '',
-        services:[],    
+        clinic_id: '',
+        clinic_branch_id: '',
+        services: [],
 
     });
 
@@ -29,16 +31,35 @@ export default function AddDentist() {
         setClinics(response.data.clinics);
         setServices(response.data.services);
         // response.data.services.map((item) => setServices([{ 'value': item.id, 'label': item.name }]))
-        
+
     }
 
     const onClinicSelect = async (selectedOption) => {
         const response = await axios.get(`/admin/clinicbranches/${selectedOption.value}`)
+        setData('clinic_id', selectedOption.value)
         setBranches(response.data);
     }
 
-    const onServiceSelect = (selectedOptions) =>{
+    const onServiceSelect = (selectedOptions) => {
         setData('services', selectedOptions);
+    }
+
+    const closeModal = () => {
+
+        const modal = bootstrap.Modal.getInstance(modalRef.current)
+        reset();
+        modal.toggle();
+
+    }
+
+    const onsubmit = (e) => {
+        e.preventDefault();
+
+        post(route('dentists.store'), {
+            forceFormData: true,
+            onFinish: closeModal
+        });
+
     }
 
 
@@ -51,7 +72,7 @@ export default function AddDentist() {
             </button>
 
 
-            <div id="addDentistModal" className="modal fade modal-lg" aria-hidden = "false" ref={modalRef}>
+            <div id="addDentistModal" className="modal fade modal-lg" aria-hidden="false" ref={modalRef}>
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header ">
@@ -112,8 +133,8 @@ export default function AddDentist() {
                                 <div className="row mb-4">
                                     <InputLabel htmlFor="clinicSelect" className="col-sm-3 col-form-label form-label" value="Clinic" />
                                     <div className="col-sm-9">
-                                    <ReactSelect options={clinics} onChange={onClinicSelect} />
-                                        
+                                        <ReactSelect options={clinics} onChange={onClinicSelect} />
+
 
                                     </div>
                                 </div>
@@ -122,7 +143,7 @@ export default function AddDentist() {
                                 <div className="row mb-4">
                                     <InputLabel htmlFor="branchSelect" className="col-sm-3 col-form-label form-label" value="Branch" />
                                     <div className="col-sm-9">
-                                        <select name="" id="branchSelect" className="form-select">
+                                        <select name="" id="branchSelect" className="form-select" onChange={(e)=> {setData('clinic_branch_id', e.target.value)}}>
                                             <option value="">Select Branch</option>
                                             {branches.map((branch) => <option value={branch.id}>
                                                 {branch.name}
@@ -135,8 +156,8 @@ export default function AddDentist() {
                                 <div className="row mb-4">
                                     <InputLabel htmlFor="branchSelect" className="col-sm-3 col-form-label form-label" value="Services" />
                                     <div className="col-sm-9">
-                                       
-                                      <ReactSelect options={services} isMulti onChange={onServiceSelect}/>
+
+                                        <ReactSelect options={services} isMulti onChange={onServiceSelect} />
 
                                     </div>
                                 </div>

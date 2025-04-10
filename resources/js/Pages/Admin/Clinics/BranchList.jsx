@@ -6,26 +6,14 @@ export default function BranchList({ branches, clinic }) {
             {branches.map((branch, index) => {
                 return (
                     <>
-                                        <div className="card mb-3">
+                        <div className="card mb-3">
                             <div className="card-body">
                                 <div className="d-flex mb-3 align-items-start">
                                     <div className="me-2">
                                         <h3 class="mb-0 me-3">{branch.name} </h3>{index === 0 && <span class="badge bg-info">Main Branch</span>}
 
 
-                                        {/* 
-                                        <div className="avatar-group avatar-group-sm">
-                                            <span className="avatar avatar-circle">
-                                                <img className="avatar-img" src="./assets/img/160x160/img6.jpg" alt="Image Description" draggable="false" />
-                                            </span>
-                                            <span className="avatar avatar-circle">
-                                                <img className="avatar-img" src="./assets/img/160x160/img7.jpg" alt="Image Description" draggable="false" />
-                                            </span>
-                                            <span className="avatar avatar-soft-dark avatar-circle">
-                                                <span className="avatar-initials">I</span>
-                                            </span>
-                                            <span className="fs-6 ms-2">3 Assignees</span>
-                                        </div> */}
+
 
                                     </div>
 
@@ -37,7 +25,7 @@ export default function BranchList({ branches, clinic }) {
                                             </button>
 
                                             <div className="dropdown-menu dropdown-menu-end" aria-labelledby="kanbanProjectsGridDropdown1" >
-                                                <Link href={route('clinics.branches.edit', {clinic, branch})} className="dropdown-item">
+                                                <Link href={route('clinics.branches.edit', { clinic, branch })} className="dropdown-item">
                                                     <i className="bi-pencil dropdown-item-icon"></i> Edit Branch Details</Link>
 
 

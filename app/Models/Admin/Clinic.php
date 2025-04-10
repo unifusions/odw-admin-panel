@@ -33,4 +33,8 @@ class Clinic extends Model
     {
         return $this->hasMany(ClinicUser::class);
     }
+
+    public function services(){
+        return $this->hasMany(ClinicDentalService::class);
+    }
 }
