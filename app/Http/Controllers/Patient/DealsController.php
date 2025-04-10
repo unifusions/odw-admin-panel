@@ -13,7 +13,7 @@ class DealsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $deals = Deal::where('is_active', 0)->get();
+        $deals = Deal::where('is_active', 1)->get();
         return response()->json($deals);
     }
 }
