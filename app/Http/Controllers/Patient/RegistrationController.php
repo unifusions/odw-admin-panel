@@ -84,7 +84,7 @@ class RegistrationController extends Controller
             ->exists();
 
         if ($userExists) {
-            $user = User::where('email', $request->email)
+            $authuser = User::where('email', $request->email)
                 ->orWhere('phone', $request->phone)
                 ->first();
             $otpDigits = implode("", $request->otp);
@@ -94,10 +94,10 @@ class RegistrationController extends Controller
             }
 
             Cache::forget($key);
-            $token = $user->createToken('authToken')->plainTextToken;
+            $token = $authuser->createToken('authToken')->plainTextToken;
 
-            dd($user);
-            return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
+           
+            return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $authuser]);
         } else {
             return response()->json(['error' => 'Something Went Wrong'], 400);
         }
