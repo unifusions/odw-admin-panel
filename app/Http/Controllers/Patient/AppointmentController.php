@@ -25,7 +25,7 @@ class AppointmentController extends Controller
     public function clinicView(Request $request, ClinicBranch $branch)
     {
 
-     
+
         return Inertia::render('Patient/Appointment/BookAppointment', [
             'branch' => $branch,
             'slots' => $this->getAvailableSlots($request->appointment_date, $branch)
@@ -34,14 +34,14 @@ class AppointmentController extends Controller
 
     public function getAvailableSlots($appointment_date, ClinicBranch $branch)
     {
-        
-       
+
+
         $date = $appointment_date;
         $clinicId = $branch->clinic_id;
         $doctorId = $doctor_id ?? ''; // Can be null
 
         // Get clinic branch timings
-       
+
 
         $openingTime = Carbon::parse($branch->opening_time);
         $closingTime = Carbon::parse($branch->closing_time);
@@ -72,7 +72,7 @@ class AppointmentController extends Controller
 
     public function bookAppointment(Request $request, ClinicBranch $branch)
     {
-      
+
         // Check if slot is already booked
         $isBooked = Appointment::where('appointment_date', $request->appointment_date)
             ->where('clinic_dentist_id', $request->doctor_id)

@@ -43,7 +43,7 @@ export default function BookAppointment({ branch, slots }) {
                     Book Appointment
                 </h2>
             }>
-            {console.log(user)}
+         
             <div>
                 <h3>Book an Appointment</h3>
                 <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
