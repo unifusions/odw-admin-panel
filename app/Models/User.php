@@ -108,6 +108,11 @@ class User extends Authenticatable
         return $this->hasOneThrough(ClinicBranch::class, ClinicUser::class, 'user_id', 'id', 'id', 'clinic_branch_id');
     }
 
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
     public function clinic()
     {
         return $this->hasOneThrough(
