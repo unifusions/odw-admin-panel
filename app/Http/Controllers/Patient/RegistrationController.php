@@ -78,15 +78,29 @@ class RegistrationController extends Controller
         // if ($validator->fails()) {
         //     return response()->json(['message' => 'Invalid input', 'errors' => $validator->errors()], 422);
         // }
+        $query = User::query();
 
-        $userExists =  User::where('email', $request->email)
-            ->orWhere('phone', $request->phone)
-            ->exists();
+        if ($request->filled('email')) {
+            $query->where('email', $request->email);
+        }
+
+        if ($request->filled('phone')) {
+            $query->where('phone', $request->phone);
+        }
+
+        $userExists = $query->exists();
+
+
+
+        // $userExists =  User::where('email', $request->email)
+        //     ->orWhere('phone', $request->phone)
+        //     ->exists();
 
         if ($userExists) {
             $authuser = User::where('email', $request->email)
                 ->orWhere('phone', $request->phone)
                 ->first();
+            $user = $query->first();
             $otpDigits = implode("", $request->otp);
             $key =  'otp_' . $request->email;
             if (Cache::get($key) != $otpDigits) {
@@ -94,10 +108,10 @@ class RegistrationController extends Controller
             }
 
             Cache::forget($key);
-            $token = $authuser->createToken('authToken')->plainTextToken;
+            $token = $user->createToken('authToken')->plainTextToken;
 
-           
-            return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $authuser]);
+
+            return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
         } else {
             return response()->json(['error' => 'Something Went Wrong'], 400);
         }
