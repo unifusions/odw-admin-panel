@@ -49,7 +49,7 @@ export default function Login({ status, canResetPassword }) {
                                 <div className="text-center">
                                     <div className="mb-5">
                                         <h1 className="display-5">Sign in</h1>
-                                       
+
                                     </div>
 
 

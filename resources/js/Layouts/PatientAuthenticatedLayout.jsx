@@ -81,10 +81,10 @@ export default function PatientAuthenticatedLayout({ header, children }) {
                                             <span className="dropdown-header">Recent searches</span>
 
                                             <div className="dropdown-item bg-transparent text-wrap">
-                                                <a className="btn btn-soft-dark btn-xs rounded-pill" href="index.html">
+                                                <a className="btn btn-soft-dark btn-xs rounded-pill" href="">
                                                     Gulp <i className="bi-search ms-1"></i>
                                                 </a>
-                                                <a className="btn btn-soft-dark btn-xs rounded-pill" href="index.html">
+                                                <a className="btn btn-soft-dark btn-xs rounded-pill" href="">
                                                     Notification panel <i className="bi-search ms-1"></i>
                                                 </a>
                                             </div>
@@ -93,7 +93,7 @@ export default function PatientAuthenticatedLayout({ header, children }) {
 
                                             <span className="dropdown-header">Tutorials</span>
 
-                                            <a className="dropdown-item" href="index.html">
+                                            <a className="dropdown-item" href="">
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0">
                                                         <span className="icon icon-soft-dark icon-xs icon-circle">
@@ -107,7 +107,7 @@ export default function PatientAuthenticatedLayout({ header, children }) {
                                                 </div>
                                             </a>
 
-                                            <a className="dropdown-item" href="index.html">
+                                            <a className="dropdown-item" href="">
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0">
                                                         <span className="icon icon-soft-dark icon-xs icon-circle">
@@ -125,7 +125,7 @@ export default function PatientAuthenticatedLayout({ header, children }) {
 
                                             <span className="dropdown-header">Members</span>
 
-                                            <a className="dropdown-item" href="index.html">
+                                            <a className="dropdown-item" href="">
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0">
                                                         <img className="avatar avatar-xs avatar-circle" src="assets/img/160x160/img10.jpg" alt="Image Description" />
@@ -136,7 +136,7 @@ export default function PatientAuthenticatedLayout({ header, children }) {
                                                 </div>
                                             </a>
 
-                                            <a className="dropdown-item" href="index.html">
+                                            <a className="dropdown-item" href="">
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0">
                                                         <img className="avatar avatar-xs avatar-circle" src="assets/img/160x160/img3.jpg" alt="Image Description" />
@@ -147,7 +147,7 @@ export default function PatientAuthenticatedLayout({ header, children }) {
                                                 </div>
                                             </a>
 
-                                            <a className="dropdown-item" href="index.html">
+                                            <a className="dropdown-item" href="">
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0">
                                                         <div className="avatar avatar-xs avatar-soft-info avatar-circle">
@@ -160,7 +160,7 @@ export default function PatientAuthenticatedLayout({ header, children }) {
                                                 </div>
                                             </a>
                                         </div>
-                                        <a className="card-footer text-center" href="index.html">
+                                        <a className="card-footer text-center" href="">
                                             See all results <i className="bi-chevron-right small"></i>
                                         </a>
 

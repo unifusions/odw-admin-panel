@@ -26,7 +26,9 @@ use App\Http\Controllers\Patient\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Mail\SendOtpMail;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -42,7 +44,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/states', StatesController::class);
-Route::get('/cities/{state}', CitiesController::class );
+Route::get('/cities/{state}', CitiesController::class);
 Route::get('/dental-services', DentalServicesController::class);
 
 // Route::get('/dashboard', function () {
@@ -57,6 +59,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 
 Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function () {
+
+    Route::get('send-test-mail', function () {
+        Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
+    })->name('sendtestmail');
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('admin.dashboard');
@@ -70,14 +76,14 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::resource('clinics.branches', ClinicBranchController::class);
     Route::resource('clinics.users', ClinicUserController::class);
     Route::resource('clinics.services', ClinicServiceController::class);
-    
+
     Route::get('/allclinics', ClinicsListController::class)->name('clinicslist');
-    Route::get('/clinicbranches/{clinic}', ClinicsBranchesListController::class  );
+    Route::get('/clinicbranches/{clinic}', ClinicsBranchesListController::class);
 
     Route::resource('dentists', DentistController::class);
     Route::resource('clinic-users', UsersController::class);
 
-    
+
 
     Route::resource('services', ServiceController::class);
 
@@ -87,8 +93,8 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(function () {
     Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.dashboard');
     Route::resource('users', UsersController::class);
-    Route::get('/appointments',[ AdminClinicAppointmentController::class, 'index']);
-    Route::get('/appointments/pending',[ AdminClinicAppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
+    Route::get('/appointments', [AdminClinicAppointmentController::class, 'index']);
+    Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
 });
 
 // Route::middleware(['auth', 'role:clinic_user'])->group(function () {
@@ -101,20 +107,18 @@ Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(
 
 Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('patient.dashboard');
-    Route::get('/appointments',[ PatientAppointmentController::class, 'index'])->name('patient.appointments.index');
-    Route::get('/appointments/{branch}',[ PatientAppointmentController::class, 'clinicView'])->name('patient.appointments.clinic');
-    Route::get('/appointments/{branch}/slots',[ PatientAppointmentController::class, 'getAvailableSlots'])->name('patient.appointments.slots');
-    Route::post('/appointments/{branch}/bookappointment',[ PatientAppointmentController::class, 'bookAppointment'])->name('patient.appointments.booking');
+    Route::get('/appointments', [PatientAppointmentController::class, 'index'])->name('patient.appointments.index');
+    Route::get('/appointments/{branch}', [PatientAppointmentController::class, 'clinicView'])->name('patient.appointments.clinic');
+    Route::get('/appointments/{branch}/slots', [PatientAppointmentController::class, 'getAvailableSlots'])->name('patient.appointments.slots');
+    Route::post('/appointments/{branch}/bookappointment', [PatientAppointmentController::class, 'bookAppointment'])->name('patient.appointments.booking');
 });
 
 require __DIR__ . '/auth.php';
 
 Route::get('preview-notification', function () {
-   return view('mail.appointmentconfirmation');
-   }); 
+    return view('mail.appointmentconfirmation');
+}); 
 
 // Route::middleware('api')->prefix('api')->group(function () {
 //     require __DIR__ . '/api.php';
 // });
-
-
