@@ -34,8 +34,6 @@ export default function ForgotPassword({ status }) {
     return (
         <GuestLayout>
 
-            Test
-            {/* style="height: 32rem; background-image: url(./assets/svg/components/card-6.svg);"  */}
             <div className="position-fixed top-0 end-0 start-0 bg-img-start" style={{ height: '32rem', backgroundImage: `url("data:image/svg+xml,${bgSvg}")` }} >
 
                 <div className="shape shape-bottom zi-1">

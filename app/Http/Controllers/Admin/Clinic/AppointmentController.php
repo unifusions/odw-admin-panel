@@ -45,10 +45,30 @@ class AppointmentController extends Controller
 
     public function pendingAppointment()
     {
-        $appointments = Appointment::with('patient')->where('status', 'pending')->get();
+
+        $appointments = Appointment::with('patient.user')->where('status', 'pending')->get();
+
         return Inertia::render('Admin/Appointments/PendingList', [
             'appointments' => $appointments
         ]);
+    }
+
+    public function confirmAppointment(Appointment $appointment)
+    {
+        $appointment->status = 'confirmed';
+        $appointment->is_confirmed = true;
+        $appointment->save();
+
+        return redirect()->back()->with(['success' => 'Appointmnet has been confirmed']);
+    }
+
+    public function cancelAppointment(Appointment $appointment)
+    {
+        $appointment->status = 'cancelled';
+        $appointment->is_confirmed = true;
+        $appointment->save();
+
+        return redirect()->back()->with(['success' => 'Appointmet has been cancelled']);
     }
     public function updateAppointment(Request $request, Appointment $appointment)
     {

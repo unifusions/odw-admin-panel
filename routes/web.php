@@ -23,6 +23,7 @@ use App\Http\Controllers\Clinic\DashboardController as ClinicDashboardController
 use App\Http\Controllers\DentalServicesController;
 use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\Patient\DashboardController;
+use App\Http\Controllers\PreloginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
 use App\Http\Middleware\RoleMiddleware;
@@ -38,6 +39,10 @@ Route::get('send-test-mail', function () {
     // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
 })->name('sendtestmail');
 
+
+Route::get('/login', [PreloginController::class, 'preLogin'])->name('login');
+Route::post('/two-factor', [PreloginController::class, 'checkUser'])->name('checkuser');
+Route::post('/authentication', [PreloginController::class, 'verifyOtp'])->name('verifyotp');
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -96,6 +101,8 @@ Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(
     Route::resource('users', UsersController::class);
     Route::get('/appointments', [AdminClinicAppointmentController::class, 'index']);
     Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
+    Route::put('/appointments/confirm/{appointment}', [AdminClinicAppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
+    Route::put('/appointments/cancel/{appointment}', [AdminClinicAppointmentController::class, 'cancelAppointment'])->name('appointments.cancel');
 });
 
 // Route::middleware(['auth', 'role:clinic_user'])->group(function () {
@@ -109,6 +116,7 @@ Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(
 Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('patient.dashboard');
     Route::get('/appointments', [PatientAppointmentController::class, 'index'])->name('patient.appointments.index');
+
     Route::get('/appointments/{branch}', [PatientAppointmentController::class, 'clinicView'])->name('patient.appointments.clinic');
     Route::get('/appointments/{branch}/slots', [PatientAppointmentController::class, 'getAvailableSlots'])->name('patient.appointments.slots');
     Route::post('/appointments/{branch}/bookappointment', [PatientAppointmentController::class, 'bookAppointment'])->name('patient.appointments.booking');

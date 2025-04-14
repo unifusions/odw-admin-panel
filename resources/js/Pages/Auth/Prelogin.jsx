@@ -9,22 +9,22 @@ import { Button, Form } from 'react-bootstrap';
 
 import odwLogo from '../../../../public/images/odw-logo.png';
 
-export default function Login({ status, canResetPassword }) {
-
-    const { email } = usePage().props;
+export default function Prelogin({ status }) {
+    const { flash } = usePage().props;
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: email ?? '',
+        email: '',
         password: '',
     });
 
     const onsubmit = (e) => {
         e.preventDefault();
 
-        post(route('login'), {
-            onFinish: () => reset('password'),
+        post(route('checkuser'), {
+            // onFinish: () => reset('password'),
         });
     };
-   
+
+
 
     const bgSvg = encodeURIComponent(`
     <svg width="1920" height="400" viewBox="0 0 1920 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-      
+
             <div className="position-fixed top-0 end-0 start-0 bg-img-start" style={{ height: '32rem', backgroundImage: `url("data:image/svg+xml,${bgSvg}")` }} >
 
                 <div className="shape shape-bottom zi-1">
@@ -53,6 +53,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
             </div>
+
 
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
@@ -103,23 +104,7 @@ export default function Login({ status, canResetPassword }) {
 
 
 
-                                <div className="mb-4">
-                                    <InputLabel htmlFor="password" className="form-label" value="Password" />
-
-                                    <TextInput
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        value={data.password}
-                                        className={errors.password && 'is-invalid'}
-                                        autoComplete="current-password"
-                                        placeholder="8+ characters required"
-                                        onChange={(e) => setData('password', e.target.value)}
-                                    />
-
-                                    <InputError message={errors.password} className="mt-2" />
-                                </div>
-                                <div className="d-grid">
+                                <div className="d-grid mb-4">
 
                                     <PrimaryButton className="btn btn-primary btn-lg" disabled={processing}>
                                         Log in
@@ -128,7 +113,13 @@ export default function Login({ status, canResetPassword }) {
 
                                 </div>
 
-
+                                {flash.failed && (
+                                    <>
+                                        <div class="alert alert-danger" role="alert">
+                                            {flash.failed}
+                                        </div>
+                                    </>
+                                )}
                             </form>
 
                         </div>
