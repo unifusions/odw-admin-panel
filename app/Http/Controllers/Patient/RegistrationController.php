@@ -36,6 +36,7 @@ class RegistrationController extends Controller
         $otp = rand(100000, 999999);
         $key = 'otp_' . $request->email;
         Cache::put($key, $otp, now()->addMinutes(10));
+        Mail::to($request->email)->send(new SendOtpMail($otp));
         return response()->json(['status' => $status, 'otp' => $otp]);
     }
     public function register(Request $request)
