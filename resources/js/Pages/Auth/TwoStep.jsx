@@ -9,6 +9,7 @@ import { Button, Form } from 'react-bootstrap';
 
 import odwLogo from '../../../../public/images/odw-logo.png';
 import { useRef, useState } from 'react';
+import UnlockSvg from '@/Components/Svgc/UnlockSvg';
 
 export default function TwoStep({ email, status, otpDigits }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -95,8 +96,9 @@ export default function TwoStep({ email, status, otpDigits }) {
                         <div class="card-body text-center">
                             <form onSubmit={handleSubmit} >
                                 <div class="mb-4">
-                                    <img class="avatar avatar-xxl avatar-4x3" src="./assets/svg/illustrations/oc-unlock.svg" alt="Image Description" data-hs-theme-appearance="default" />
-                                    <img class="avatar avatar-xxl avatar-4x3" src="./assets/svg/illustrations-light/oc-unlock.svg" alt="Image Description" data-hs-theme-appearance="dark" />
+
+                                    <UnlockSvg className="avatar avatar-xxl avatar-4x3" />
+                                    
                                 </div>
 
                                 <div class="mb-5">
