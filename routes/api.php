@@ -20,11 +20,11 @@ Route::get('/user', function (Request $request) {
 
 
 //ADD URLS BELOW SANCTUM 
-
+Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dental-services', DentalServiceController::class);
     Route::get('/deals', DealsController::class);
     Route::get('/clinics', ClinicController::class);
-    Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
+    
 });
