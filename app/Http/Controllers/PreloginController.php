@@ -38,7 +38,7 @@ class PreloginController extends Controller
                 $otp = rand(100000, 999999);
                 $key = 'otp_' . $request->email;
                 Cache::put($key, $otp, now()->addMinutes(10));
-                // Mail::to($request->email)->send(new SendOtpMail($otp));
+                Mail::to($request->email)->send(new SendOtpMail($otp));
                 return Inertia::render(
                     'Auth/TwoStep',
                     [
