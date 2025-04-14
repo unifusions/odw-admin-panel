@@ -13,7 +13,7 @@ class AppointmentController extends Controller
 
         // Check if slot is already booked
         $isBooked = Appointment::where('appointment_date', $request->appointment_date)
-            ->where('clinic_dentist_id', $request->doctor_id)
+            ->where('clinic_branch_id', $request->clinic_branch_id)
             ->where('time_slot', $request->time_slot)
             ->exists();
 
@@ -32,6 +32,6 @@ class AppointmentController extends Controller
             'status' => 'pending',
         ]);
 
-        return response()->json(['success' => 'This time slot is no longer available.'], 200);
+        return response()->json(['success' => 'Appointment Book. Await for confirmation'], 200);
     }
 }
