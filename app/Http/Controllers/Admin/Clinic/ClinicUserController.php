@@ -21,7 +21,8 @@ class ClinicUserController extends Controller
         return Inertia::render('Admin/Clinics/Users/Index', [
             'clinic' => $clinic,
             'branches' => $clinic->branches,
-            'users'=> $clinic->users
+            'users'=> $clinic->users,
+            
         ]);
     }
 
@@ -48,7 +49,8 @@ class ClinicUserController extends Controller
             'name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => $request->role,
+            'status' => 0
         ]);
 
         $clinicuser = ClinicUser::create([
@@ -56,6 +58,7 @@ class ClinicUserController extends Controller
             'clinic_id' => $clinic->id,
             'clinic_branch_id' => $request->branch_id,
             'role' => $user->role,
+            
         ]);
 
         $message = $user->name;
