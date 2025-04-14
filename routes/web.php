@@ -61,7 +61,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function () {
 
     Route::get('send-test-mail', function () {
-        Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
+        return view('mail.otp');
+        // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
     })->name('sendtestmail');
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');

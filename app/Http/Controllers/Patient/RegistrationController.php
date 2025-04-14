@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendOtpMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,7 +63,9 @@ class RegistrationController extends Controller
 
         $otp = rand(100000, 999999);
         // $key = $request->email ? 'otp_'.$request->email : 'otp_'.$request->phone;
+
         $key = 'otp_' . $request->email;
+        Mail::to($request->email)->send(new SendOtpMail($otp));
         Cache::put($key, $otp, now()->addMinutes(10));
 
         return response()->json(['status' => $status, 'message' => $message, 'otp' => $otp]);
