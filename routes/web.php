@@ -33,6 +33,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
+Route::get('send-test-mail', function () {
+    return view('mail.otp');
+    // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
+})->name('sendtestmail');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -60,10 +64,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function () {
 
-    Route::get('send-test-mail', function () {
-        return view('mail.otp');
-        // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
-    })->name('sendtestmail');
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('admin.dashboard');

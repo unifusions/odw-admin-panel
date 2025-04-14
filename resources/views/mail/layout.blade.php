@@ -25,7 +25,7 @@
                     style=" border-radius: 8px; padding: 20px; margin: 40px auto;">
                     <tr style="">
                         <td align="center" style="padding-bottom: 20px;">
-                            <img src="{{ asset('images/odw-brand.png') }}" alt="Logo" style="height: 80px;">
+                            <img src="/images/odw-brand.png" alt="Logo" style="height: 80px;">
                         </td>
                     </tr>
                     <tr>
