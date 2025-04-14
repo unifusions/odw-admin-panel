@@ -28,7 +28,7 @@ class AppointmentController extends Controller
             'clinic_dentist_id' => $request->doctor_id ?? null,
             'patient_id' => $request->patient_id,
             'appointment_date' => $request->appointment_date,
-            'time_slot' => $request->timeSlot,
+            'time_slot' => $request->time_slot,
             'status' => 'pending',
         ]);
 
