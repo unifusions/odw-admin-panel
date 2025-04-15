@@ -21,7 +21,7 @@ export default function PendingList({ appointments }) {
     const openCancelModal = (item) => {
         setSelectedAppointment(item);
         const modal = new bootstrap.Modal(cancelModalRef.current);
-        modal.show();
+         modal.show();
     }
 
     const openRescheduleModal = (item) => {
@@ -35,7 +35,7 @@ export default function PendingList({ appointments }) {
         modal?.hide();
     }
 
-    const cancelConfirm = () => {
+    const handleCancel = () => {
         if (!selectedAppointment) return;
 
         put(
@@ -144,7 +144,7 @@ export default function PendingList({ appointments }) {
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="button" className="btn btn-success" onClick={cancelConfirm}>
+                                <button type="button" className="btn btn-success" onClick={handleConfirm}>
                                     Confirm
                                 </button>
                             </div>
