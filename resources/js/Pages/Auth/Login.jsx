@@ -24,7 +24,7 @@ export default function Login({ status, canResetPassword }) {
             onFinish: () => reset('password'),
         });
     };
-   
+
 
     const bgSvg = encodeURIComponent(`
     <svg width="1920" height="400" viewBox="0 0 1920 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-      
+
             <div className="position-fixed top-0 end-0 start-0 bg-img-start" style={{ height: '32rem', backgroundImage: `url("data:image/svg+xml,${bgSvg}")` }} >
 
                 <div className="shape shape-bottom zi-1">

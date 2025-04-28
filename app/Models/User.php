@@ -8,6 +8,7 @@ use App\ClinicScope;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicBranch;
 use App\Models\Admin\ClinicUser;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -123,5 +124,42 @@ class User extends Authenticatable
             'id',       // Local key on User table
             'clinic_id' // Foreign key on ClinicUser table
         );
+    }
+
+    public static function currentMonthRegistration()
+    {
+        // Define the date range you want
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
+        // Get user counts grouped by date
+
+        $users = User::selectRaw('DATE(created_at) as date, COUNT(*) as total')
+            ->whereBetween('created_at', [$startDate, $endDate])->where('role' , 'patient')
+            ->groupByRaw('DATE(created_at)')
+            ->orderBy('date')
+            ->get()
+            ->keyBy('date');
+
+        $labels = [];
+        $data = [];
+
+        $period = new \DatePeriod(
+            $startDate,
+            new \DateInterval('P1D'),
+            $endDate->copy()->addDay()
+        );
+
+        foreach ($period as $date) {
+            $label = $date->format('M j'); // eg: "Apr 1"
+            $labels[] = $label;
+
+            $dateKey = $date->format('Y-m-d');
+            $data[] = $users[$dateKey]->total ?? 0;
+        }
+
+        return [
+            'labels' => $labels,
+            'data' => $data,
+        ];
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ClinicsBranchesListController;
 use App\Http\Controllers\Admin\ClinicsController;
 use App\Http\Controllers\Admin\ClinicsListController;
 use App\Http\Controllers\Admin\CompareCostController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DealsController;
 use App\Http\Controllers\Admin\DentistController;
 use App\Http\Controllers\Admin\EstimateController;
@@ -40,8 +41,8 @@ Route::get('send-test-mail', function () {
 })->name('sendtestmail');
 
 
-Route::get('/login', [PreloginController::class, 'preLogin'])->name('login');
-Route::post('/two-factor', [PreloginController::class, 'checkUser'])->name('checkuser');
+// Route::get('/login', [PreloginController::class, 'preLogin'])->name('login');
+// Route::post('/two-factor', [PreloginController::class, 'checkUser'])->name('checkuser');
 Route::post('/authentication', [PreloginController::class, 'verifyOtp'])->name('verifyotp');
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -69,9 +70,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('admin.dashboard');
+    Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
     Route::resource('second-opinion', SecondOpinionController::class);
     Route::resource('estimates', EstimateController::class);

@@ -4,7 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { format, subDays } from "date-fns";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-export default function PatientRegistrationChart() {
+export default function PatientRegistrationChart({ labels, values }) {
     // const [chartData, setChartData] = useState(null);
 
     // useEffect(() => {
@@ -63,13 +63,11 @@ export default function PatientRegistrationChart() {
     // };
 
     const chartData = {
-        labels: [
-            "Feb 1", "Feb 2", "Feb 3", "Feb 4", "Feb 5", "Feb 6", "Feb 7", "Feb 8", "Feb 9", "Feb 10", "Feb 11", "Feb 12", "Feb 13"
-        ],
+        labels: labels,
         datasets: [
             {
                 label: "Patients Registered",
-                data: [18, 51, 60, 38, 88, 50, 40, 52, 88, 80, 99, 67, 20], // Dummy data
+                data: values,
                 backgroundColor: "rgba(0, 123, 255, 0.2)", // Semi-transparent fill
                 borderColor: "#007bff", // Blue line color
                 borderWidth: 2,
@@ -83,16 +81,16 @@ export default function PatientRegistrationChart() {
 
     const chartOptions = {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         scales: {
             x: {
                 grid: {
                     display: false,
                     drawBorder: false,
-                    drawOnChartArea : false
+                    drawOnChartArea: false
                 },
-                border:{
-                    display:false
+                border: {
+                    display: false
                 },
                 legend: true,
                 ticks: { color: "#97a4af" },
@@ -104,8 +102,8 @@ export default function PatientRegistrationChart() {
                     drawBorder: false,
                     zeroLineColor: "#fff"
                 },
-                border:{
-                    display:false
+                border: {
+                    display: false
                 },
                 ticks: {
                     color: "#97a4af", stepSize: 25,
@@ -119,19 +117,19 @@ export default function PatientRegistrationChart() {
         },
         plugins: {
             legend: { display: false },
-            tooltip:{
-                prefix:"$",
-                postfix : "k",
+            tooltip: {
+                prefix: "$",
+                postfix: "k",
                 hasIndicator: true,
-                mode:"Index",
-                intersect:false,
-                lineMode:true,
+                mode: "Index",
+                intersect: false,
+                lineMode: true,
                 lineWithLineColor: "rgba(19, 33, 68, 0.075)"
 
             }
         },
-        hover:{
-            mode:"nearest",
+        hover: {
+            mode: "nearest",
             intersect: true
         }
     };
@@ -144,7 +142,7 @@ export default function PatientRegistrationChart() {
 
             </div>
             <div className="card-body">
-                <div className="chartjs-custom" style={{ height: '18rem' }}>
+                <div className="chartjs-custom" style={{ height:"18rem" }} >
                     {chartData ? <Line data={chartData} options={chartOptions} className="js-chart" /> : <p className="text-white">Loading...</p>}
                 </div>
 

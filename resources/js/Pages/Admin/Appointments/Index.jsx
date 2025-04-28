@@ -44,13 +44,7 @@ export default function Index({ appointments, pendingAppointments }) {
             preserveState: true
         })
 
-        // router.reload(
-        //     , {}, {
-        //     preserveState: true,
-        //     onSuccess: (response) => {
-        //         setAppointments(response.props.appointments);
-        //     },
-        // });
+
     };
 
     const handleDatesSet = (info) => {
@@ -74,7 +68,7 @@ export default function Index({ appointments, pendingAppointments }) {
                 textOverflow: "ellipsis",
             }}>
                 <div className="d-flex align-items-top">
-                
+
                     <div>
                         <div>{title}</div>
 
@@ -143,6 +137,7 @@ export default function Index({ appointments, pendingAppointments }) {
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 // initialView='timeGridWeek'
+                // initialView="timeGridDay"
                 selectable={false}
                 events={appointments}
                 select={handleDateSelect}
@@ -151,9 +146,13 @@ export default function Index({ appointments, pendingAppointments }) {
                 eventContent={renderEventContent}
                 themeSystem="bootstrap5"
                 initialDate={new Date()} // Set today's date as starting point
-                // initialView="timeGridDay"
-                slotMinTime="08:00:00" // Start time for day view
-                slotMaxTime="18:00:00" // End time for day view
+                headerToolbar={{
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                }}
+                slotMinTime="00:00:00" // Start time for day view
+                slotMaxTime="23:50:00" // End time for day view
                 datesSet={handleDatesSet}
             />
 

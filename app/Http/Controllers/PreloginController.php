@@ -14,7 +14,7 @@ class PreloginController extends Controller
 {
     public function preLogin()
     {
-        return Inertia::render('Auth/Prelogin', [
+        return Inertia::render('Auth/Prelogin', props: [
 
             'status' => session('status'),
         ]);
@@ -47,6 +47,7 @@ class PreloginController extends Controller
                     ]
                 );
             } else {
+                
                 return Inertia::render(
                     'Auth/Login',
                     ['email' => $request->email]
@@ -97,6 +98,7 @@ class PreloginController extends Controller
                 return redirect()->route('patient.dashboard');
             }
         } else {
+        
             return redirect()->route('login')->with(['error' => 'Something went wrong']);
         }
     }
