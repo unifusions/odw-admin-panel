@@ -1,55 +1,61 @@
+import Breadcrumbs from "@/Components/Breadcrumbs";
+import PageHeader from "@/Components/PageHeader";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
-import { Head } from "@inertiajs/react"
-
+import { Head, usePage } from "@inertiajs/react"
+import AddDentalCare from "./AddDentalCare";
+import DeleteDentalCare from "./DeleteDentalCare";
+import Pagination from "@/Components/Pagination"; 
 export default function Index() {
-    const SERVICES = [
-        {name : 'Dental Implants', cost: '$ 500', other:'$ 750'},
-        {name : 'Regular Check-ups and Professional Cleaning', cost: '$ 500', other:'$ 750'},
-        {name : 'Complete Smile Makeover', cost: '$ 500', other:'$ 750'},
-        {name : 'Invisalign', cost: '$ 500', other:'$ 750'},
-        {name : 'Dental Crowns', cost: '$ 500', other:'$ 750'},
-        {name : 'Preventive Treatment', cost: '$ 500', other:'$ 750'},
-        {name : 'Pediatric Treatment', cost: '$ 500', other:'$ 750'},
-        {name : 'Teeth Whitening', cost: '$ 500', other:'$ 750'},
-        {name : 'Dentures', cost: '$ 500', other:'$ 750'},
-        {name : 'Over Dentures', cost: '$ 500', other:'$ 750'},
-        {name : 'Root Canal', cost: '$ 500', other:'$ 750'},
-        {name : 'Tooth Extractions', cost: '$ 500', other:'$ 750'},
-        {name : 'Dental Fillings', cost: '$ 500', other:'$ 750'},
-    ];
+
+    const { dentalCare, categories } = usePage().props;
+
+    const SERVICES = dentalCare.data;
     return (
         < AuthenticatedLayout
             header='Compare Costs'
 
         >
             <Head title="Compare Costs" />
-            <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-                    data-hs-datatables-options='{
-                 "order": []
-               }'>
+            <PageHeader>
+                <AddDentalCare categories={categories} />
+            </PageHeader>
+            <div className="table-responsive datatable-custom">
+                <table className="table table-borderless table-thead-bordered  table-hover  table-sm"
+                >
                     <thead class="thead-light">
                         <tr>
+                            <th>Code</th>
                             <th>Service</th>
+                            <th>Category</th>
+                            <th>National Cost</th>
                             <th>ODW Cost</th>
-                            <th>Other Cost</th>
-                            
+
+                            <th className="text-end">Actions</th>
+
                         </tr>
                     </thead>
 
                     <tbody>
                         {
-                            SERVICES.map((item, index)=> (
+                            SERVICES.map((item, index) => (
                                 <tr key={index}>
+                                    <td>{item.code}</td>
                                     <td>{item.name}</td>
-                                    <td>{item.cost}</td>
-                                    <td>{item.other}</td>
-                                    
+                                    <td>{item.category.name}</td>
+                                    <td>$ {item.national_cost}</td>
+                                    <td>$ {item.odw_cost}</td>
+                                    <td className="text-end">
+                                       
+                                     <DeleteDentalCare dentalcare={item} />
+                                    </td>
                                 </tr>
                             ))
                         }
-                      
+
                     </tbody>
+                    <tfoot>
+                        <Pagination links={dentalCare.links} />
+                    </tfoot>
                 </table>
             </div>
         </AuthenticatedLayout >

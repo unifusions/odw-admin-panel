@@ -7,9 +7,10 @@ export default function InputLabel({
     return (
         <label
             {...props}
-            className={
-                `block text-sm font-medium text-gray-700 ` +
-                className
+            className={  className 
+                +
+                `form-label`
+              
             }
         >
             {value ? value : children}

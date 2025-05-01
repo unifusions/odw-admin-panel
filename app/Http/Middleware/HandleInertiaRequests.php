@@ -127,6 +127,11 @@ class HandleInertiaRequests extends Middleware
             'clinic-users.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl ],
                 ['name'=>'Users', 'url' => route('clinic-users.index')]
+            ],
+
+            'compare-costs.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Compare Costs', 'url' => route('compare-costs.index')]
             ]
         ];
 

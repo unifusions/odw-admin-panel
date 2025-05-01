@@ -142,7 +142,7 @@ export default function AddClinic() {
                                     <div className="col-sm-9">
                                         <TextInput
                                             id="clinic_name"
-                                            type="clinic_name"
+                                            type="text"
                                             name="clinic_name"
                                             value={data.clinic_name}
                                             className="form-control "

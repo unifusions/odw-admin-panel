@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\DentalCare;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +15,19 @@ class CompareCostController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/CompareCosts/Index');
+        $dentalCare = DentalCare::with('category')->paginate(25);
+        return Inertia::render(
+            'Admin/CompareCosts/Index',
+            [
+                'dentalCare' => $dentalCare,
+                'categories' => Category::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                })
+            ]
+        );
     }
 
     /**
@@ -29,7 +43,15 @@ class CompareCostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dentalCare = DentalCare::create([
+            'code' => $request->code,
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'national_cost' => $request->national_cost,
+            'odw_cost' => $request->odw_cost
+        ]);
+
+        return redirect()->back()->with(['message' => 'Service has been added successfully']);
     }
 
     /**
@@ -59,8 +81,9 @@ class CompareCostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DentalCare $compare_cost)
     {
-        //
+        $compare_cost->delete();
+        return redirect()->back()->with(['message' => 'Service has been deleted successfully']);
     }
 }

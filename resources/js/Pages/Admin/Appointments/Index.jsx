@@ -149,7 +149,7 @@ export default function Index({ appointments, pendingAppointments }) {
                 headerToolbar={{
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    right: 'prev,next dayGridMonth,timeGridWeek,timeGridDay,today'
                 }}
                 slotMinTime="00:00:00" // Start time for day view
                 slotMaxTime="23:50:00" // End time for day view
