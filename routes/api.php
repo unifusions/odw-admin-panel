@@ -30,6 +30,7 @@ Route::get('/clinics', ClinicController::class);
 // ESTIMATE CONTROLLER
 
 Route::get('/dentalcare', [EstimateController::class, 'index']);
+
 Route::middleware('auth:sanctum')->group(function () {
  
     

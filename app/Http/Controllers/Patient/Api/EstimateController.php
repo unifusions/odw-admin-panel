@@ -13,7 +13,7 @@ class EstimateController extends Controller
      */
     public function index()
     {
-        $DentalCare = DentalCare::latest(5);
+        $DentalCare = DentalCare::latest()->take(5)->get();
         return response()->json($DentalCare);
     }
 
