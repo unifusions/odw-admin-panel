@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Patient\Api\AppointmentController;
+use App\Http\Controllers\Patient\Api\EstimateController;
 use App\Http\Controllers\Patient\ClinicController;
 use App\Http\Controllers\Patient\DealsController;
 use App\Http\Controllers\Patient\DentalServiceController;
 use App\Http\Controllers\Patient\RegistrationController;
+use App\Models\Estimate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +27,9 @@ Route::get('/dental-services', DentalServiceController::class);
 Route::get('/deals', DealsController::class);
 Route::get('/clinics', ClinicController::class);
 
+// ESTIMATE CONTROLLER
+
+Route::get('/dentalcare', [EstimateController::class, 'index']);
 Route::middleware('auth:sanctum')->group(function () {
  
     
