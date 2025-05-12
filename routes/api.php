@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Patient\Api\AppointmentController;
 use App\Http\Controllers\Patient\Api\EstimateController;
+use App\Http\Controllers\Patient\Api\InsuranceController;
+use App\Http\Controllers\Patient\Api\ProfileController;
+use App\Http\Controllers\Patient\Api\SecondOpinionController;
 use App\Http\Controllers\Patient\ClinicController;
 use App\Http\Controllers\Patient\DealsController;
 use App\Http\Controllers\Patient\DentalServiceController;
@@ -26,6 +29,18 @@ Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment
 Route::get('/dental-services', DentalServiceController::class);
 Route::get('/deals', DealsController::class);
 Route::get('/clinics', ClinicController::class);
+
+Route::get('/second-opinions', [SecondOpinionController::class, 'index']);
+Route::post('/second-opinions/store',[SecondOpinionController::class, 'store']);
+
+// PROFILE CONTROLLER
+
+Route::get('/profile', [ProfileController::class, 'index']);
+
+// INSURANCE CONTROLLER
+
+Route::get('/insurance',[ InsuranceController::class, 'index']);
+
 
 // ESTIMATE CONTROLLER
 
