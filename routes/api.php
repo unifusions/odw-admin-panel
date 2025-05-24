@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Patient\Api\AppointmentController;
+use App\Http\Controllers\Patient\Api\DentistController;
 use App\Http\Controllers\Patient\Api\EstimateController;
 use App\Http\Controllers\Patient\Api\InsuranceController;
 use App\Http\Controllers\Patient\Api\ProfileController;
@@ -44,6 +45,9 @@ Route::get('/insurance',[ InsuranceController::class, 'index']);
 
 // ESTIMATE CONTROLLER
 
+// APPOINTMENT DENTIST CONTROLLERS
+
+Route::get('/dentists-by-branch', [DentistController::class, 'dentistsByClinicBranch']);
 Route::get('/dentalcare', [EstimateController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {

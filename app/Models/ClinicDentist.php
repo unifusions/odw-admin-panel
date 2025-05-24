@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Admin\Clinic;
+use App\Models\Admin\Dentist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,10 @@ class ClinicDentist extends Model
 
     public function clinic(){
         return $this->hasOne(Clinic::class);
+    }
+
+    public function dentist(){
+        return $this->belongsTo(Dentist::class);
     }
     
 }
