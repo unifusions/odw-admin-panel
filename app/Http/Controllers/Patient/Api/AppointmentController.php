@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
+
+    public function myAppointment(Request $request){
+       $patient = $request->patient_id;
+       $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->get();
+       $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->get();
+       return response()->json([$openBookings, $pendingBookings]);
+            
+    }
     public function bookAppointment(Request $request)
     {
 

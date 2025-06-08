@@ -26,6 +26,7 @@ Route::get('/user', function (Request $request) {
 
 
 //ADD URLS BELOW SANCTUM 
+Route::get('/my-appointments', [AppointmentController::class,'myAppointment']);
 Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
 Route::get('/dental-services', DentalServiceController::class);
 Route::get('/deals', DealsController::class);
@@ -49,6 +50,9 @@ Route::get('/insurance',[ InsuranceController::class, 'index']);
 
 Route::get('/dentists-by-branch', [DentistController::class, 'dentistsByClinicBranch']);
 Route::get('/dentalcare', [EstimateController::class, 'index']);
+
+
+
 
 Route::middleware('auth:sanctum')->group(function () {
  
