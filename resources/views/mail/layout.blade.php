@@ -26,9 +26,9 @@
                     <tr style="">
                         <td align="center" style="padding-bottom: 20px;">
 
-                            <img    src="{{ $message->embed(asset('/storage/logo/Bujishu-logo.png')) }}"  alt="Logo" style="height: 80px;"/>
+                            <img src="{{ $message->embed('/images/odw-brand.png')) }}"  alt="Logo" style="height: 80px;"/>
 
-                         
+                            
                         </td>
                     </tr>
                     <tr>
