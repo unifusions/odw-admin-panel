@@ -13,7 +13,9 @@ class AppointmentController extends Controller
        $patient = $request->patient_id;
        $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->get();
        $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->get();
-       return response()->json([$openBookings, $pendingBookings]);
+       return response()->json([
+        'open'=>$openBookings,
+        'pending' =>  $pendingBookings]);
             
     }
     public function bookAppointment(Request $request)
