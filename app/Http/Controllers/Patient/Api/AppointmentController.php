@@ -12,8 +12,8 @@ class AppointmentController extends Controller
 
     public function myAppointment(Request $request){
        $patient = $request->patient_id;
-       $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '=>', now())->get();
-       $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->whereDate('appointment_date', '=>', now())->get();
+       $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '>=', now())->get();
+       $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->whereDate('appointment_date', '>=', now())->get();
        return response()->json([
         'open'=>$openBookings,
         'pending' =>  $pendingBookings->map(function ($booking){
