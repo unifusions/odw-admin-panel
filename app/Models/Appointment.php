@@ -3,6 +3,10 @@
 namespace App\Models;
 
 use App\ClinicScope;
+use App\Models\Admin\Clinic;
+use App\Models\Admin\ClinicBranch;
+use App\Models\Admin\DentalService;
+use App\Models\Admin\Dentist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
@@ -33,5 +37,21 @@ class Appointment extends Model
 
     public function dentalservices(){
         return $this->hasMany(AppointmentService::class);
+    }
+
+    public function clinic(){
+        return $this->belongsTo(Clinic::class);
+    }
+
+    public function clinicbranch(){
+        return $this->belongsTo(ClinicBranch::class, 'clinic_branch_id');
+    }
+
+    public function dentalservice(){
+        return $this->belongsTo(DentalService::class,'dental_service_id');
+    }
+
+    public function dentist(){
+        return $this->hasOneThrough(Dentist::class,ClinicDentist::class, 'dentist_id', 'id','clinic_dentist_id', 'dentist_id');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -15,7 +16,19 @@ class AppointmentController extends Controller
        $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->get();
        return response()->json([
         'open'=>$openBookings,
-        'pending' =>  $pendingBookings]);
+        'pending' =>  $pendingBookings->map(function ($booking){
+            return [
+                'appointment_id' => $booking->id,
+                'service' => $booking->dentalservice->name ?? '',
+                'clinic'=> $booking->clinic->name,
+                'branch' => $booking->clinicbranch->name,
+                'appointment_date' => $booking->appointment_date,
+                'appointment_time'=>  Carbon::parse($booking->time_slot)->format('g:i a'),
+                'dentist' => $booking->dentist->name ?? '',
+                 
+            ];
+        })
+    ]);
             
     }
     public function bookAppointment(Request $request)
@@ -39,9 +52,10 @@ class AppointmentController extends Controller
             'patient_id' => $request->patient_id,
             'appointment_date' => $request->appointment_date,
             'time_slot' => $request->time_slot,
+            'dental_service_id'=> $request->dental_service_id,
             'status' => 'pending',
         ]);
 
-        return response()->json(['success' => 'Appointment Book. Await for confirmation'], 200);
+        return response()->json(['success' => 'Appointment Booked. Await for confirmation'], 200);
     }
 }
