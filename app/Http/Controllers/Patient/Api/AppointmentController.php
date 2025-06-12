@@ -15,7 +15,17 @@ class AppointmentController extends Controller
        $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '> ', now())->orderBy('appointment_date', 'asc')->get();
        $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
        return response()->json([
-        'open'=>$openBookings,
+        'open'=>$openBookings->map(function($booking){
+            return [
+                'appointment_id' => $booking->id,
+                'service' => $booking->dentalservice->name ?? '',
+                'clinic'=> $booking->clinic->name,
+                'branch' => $booking->clinicbranch->name,
+                'appointment_date' => $booking->appointment_date,
+                'appointment_time'=>  Carbon::parse($booking->time_slot)->format('g:i a'),
+                'dentist' => $booking->dentist->name ?? '',
+            ];
+        }),
         'pending' =>  $pendingBookings->map(function ($booking){ 
             return [
                 'appointment_id' => $booking->id,
