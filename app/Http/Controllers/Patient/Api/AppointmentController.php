@@ -48,7 +48,7 @@ class AppointmentController extends Controller
         $appointment = Appointment::create([
             'clinic_id' => $request->clinic_id,
             'clinic_branch_id' => $request->clinic_branch_id,
-            'clinic_dentist_id' => $request->doctor_id ?? null,
+            'clinic_dentist_id' => $request->clinic_dentist_id ?? null,
             'patient_id' => $request->patient_id,
             'appointment_date' => $request->appointment_date,
             'time_slot' => $request->time_slot,
