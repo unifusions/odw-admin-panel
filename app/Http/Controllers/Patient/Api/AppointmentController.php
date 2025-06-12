@@ -16,7 +16,7 @@ class AppointmentController extends Controller
        $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
        return response()->json([
         'open'=>$openBookings,
-        'pending' =>  $pendingBookings->map(function ($booking){
+        'pending' =>  $pendingBookings->map(function ($booking){ 
             return [
                 'appointment_id' => $booking->id,
                 'service' => $booking->dentalservice->name ?? '',
