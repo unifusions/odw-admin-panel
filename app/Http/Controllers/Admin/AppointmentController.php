@@ -23,12 +23,13 @@ class AppointmentController extends Controller
                 //     $query->where('status', 'confirmed')
                 //         ->orWhere('status', 'rescheduled');
                 // })
+            
         )->get()->map(fn($appointment) => [
             'id' => $appointment->id,
             'title' => $appointment->patient->first_name ?? '',
             'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
-            'end' => Carbon::parse("{$appointment->appointment_date} {$appointment->time_slot}")
-                ->addMinutes(30)->format('Y-m-d\TH:i:s'),
+            // 'end' => Carbon::parse("{$appointment->appointment_date} {$appointment->time_slot}")
+            //     ->addMinutes(30)->format('Y-m-d\TH:i:s'),
             'extendedProps' => [
                 'full_name' => '',  // Uncomment if patient data is available
                 'age' => '',

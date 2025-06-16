@@ -73,7 +73,7 @@ export default function Index({ appointments, pendingAppointments }) {
                         <div>{title}</div>
 
                         <div className='text-muted mb-3 fs-10'>
-                            {startTime} - {endTime}
+                            {startTime}
                         </div>
 
                     </div>

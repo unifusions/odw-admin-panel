@@ -25,7 +25,8 @@ class Insurance extends Model
         'insurance_provider',
         'carrier',
         'plan_no',
-        'is_current'
+        'is_current',
+        'status',
 
     ];
 

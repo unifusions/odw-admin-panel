@@ -21,17 +21,35 @@ class InsuranceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
-     */     
+     */
     public function store(Request $request)
     {
-        //
+
+        $insurance = Insurance::create([
+            'patient_id' => $request->patient_id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'relation' => $request->relation,
+            'address_line_1' => $request->address_line_1,
+            'address_line_2' => $request->address_line_2,
+            'address_line_3' => $request->address_line_3,
+            'state_id' => $request->state_id,
+            'city_id' => $request->city_id,
+            'zip_code_id' => $request->zip_code_id,
+            'mode' => $request->mode,
+            'insurance_provider' => $request->insurance_provider,
+            'carrier' => $request->carrier,
+            'plan_no' => $request->plan_no,
+            'is_current' => $request->is_current,
+            'status' => 'active'
+        ]);
+
+        if ($insurance) return response()->json(['success' => 'Insurance Added.'], 200);
+        else return response()->json(['error', "Something went wrong"], 433);
     }
 
     /**

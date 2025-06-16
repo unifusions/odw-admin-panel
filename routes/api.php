@@ -42,7 +42,7 @@ Route::get('/profile', [ProfileController::class, 'index']);
 // INSURANCE CONTROLLER
 
 Route::get('/insurance',[ InsuranceController::class, 'index']);
-
+Route::post('/add-insurance',[ InsuranceController::class, 'store']);
 
 // ESTIMATE CONTROLLER
 
