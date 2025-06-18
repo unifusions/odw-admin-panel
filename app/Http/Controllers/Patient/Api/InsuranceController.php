@@ -14,7 +14,7 @@ class InsuranceController extends Controller
     public function index(Request $request)
     {
         $patient_id = $request->patient_id;
-        $insurance = Insurance::find($patient_id)->get();
+        $insurance = Insurance::find($patient_id);
         return response()->json($insurance);
     }
 
