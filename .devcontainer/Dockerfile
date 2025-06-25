@@ -1,27 +1,18 @@
-# Use a Debian-based image that includes Node.js, suitable for both PHP and JS
-FROM mcr.microsoft.com/devcontainers/universal:2
+# Use a specific PHP base image from devcontainers/php
+# This image includes PHP (you can specify version, e.g., 8.2), Node.js, and common extensions.
+# See available versions: https://github.com/devcontainers/features/tree/main/src/php
+FROM mcr.microsoft.com/devcontainers/php:8.2-bullseye
 
-# [Optional] Install PHP and common extensions for PHP 8.2
+# The base image (php:8.2-bullseye) usually comes with common extensions like pdo_mysql, mbstring, xml already.
+# We'll install any missing ones Laravel requires or other dev tools.
+
 USER root
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends software-properties-common ca-certificates apt-transport-https \
-    && add-apt-repository ppa:ondrej/php \
-    && apt-get update \
     && apt-get -y install --no-install-recommends \
-        php8.2-cli \
-        php8.2-common \
-        php8.2-mysql \
-        php8.2-mbstring \
-        php8.2-xml \
-        php8.2-zip \
-        php8.2-curl \
-        php8.2-bcmath \
-        php8.2-tokenizer \
-        php8.2-gd \
-        php8.2-fpm \
-        php8.2-pdo \
-        # ^^^ Ensure php8.2-pdo and php8.2-mysql are explicitly listed
         git unzip curl libpng-dev \
+        # Add any other specific PHP extensions needed by Laravel that aren't included by default
+        # Example: gd is often used for image manipulation
+        # && docker-php-ext-install gd \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
