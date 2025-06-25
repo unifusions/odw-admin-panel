@@ -1,0 +1,73 @@
+{
+    "name": "Laravel 12 & React Native Dev Environment (npm)",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "files.associations": {
+                    "*.blade.php": "html"
+                }
+            },
+            "extensions": [
+                "ms-vscode.vscode-typescript-next",
+                "esbenp.prettier-vscode",
+                "formulahendry.auto-rename-tag",
+                "bradlc.vscode-form-controller",
+                "EditorConfig.EditorConfig",
+                "LaravelCollective.vscode-laravel-extra-intellisense",
+                "bmewburn.vscode-intelephense-client", // PHP IntelliSense
+                "onecentlin.laravel5-snippets",
+                "mikestead.laravel-goto-controller",
+                "dsznajder.es7-react-js-snippets", // React snippets
+                "pflannery.vscode-emacs-mcx",
+                "dbaeumer.vscode-eslint",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest"
+        }
+    },
+    "forwardPorts": [
+        8000, // Laravel
+        3000, // React Native Web (if used via Vite/Breeze)
+        19000, // Expo Dev Tools
+        19001, // Expo Web Socket
+        8081 // Expo Metro Bundler
+    ],
+    "postCreateCommand": {
+        "install_backend": "cd ${containerWorkspaceFolder} && composer install && cp .env.example .env && php artisan key:generate && npm install",
+        "clone_frontend": "git clone https://github.com/your-username/your-react-native-frontend-repo.git /workspaces/react-native-frontend",
+        "install_frontend": "cd /workspaces/react-native-frontend && npm install"
+    },
+    "portsAttributes": {
+        "8000": {
+            "label": "Laravel App",
+            "onAutoForward": "notify"
+        },
+        "3000": {
+            "label": "React Native Web (if used)",
+            "onAutoForward": "notify"
+        },
+        "19000": {
+            "label": "Expo Dev Tools",
+            "onAutoForward": "notify"
+        },
+        "19001": {
+            "label": "Expo Web Socket",
+            "onAutoForward": "notify"
+        },
+        "8081": {
+            "label": "Expo Metro Bundler",
+            "onAutoForward": "notify"
+        }
+    },
+    "onCreateCommand": "docker-compose up -d",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "remoteUser": "vscode"
+}
