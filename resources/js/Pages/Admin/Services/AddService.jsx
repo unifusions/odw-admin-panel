@@ -14,9 +14,13 @@ export default function AddService() {
         name: '',
         desc: '',
         cost: '',
+        medical_name: '',
+        max_cost: '',
         image_path: '',
         image_file: null,
-        avg_cost: ''
+        avg_cost: '',
+        max_avg_cost: '',
+        display_order: ''
     })
     const [loading, setLoading] = useState(false);
 
@@ -51,7 +55,7 @@ export default function AddService() {
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalCenterTitle">Add Clinic</h5>
+                            <h5 className="modal-title" id="exampleModalCenterTitle">Add Category</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -70,18 +74,38 @@ export default function AddService() {
 
 
                                 <div className="row mb-4">
-                                    <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Service Name
+                                    <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Category Name
                                         <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
 
                                     <div className="col-sm-9">
                                         <TextInput
-                                            id="service_name"
-                                            type="clinic_name"
-                                            name="clinic_name"
-                                            value={data.clinic_name}
+                                            id="category_name"
+                                            type="text"
+                                            name="category_name"
+                                            value={data.name}
                                             className="form-control "
-                                            placeholder="Service Name"
+                                            placeholder="Category Name"
                                             onChange={(e) => setData('name', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+                                </div>
+
+                                <div className="row mb-4">
+                                    <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Medical Name
+                                        <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
+
+                                    <div className="col-sm-9">
+                                        <TextInput
+                                            id="category_name"
+                                            type="text"
+                                            name="category_name"
+                                            value={data.medical_name}
+                                            className="form-control "
+                                            placeholder="Medical Name"
+                                            onChange={(e) => setData('medical_name', e.target.value)}
                                         />
 
 
@@ -119,36 +143,93 @@ export default function AddService() {
                                     <label for="serviceCost" className="col-sm-3 col-form-label form-label">Cost
                                         <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
 
-                                    <div className="col-sm-9">
+                                    <div className="col-sm-4">
                                         <TextInput
                                             id="serviceCost"
                                             type="number"
                                             name="cost"
                                             value={data.cost}
                                             className="form-control "
-                                            placeholder="Service Name"
+                                            placeholder="Min"
                                             onChange={(e) => setData('cost', e.target.value)}
                                         />
 
 
 
                                     </div>
+
+                                    <div className="col-sm-4">
+                                        <TextInput
+                                            id="serviceMaxCost"
+                                            type="number"
+                                            name="max_cost"
+                                            value={data.max_cost}
+                                            className="form-control "
+                                            placeholder="Max"
+                                            onChange={(e) => setData('max_cost', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+
                                 </div>
+
+
 
 
                                 <div className="row mb-4">
 
                                     <InputLabel htmlFor="avgCost" className="form-label col-sm-3 col-form-label" value="Average Cost" />
 
-                                    <div className="col-sm-9">
+                                    <div className="col-sm-4">
                                         <TextInput
                                             id="avgCost"
                                             type="number"
                                             name="cost"
                                             value={data.avg_cost}
                                             className="form-control "
-                                            placeholder="Average Cost"
+                                            placeholder="Min"
                                             onChange={(e) => setData('avg_cost', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+
+                                    <div className="col-sm-4">
+                                        <TextInput
+                                            id="avgMaxCost"
+                                            type="number"
+                                            name="cost"
+                                            value={data.max_avg_cost}
+                                            className="form-control "
+                                            placeholder="Max"
+                                            onChange={(e) => setData('max_avg_cost', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div className="row mb-4">
+                                    <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Display Order
+                                      
+                                      </label>
+
+                                    <div className="col-sm-9">
+                                        <TextInput
+                                            id="category_name"
+                                            type="number"
+                                            name="category_name"
+                                            value={data.display_order}
+                                            className="form-control "
+                                            placeholder="Display Order"
+                                            onChange={(e) => setData('display_order', e.target.value)}
                                         />
 
 
@@ -156,9 +237,10 @@ export default function AddService() {
                                     </div>
                                 </div>
 
+
                                 <div className="text-end">
                                     <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary">Save Service</button>
+                                    <button type="submit" className="btn btn-primary">Save Category</button>
 
                                 </div>
 

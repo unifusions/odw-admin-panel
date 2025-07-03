@@ -20,10 +20,16 @@ export default function EditService({ service }) {
     const { data, setData, processing, post, reset } = useForm({
         name: service.name || '',
 
+        medical_name: service.medical_name || '',
         image_path: service.image_path || '',
+
         desc: service.desc || '',
         cost: service.cost || '',
-        avg_cost: service.avg_cost || ''
+        avg_cost: service.avg_cost || '',
+
+        max_cost: service.max_cost || '',
+        max_avg_cost: service.max_avg_cost || '',
+        display_order: service.display_order || ''
     })
 
 
@@ -113,6 +119,27 @@ export default function EditService({ service }) {
                     </div>
 
                     <div className="row mb-4">
+                        <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Medical Name
+                            <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
+
+                        <div className="col-sm-9">
+                            <TextInput
+                                id="category_name"
+                                type="text"
+                                name="category_name"
+                                value={data.medical_name}
+                                className="form-control "
+                                placeholder="Medical Name"
+                                onChange={(e) => setData('medical_name', e.target.value)}
+                            />
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div className="row mb-4">
                         <label for="desc" className="col-sm-3 col-form-label form-label">Description
                         </label>
 
@@ -134,10 +161,10 @@ export default function EditService({ service }) {
                     </div>
 
                     <div className="row mb-4">
-                        <label for="serviceCost" className="col-sm-3 col-form-label form-label">Cost
-                            <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
+                        <label for="serviceCost" className="col-sm-3 col-form-label form-label">ODW Cost</label>
 
-                        <div className="col-sm-9">
+
+                        <div className="col-sm-4">
                             <TextInput
                                 id="serviceCost"
                                 type="number"
@@ -151,13 +178,29 @@ export default function EditService({ service }) {
 
 
                         </div>
+
+                        <div className="col-sm-4">
+                            <TextInput
+                                id="serviceMaxCost"
+                                type="number"
+                                name="max_cost"
+                                value={data.max_cost}
+                                className="form-control "
+                                placeholder="Max"
+                                onChange={(e) => setData('max_cost', e.target.value)}
+                            />
+
+
+
+                        </div>
+
                     </div>
 
                     <div className="row mb-4">
 
                         <InputLabel htmlFor="avgCost" className="form-label col-sm-3 col-form-label" value="Average Cost" />
 
-                        <div className="col-sm-9">
+                        <div className="col-sm-4">
                             <TextInput
                                 id="avgCost"
                                 type="number"
@@ -171,7 +214,49 @@ export default function EditService({ service }) {
 
 
                         </div>
+
+                        
+                        <div className="col-sm-4">
+                                        <TextInput
+                                            id="avgMaxCost"
+                                            type="number"
+                                            name="cost"
+                                            value={data.max_avg_cost}
+                                            className="form-control "
+                                            placeholder="Max"
+                                            onChange={(e) => setData('max_avg_cost', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+
                     </div>
+
+
+                    <div className="row mb-4">
+                        <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Display Order
+
+                        </label>
+
+                        <div className="col-sm-9">
+                            <TextInput
+                                id="category_name"
+                                type="number"
+                                name="category_name"
+                                value={data.display_order}
+                                className="form-control "
+                                placeholder="Display Order"
+                                onChange={(e) => setData('display_order', e.target.value)}
+                            />
+
+
+
+                        </div>
+
+                        
+                    </div>
+
 
 
 

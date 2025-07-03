@@ -20,7 +20,7 @@ class ServiceController extends Controller
         return Inertia::render(
             'Admin/Services/Index',
             [
-                'services' => DentalService::paginate(25)->through(function ($service) {
+                'services' => DentalService::orderBy('display_order', 'ASC')->paginate(25)->through(function ($service) {
                     if ($service->image_path)
                         $service->image_path = Storage::disk('public')->url($service->image_path);
                     return $service;
@@ -50,7 +50,11 @@ class ServiceController extends Controller
             'desc' => $request->desc,
             'cost' => $request->cost,
             'image_path' => $image_path,
-            'avg_cost' => $request->avg_cost
+            'avg_cost' => $request->avg_cost,
+            'medical_name' => $request->medical_name,
+            'max_cost' => $request->max_cost,
+            'max_avg_cost' => $request->max_avg_cost,
+            'display_order' => $request->display_order
         ]);
 
         return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);
@@ -83,6 +87,12 @@ class ServiceController extends Controller
         $service->name = $inputs['name'] ?? $service->name;
         $service->desc = $inputs['desc'] ?? $service->desc;
         $service->cost = $inputs['cost'] ?? $service->cost;
+
+        $service->medical_name = $inputs['medical_name'] ?? $request->medical_name;
+        $service->max_cost = $inputs['max_cost']  ?? $request->max_cost;
+        $service->max_avg_cost = $inputs['max_avg_cost']  ?? $request->max_avg_cost;
+        $service->display_order = $inputs['display_order']  ?? $request->display_order;
+
         $service->avg_cost = $inputs['avg_cost'] ?? $service->avg_cost;
         if ($request->hasFile('image_path'))
             $service->image_path = $request->file('image_path')->store('uploads/services', 'public');

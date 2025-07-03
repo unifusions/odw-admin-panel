@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DentalService;
 use App\Models\Category;
 use App\Models\DentalCare;
 use Illuminate\Http\Request;
@@ -15,15 +16,15 @@ class CompareCostController extends Controller
      */
     public function index()
     {
-        $dentalCare = DentalCare::with('category')->paginate(25);
+        $dentalCare = DentalCare::with('dentalservice')->paginate(25);
         return Inertia::render(
             'Admin/CompareCosts/Index',
             [
                 'dentalCare' => $dentalCare,
-                'categories' => Category::all()->map(function ($item) {
+                'categories' => DentalService::all()->map(function ($item) {
                     return [
                         'value' => $item->id,
-                        'label' => $item->name
+                        'label' => $item->name . " [" . $item->medical_name."]" 
                     ];
                 })
             ]
@@ -43,10 +44,11 @@ class CompareCostController extends Controller
      */
     public function store(Request $request)
     {
+        
         $dentalCare = DentalCare::create([
             'code' => $request->code,
             'name' => $request->name,
-            'category_id' => $request->category_id,
+            'dental_service_id' => $request->category_id,
             'national_cost' => $request->national_cost,
             'odw_cost' => $request->odw_cost
         ]);

@@ -41,7 +41,7 @@ export default function Index() {
                                 <tr key={index}>
                                     <td>{item.code}</td>
                                     <td>{item.name}</td>
-                                    <td>{item.category.name}</td>
+                                    <td>{item.dentalservice ? item.dentalservice.name: ''}</td>
                                     <td>$ {item.national_cost}</td>
                                     <td>$ {item.odw_cost}</td>
                                     <td className="text-end">

@@ -16,7 +16,8 @@ export default function AddDentalCare({ categories }) {
         name: '',
         category_id: '',
         national_cost: '',
-        odw_cost: ''
+        odw_cost: '',
+        medical_name: ''
     });
 
     useEffect(() => {
@@ -36,7 +37,7 @@ export default function AddDentalCare({ categories }) {
 
     const toggleModal = () => {
         // const modal = bootstrap.Modal.getInstance(modalRef.current)
-       
+
         if (selectRef.current) {
             selectRef.current.setValue(null);
         }
@@ -82,7 +83,7 @@ export default function AddDentalCare({ categories }) {
                                 </div>
 
                                 <div className="row mb-4">
-                                    <InputLabel className="col-sm-3 col-form-label" value="Name" />
+                                    <InputLabel className="col-sm-3 col-form-label" value="Common Name" />
                                     <div className="col-sm-9">
                                         <TextInput
                                             name="name"
@@ -93,12 +94,25 @@ export default function AddDentalCare({ categories }) {
                                     </div>
 
                                 </div>
+
+                                <div className="row mb-4">
+                                    <InputLabel className="col-sm-3 col-form-label" value="Medical Name" />
+                                    <div className="col-sm-9">
+                                        <TextInput
+
+
+                                            value={data.medical_name}
+                                            onChange={(e) => setData('medical_name', e.target.value)}
+                                        />
+                                    </div>
+
+                                </div>
                                 <div className="row mb-4">
                                     <InputLabel className="col-sm-3 col-form-label" value="Cateogry" />
                                     <div className="col-sm-9">
                                         <ReactSelect options={categories} ref={selectRef}
-                                          
-                                            onChange={(selectedOption) =>setData('category_id', selectedOption ? selectedOption.value : '') } />
+
+                                            onChange={(selectedOption) => setData('category_id', selectedOption ? selectedOption.value : '')} />
                                     </div>
 
                                 </div>

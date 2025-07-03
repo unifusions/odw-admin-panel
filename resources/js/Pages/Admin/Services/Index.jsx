@@ -24,6 +24,7 @@ export default function Index() {
                             <th colSpan={2}>Services</th>
                             <th>ODW Cost</th>
                             <th>Average National Cost</th>
+                            <th>Display Order</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -49,8 +50,9 @@ export default function Index() {
                                         </div>
 
                                     </td>
-                                    <td>$ {item.cost}</td>
-                                    <td>$ {item.avg_cost}</td>
+                                    <td>$ {item.cost} - $ {item.max_cost}</td>
+                                    <td>$ {item.avg_cost} - $ {item.max_avg_cost}</td>
+                                    <td>{item.display_order}</td>
                                     <td><EditService service= {item} /></td>
                                 </tr>
                             ))
