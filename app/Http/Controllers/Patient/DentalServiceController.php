@@ -13,7 +13,7 @@ class DentalServiceController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return response()->json(DentalService::orderBy('display_order', 'ASC')->get());
+        return response()->json(DentalService::orderBy('display_order', 'ASC')->limit(8)->get());
         
     }
 }
