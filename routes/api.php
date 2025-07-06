@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Patient\Api\AppointmentController;
+use App\Http\Controllers\Patient\Api\DentalCareController;
 use App\Http\Controllers\Patient\Api\DentistController;
 use App\Http\Controllers\Patient\Api\EstimateController;
 use App\Http\Controllers\Patient\Api\InsuranceController;
@@ -29,6 +30,11 @@ Route::get('/user', function (Request $request) {
 Route::get('/my-appointments', [AppointmentController::class,'myAppointment']);
 Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
 Route::get('/dental-services', DentalServiceController::class);
+
+Route::get('/categories', [DentalCareController::class, 'getCategories']);
+Route::get('/services', [DentalCareController::class, 'getAllServices']);
+Route::get('/categories/services', [DentalCareController::class, 'getServices']);
+
 Route::get('/deals', DealsController::class);
 Route::get('/clinics', ClinicController::class);
 
