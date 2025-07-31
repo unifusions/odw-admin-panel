@@ -31,7 +31,7 @@ export default function Index({ users }) {
 
                             {users.data.map((userdata, index) => {
                                 const user = userdata.user ? userdata.user : userdata;
-                              
+
                                 return (
                                     <tr key={index}>
 
@@ -60,12 +60,13 @@ export default function Index({ users }) {
                                         </td>
                                         <td>
                                             <span className="d-block h5 text-inherit mb-0">
-                                                {user.branch.clinic.name}
+                                                {user.clinic && user.clinic.name}
+                                               
                                             </span>
                                         </td>
                                         <td>
                                             <span className="d-block h5 text-inherit mb-0">
-                                                {user.branch.name}
+                                                {user.role}
                                             </span>
 
 

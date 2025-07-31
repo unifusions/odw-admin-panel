@@ -31,7 +31,7 @@ export default function DateTimeConverter({ dateTimeString }) {
             const offsetSign = offsetMinutes < 0 ? '+' : '-';
             const timeZoneAbbreviation = `GMT${offsetSign}${offsetHours}`; // Basic approximation
 
-            return `${formattedDatePart}, ${formattedTimePart} (${timeZoneAbbreviation})`;
+            return `${formattedDatePart} | ${formattedTimePart}`;
         } catch (error) {
             console.error("Error converting date:", error);
             return 'Invalid Date';

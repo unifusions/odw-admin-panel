@@ -21,7 +21,7 @@ class DentistController extends Controller
         // dd(Dentist::with('clinic')->paginate(25));
         return Inertia::render(
             'Admin/Dentists/Index',
-            ['alldentists' => Dentist::with('clinic', 'branch', 'services')->paginate(25)]
+            ['alldentists' => Dentist::with('clinic',  'services')->paginate(25)]
         );
     }
 
@@ -57,7 +57,7 @@ class DentistController extends Controller
      */
     public function store(Request $request)
     {
-       
+
 
         $dentist = Dentist::create([
             'name' => $request->name,

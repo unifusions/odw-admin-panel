@@ -15,6 +15,7 @@ export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
     const flash = usePage().props.flash;
     const { post } = useForm();
+    const [darkChecked, toggleDarkChecked] = useState(false);
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -36,6 +37,16 @@ export default function AuthenticatedLayout({ header, children }) {
             toast.error(flash.failed);
         }
     }, [flash.failed]);
+
+    const toggleTheme = () => {
+        const current = localStorage.getItem('theme') || 'light';
+        const next = current === 'light' ? 'dark' : 'light';
+        toggleDarkChecked;
+        localStorage.setItem('theme', next);
+
+        window.location.reload(); // Force reload to apply dynamic import
+    };
+
     return (
         <>
 
@@ -85,6 +96,12 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <div className="navbar-nav-wrap-content-end">
                             <ul className="navbar-nav">
+
+                                <li>
+                                    <div class="form-check form-switch form-switch-dark">
+                                        <input class="form-check-input me-0" type="checkbox" id="darkSwitch" onChange={toggleTheme} checked={darkChecked && "checked"} />
+                                    </div>
+                                </li>
                                 <li className="nav-item d-none d-sm-inline-block">
                                     <div className="dropdown">
                                         <button type="button" className="btn btn-ghost-secondary btn-icon rounded-circle" id="navbarNotificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" data-bs-dropdown-animation>

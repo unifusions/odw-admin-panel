@@ -21,7 +21,7 @@ class UsersController extends Controller
         $user = auth()->user();
 
         if ($user->role === 'super_admin') {
-            $users = ClinicUser::with('user.branch.clinic')->paginate(5);
+            $users = ClinicUser::with('user.clinic')->paginate(5);
         } else {
 
             $clinicUser = $user->clinicUsers()->first();

@@ -28,11 +28,7 @@ export default function ClinicLayout({ children, clinic, breadcrumb }) {
 
 
                     <ul class="nav nav-tabs page-header-tabs">
-                        <li class="nav-item">
-                            <Link href={route('clinics.branches.index', clinic)} className={`nav-link ${route().current('clinics.branches.index') && 'active'}`}>
-                                Branches
-                            </Link>
-                        </li>
+                       
                         <li class="nav-item">
                             <Link href={route('clinics.users.index', clinic)} className={`nav-link ${route().current('clinics.users.index') && 'active'}`}>
                                 Users

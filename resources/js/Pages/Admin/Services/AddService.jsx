@@ -1,5 +1,7 @@
 import ImageUploader from "@/Components/ImageUploader";
 import InputLabel from "@/Components/InputLabel";
+import ServiceImageHeaderUploader from "@/Components/ServiceImageHeaderUploader";
+import ServiceImageUploader from "@/Components/ServiceImageUploader";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
@@ -20,7 +22,8 @@ export default function AddService() {
         image_file: null,
         avg_cost: '',
         max_avg_cost: '',
-        display_order: ''
+        display_order: '',
+        header_image_file: ''
     })
     const [loading, setLoading] = useState(false);
 
@@ -64,18 +67,18 @@ export default function AddService() {
                             <form action="" onSubmit={onsubmit} noValidate>
 
 
+                                <ServiceImageHeaderUploader onFileSelect={(file) => setData('header_image_file', file)} />
+
+
+                                <ServiceImageUploader onFileSelect={(file) => setData('image_file', file)} />
+
+
+
+
+
                                 <div className="row mb-4">
-
-                                    <InputLabel htmlFor="" className="form-label col-sm-3 col-form-label" value="Service Icon" />
-                                    <div class="col-sm-9">
-                                        <ImageUploader onFileSelect={(file) => setData('image_file', file)} />
-                                    </div>
-                                </div>
-
-
-                                <div className="row mb-4">
-                                    <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Category Name
-                                        <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
+                                    <label for="category_name" className="col-sm-3 col-form-label form-label">Category Name
+                                    </label>
 
                                     <div className="col-sm-9">
                                         <TextInput
@@ -141,7 +144,7 @@ export default function AddService() {
 
                                 <div className="row mb-4">
                                     <label for="serviceCost" className="col-sm-3 col-form-label form-label">Cost
-                                        <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
+                                    </label>
 
                                     <div className="col-sm-4">
                                         <TextInput
@@ -218,8 +221,8 @@ export default function AddService() {
 
                                 <div className="row mb-4">
                                     <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Display Order
-                                      
-                                      </label>
+
+                                    </label>
 
                                     <div className="col-sm-9">
                                         <TextInput

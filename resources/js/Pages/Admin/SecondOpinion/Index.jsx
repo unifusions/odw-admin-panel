@@ -1,4 +1,5 @@
 
+import PageHeader from "@/Components/PageHeader";
 import Pagination from "@/Components/Pagination";
 import SOStatus from "@/Components/SOStatus";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
@@ -13,7 +14,7 @@ export default function SecondOpinion() {
 
         >
             <Head title="2nd Opinion" />
-
+            <PageHeader />
             <div className="table-responsive datatable-custom">
                 <table className="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                     <thead className="thead-light">

@@ -31,7 +31,7 @@ export default function AddClinic() {
         setSelectedState('');
         reset();
         modal.toggle();
-       
+
     }
 
     const onsubmit = (e) => {
@@ -86,7 +86,7 @@ export default function AddClinic() {
 
     const handleCitySelect = (event) => {
         setData('city_id', event.target.value);
-        
+
     }
 
     return (
@@ -250,9 +250,9 @@ export default function AddClinic() {
                                         <select name="" id="" className="form-select" onChange={handleOnStateSelect} value={selectedState}>
                                             <option value="">Select State</option>
 
-                                            {states.map((state) => <option key={state.id} value={state.id} 
-                                               
-                                                >
+                                            {states.map((state) => <option key={state.id} value={state.id}
+
+                                            >
                                                 {state.name}
                                             </option>)}
                                         </select>

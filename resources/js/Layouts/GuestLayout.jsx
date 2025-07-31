@@ -8,7 +8,7 @@ export default function GuestLayout({ children }) {
             
 
 
-            <main id="content" role="main" className="main">
+            <main id="content" role="main" className="main"  data-bs-theme="dark">
 
                 {children}
 

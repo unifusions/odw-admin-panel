@@ -115,7 +115,7 @@ export default function AddDentist() {
                                         <TextInput
                                             id="dentistName"
                                             type="date"
-                                            name="dentist_name"
+                                            name="practise_from"
                                             value={data.practise_from}
                                             className="form-control "
                                             placeholder=""

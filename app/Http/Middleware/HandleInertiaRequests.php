@@ -48,10 +48,12 @@ class HandleInertiaRequests extends Middleware
     {
         $user = auth()->user();
         $role = optional($user)->role;
-       
+
         $routeName = Route::currentRouteName();
 
         $clinic = request()->route('clinic');
+        $secondopinion = request()->route('second_opinion');
+
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
@@ -59,7 +61,7 @@ class HandleInertiaRequests extends Middleware
             'patient' => route('patient.dashboard'),
         ];
 
-        $dashboardUrl = $dashboardRoutes[$role]?? route('home');
+        $dashboardUrl = $dashboardRoutes[$role] ?? route('home');
         $breadcrumbs = [
             'dashboard' => [['name' => 'Dashboard', 'url' => $dashboardUrl]],
             'clinics.index' => [
@@ -70,20 +72,20 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.show', $clinic) : '#'],
-               
+
             ],
             'clinics.edit' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
-               
+
             ],
-           'clinics.branches.index' => [
+            'clinics.branches.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                 ['name' => optional($clinic)->name ?? 'Branches', 'url' => $clinic ? route('clinics.branches.index', $clinic) : '#'],
-               
+
             ],
 
             'clinics.branches.create' => [
@@ -91,15 +93,15 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                 ['name' => optional($clinic)->name ?? 'Branches', 'url' => $clinic ? route('clinics.branches.create', $clinic) : '#'],
-               
+
             ],
-            
+
             'clinics.users.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                 ['name' => optional($clinic)->name ?? 'Users', 'url' => $clinic ? route('clinics.users.index', $clinic) : '#'],
-               
+
             ],
 
             'clinics.users.create' => [
@@ -107,7 +109,7 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                 ['name' => optional($clinic)->name ?? 'Users', 'url' => $clinic ? route('clinics.users.create', $clinic) : '#'],
-               
+
             ],
 
             'clinics.services.index' => [
@@ -115,7 +117,7 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('clinics.edit', $clinic) : '#'],
                 ['name' => optional($clinic)->name ?? 'Services', 'url' => $clinic ? route('clinics.services.index', $clinic) : '#'],
-               
+
             ],
 
 
@@ -124,15 +126,40 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Appointments', 'url' => route('appointments.index')],
             ],
+
+            'second-opinion.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Second Opinions', 'url' => route('second-opinion.index')],
+            ],
+
+            'second-opinion.show' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Second Opinions', 'url' => route('second-opinion.index')],
+                ['name' => optional($secondopinion)->id ? "SO #{$secondopinion->id}" : "", 'url' => $secondopinion ? route('second-opinion.show', $secondopinion) : '#'],
+            ],
+
+
             'clinic-users.index' => [
-                ['name' => 'Dashboard', 'url' => $dashboardUrl ],
-                ['name'=>'Users', 'url' => route('clinic-users.index')]
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Users', 'url' => route('clinic-users.index')]
             ],
 
             'compare-costs.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Compare Costs', 'url' => route('compare-costs.index')]
-            ]
+            ],
+            'estimates.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Estimates', 'url' => route('estimates.index')],
+            ],
+
+            'estimates.show' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Estimates', 'url' => route('estimates.index')],
+                ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('estimates.show', $clinic) : '#'],
+
+            ],
+
         ];
 
         return $breadcrumbs[$routeName] ?? [];

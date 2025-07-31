@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Clinic;
+use App\Models\Admin\DentalService;
+use App\Models\Admin\Specialist;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SpecialistController extends Controller
 {
@@ -12,7 +16,10 @@ class SpecialistController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Admin/Specialists/Index',
+        [
+            'specialists' => Specialist::with('clinic', 'services')->paginate(25)
+        ]);
     }
 
     /**
@@ -20,7 +27,12 @@ class SpecialistController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Specialists/Create', 
+            [
+                'clinics' => Clinic::all(),
+                'dentalservices' => DentalService::all(), 
+            ]
+            );
     }
 
     /**

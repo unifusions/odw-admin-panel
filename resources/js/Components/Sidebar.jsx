@@ -37,7 +37,7 @@ const Sidebar = () => {
                         { name: 'Dentists', path: '/admin/dentists', icon: '', svgIcon: <DentistIcon /> },
                         { name: 'Specialists', path: '/admin/specialists', icon: '', svgIcon: <SpecialistIcon /> },
                         { name: 'Users', path: '/admin/clinic-users', icon: 'bi-person-plus', svgIcon: '' },
-                        { name: 'Services', path: '/admin/services', icon: 'bi-journal-medical', svgIcon: '' },
+                        { name: 'Treatments', path: '/admin/services', icon: 'bi-journal-medical', svgIcon: '' },
                     ]
             },
 
@@ -144,7 +144,7 @@ const Sidebar = () => {
 
 
                             ))}
-                           
+
                         </div>
                     </div>
                 </div>

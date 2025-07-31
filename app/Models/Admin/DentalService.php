@@ -18,6 +18,7 @@ class DentalService extends Model
         'desc',
         'cost',
         'image_path',
+        'header_image_path',
         'avg_cost',
         'medical_name',
         'max_cost',

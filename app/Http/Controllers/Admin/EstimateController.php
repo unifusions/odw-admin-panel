@@ -40,9 +40,23 @@ class EstimateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Estimate $estimate)
     {
-        //
+
+        // dd($estimate->dentalservice);
+        $estimate->load('patient', 'patient.user', 'patient.insurances',  'services.dentalcare');
+        
+        return Inertia::render(
+            'Admin/Estimates/Show',
+            [
+                'estimate' => $estimate,
+                'category' => $estimate->dentalservice,
+                'services'=>$estimate->services,
+                'patient' => $estimate->patient,
+                'user' => $estimate->patient?->user,
+                'insurances' => $estimate->patient?->insurances
+            ]
+        );
     }
 
     /**

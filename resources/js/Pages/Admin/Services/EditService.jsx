@@ -9,6 +9,8 @@ import { router } from "@inertiajs/react";
 import ServiceModal from "./serviceModal";
 import ImageUploader from "@/Components/ImageUploader";
 import TextArea from "@/Components/TextArea";
+import ServiceImageHeaderUploader from "@/Components/ServiceImageHeaderUploader";
+import ServiceImageUploader from "@/Components/ServiceImageUploader";
 
 export default function EditService({ service }) {
 
@@ -29,7 +31,9 @@ export default function EditService({ service }) {
 
         max_cost: service.max_cost || '',
         max_avg_cost: service.max_avg_cost || '',
-        display_order: service.display_order || ''
+        display_order: service.display_order || '',
+
+        header_image_path: service.header_image_path || ''
     })
 
 
@@ -87,20 +91,16 @@ export default function EditService({ service }) {
 
 
                 <form action="" onSubmit={onsubmit} noValidate>
+                    {console.log(data)}
+                    <ServiceImageHeaderUploader onFileSelect={(file) => setData('header_image_file', file)} existingImage={data.header_image_path} />
+
+                    <ServiceImageUploader onFileSelect={(file) => setData('image_file', file)} existingImage={data.image_path} />
 
 
-                    <div className="row mb-4">
-
-                        <InputLabel htmlFor="" className="form-label col-sm-3 col-form-label" value="Service Icon" />
-                        <div class="col-sm-9">
-                            <div class="d-flex align-items-center">
-                                <ImageUploader onFileSelect={(file) => setData('image_path', file)} existingImage={data.image_path} />
-                            </div>
-                        </div>
-                    </div>
 
                     <div className="row mb-4">
-                        <InputLabel htmlFor="service_name" className="form-label col-sm-3 col-form-label" value="Service Name" />
+                        <label for="service_name" className="col-sm-3 col-form-label form-label">Category Name
+                        </label>
 
                         <div className="col-sm-9">
                             <TextInput
@@ -120,7 +120,7 @@ export default function EditService({ service }) {
 
                     <div className="row mb-4">
                         <label for="firstNameLabel" className="col-sm-3 col-form-label form-label">Medical Name
-                            <i className="bi-question-circle text-body ms-1" data-bs-toggle="tooltip" data-bs-placement="top" ></i></label>
+                            </label>
 
                         <div className="col-sm-9">
                             <TextInput
@@ -215,21 +215,21 @@ export default function EditService({ service }) {
 
                         </div>
 
-                        
+
                         <div className="col-sm-4">
-                                        <TextInput
-                                            id="avgMaxCost"
-                                            type="number"
-                                            name="cost"
-                                            value={data.max_avg_cost}
-                                            className="form-control "
-                                            placeholder="Max"
-                                            onChange={(e) => setData('max_avg_cost', e.target.value)}
-                                        />
+                            <TextInput
+                                id="avgMaxCost"
+                                type="number"
+                                name="cost"
+                                value={data.max_avg_cost}
+                                className="form-control "
+                                placeholder="Max"
+                                onChange={(e) => setData('max_avg_cost', e.target.value)}
+                            />
 
 
 
-                                    </div>
+                        </div>
 
                     </div>
 
@@ -254,7 +254,7 @@ export default function EditService({ service }) {
 
                         </div>
 
-                        
+
                     </div>
 
 
@@ -264,7 +264,7 @@ export default function EditService({ service }) {
 
                     <div className="text-end">
                         <button type="button" className="btn btn-white me-3" onClick={closeModal}>Close</button>
-                        <button type="submit" className="btn btn-primary">Save Service</button>
+                        <button type="submit" className="btn btn-primary">Update Service</button>
 
                     </div>
 

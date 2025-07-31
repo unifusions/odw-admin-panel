@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\EstimateController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\SecondOpinionController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CitiesController;
 use App\Http\Controllers\Clinic\AppointmentController as ClinicAppointmentController;
@@ -86,8 +87,8 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::get('/clinicbranches/{clinic}', ClinicsBranchesListController::class);
 
     Route::resource('dentists', DentistController::class);
+    Route::resource('specialists', SpecialistController::class);
     Route::resource('clinic-users', UsersController::class);
-
 
 
     Route::resource('services', ServiceController::class);

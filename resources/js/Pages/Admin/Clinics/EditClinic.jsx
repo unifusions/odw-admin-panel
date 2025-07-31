@@ -1,105 +1,37 @@
-
-
+import Card from "@/Components/Card";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
-import ClinicLayout from "./ClinicLayout";
+import ClinicInformation from "./Partials/ClinicInformation";
+import WorkingHours from "./Partials/WorkingHours";
+import ClinicImages from "./Partials/ClinicImages";
+import ClinicServices from "./Partials/ClinicServices";
 
 export default function EditClinic() {
 
-    const { clinic, branches, users, services } = usePage().props;
+    const { clinic, schedules, services, users, galleries } = usePage().props;
     return (
+        <>
+            <AuthenticatedLayout header="Edit Clinic"
+            >
 
-        <ClinicLayout clinic={clinic}>
-            <Head title={`Edit ${clinic.name}`} />
-            <div class="row col-lg-divider">
-                <div class="col-lg-4">
-
-                    <div class="text-center">
-                        <img class="avatar avatar-xl avatar-4x3 mb-4" src="/images/clinic/branches.png" />
-                        <span class="text-cap text-body">Number of Branches</span>
-                        <span class="d-block display-4 text-dark mb-2">{branches}</span>
-
-                        {/* <div class="row col-divider">
-                            <div class="col text-end">
-                                <span class="d-block fw-semibold text-success">
-                                    <i class="bi-graph-up"></i> 12%
-                                </span>
-                                <span class="d-block">change</span>
-                            </div>
-
-
-                            <div class="col text-start">
-                                <span class="d-block fw-semibold text-dark">25</span>
-                                <span class="d-block">last week</span>
-                            </div>
-
-                        </div> */}
-
+                <Head title="Edit Clinic" />
+                <div className="row">
+                    <div className="col-lg-3 mb-3 mb-lg-0 " style={{ position: "sticky", top: "80px", alignSelf: "flex-start", height: "calc(100vh - 180px)" }}>
                     </div>
 
-                </div>
+                    <div className="col-lg-9 mb-3" >
+                        <Card id="content" title="Clinic Information">
+                            <ClinicInformation clinic={clinic} />
+                           
+                        </Card>
 
-                <div class="col-lg-4">
+                        <WorkingHours clinicschedule={schedules} />
 
-                    <div class="text-center">
-                        <img class="avatar avatar-xl avatar-4x3 mb-4" src="/images/clinic/users.png" />
-                        <span class="text-cap text-body">Users</span>
-                        <span class="d-block display-4 text-dark mb-2">{users}</span>
-
-                        {/* <div class="row col-divider">
-                            <div class="col text-end">
-                                <span class="d-block fw-semibold text-success">
-                                    <i class="bi-graph-up"></i> 5.6%
-                                </span>
-                                <span class="d-block">change</span>
-                            </div>
-
-
-                            <div class="col text-start">
-                                <span class="d-block fw-semibold text-dark">$582.00</span>
-                                <span class="d-block">last week</span>
-                            </div>
-
-                        </div> */}
-
+                        <ClinicImages galleryImages={galleries}/>
+                        <ClinicServices /> 
                     </div>
-
                 </div>
-
-                <div class="col-lg-4">
-
-                    <div class="text-center">
-                        <img class="avatar avatar-xl avatar-4x3 mb-4" src="/images/clinic/services.png" />
-                        <span class="text-cap text-body">Available Services</span>
-                        <span class="d-block display-4 text-dark mb-2">{services}</span>
-
-                        {/* <div class="row col-divider">
-                            <div class="col text-end">
-                                <span class="d-block fw-semibold text-danger">
-                                    <i class="bi-graph-down"></i> 2.3%
-                                </span>
-                                <span class="d-block">change</span>
-                            </div>
-
-
-                            <div class="col text-start">
-                                <span class="d-block fw-semibold text-dark">7</span>
-                                <span class="d-block">last week</span>
-                            </div>
-
-                        </div> */}
-
-                    </div>
-
-                </div>
-            </div>
-
-        </ClinicLayout>
-
-
-
-
-
-
-
+            </AuthenticatedLayout>
+        </>
     )
 }

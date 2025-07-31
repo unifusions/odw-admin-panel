@@ -1,4 +1,10 @@
+import Card from "@/Components/Card";
+import { Column, DisplayFlex, PageHeaderTitle, Row, AttachmentView } from "@/Components/Components";
+import PageHeader from "@/Components/PageHeader";
+import PatientInfo from "@/Components/PatientInfo";
 import SOBadge from "@/Components/SOBadge";
+import SingleHeader from "@/Components/SingleHeader";
+import { InfoRow } from "@/Helpers/Common";
 import DateTimeConverter from "@/Helpers/DateTimeConverter";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
@@ -6,93 +12,77 @@ import { Head, usePage } from "@inertiajs/react";
 export default function Show() {
     const { secondopinion } = usePage().props;
     const patient = secondopinion.patient;
+    const category = secondopinion.category;
+
+    const attachs = [
+        {
+            id: '1',
+            file_name: 'adfadf'
+        },
+        {
+            id: '2',
+            file_name: 'deqw'
+        }
+    ];
 
     return (
         <AuthenticatedLayout header='Second Opinion'>
-            <Head title="2nd Opinion" />
-
-            <div className="d-sm-flex align-items-sm-center mb-3">
-                <h1 className="page-header-title">SO #32543</h1>
-                <SOBadge status={secondopinion.status} />
-
-                <span className="ms-2 ms-sm-3">
-                    <i className="bi-calendar-week"></i> <DateTimeConverter dateTimeString={secondopinion.created_at} />
-                </span>
-            </div>
-
-            <div className="row">
-                <div className="col-lg-8">
-                    <div className="card mb-3">
-                        <div className="card-body">
+            <Head title={`Second Opinion : ${secondopinion.id}`} />
+            <PageHeader />
+            <DisplayFlex className="mb-3 justify-content-between">
+                <DisplayFlex className="justify-content-between">
+                    <SingleHeader
+                        title={`SO #${secondopinion.id} | ${secondopinion.subject}`}
+                        status={secondopinion.status}
+                        timestamp={secondopinion.created_at}
+                    />
+                </DisplayFlex>
 
 
-                            <h3 className="h3 text-dark">{secondopinion.subject}</h3>
-                            <p className="lead" style={{ textAlign: 'justify' }}>
-                                {secondopinion.description}
-                            </p>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="col-lg-4">
 
-                    <div className="card">
-                        <div className="card-header"><h4 class="card-header-title">Patient</h4>
 
-                        </div>
-                        <div className="card-body">
-                            <ul className="list-group list-group-flush list-group-no-gutters">
-                                <li className="list-group-item">
-                                    <div className="d-flex align-items-center mb-3">
-                                        <div className="avatar avatar-soft-primary avatar-circle">
-                                            <span className="avatar-initials">
-
-                                                {patient.first_name.charAt(0)}
-                                            </span>
-                                        </div>
-                                        <div className="ms-3">
-                                            <span class="d-block h5 text-inherit mb-0">{patient.first_name} {patient.last_name}</span>
-                                            <span class="d-block fs-5 text-body">User Since</span>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h5>Contact info</h5>
-
-                                    </div>
-
-                                    <ul class="list-unstyled list-py-2 text-body">
-                                        <li><i class="bi-at me-2"></i>{patient.user.email}</li>
-                                        <li><i class="bi-phone me-2"></i>{patient.user.phone}</li>
-                                    </ul>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h5>Address</h5>
-                                        <a class="link" href="javascript:;">Edit</a>
-                                    </div>
-
-                                    <span class="d-block text-body">
-                                        {patient.address_line_1}<br />
-                                        {patient.address_line_2}<br />
-                                        KW5 8NW, London<br />
-                                        UK
-                                    </span>
-
-                                </li>
-
-                            </ul>
-
-                        </div>
-                    </div>
-
+                <div>
+                    <button className="btn btn-outline-success">Mark As Closed</button>
 
                 </div>
 
-            </div>
+            </DisplayFlex>
+
+            <Row>
+                <Column lg={8} >
+                    <Card title="Second Opinion Info">
+                        <InfoRow index="Second Opinion #" value={`# ${secondopinion.id}`} />
+                        <InfoRow index="Subject" value={secondopinion.subject} />
+                        <InfoRow index="Requested On" value={secondopinion.created_at} />
+                        <InfoRow index="Category" value={category && category.name || 'NA'} />
+                        <InfoRow index="Insurance" value="Yes" />
+                        <InfoRow index="Estimate Required" value="Yes" />
+                    </Card>
+
+                    <Card title="Patient Notes/Request">
+                        <InfoRow index="Last Dental Visit" value="3 weeks ago" />
+                        <InfoRow index="Patient Notes/Request" value={secondopinion.description} />
+
+                    </Card>
+
+
+                    <Card title="Attachments">
+                        <div className="d-flex flex-wrap justify-content-start gap-2">
+                            {attachs.map((attach) => <AttachmentView attachment={attach} />)}
+                        </div>
+
+                    </Card>
+
+
+                </Column>
+
+                <Column lg={4}>
+                    <PatientInfo patient={patient} />
+                </Column>
+            </Row>
+
+
 
         </AuthenticatedLayout>
     )

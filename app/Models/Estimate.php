@@ -27,8 +27,17 @@ class Estimate extends Model
         return $this->belongsTo(Patient::class);
     }
 
+    public function services()
+    {
+        return $this->hasMany(EstimateService::class);
+    }
     public function dentalservice()
     {
         return $this->belongsTo(DentalService::class, 'dental_service_id');
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany(EstimateAttachment::class);
     }
 }

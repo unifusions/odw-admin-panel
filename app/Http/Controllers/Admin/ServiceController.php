@@ -23,6 +23,8 @@ class ServiceController extends Controller
                 'services' => DentalService::orderBy('display_order', 'ASC')->paginate(25)->through(function ($service) {
                     if ($service->image_path)
                         $service->image_path = Storage::disk('public')->url($service->image_path);
+                    if($service->header_image_path)
+                        $service->header_image_path =  Storage::disk('public')->url($service->header_image_path);
                     return $service;
                 }),
             ]
@@ -43,8 +45,11 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $image_path = '';
+        $header_image_path = '';
         if ($request->hasFile('image_file'))
             $image_path = $request->file('image_file')->store('uploads/services', 'public');
+        if ($request->hasFile('header_image_file'))
+            $header_image_path = $request->file('header_image_file')->store('uploads/services', 'public');
         $dentalService = DentalService::create([
             'name' =>  $request->name,
             'desc' => $request->desc,
@@ -54,7 +59,8 @@ class ServiceController extends Controller
             'medical_name' => $request->medical_name,
             'max_cost' => $request->max_cost,
             'max_avg_cost' => $request->max_avg_cost,
-            'display_order' => $request->display_order
+            'display_order' => $request->display_order,
+            'header_image_path' => $header_image_path
         ]);
 
         return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);

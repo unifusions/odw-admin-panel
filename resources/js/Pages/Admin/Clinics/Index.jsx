@@ -1,6 +1,6 @@
 import Breadcrumbs from "@/Components/Breadcrumbs";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import AddClinic from "./AddClinic";
 import PageHeader from "@/Components/PageHeader";
 import { useToast } from "@/Components/ToastContext";
@@ -12,6 +12,7 @@ export default function Index() {
     const showToast = useToast();
 
 
+    const { delete: destroy } = useForm();
 
     return (
         <AuthenticatedLayout header='Clinics'>
@@ -27,7 +28,7 @@ export default function Index() {
                             <th>Clinic Name</th>
                             <th>Address</th>
                             <th>Contact</th>
-                            <th>Branches</th>
+
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,22 +46,26 @@ export default function Index() {
                                                 <span class="d-block h5 text-inherit mb-0">{clinic.name}
                                                     {/* <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> */}
                                                 </span>
-                                                <span class="d-block fs-5 text-body"> {clinic.branches[0].zip_code.city.name}, {clinic.branches[0].zip_code.city.state.short_name} </span>
+                                                <span class="d-block fs-5 text-body"> {clinic.zip_code} </span>
                                             </div>
                                         </a>
                                     </td>
-                                    <td>{clinic.branches[0].address_line_1} <br />{clinic.branches[0].address_line_2}</td>
+                                    <td>{clinic.address_line_1} <br />{clinic.address_line_2}</td>
                                     <td>
                                         <span class="d-block h5 mb-0"><i class="bi bi-telephone me-3"></i>
-                                            {clinic.branches[0].phone}</span>
-                                        <span class="d-block fs-5"><i class="bi bi-envelope me-3"></i>  {clinic.branches[0].email}</span>
-
+                                            {clinic.phone}</span>
+                                        <span class="d-block fs-5"><i class="bi bi-envelope me-3"></i>  {clinic.email}</span>
+                                        {console.log(clinic.schedules)}
                                     </td>
 
-                                    <td>{clinic.branches.length}</td>
-                                    {console.log(clinic.branches)}
+
+
                                     <td>
-                                        <Link href={route('clinics.edit', clinic)} className="btn btn-white btn-sm fw-bold">   <i class="bi-pencil-fill me-1"></i> Edit</Link></td>
+
+                             
+
+                                        <Link href={route('clinics.edit', clinic)} className="btn btn-outline-info btn-sm btn-sm me-3">   <i class="bi-pencil-fill me-1"></i> Edit</Link>
+                                        <button onClick={() => destroy(route('clinics.destroy', clinic), { preserveScroll: true })} className="btn btn-outline-danger btn-sm ">   <i class="bi-pencil-fill me-1"></i> Delete</button></td>
                                 </tr>
 
                             )}
@@ -74,7 +79,7 @@ export default function Index() {
                     <tfoot>
                         <Pagination links={clinics.links} /></tfoot>
                 </table>
-            </div>
+            </div >
         </AuthenticatedLayout >
     )
 }

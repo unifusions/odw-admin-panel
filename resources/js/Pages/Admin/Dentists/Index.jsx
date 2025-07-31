@@ -19,9 +19,7 @@ export default function Index() {
 
             <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-                    data-hs-datatables-options='{
-                 "order": []
-               }'>
+                >
                     <thead class="thead-light">
                         <tr>
                             <th>ID</th>
@@ -58,7 +56,7 @@ export default function Index() {
                                         <span class="d-block fs-5">{dentist.email}</span>
                                     </td>
                                     <td width="30%" className="text-wrap">{dentist.services.map((service) => <> <span class="badge bg-soft-dark text-dark me-2 mb-2">{service.name}</span> </>)}</td>
-                                    <td>{dentist.clinic.name}/{dentist.branch.name}</td>
+                                    <td></td>
 
                                 </tr>
                             ))

@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicBranch;
+use App\Models\Admin\DentalService;
+use App\Models\Admin\Dentist;
 use App\Models\Admin\ZipCode;
 use App\Models\Admin\ZipCodes;
+use App\Models\ClinicDentist;
+use App\Models\ClinicSchedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Random\Randomizer;
 
@@ -22,29 +28,20 @@ class ClinicsController extends Controller
         return Inertia::render(
             'Admin/Clinics/Index',
             [
-                // 'clinics' =>Clinic::with([
-                //     'branches' => function ($query) {
-                //         $query->with([
-                //             'zipCode' => function ($query) {
-                //                 $query->with('city.state');
-                //             },
-                //         ]);
-                //     },
-                // ])->paginate(10)
-
-                'clinics' => Clinic::with('branches.zipCode.city.state', 'branches.dentists')->paginate(10)
-
-
+                'clinics' => Clinic::with('schedules')->paginate(10)
+                // 'clinics' => Clinic::with('branches.zipCode.city.state', 'branches.dentists')->paginate(10)
             ]
         );
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return Inertia::render(
+            'Admin/Clinics/Create',
+            ['categories' => DentalService::all(),]
+        );
     }
 
     /**
@@ -52,51 +49,77 @@ class ClinicsController extends Controller
      */
     public function store(Request $request)
     {
+        $clinic = [];
+        $transaction = DB::transaction(function () use ($request) {
+            $clinic = Clinic::create(
+                [
+                    'name' => $request->clinic_name,
+                    'logo' => 'test',
+                    'address_line_1' => $request->address_line_1,
+                    'address_line_2' => $request->address_line_2,
+                    'phone' => $request->phone,
+                    'email' => $request->email,
+                    'zip_code' => $request->zip_code,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
+
+                ]
+            );
+
+            if ($request->has('categories')) {
+                foreach ($request->categories as $categoryId) {
+                    $clinic->services()->create([
+                        'clinic_id' => $clinic->id,
+                        'dental_service_id' => $categoryId
+                    ]);
+                }
+            }
+
+            foreach ($request->schedule as $day => $details) {
+                ClinicSchedule::updateOrCreate(
+                    ['clinic_id' => $clinic->id, 'day_of_week' => $day],
+                    [
+                        'is_open'   => $details['isOpen'],
+                        'open_time' => $details['isOpen'] ? $details['open'] : null,
+                        'close_time' => $details['isOpen'] ? $details['close'] : null,
+                    ]
+                );
+            }
+
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $path = $image->store('clinics/gallery', 'public');
+
+                    $clinic->galleries()->create([
+                        'clinic_id' => $clinic->id,
+                        'file_name' => 'tesy',
+                        'file_path' => $path
+                    ]);
+                }
+            }
+        });
 
 
-        $zipcode = ZipCode::firstOrCreate(
-            ['zip_code' => $request->zip_code],
-            [
-                'city_id' => $request->city_id,
-                'zip_code' => $request->zip_code
-            ]
-        );
-
-
-
-        $clinic = Clinic::create(
-            [
-                'name' => $request->clinic_name,
-                'logo' => 'test'
-            ]
-        );
-
-        $branch = ClinicBranch::create(
-            [
-                'clinic_id' =>  $clinic->id,
-                'name' => $clinic->name,
-                'address_line_1' => $request->address_line_1,
-                'address_line_2' => $request->address_line_2,
-                'phone' => $request->phone,
-                'email' => $request->email,
-                'zip_code_id' => $zipcode->id
-            ]
-        );
 
         return redirect()->back()->with(['message' => $clinic->name . ' has been added successfully']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function storeDentist(Request $request)
     {
-        //
+
+
+        return redirect()->back()->with([
+            'message' => 'Dentist was added',
+            'dentist' => 'dentist'
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
+
+
+    public function show(string $id) {}
+
+
     public function edit(Clinic $clinic)
     {
 
@@ -104,26 +127,46 @@ class ClinicsController extends Controller
             'Admin/Clinics/EditClinic',
             [
                 'clinic' => $clinic,
-                'branches' => $clinic->branches()->count(),
-                'users' => $clinic->users()->count(),
-                'services' => $clinic->services()->count()
+                'schedules' => $clinic->schedules,
+                'users' => $clinic->users,
+                'services' => $clinic->services,
+                'galleries' => $clinic->galleries->map(function ($gallery) {
+                    $gallery->file_path = Storage::disk('public')->url($gallery->file_path);
+                    return $gallery;
+                })
             ]
         );
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, Clinic $clinic)
     {
-        //
+        // dd($clinic->isDirty('city'));
+        $clinic->update([
+            'name' => $request->clinic_name,
+            'address_line_1' => $request->address_line_1,
+            'address_line_2' => $request->address_line_2,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'zip_code' => $request->zip_code,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+
+        ]);
+        $clinic->save();
+        return redirect()->back()->with([
+            'message' => "{$clinic->name} was updated successfuly",
+            'dentist' => 'dentist'
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy(Clinic $clinic)
     {
-        //
+        $clinic->delete();
+        return redirect()->back()->with([
+            'message' => "{$clinic->name} was deleted successfuly",
+            'dentist' => 'dentist'
+        ]);
     }
 }

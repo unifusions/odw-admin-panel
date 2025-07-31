@@ -1,3 +1,4 @@
+import PageHeader from "@/Components/PageHeader";
 import Pagination from "@/Components/Pagination";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
@@ -11,7 +12,7 @@ export default function Index() {
             header='Estimates'
         >
             <Head title="Estimates" />
-
+            <PageHeader> </PageHeader>
             <div class="table-responsive  ">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                 >
@@ -21,7 +22,9 @@ export default function Index() {
                             <th>Name</th>
                             <th>Service</th>
                             <th>Location</th>
+
                             <th>Status</th>
+                            <th className="text-end">Action</th>
                         </tr>
                     </thead>
 
@@ -43,15 +46,19 @@ export default function Index() {
                             <td>  <span class="d-block h5 mb-0">{estimate.dentalservice.name}</span></td>
                             <td>{estimate.description}</td>
                             <td>{estimate.status}</td>
-                            <td>
+                            <td className="text-end">
+                                <Link className="btn btn-outline-primary btn-sm me-3" href={route('estimates.show', estimate)} >
+                                    <i className="bi-eye"></i> View
+                                </Link>
+
+                                <button className="btn btn-outline-danger btn-sm"
+                                > <i className="bi-trash"></i> Mark as Closed
+
+                                </button>
 
                                 <div className="btn-group" role="group">
-                                    <Link className="btn btn-white btn-sm" href={route('estimates.show', estimate)} >
-                                        <i className="bi-eye"></i> View
-                                    </Link>
 
-
-                                    <div className="btn-group">
+                                    {/* <div className="btn-group">
                                         <button type="button" className="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty " id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="true"></button>
 
                                         <div className="dropdown-menu dropdown-menu-end mt-1 " aria-labelledby="ordersExportDropdown1" data-popper-placement="bottom-end">
@@ -73,7 +80,7 @@ export default function Index() {
                                                 <i className="bi-trash dropdown-item-icon"></i> Mark as Closed
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </td>

@@ -17,14 +17,7 @@ class ClinicController extends Controller
             'id' => $clinic->id,
             "name" => $clinic->name,
             "logo" => $clinic->logo,
-            'branches' => $clinic->branches->map(fn($branch) => [
-                'id' => $branch->id, 
-                'name' => $branch->name, 
-                'address_line_1' => $branch->address_line_1,
-                'address_line_2' => $branch->address_line_2,
-                'dentists' => $branch->dentists,
-                'services' => $branch->services,
-            ]),
+
         ]);
 
         return response()->json($clinics);

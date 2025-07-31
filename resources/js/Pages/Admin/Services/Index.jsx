@@ -10,7 +10,7 @@ export default function Index() {
     return (
         <AuthenticatedLayout header='Services'>
         
-            <Head title="Services" />
+            <Head title="Treatments" />
             <PageHeader>
                 <AddService />
 
