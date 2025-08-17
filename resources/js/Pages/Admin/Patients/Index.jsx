@@ -52,7 +52,7 @@ export default function Index({ patients }) {
                                         <a href="#!" className="d-flex align-items-center">
                                             <div className="avatar avatar-soft-primary avatar-circle">
                                                 <span className="avatar-initials">
-                                                    {patient.first_name.charAt(0)}
+                                                    {patient.first_name?.charAt(0)}
                                                 </span>
                                             </div>
                                             <div className="ms-3">

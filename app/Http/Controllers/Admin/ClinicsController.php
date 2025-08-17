@@ -49,22 +49,30 @@ class ClinicsController extends Controller
      */
     public function store(Request $request)
     {
-        $clinic = [];
+
         $transaction = DB::transaction(function () use ($request) {
+            $logo_path = '';
+            if ($request->hasFile('image_file')) {
+                $logo_path = $request->image_file->store('clinics/gallery', 'public');
+            }
             $clinic = Clinic::create(
                 [
                     'name' => $request->clinic_name,
-                    'logo' => 'test',
+                    'logo' => $logo_path,
                     'address_line_1' => $request->address_line_1,
                     'address_line_2' => $request->address_line_2,
                     'phone' => $request->phone,
                     'email' => $request->email,
+                    'city' => $request->city,
+                    'state' => $request->state,
                     'zip_code' => $request->zip_code,
                     'latitude' => $request->latitude,
                     'longitude' => $request->longitude,
+                    'desc' => $request->desc
 
                 ]
             );
+
 
             if ($request->has('categories')) {
                 foreach ($request->categories as $categoryId) {
@@ -92,16 +100,15 @@ class ClinicsController extends Controller
 
                     $clinic->galleries()->create([
                         'clinic_id' => $clinic->id,
-                        'file_name' => 'tesy',
+                        'file_name' => basename($path),
                         'file_path' => $path
                     ]);
                 }
             }
+
+            return $clinic;
         });
-
-
-
-        return redirect()->back()->with(['message' => $clinic->name . ' has been added successfully']);
+        return redirect()->back()->with(['message' => $transaction->name . ' has been added successfully']);
     }
 
     public function storeDentist(Request $request)
@@ -114,7 +121,7 @@ class ClinicsController extends Controller
         ]);
     }
 
-    
+
 
 
     public function show(string $id) {}
@@ -141,6 +148,7 @@ class ClinicsController extends Controller
 
     public function update(Request $request, Clinic $clinic)
     {
+         
         // dd($clinic->isDirty('city'));
         $clinic->update([
             'name' => $request->clinic_name,
@@ -151,6 +159,7 @@ class ClinicsController extends Controller
             'zip_code' => $request->zip_code,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
+            'desc' => $request->desc 
 
         ]);
         $clinic->save();

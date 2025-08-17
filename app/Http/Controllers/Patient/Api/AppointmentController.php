@@ -20,7 +20,7 @@ class AppointmentController extends Controller
                 'appointment_id' => $booking->id,
                 'service' => $booking->dentalservice->name ?? '',
                 'clinic'=> $booking->clinic->name,
-                'branch' => $booking->clinicbranch->name,
+                // 'branch' => $booking->clinicbranch->name,
                 'appointment_date' => $booking->appointment_date,
                 'appointment_time'=>  Carbon::parse($booking->time_slot)->format('g:i a'),
                 'dentist' => $booking->dentist->name ?? '',
@@ -31,7 +31,7 @@ class AppointmentController extends Controller
                 'appointment_id' => $booking->id,
                 'service' => $booking->dentalservice->name ?? '',
                 'clinic'=> $booking->clinic->name,
-                'branch' => $booking->clinicbranch->name,
+                // 'branch' => $booking->clinicbranch->name,
                 'appointment_date' => $booking->appointment_date,
                 'appointment_time'=>  Carbon::parse($booking->time_slot)->format('g:i a'),
                 'dentist' => $booking->dentist->name ?? '',
@@ -44,20 +44,20 @@ class AppointmentController extends Controller
     public function bookAppointment(Request $request)
     {
 
-        // Check if slot is already booked
-        $isBooked = Appointment::where('appointment_date', $request->appointment_date)
-            ->where('clinic_branch_id', $request->clinic_branch_id)
-            ->where('time_slot', $request->time_slot)
-            ->exists();
+        // // Check if slot is already booked
+        // $isBooked = Appointment::where('appointment_date', $request->appointment_date)
+           
+        //     ->where('time_slot', $request->time_slot)
+        //     ->exists();
 
-        if ($isBooked) {
-            return response()->json(['error' => 'This time slot is no longer available.'], 422);
-        }
+        // if ($isBooked) {
+        //     return response()->json(['error' => 'This time slot is no longer available.'], 422);
+        // }
 
         // Create Appointment
         $appointment = Appointment::create([
             'clinic_id' => $request->clinic_id,
-            'clinic_branch_id' => $request->clinic_branch_id,
+           
             'clinic_dentist_id' => $request->clinic_dentist_id ?? null,
             'patient_id' => $request->patient_id,
             'appointment_date' => $request->appointment_date,

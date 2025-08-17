@@ -18,11 +18,14 @@ class Clinic extends Model
         'logo',
         'address_line_1',
         'address_line_2',
+        'city',
+        'state',
         'phone',
         'email',
         'zip_code',
         'latitude',
         'longitude',
+        'desc'
 
     ];
 
@@ -51,6 +54,18 @@ class Clinic extends Model
     public function users()
     {
         return $this->hasMany(ClinicUser::class);
+    }
+
+    public function dentalservices()
+    {
+        return $this->hasManyThrough(
+            DentalService::class,       // Final model
+            ClinicDentalService::class,       // Intermediate model
+            'clinic_id',                // Foreign key on ClinicService table
+            'id',                       // Foreign key on DentalService table (assumes ClinicService has dental_service_id)
+            'id',                       // Local key on Clinic model
+            'dental_service_id'         // Local key on ClinicService that points to DentalService
+        );
     }
 
     public function services()

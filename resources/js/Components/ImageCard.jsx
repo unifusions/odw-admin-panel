@@ -2,7 +2,7 @@ import Card from "./Card";
 
 export default function ImageCard({ image, onView, onDelete }) {
     return (
-        <Card className="card-sm">
+        <div className="card card-sm" >
             <img class="card-img-top" src={image} alt="Image Description" />
 
             <div class="card-body">
@@ -22,6 +22,6 @@ export default function ImageCard({ image, onView, onDelete }) {
                     </div>
                 </div>
             </div>
-        </Card>
+        </div>
     )
 }

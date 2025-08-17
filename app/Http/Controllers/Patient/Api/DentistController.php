@@ -8,14 +8,18 @@ use Illuminate\Http\Request;
 
 class DentistController extends Controller
 {
-    public function dentistsByClinicBranch(Request $request)
+    public function dentistsByClinic(Request $request)
     {
         // $clinicId = $request->clinic_id;
-        $branchId = $request->clinic_branch_id;
+        $clinicId = $request->clinic_id;
 
-        $ClinicDentists = ClinicDentist::with('dentist')->where('clinic_branch_id', $branchId)->get();
+        $ClinicDentists = ClinicDentist::with('dentist')->where('clinic_id', $clinicId)->get();
         return $ClinicDentists->map(function ($ClinicDentist) {
-            return $ClinicDentist->dentist;
+
+            return [
+                'id' => $ClinicDentist->id,
+                'dentist' => $ClinicDentist->dentist
+            ];  
         });
     }
 }

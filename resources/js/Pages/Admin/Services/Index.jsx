@@ -6,10 +6,10 @@ import EditService from "./EditService";
 
 export default function Index() {
     const { services } = usePage().props
-   
+
     return (
-        <AuthenticatedLayout header='Services'>
-        
+        <AuthenticatedLayout header='Treatments'>
+
             <Head title="Treatments" />
             <PageHeader>
                 <AddService />
@@ -34,15 +34,15 @@ export default function Index() {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
                                     <td> <div className="avatar ">
-                                        {console.log(item)}
-                                                <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
-                                                {/* <span className="avatar-initials">
+                                       
+                                        <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
+                                        {/* <span className="avatar-initials">
                                                     {dentist.full_name.charAt(0)}
                                                 </span> */}
-                                            </div></td>
+                                    </div></td>
                                     <td className="text-wrap">
                                         <div className="d-flex align-items-center">
-                                           
+
                                             <div className="ms-3">
                                                 <span class="d-block h5 text-inherit mb-0"> {item.name} </span>
                                                 <span class="d-block fs-5 text-body">{item.desc}</span>
@@ -53,7 +53,7 @@ export default function Index() {
                                     <td>$ {item.cost} - $ {item.max_cost}</td>
                                     <td>$ {item.avg_cost} - $ {item.max_avg_cost}</td>
                                     <td>{item.display_order}</td>
-                                    <td><EditService service= {item} /></td>
+                                    <td><EditService service={item} /></td>
                                 </tr>
                             ))
                         }

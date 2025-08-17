@@ -30,7 +30,11 @@ class EstimateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = json_decode( $request->category);
+        $dentalcares = json_decode($request->selectedItems);
+        $problem = $request->userRequest;
+        $insurance = json_decode($request->insurance);
+        dd($dentalcares);
     }
 
     /**

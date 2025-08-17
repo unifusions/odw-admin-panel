@@ -18,7 +18,8 @@ export default function Index() {
         <AuthenticatedLayout header='Clinics'>
             <Head title="Clinics" />
             <PageHeader>
-                <AddClinic />
+                <Link href={route('clinics.create')} className="btn btn-primary">Add Clinic</Link>
+                {/* <AddClinic /> */}
             </PageHeader>
 
             <div class="table-responsive datatable-custom">

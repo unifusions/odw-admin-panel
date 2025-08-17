@@ -13,13 +13,30 @@ class ClinicController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $clinics = Clinic::all()->map(fn($clinic) => [
-            'id' => $clinic->id,
-            "name" => $clinic->name,
-            "logo" => $clinic->logo,
+        // $clinics = Clinic::latest()->map(fn($clinic) => [
+        //     'id' => $clinic->id,
+        //     "name" => $clinic->name,
+        //     "logo" => $clinic->logo,
 
-        ]);
+        // ]);
 
+        
+        $clinics = Clinic::latest()->get()->map(
+            fn($clinic) =>
+            [
+                'id' => $clinic->id,
+                'name' => $clinic->name,
+                'logo' => $clinic->logo,
+                'address_line_1' => $clinic->address_line_1,
+                'address_line_2' => $clinic->address_line_2,
+                'zip_code' => $clinic->zip_code,
+                'latitude' => $clinic->latitude,
+                'longitude' => $clinic->longitude,
+                'services' => $clinic->dentalservices,
+                'schedules' => $clinic->schedules,
+                'galleries' => $clinic->galleries,
+            ]
+        );
         return response()->json($clinics);
     }
 }

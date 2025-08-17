@@ -27,7 +27,7 @@ Route::get('/user', function (Request $request) {
 
 
 //ADD URLS BELOW SANCTUM 
-Route::get('/my-appointments', [AppointmentController::class,'myAppointment']);
+Route::get('/my-appointments', [AppointmentController::class, 'myAppointment']);
 Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
 Route::get('/dental-services', DentalServiceController::class);
 
@@ -39,28 +39,32 @@ Route::get('/deals', DealsController::class);
 Route::get('/clinics', ClinicController::class);
 
 Route::get('/second-opinions', [SecondOpinionController::class, 'index']);
-Route::post('/second-opinions/store',[SecondOpinionController::class, 'store']);
+Route::post('/second-opinions/store', [SecondOpinionController::class, 'store']);
 
 // PROFILE CONTROLLER
 
 Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/update-profile', [ProfileController::class, 'update']);
 
 // INSURANCE CONTROLLER
 
-Route::get('/insurance',[ InsuranceController::class, 'index']);
-Route::post('/add-insurance',[ InsuranceController::class, 'store']);
+Route::get('/insurance', [InsuranceController::class, 'index']);
+Route::post('/add-insurance', [InsuranceController::class, 'store']);
 
 // ESTIMATE CONTROLLER
 
+
+
 // APPOINTMENT DENTIST CONTROLLERS
 
-Route::get('/dentists-by-branch', [DentistController::class, 'dentistsByClinicBranch']);
+Route::get('/dentists-by-clinic', [DentistController::class, 'dentistsByClinic']);
 Route::get('/dentalcare', [EstimateController::class, 'index']);
 
+Route::post('/estimation', [EstimateController::class, 'store']);
 
 
 
-Route::middleware('auth:sanctum')->group(function () {
- 
-    
-});
+
+
+
+Route::middleware('auth:sanctum')->group(function () {});

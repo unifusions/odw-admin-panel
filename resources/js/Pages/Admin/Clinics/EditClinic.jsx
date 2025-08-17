@@ -27,7 +27,7 @@ export default function EditClinic() {
 
                         <WorkingHours clinicschedule={schedules} />
 
-                        <ClinicImages galleryImages={galleries}/>
+                        <ClinicImages galleryImages={galleries} featuredImage={clinic.logo}/>
                         <ClinicServices /> 
                     </div>
                 </div>

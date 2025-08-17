@@ -66,7 +66,7 @@ class DentistController extends Controller
             'email' => $request->email,
             'photo' => $request->photo ?? ''
         ]);
-        if ($request->clinic_id && $request->clinic_branch_id) {
+        if ($request->clinic_id) {
             $clinicDentist = ClinicDentist::create([
                 'dentist_id' => $dentist->id,
                 'clinic_id' => $request->clinic_id,
