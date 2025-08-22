@@ -35,6 +35,7 @@ Route::get('/categories', [DentalCareController::class, 'getCategories']);
 Route::get('/services', [DentalCareController::class, 'getAllServices']);
 Route::get('/categories/services', [DentalCareController::class, 'getServices']);
 
+
 Route::get('/deals', DealsController::class);
 Route::get('/clinics', ClinicController::class);
 

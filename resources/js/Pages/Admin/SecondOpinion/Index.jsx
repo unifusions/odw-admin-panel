@@ -54,7 +54,7 @@ export default function SecondOpinion() {
                                             <Link className="btn btn-white btn-sm" href={route('second-opinion.show', secondopinion)} >
                                                 <i className="bi-eye"></i> View
                                             </Link>
-                                         
+
 
                                             <div className="btn-group">
                                                 <button type="button" className="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty " id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="true"></button>

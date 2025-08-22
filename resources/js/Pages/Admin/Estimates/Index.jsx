@@ -43,9 +43,9 @@ export default function Index() {
                                     </div>
                                 </div>
                             </td>
-                            <td>  <span class="d-block h5 mb-0">{estimate.dentalservice.name}</span></td>
-                            <td>{estimate.description}</td>
-                            <td>{estimate.status}</td>
+                            <td>  <span class="d-block h5 mb-0">{estimate.dentalservice?.name }</span></td>
+                            <td>{estimate.description ?? ''}</td>
+                            <td>{estimate.status ?? ''}</td>
                             <td className="text-end">
                                 <Link className="btn btn-outline-primary btn-sm me-3" href={route('estimates.show', estimate)} >
                                     <i className="bi-eye"></i> View

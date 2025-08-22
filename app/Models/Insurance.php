@@ -22,6 +22,11 @@ class Insurance extends Model
         'city_id',
         'zip_code_id',
         'mode',
+        'state',
+        'city',
+        'zip_code',
+        'member_id',
+        'dob',
         'insurance_provider',
         'carrier',
         'plan_no',
@@ -33,5 +38,9 @@ class Insurance extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function attachments(){
+        return $this->hasMany(InsuranceAttachement::class);
     }
 }

@@ -17,6 +17,8 @@ class DentalCareController extends Controller
         return response()->json(DentalCare::all());
     }
     public function getServices(Request $request){
+        
         return response()->json(DentalCare::where('dental_service_id', $request->dental_service_id)->get());
     }
+ 
 }

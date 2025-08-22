@@ -9,12 +9,35 @@ class SecondOpinion extends Model
 {
    use HasFactory;
    protected $fillable = [
-      'patient_id', 'subject', 'description', 'hasEstimate',
+      'patient_id',
+      'subject',
+      'description',
+      'hasEstimate',
+      'is_quick',
+      'last_visit',
       'status'
    ];
 
 
-   public function patient(){
-    return $this->belongsTo(Patient::class, 'patient_id');
+   protected $casts = [
+      'is_quick' => 'boolean',
+      'hasEstimate' => 'boolean'
+   ];
+
+   public function patient()
+   {
+      return $this->belongsTo(Patient::class, 'patient_id');
+   }
+
+   public function dentalcares()
+   {
+      return $this->hasMany(SoDentalCare::class);
+   }
+
+    
+
+   public function attachments()
+   {
+      return $this->hasMany(SoAttachements::class);
    }
 }

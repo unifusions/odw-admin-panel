@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\SecondOpinion;
+use App\Models\SoAttachements;
 use Illuminate\Http\Request;
 
 class SecondOpinionController extends Controller
@@ -28,18 +29,39 @@ class SecondOpinionController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'patient_id' => $request->patient_id,
-            'subject' => $request->subject, 
-            'description' => $request->description, 
-            'hasEstimate' => $request->hasEstimate,
-            'status' => 'pending'
-        ];
+        try {
+            $so = SecondOpinion::create([
+                'patient_id' => $request->patient_id,
+                'subject' => $request->subject,
+                'description' => $request->description,
+                'hasEstimate' => $request->hasEstimate,
+                'last_visit' => $request->last_visit,
+                'status' => 'pending',
+                'is_quick' => (bool) $request->is_quick,
+                'hasEstimate' => false,
+            ]);
 
-        if (SecondOpinion::create($data))
+            if ($request->hasFile('attachments')) {
 
+                foreach ($request->file('attachments') as $file) {
+                    // $filename =  $file->getClientOriginalName();
+
+                    $path = $file->store('uploads');
+
+                    SoAttachements::create([
+                        'second_opinion_id' => $so->id,
+                        
+                        'path' => $path,
+                        'file_name' => $file->getClientOriginalName(),
+                        'size' => $file->getSize(),
+                        'file_type' =>  $file->extension(),
+                    ]);
+                }
+            }
             return response()->json(['success' => 'We ve received your request. we will update is asap'], 200);
-        return response()->json(['error' => 'Something went wrong'], 422);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e], 422);
+        }
     }
 
     /**

@@ -34,7 +34,7 @@ export default function PatientInfo({ patient }) {
                             </ul>
                         </li>
 
-                        <li class="list-group-item">
+                        {/* <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5>Address</h5>
 
@@ -46,7 +46,7 @@ export default function PatientInfo({ patient }) {
 
                             </span>
 
-                        </li>
+                        </li> */}
 
                     </ul>
 

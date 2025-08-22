@@ -77,7 +77,7 @@ export default function Show() {
                     <Card title="Estimate Info">
                         <InfoRow index="Estimate #" value={`# ${estimate.id}`} />
                         <InfoRow index="Requested On" value={estimate.created_at} />
-                        <InfoRow index="Category" value={category.name} />
+                        <InfoRow index="Category" value={category?.name} />
                         <InfoRow index="Insurance" value="Yes" />
                     </Card>
 
@@ -94,12 +94,12 @@ export default function Show() {
 
                     </Card>
 
-                    <Card title="Attachments">
+                    {/* <Card title="Attachments">
                         <div className="d-flex flex-wrap justify-content-start gap-2">
                             {attachs.map((attach) => <AttachmentView attachment={attach} />)}
                         </div>
 
-                    </Card>
+                    </Card> */}
 
                 </div>
                 <div className="col-lg-4">

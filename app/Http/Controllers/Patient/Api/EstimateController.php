@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Patient\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DentalCare;
+use App\Models\Estimate;
+use App\Models\EstimateService;
 use Illuminate\Http\Request;
 
 class EstimateController extends Controller
@@ -30,11 +32,28 @@ class EstimateController extends Controller
      */
     public function store(Request $request)
     {
-        $category = json_decode( $request->category);
-        $dentalcares = json_decode($request->selectedItems);
-        $problem = $request->userRequest;
-        $insurance = json_decode($request->insurance);
-        dd($dentalcares);
+
+        $estimation = Estimate::create([
+            'patient_id' => $request->patient_id,
+            'user_id' => $request->user_id,
+            'dental_service_id' => $request->dental_service_id,
+            'description' => $request->description,
+            'insurance_id' => $request->insurance_id,
+            'is_quick' => $request->is_quick ?? false,
+        ]);
+
+        foreach ($request->dentalcares as $d) {
+            EstimateService::create([
+                'estimate_id' => $estimation->id,
+                'dental_care_id' => $d
+            ]);
+        }
+        return response()->json(['success' => 'Estimation Requested']);
+        // $category = json_decode( $request->category);
+        // $dentalcares = json_decode($request->selectedItems);
+        // $problem = $request->userRequest;
+        // $insurance = json_decode($request->insurance);
+        // dd($dentalcares);
     }
 
     /**

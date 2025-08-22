@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Estimate extends Model
 {
 
-    protected $fillable = [];
+    protected $fillable = [
+        'patient_id', 'user_id', 'dental_service_id', 'description',
+        'insurance_id','is_quick', 
+    ];
 
-    protected $appends = ['status'];
+    protected $appends = ['statuse'];
 
-    public function getStatusAttribute()
+    public function getStatuseAttribute()
     {
         return $this->is_closed ? 'Closed' : 'New';
     }

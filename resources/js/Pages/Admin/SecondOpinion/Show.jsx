@@ -14,16 +14,7 @@ export default function Show() {
     const patient = secondopinion.patient;
     const category = secondopinion.category;
 
-    const attachs = [
-        {
-            id: '1',
-            file_name: 'adfadf'
-        },
-        {
-            id: '2',
-            file_name: 'deqw'
-        }
-    ];
+    const attachs = secondopinion.attachments || [];
 
     return (
         <AuthenticatedLayout header='Second Opinion'>
@@ -55,9 +46,17 @@ export default function Show() {
                         <InfoRow index="Second Opinion #" value={`# ${secondopinion.id}`} />
                         <InfoRow index="Subject" value={secondopinion.subject} />
                         <InfoRow index="Requested On" value={secondopinion.created_at} />
-                        <InfoRow index="Category" value={category && category.name || 'NA'} />
-                        <InfoRow index="Insurance" value="Yes" />
-                        <InfoRow index="Estimate Required" value="Yes" />
+                        {!secondopinion.is_quick && 
+                            <>
+                               <InfoRow index="Category" value={category && category.name || 'NA'} />
+                               <InfoRow index="Insurance" value="Yes" />
+                               <InfoRow index="Estimate Required" value="Yes" />
+                            </>
+                        }
+                       
+                     
+                      
+                      
                     </Card>
 
                     <Card title="Patient Notes/Request">
@@ -69,7 +68,10 @@ export default function Show() {
 
                     <Card title="Attachments">
                         <div className="d-flex flex-wrap justify-content-start gap-2">
-                            {attachs.map((attach) => <AttachmentView attachment={attach} />)}
+                            {/* {console.log(secondopinion)} */}
+                            {attachs.length > 0 ? attachs.map((attach) => <AttachmentView attachment={attach} />) : 
+                                "No attachments Found"
+                            }
                         </div>
 
                     </Card>

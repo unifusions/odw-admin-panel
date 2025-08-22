@@ -14,9 +14,10 @@ class SecondOpinionController extends Controller
      */
     public function index()
     {
+        
         return Inertia::render(
             'Admin/SecondOpinion/Index',
-            ['secondopinions' => SecondOpinion::with('patient.user')->orderBy('status')->paginate(25)]
+            ['secondopinions' => SecondOpinion::with( 'patient.user', 'dentalcares')->orderBy('status')->paginate(25)]
         );
     }
 
@@ -46,7 +47,8 @@ class SecondOpinionController extends Controller
         return Inertia::render(
             'Admin/SecondOpinion/Show',
             [
-                'secondopinion' => $second_opinion->load('patient.user'),
+                'secondopinion' => $second_opinion->load(['patient.user', 'attachments']),
+                
               
             ]
         );
