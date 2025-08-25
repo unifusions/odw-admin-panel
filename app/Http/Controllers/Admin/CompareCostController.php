@@ -23,12 +23,12 @@ class CompareCostController extends Controller
             'Admin/CompareCosts/Index',
             [
                 'dentalCare' => $dentalCare,
-                // 'categories' => DentalService::all()->map(function ($item) {
-                //     return [
-                //         'value' => $item->id,
-                //         'label' => $item->name . " [" . $item->medical_name."]" 
-                //     ];
-                // })
+                'categories' => DentalService::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name . " [" . $item->medical_name."]" 
+                    ];
+                })
             ]
         );
     }
