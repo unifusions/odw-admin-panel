@@ -2,10 +2,10 @@ import Card from "@/Components/Card";
 import { Column, DisplayFlex, PageHeaderTitle, Row, AttachmentView } from "@/Components/Components";
 import PageHeader from "@/Components/PageHeader";
 import PatientInfo from "@/Components/PatientInfo";
-import SOBadge from "@/Components/SOBadge";
+ 
 import SingleHeader from "@/Components/SingleHeader";
 import { InfoRow } from "@/Helpers/Common";
-import DateTimeConverter from "@/Helpers/DateTimeConverter";
+ 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import MarkAsReview from "./MarkAsReview";
@@ -36,11 +36,11 @@ export default function Show() {
 
 
                 <div>
-                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion.status == "in_review" || secondopinion.status == "closed" ) && true} />
-                    {/* <button className="btn btn-outline-warning me-3">Mark As In Review</button> */}
+                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion.status == "in_review" || secondopinion.status == "closed") && true} />
+
 
                     <MarkAsClosed so={secondopinion} isDisabled={secondopinion.status == "closed" && true} />
- 
+
                 </div>
 
             </DisplayFlex>
@@ -73,7 +73,7 @@ export default function Show() {
 
                     <Card title="Attachments">
                         <div className="d-flex flex-wrap justify-content-start gap-2">
-                            {/* {console.log(secondopinion)} */}
+
                             {attachs.length > 0 ? attachs.map((attach) => <AttachmentView attachment={attach} />) :
                                 "No attachments Found"
                             }

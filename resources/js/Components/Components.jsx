@@ -54,8 +54,10 @@ export const PageHeaderTitle = ({ title }) => {
 
 export const AttachmentView = ({ attachment }) => {
     return (
-        <div className="d-flex badge text-bg-secondary">
-            <i class="bi bi-paperclip"></i> {attachment.file_name}
-        </div>
+        <a href={attachment.temporary_url} target="_blank">
+            <div className="d-flex badge text-bg-secondary">
+                <i class="bi bi-paperclip"></i> {attachment.file_name}
+            </div>
+        </a>
     )
 }

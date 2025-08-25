@@ -27,16 +27,19 @@ class ClinicController extends Controller
                 'id' => $clinic->id,
                 'name' => $clinic->name,
                 'logo' => $clinic->logo,
+                'desc' => $clinic->desc,
                 'address_line_1' => $clinic->address_line_1,
                 'address_line_2' => $clinic->address_line_2,
                 'zip_code' => $clinic->zip_code,
                 'latitude' => $clinic->latitude,
                 'longitude' => $clinic->longitude,
-                'services' => $clinic->dentalservices,
+                'services' => $clinic->services,
                 'schedules' => $clinic->schedules,
                 'galleries' => $clinic->galleries,
+                'dentists' => $clinic->dentists
             ]
         );
+        // dd($clinics);
         return response()->json($clinics);
     }
 }

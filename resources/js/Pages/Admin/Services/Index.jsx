@@ -1,8 +1,9 @@
 import PageHeader from "@/Components/PageHeader";
+import Pagination from "@/Components/Pagination";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link,   usePage } from "@inertiajs/react";
- 
- 
+import { Head, Link, usePage } from "@inertiajs/react";
+
+
 
 export default function Index() {
     const { services } = usePage().props
@@ -12,7 +13,7 @@ export default function Index() {
 
             <Head title="Treatments" />
             <PageHeader>
-                <Link href = {route('services.create')}  className="btn btn-primary" >Add Treatment</Link>
+                <Link href={route('services.create')} className="btn btn-primary" >Add Treatment</Link>
 
             </PageHeader>
 
@@ -62,6 +63,7 @@ export default function Index() {
                     </tbody>
                 </table>
             </div>
+            <Pagination links={services.links} />
 
         </AuthenticatedLayout>
     )

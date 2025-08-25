@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Patient\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Clinic;
 use App\Models\ClinicDentist;
 use Illuminate\Http\Request;
 
@@ -13,12 +14,16 @@ class DentistController extends Controller
         // $clinicId = $request->clinic_id;
         $clinicId = $request->clinic_id;
 
-        $ClinicDentists = ClinicDentist::with('dentist')->where('clinic_id', $clinicId)->get();
-        return $ClinicDentists->map(function ($ClinicDentist) {
+        // $ClinicDentists = ClinicDentist::with('dentists')->where('clinic_id', $clinicId)->get();
+        
+        $clinic = Clinic::find($clinicId);
+        // dd($clinic->dentists);
+        return $clinic->dentists->map(function ($ClinicDentist) {
 
+            // dd($ClinicDentist->name);
             return [
-                'id' => $ClinicDentist->id,
-                'dentist' => $ClinicDentist->dentist
+                'id' => $ClinicDentist->pivot->id,
+                'dentist' => $ClinicDentist
             ];  
         });
     }

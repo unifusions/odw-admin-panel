@@ -6,8 +6,9 @@ use App\Models\Admin\Clinic;
 use App\Models\Admin\Dentist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ClinicDentist extends Model
+class ClinicDentist extends Pivot
 {
     use HasFactory;
 

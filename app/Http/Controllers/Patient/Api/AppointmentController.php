@@ -10,43 +10,44 @@ use Illuminate\Http\Request;
 class AppointmentController extends Controller
 {
 
-    public function myAppointment(Request $request){
-       $patient = $request->patient_id;
-       $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
-       $pendingBookings = Appointment::where('status','pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
-       return response()->json([
-        'open'=>$openBookings->map(function($booking){
-            return [
-                'appointment_id' => $booking->id,
-                'service' => $booking->dentalservice->name ?? '',
-                'clinic'=> $booking->clinic->name,
-                // 'branch' => $booking->clinicbranch->name,
-                'appointment_date' => $booking->appointment_date,
-                'appointment_time'=>  Carbon::parse($booking->time_slot)->format('g:i a'),
-                'dentist' => $booking->dentist->name ?? '',
-            ];
-        }),
-        'pending' =>  $pendingBookings->map(function ($booking){ 
-            return [
-                'appointment_id' => $booking->id,
-                'service' => $booking->dentalservice->name ?? '',
-                'clinic'=> $booking->clinic->name,
-                // 'branch' => $booking->clinicbranch->name,
-                'appointment_date' => $booking->appointment_date,
-                'appointment_time'=>  Carbon::parse($booking->time_slot)->format('g:i a'),
-                'dentist' => $booking->dentist->name ?? '',
-                 
-            ];
-        })
-    ]);
-            
+    public function myAppointment(Request $request)
+    {
+        $patient = $request->patient_id;
+        $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
+        $pendingBookings = Appointment::where('status', 'pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
+        return response()->json([
+            'open' => $openBookings->map(function ($booking) {
+                return [
+                    'appointment_id' => $booking->id,
+                    'service' => $booking->dentalservice->name ?? '',
+                    'clinic' => $booking->clinic->name,
+                    // 'branch' => $booking->clinicbranch->name,
+                    'appointment_date' => $booking->appointment_date,
+                    'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),
+                    'dentist' => $booking->dentist,
+                ];
+            }),
+            'pending' =>  $pendingBookings->map(function ($booking) {
+                // dd($booking->dentalservice);
+                return [
+                    'appointment_id' => $booking->id,
+                    'service' => $booking->dentalservice,
+                    'clinic' => $booking->clinic->name,
+                    // 'branch' => $booking->clinicbranch->name,
+                    'appointment_date' => $booking->appointment_date,
+                    'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),
+                    'dentist' => $booking->dentist,
+
+                ];
+            })
+        ]);
     }
     public function bookAppointment(Request $request)
     {
 
         // // Check if slot is already booked
         // $isBooked = Appointment::where('appointment_date', $request->appointment_date)
-           
+
         //     ->where('time_slot', $request->time_slot)
         //     ->exists();
 
@@ -57,12 +58,12 @@ class AppointmentController extends Controller
         // Create Appointment
         $appointment = Appointment::create([
             'clinic_id' => $request->clinic_id,
-           
+
             'clinic_dentist_id' => $request->clinic_dentist_id ?? null,
             'patient_id' => $request->patient_id,
             'appointment_date' => $request->appointment_date,
             'time_slot' => $request->time_slot,
-            'dental_service_id'=> $request->dental_service_id,
+            'dental_service_id' => $request->dental_service_id,
             'status' => 'pending',
         ]);
 

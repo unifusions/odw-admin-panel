@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\ClinicScope;
+use App\Models\ClinicDentist;
 use App\Models\ClinicGallery;
 use App\Models\ClinicSchedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -74,5 +75,14 @@ class Clinic extends Model
             ->using(ClinicDentalService::class) // tell Laravel about your custom pivot
             ->withPivot('clinic_branch_id')     // if you also need that
             ->withTimestamps();
+    }
+
+    public function dentists()
+    {
+
+        return $this->belongsToMany(Dentist::class, 'clinic_dentists')
+            ->using(ClinicDentist::class)   // custom pivot model
+            ->withPivot(['id', 'created_at']); // add extra pivot fields if needed
+
     }
 }
