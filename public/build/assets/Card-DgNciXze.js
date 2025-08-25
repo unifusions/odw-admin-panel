@@ -1,1 +1,0 @@
-import{j as s}from"./app-MWXo386I.js";function i({id:a="",title:e,children:r,styles:d}){return s.jsxs("div",{id:a,className:"card mb-3",style:d,children:[s.jsx("div",{className:"card-header",children:s.jsx("h4",{className:"card-header-title",children:e})}),s.jsx("div",{className:"card-body",children:r})]})}export{i as C};
