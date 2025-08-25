@@ -25,7 +25,7 @@ const ServiceImageUploader = ({ onFileSelect, existingImage = null }) => {
             <div {...getRootProps()} className="text-center mb-5">
                 <input {...getInputProps()} />
                 <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="editAvatarUploaderModal">
-                    <img id="editAvatarImgModal" class="avatar-img " src={preview} alt="Upload Service Icon" />
+                    <img id="editAvatarImgModal" class="avatar-img " src={preview} alt="Upload Photo/Icon" />
 
 
                     <span class="avatar-uploader-trigger">

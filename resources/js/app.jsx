@@ -20,7 +20,8 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 function ThemeLoader({ children }) {
     useEffect(() => {
-        const theme = localStorage.getItem('theme') || 'light';
+        // const theme = localStorage.getItem('theme') || 'light';
+        const theme = 'light';
 
         if (theme === 'dark') {
             import('../css/dark.css');
@@ -48,7 +49,7 @@ createInertiaApp({
 
         const root = createRoot(el);
 
-        root.render( <ThemeLoader><App {...props} /></ThemeLoader>);
+        root.render(<App {...props} />);
     },
     progress: {
         color: '#asda',

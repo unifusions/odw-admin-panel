@@ -9,6 +9,7 @@ use App\Models\Admin\Dentist;
 use App\Models\ClinicDentist;
 use App\Models\DentistService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class DentistController extends Controller
@@ -21,7 +22,11 @@ class DentistController extends Controller
         // dd(Dentist::with('clinic')->paginate(25));
         return Inertia::render(
             'Admin/Dentists/Index',
-            ['alldentists' => Dentist::with('clinic',  'services')->paginate(25)]
+            ['alldentists' => Dentist::with('clinic',  'services')->paginate(25)->through(function ($dentist){
+                if($dentist->photo)
+                    $dentist->photo = Storage::disk('public')->url($dentist->photo);
+                return $dentist;
+            })]
         );
     }
 
@@ -31,25 +36,23 @@ class DentistController extends Controller
     public function create()
     {
 
-        $data = [
-            'clinics' => Clinic::all()->map(function ($item) {
-                return [
-                    'value' => $item->id,
-                    'label' => $item->name
-                ];
-            }),
-            'services' => DentalService::all()->map(function ($item) {
-                return [
-                    'value' => $item->id,
-                    'label' => $item->name
-                ];
-            })
-        ];
-
-        return response()->json($data);
-
-        // return inertia('',$data) ;
-        // return redirect()->back()->with($data);
+        return Inertia::render(
+            'Admin/Dentists/Create',
+            [
+                'clinics' => Clinic::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                }),
+                'services' => DentalService::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                })
+            ]
+        );
     }
 
     /**
@@ -57,20 +60,22 @@ class DentistController extends Controller
      */
     public function store(Request $request)
     {
-
+        $photo = false;
+        if ($request->hasFile('photo'))
+            $photo = $request->file('photo')->store('uploads/dentists', 'public');
 
         $dentist = Dentist::create([
             'name' => $request->name,
             'practise_from' => $request->practise_from,
             'phone' => $request->phone,
             'email' => $request->email,
-            'photo' => $request->photo ?? ''
+            'photo' => $photo ?? ''
         ]);
         if ($request->clinic_id) {
             $clinicDentist = ClinicDentist::create([
                 'dentist_id' => $dentist->id,
                 'clinic_id' => $request->clinic_id,
-                'clinic_branch_id' => $request->clinic_branch_id,
+
             ]);
         }
 

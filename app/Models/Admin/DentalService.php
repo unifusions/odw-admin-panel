@@ -27,6 +27,8 @@ class DentalService extends Model
 
     ];
 
+    public $appends = ['header_image_url', 'image_path_url']; 
+
     public function clinicservices()
     {
         return $this->hasMany(ClinicDentalService::class);
@@ -36,6 +38,33 @@ class DentalService extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function getHeaderImageUrlAttribute()
+    {
+        if (!$this->header_image_path) {
+            return null;
+        }
+
+        // if using storage disk
+        return Storage::disk('public')->url($this->header_image_path);
+
+        // OR if directly stored in /uploads
+        // return url($this->header_image);
+    }
+
+    public function getImagePathUrlAttribute()
+    {
+        if (!$this->image_path) {
+            return null;
+        }
+
+        // if using storage disk
+        return Storage::disk('public')->url($this->image_path);
+
+        // OR if directly stored in /uploads
+        // return url($this->header_image);
+    }
+    
     // public function setImagePathAttribute($value)
     // {
     //     if (is_file($value)) {

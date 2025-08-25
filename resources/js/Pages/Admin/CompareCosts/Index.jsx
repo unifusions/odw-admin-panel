@@ -41,11 +41,12 @@ export default function Index() {
                                 <tr key={index}>
                                     <td>{item.code}</td>
                                     <td>{item.name}</td>
-                                    <td>{item.dentalservice ? item.dentalservice.name: ''}</td>
+ 
+                                    <td>{item.categories && item.categories.length> 0 && item.categories.map(category =>  category.name).join(", ")}</td>
                                     <td>$ {item.national_cost}</td>
                                     <td>$ {item.odw_cost}</td>
                                     <td className="text-end">
-                                       
+                                        
                                      <DeleteDentalCare dentalcare={item} />
                                     </td>
                                 </tr>

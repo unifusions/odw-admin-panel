@@ -16,7 +16,9 @@ class CompareCostController extends Controller
      */
     public function index()
     {
-        $dentalCare = DentalCare::with('dentalservice')->paginate(25);
+        $dentalCare = DentalCare::with('dentalservice', 'categories')->paginate(25);
+       
+         
         return Inertia::render(
             'Admin/CompareCosts/Index',
             [

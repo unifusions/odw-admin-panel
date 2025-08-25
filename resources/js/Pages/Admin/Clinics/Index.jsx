@@ -56,7 +56,7 @@ export default function Index() {
                                         <span class="d-block h5 mb-0"><i class="bi bi-telephone me-3"></i>
                                             {clinic.phone}</span>
                                         <span class="d-block fs-5"><i class="bi bi-envelope me-3"></i>  {clinic.email}</span>
-                                        {console.log(clinic.schedules)}
+                                     
                                     </td>
 
 

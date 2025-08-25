@@ -53,7 +53,8 @@ class HandleInertiaRequests extends Middleware
 
         $clinic = request()->route('clinic');
         $secondopinion = request()->route('second_opinion');
-
+        $service = request()->route('service');
+        $dentist = request()->route('dentist');
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
@@ -120,6 +121,17 @@ class HandleInertiaRequests extends Middleware
 
             ],
 
+            // DENTISTS
+
+            'dentists.index' => [
+                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dentists', 'url' => route('dentists.index')]
+            ],
+            'dentists.create' => [
+                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dentists', 'url' => route('dentists.index')],
+                ['name' => 'Create', 'url' => route('dentists.create')]
+            ],
 
 
             'appointments.index' => [
@@ -159,6 +171,29 @@ class HandleInertiaRequests extends Middleware
                 ['name' => optional($clinic)->name ?? 'Clinic', 'url' => $clinic ? route('estimates.show', $clinic) : '#'],
 
             ],
+
+            // Treatments
+
+            'services.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Treatments', 'url' => route('services.index')]
+            ],
+            'services.create' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Treatments', 'url' => route('services.index')],
+               [ 'name' => 'Create', 'url' =>   route('services.create',  ) ],
+            ],
+            'services.show' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Treatments', 'url' => route('services.index')],
+                ['name' => optional($service)->name ?? 'Treatment', 'url' => $service ? route('services.show', $service) : '#'],
+            ],
+
+            'services.edit' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Treatments', 'url' => route('services.index')],
+                ['name' => optional($service)->name ?? 'Treatment', 'url' => $service ? route('services.show', $service) : '#'],
+            ]
 
         ];
 

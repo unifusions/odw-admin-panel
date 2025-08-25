@@ -1,8 +1,8 @@
 import PageHeader from "@/Components/PageHeader";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, usePage } from "@inertiajs/react";
-import AddService from "./AddService";
-import EditService from "./EditService";
+import { Head, Link,   usePage } from "@inertiajs/react";
+ 
+ 
 
 export default function Index() {
     const { services } = usePage().props
@@ -12,7 +12,7 @@ export default function Index() {
 
             <Head title="Treatments" />
             <PageHeader>
-                <AddService />
+                <Link href = {route('services.create')}  className="btn btn-primary" >Add Treatment</Link>
 
             </PageHeader>
 
@@ -34,7 +34,7 @@ export default function Index() {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
                                     <td> <div className="avatar ">
-                                       
+
                                         <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
                                         {/* <span className="avatar-initials">
                                                     {dentist.full_name.charAt(0)}
@@ -53,7 +53,8 @@ export default function Index() {
                                     <td>$ {item.cost} - $ {item.max_cost}</td>
                                     <td>$ {item.avg_cost} - $ {item.max_avg_cost}</td>
                                     <td>{item.display_order}</td>
-                                    <td><EditService service={item} /></td>
+                                    <td><Link href={route('services.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                    </td>
                                 </tr>
                             ))
                         }

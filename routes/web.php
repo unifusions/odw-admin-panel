@@ -74,6 +74,7 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
     Route::resource('second-opinion', SecondOpinionController::class);
+    Route::post('second-opinion/{second_opinion}/status', [SecondOpinionController::class, 'updateStatus'])->name('second-opinion.status');
     Route::resource('estimates', EstimateController::class);
     Route::resource('compare-costs', CompareCostController::class);
     Route::resource('patients', PatientsController::class);

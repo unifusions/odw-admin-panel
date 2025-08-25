@@ -111,9 +111,11 @@ export default function AddDentalCare({ categories }) {
                                     <InputLabel className="col-sm-3 col-form-label" value="Cateogry" />
                                     <div className="col-sm-9">
                                         <ReactSelect options={categories} ref={selectRef}
-
-                                            onChange={(selectedOption) => setData('category_id', selectedOption ? selectedOption.value : '')} />
-                                    </div>
+                                            isMulti
+                                            // onChange={(selectedOption) => setData('category_id', selectedOption ? selectedOption.value : '')} />
+                                            onChange={(selectedOptions) => setData('categories',selectedOptions)} />
+                                   
+                                            </div>
 
                                 </div>
                                 <div className="row mb-4">

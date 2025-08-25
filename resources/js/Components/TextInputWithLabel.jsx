@@ -1,7 +1,11 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { Column, Row } from './Components';
 
 export default forwardRef(function TextInput(
-    { id = '', type = 'text', className = '', label = '', isFocused = false, ...props },
+
+
+    { id = '', isSingleRow = false,
+        type = 'text', className = '', label = '', isFocused = false, ...props },
     ref,
 ) {
     const localRef = useRef(null);
@@ -16,21 +20,47 @@ export default forwardRef(function TextInput(
         }
     }, [isFocused]);
 
+
+    const BelowInput = () => { }
     return (
+
         <>
 
-            <label htmlFor={id} className='form-label'>{label}</label>
+            {isSingleRow ?
+                <>
+                    <Row>
+                    <label htmlFor={id} className='col-sm-3 col-form-label form-label'>{label}</label>
+
+                        <Column md={9}>
+                        <input
+                        {...props}
+                        type={type}
+                        className={
+                            'form-control form-input-lg mb-3 ' +
+                            className
+                        }
+                        ref={localRef}
+                    />
+                        </Column>
+                    </Row>
+                </>
+                : <>
+                    <label htmlFor={id} className='form-label'>{label}</label>
 
 
-            <input
-                {...props}
-                type={type}
-                className={
-                    'form-control form-input-lg mb-3 ' +
-                    className
-                }
-                ref={localRef}
-            />
+                    <input
+                        {...props}
+                        type={type}
+                        className={
+                            'form-control form-input-lg mb-3 ' +
+                            className
+                        }
+                        ref={localRef}
+                    />
+                </>
+
+            }
+
 
         </>
 

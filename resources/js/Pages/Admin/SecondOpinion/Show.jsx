@@ -8,6 +8,8 @@ import { InfoRow } from "@/Helpers/Common";
 import DateTimeConverter from "@/Helpers/DateTimeConverter";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
+import MarkAsReview from "./MarkAsReview";
+import MarkAsClosed from "./MarkAsClosed";
 
 export default function Show() {
     const { secondopinion } = usePage().props;
@@ -34,8 +36,11 @@ export default function Show() {
 
 
                 <div>
-                    <button className="btn btn-outline-success">Mark As Closed</button>
+                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion.status == "in_review" || secondopinion.status == "closed" ) && true} />
+                    {/* <button className="btn btn-outline-warning me-3">Mark As In Review</button> */}
 
+                    <MarkAsClosed so={secondopinion} isDisabled={secondopinion.status == "closed" && true} />
+ 
                 </div>
 
             </DisplayFlex>
@@ -46,17 +51,17 @@ export default function Show() {
                         <InfoRow index="Second Opinion #" value={`# ${secondopinion.id}`} />
                         <InfoRow index="Subject" value={secondopinion.subject} />
                         <InfoRow index="Requested On" value={secondopinion.created_at} />
-                        {!secondopinion.is_quick && 
+                        {!secondopinion.is_quick &&
                             <>
-                               <InfoRow index="Category" value={category && category.name || 'NA'} />
-                               <InfoRow index="Insurance" value="Yes" />
-                               <InfoRow index="Estimate Required" value="Yes" />
+                                <InfoRow index="Category" value={category && category.name || 'NA'} />
+                                <InfoRow index="Insurance" value="Yes" />
+                                <InfoRow index="Estimate Required" value="Yes" />
                             </>
                         }
-                       
-                     
-                      
-                      
+
+
+
+
                     </Card>
 
                     <Card title="Patient Notes/Request">
@@ -69,7 +74,7 @@ export default function Show() {
                     <Card title="Attachments">
                         <div className="d-flex flex-wrap justify-content-start gap-2">
                             {/* {console.log(secondopinion)} */}
-                            {attachs.length > 0 ? attachs.map((attach) => <AttachmentView attachment={attach} />) : 
+                            {attachs.length > 0 ? attachs.map((attach) => <AttachmentView attachment={attach} />) :
                                 "No attachments Found"
                             }
                         </div>

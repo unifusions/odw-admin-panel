@@ -17,16 +17,20 @@ class ServiceController extends Controller
     public function index()
     {
         // dd(DentalService::paginate(25))
+        $services = DentalService::orderBy('display_order', 'ASC')->paginate(25)->through(function ($service) {
+
+            if ($service->image_path)
+                $service->image_path = Storage::disk('public')->url($service->image_path);
+            if ($service->header_image_path)
+                $service->header_image_path =  Storage::disk('public')->url($service->header_image_path);
+            return $service;
+        });
+
+
         return Inertia::render(
             'Admin/Services/Index',
             [
-                'services' => DentalService::orderBy('display_order', 'ASC')->paginate(25)->through(function ($service) {
-                    if ($service->image_path)
-                        $service->image_path = Storage::disk('public')->url($service->image_path);
-                    if($service->header_image_path)
-                        $service->header_image_path =  Storage::disk('public')->url($service->header_image_path);
-                    return $service;
-                }),
+                'services' => $services
             ]
         );
     }
@@ -36,7 +40,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Services/Create');
     }
 
     /**
@@ -62,8 +66,8 @@ class ServiceController extends Controller
             'display_order' => $request->display_order,
             'header_image_path' => $header_image_path
         ]);
-
-        return redirect()->back()->with(['message' => $dentalService->name . ' has been added successfully']);
+        $message = "{$dentalService->name} has been created successfully";
+        return redirect()->route('services.index')->with(['message' => $message]);
     }
 
     /**
@@ -79,7 +83,10 @@ class ServiceController extends Controller
      */
     public function edit(DentalService $service)
     {
-        //
+        return Inertia::render(
+            'Admin/Services/Edit',
+            ['service' => $service]
+        );
     }
 
     /**
@@ -104,14 +111,16 @@ class ServiceController extends Controller
             $service->image_path = $request->file('image_path')->store('uploads/services', 'public');
         $service->save();
         $message = $service->name . ' has been updated successfully';
-        return redirect()->back()->with(['message' => $message]);
+        return redirect()->route('services.index')->with(['message' => $message]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DentalService $service)
     {
-        //
+        $service->delete();
+        $message = "Deleted successfully";
+        return redirect()->route('services.index')->with(['message' => $message]);
     }
 }

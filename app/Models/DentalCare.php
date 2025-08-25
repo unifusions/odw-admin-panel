@@ -18,6 +18,9 @@ class DentalCare extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function categories() {
+        return $this->belongsToMany(DentalService::class, 'care_categories')->using(CareCategory::class);
+    }
     public function dentalservice(){
         return $this->belongsTo(DentalService::class, 'dental_service_id');
     }

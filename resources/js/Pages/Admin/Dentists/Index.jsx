@@ -1,7 +1,8 @@
 import PageHeader from "@/Components/PageHeader";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
-import { Head, usePage } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import AddDentist from "./AddDentist";
+import DentistIcon from "@/Components/Icons/DentistIcon";
 
 export default function Index() {
 
@@ -13,7 +14,11 @@ export default function Index() {
 
         >
             <PageHeader>
-                <AddDentist />
+                <Link className="btn btn-primary"  href={route('dentists.create')} >
+
+                    <DentistIcon />
+                    Add Dentist
+                </Link>
             </PageHeader>
             <Head title="Dentists" />
 
@@ -23,7 +28,6 @@ export default function Index() {
                     <thead class="thead-light">
                         <tr>
                             <th>ID</th>
-
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Services Offered</th>
@@ -40,9 +44,10 @@ export default function Index() {
                                     <td>
                                         <a href="#!" className="d-flex align-items-center">
                                             <div className="avatar avatar-soft-primary avatar-circle">
-                                                <span className="avatar-initials">
+                                                {dentist.photo !== '' ? <img class="avatar-img" src={dentist.photo} alt="Image Description" height={42} width={42} /> : <span className="avatar-initials">
                                                     {dentist.name.charAt(0)}
-                                                </span>
+                                                </span>}
+
                                             </div>
                                             <div className="ms-3">
                                                 <span class="d-block h5 text-inherit mb-0">{dentist.name}</span>
