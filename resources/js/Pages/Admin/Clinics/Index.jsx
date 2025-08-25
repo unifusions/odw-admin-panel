@@ -56,17 +56,18 @@ export default function Index() {
                                         <span class="d-block h5 mb-0"><i class="bi bi-telephone me-3"></i>
                                             {clinic.phone}</span>
                                         <span class="d-block fs-5"><i class="bi bi-envelope me-3"></i>  {clinic.email}</span>
-                                     
+
                                     </td>
 
 
 
                                     <td>
 
-                             
+
 
                                         <Link href={route('clinics.edit', clinic)} className="btn btn-outline-info btn-sm btn-sm me-3">   <i class="bi-pencil-fill me-1"></i> Edit</Link>
-                                        <button onClick={() => destroy(route('clinics.destroy', clinic), { preserveScroll: true })} className="btn btn-outline-danger btn-sm ">   <i class="bi-pencil-fill me-1"></i> Delete</button></td>
+                                        {/* <button onClick={() => destroy(route('clinics.destroy', clinic), { preserveScroll: true })} className="btn btn-outline-danger btn-sm ">   <i class="bi-pencil-fill me-1"></i> Delete</button> */}
+                                    </td>
                                 </tr>
 
                             )}

@@ -6,20 +6,20 @@ export default function ClinicInformation({ clinic }) {
 
     const { data, setData, patch, errors, processing, } = useForm({
         clinic_name: clinic.name || '',
-        address_line_1: clinic.address_line_1||'',
+        address_line_1: clinic.address_line_1 || '',
         address_line_2: clinic.address_line_2 || '',
         phone: clinic.phone || '',
         email: clinic.email || '',
-        state: clinic.state|| '',
+        state: clinic.state || '',
         city: clinic.city || '',
         zip_code: clinic.zip_code || '',
         latitude: clinic.latitude || '',
-        desc : clinic.desc || ''
+        desc: clinic.desc || ''
     })
 
     const onsubmit = (e) => {
         e.preventDefault();
-        patch(route('clinics.update' ,clinic));
+        patch(route('clinics.update', clinic));
 
     }
     return (
@@ -203,7 +203,7 @@ export default function ClinicInformation({ clinic }) {
 
 
 
-                <button type="submit" className="btn btn-primary">Save</button>
+                <button type="submit" className="btn btn-primary mt-3">Update Information</button>
             </form>
 
         </>

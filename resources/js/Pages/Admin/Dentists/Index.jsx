@@ -28,7 +28,7 @@ export default function Index() {
                     <thead class="thead-light">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                        <th>Name</th>
                             <th>Contact</th>
                             <th>Services Offered</th>
                             <th>Clinic/Branch</th>

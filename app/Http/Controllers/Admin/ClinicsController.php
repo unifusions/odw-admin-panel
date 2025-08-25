@@ -10,6 +10,7 @@ use App\Models\Admin\Dentist;
 use App\Models\Admin\ZipCode;
 use App\Models\Admin\ZipCodes;
 use App\Models\ClinicDentist;
+use App\Models\ClinicGallery;
 use App\Models\ClinicSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -130,25 +131,31 @@ class ClinicsController extends Controller
     public function edit(Clinic $clinic)
     {
 
+
         return Inertia::render(
             'Admin/Clinics/EditClinic',
             [
                 'clinic' => $clinic,
-                'schedules' => $clinic->schedules,
+                'schedules' => $clinic->schedules()->get()->keyBy('day_of_week')->map(function ($item) {
+                    return $item;
+                }),
                 'users' => $clinic->users,
-                'services' => $clinic->services,
+                'services' => $clinic->services()->pluck('dental_services.id'),
                 'galleries' => $clinic->galleries->map(function ($gallery) {
                     $gallery->file_path = Storage::disk('public')->url($gallery->file_path);
                     return $gallery;
-                })
+                }),
+
+                'allservices' => DentalService::all()
             ]
         );
     }
 
 
+
     public function update(Request $request, Clinic $clinic)
     {
-         
+
         // dd($clinic->isDirty('city'));
         $clinic->update([
             'name' => $request->clinic_name,
@@ -159,7 +166,7 @@ class ClinicsController extends Controller
             'zip_code' => $request->zip_code,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
-            'desc' => $request->desc 
+            'desc' => $request->desc
 
         ]);
         $clinic->save();
@@ -170,12 +177,53 @@ class ClinicsController extends Controller
     }
 
 
+    public function updateSchedule(Request $request, Clinic $clinic)
+    {
+        $schedule = $request->input('schedule');
+        // dd($schedule);
+        foreach ($schedule as $day => $details) {
+
+            ClinicSchedule::updateOrCreate(
+                ['clinic_id' => $clinic->id, 'day_of_week' => $day],
+                [
+                    'is_open'   => $details['is_open'],
+                    'open_time' => $details['open_time'] ??  null,
+                    'close_time' => $details['close_time'] ?? null,
+                ]
+            );
+        }
+        return redirect()->back()->with([
+            'message' => "Clinic Schedule was updated successfuly",
+
+        ]);
+    }
+
+    public function updateServices(Request $request, Clinic $clinic)
+    {
+      
+        $serviceIds = collect($request->categories)->map(function ($item) {
+            return is_array($item) ? $item['id'] : $item;
+        })->filter()->unique()->toArray();
+      
+        $clinic->services()->sync($serviceIds);
+        return redirect()->back()->with(['message' => "Clinic Servicess updated successfuly",]);
+    }
+
     public function destroy(Clinic $clinic)
     {
         $clinic->delete();
         return redirect()->back()->with([
             'message' => "{$clinic->name} was deleted successfuly",
             'dentist' => 'dentist'
+        ]);
+    }
+
+    public function destroyGallery(Clinic $clinic, ClinicGallery $gallery)
+    {
+        $gallery->delete();
+        return redirect()->back()->with([
+            'message' => "Image was removed successfuly",
+            
         ]);
     }
 }

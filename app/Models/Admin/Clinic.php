@@ -70,6 +70,9 @@ class Clinic extends Model
 
     public function services()
     {
-        return $this->hasMany(ClinicDentalService::class);
+        return $this->belongsToMany(DentalService::class, 'clinic_dental_services')
+            ->using(ClinicDentalService::class) // tell Laravel about your custom pivot
+            ->withPivot('clinic_branch_id')     // if you also need that
+            ->withTimestamps();
     }
 }

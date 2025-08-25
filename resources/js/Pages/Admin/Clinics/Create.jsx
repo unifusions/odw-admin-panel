@@ -77,7 +77,7 @@ export default function Create() {
             element.scrollIntoView({
                 behavior: 'smooth',
 
-                top: 160,
+                top: 0,
 
             });
         }
@@ -200,7 +200,7 @@ export default function Create() {
 
                     <form action="" onSubmit={onsubmit} noValidate >
 
-                        <Card id="content" title="Clinic Information">
+                        <Card id="information" title="Clinic Information">
 
                             <TextInputWithLabel
                                 id="clinic_name"
