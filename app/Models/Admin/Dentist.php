@@ -23,7 +23,11 @@ class Dentist extends Model
     ];
     public $appends = ['photo_url'];
 
-    public $casts = [ 'created_at' => 'datetime:m/d/Y H:i',];
+    public $casts = [
+        'created_at' => 'datetime:m/d/Y H:i',
+        'updated_at' => 'datetime:m/d/Y H:i',
+        'deleted_at' => 'datetime:m/d/Y H:i'
+    ];
     public function clinicdentist()
     {
         return $this->hasMany(ClinicDentist::class,);

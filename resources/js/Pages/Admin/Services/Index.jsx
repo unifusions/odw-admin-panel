@@ -18,7 +18,7 @@ export default function Index() {
             </PageHeader>
 
             <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+                <table class="js-datatable table table-borderless table-thead-bordered table-wrap table-align-middle card-table"
                 >
                     <thead class="thead-light">
                         <tr>
@@ -34,15 +34,15 @@ export default function Index() {
                         {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
-                                    <td> <div className="avatar ">
+                                    <td > <div className="avatar ">
 
                                         <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
                                         {/* <span className="avatar-initials">
                                                     {dentist.full_name.charAt(0)}
                                                 </span> */}
                                     </div></td>
-                                    <td className="text-wrap">
-                                        <div className="d-flex align-items-center">
+                                    <td className="text-wrap " style={{ width: "50%" }} width="50%">
+                                        <div className="d-flex align-items-center flex-wrap text-wrap">
 
                                             <div className="ms-3">
                                                 <span class="d-block h5 text-inherit mb-0"> {item.name} </span>
@@ -51,10 +51,10 @@ export default function Index() {
                                         </div>
 
                                     </td>
-                                    <td>$ {item.cost} - $ {item.max_cost}</td>
-                                    <td>$ {item.avg_cost} - $ {item.max_avg_cost}</td>
-                                    <td>{item.display_order}</td>
-                                    <td><Link href={route('services.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                    <td width="10%">$ {item.cost} - $ {item.max_cost}</td>
+                                    <td width="10%">$ {item.avg_cost} - $ {item.max_avg_cost}</td>
+                                    <td width="10%">{item.display_order}</td>
+                                    <td width="10%"><Link href={route('services.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
                                     </td>
                                 </tr>
                             ))

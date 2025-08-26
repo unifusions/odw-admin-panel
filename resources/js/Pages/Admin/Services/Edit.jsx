@@ -75,7 +75,7 @@ export default function Edit() {
                     <Column lg={4}>
                         <Card title="Treatment">
                             <ul className="list-group list-group-flush list-group-no-gutters">
-                                <li className="list-group-item">
+                                <li className="list-group-item text-center">
 
                                     <ServiceImageHeaderUploader onFileSelect={(file) => setData('header_image_file', file)} existingImage={service.header_image_url} />
 
@@ -83,18 +83,25 @@ export default function Edit() {
                                     <h5 className="text-center">
                                         {service.name}
                                     </h5>
-
+                                    {service.medical_name}
                                 </li>
 
                                 <li class="list-group-item">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h5>Status</h5>
 
-                                    </div>
 
                                     <ul class="list-unstyled list-py-2 text-body">
-                                        <li><i class="bi-at me-2"></i>Created At</li>
-                                        <li><i class="bi-phone me-2"></i>Status </li>
+                                        <li
+                                            className="d-flex justify-content-between align-items-center">
+                                            <div>   <i class="bi-calendar-event me-2"></i>Last Updated</div>
+                                            <div className="text-dark"> {service.updated_at} </div>
+                                        </li>
+
+                                        {/* <li><i class="bi-phone me-2"></i>Status {} </li> */}
+                                        <li className="d-flex justify-content-between align-items-center">
+                                            <div><i class="bi-calendar-event me-2"></i>Active from </div>
+                                            <div className="text-dark"> {service.created_at} </div>
+                                        </li>
+
                                     </ul>
                                 </li>
 
@@ -143,7 +150,7 @@ export default function Edit() {
 
                                     <TextArea
                                         name="desc"
-                                        className="form-control"
+                                        style={{ fieldSizing: 'content' }}
                                         value={data.desc}
                                         onChange={(e) => setData('desc', e.target.value)}
                                     />

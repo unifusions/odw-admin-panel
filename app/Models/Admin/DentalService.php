@@ -28,8 +28,12 @@ class DentalService extends Model
 
     ];
 
-    public $appends = ['header_image_url', 'image_path_url']; 
-
+    public $appends = ['header_image_url', 'image_path_url'];
+    public $casts = [
+        'created_at' => 'datetime:m/d/Y H:i',
+        'updated_at' => 'datetime:m/d/Y H:i',
+        'deleted_at' => 'datetime:m/d/Y H:i'
+    ];
     public function clinicservices()
     {
         return $this->hasMany(ClinicDentalService::class);
@@ -65,7 +69,7 @@ class DentalService extends Model
         // OR if directly stored in /uploads
         // return url($this->header_image);
     }
-    
+
     // public function setImagePathAttribute($value)
     // {
     //     if (is_file($value)) {

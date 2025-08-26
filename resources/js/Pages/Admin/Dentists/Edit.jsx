@@ -57,7 +57,7 @@ export default function Edit() {
             <Head title="Dentists" />
             <PageHeader />
             <DisplayFlex className="mb-3 justify-content-between">
-                <h1 className="page-header-title">Add New Dentists</h1>
+                <h1 className="page-header-title">Edit Dentists</h1>
 
             </DisplayFlex>
 
