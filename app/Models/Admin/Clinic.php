@@ -73,7 +73,7 @@ class Clinic extends Model
     {
         return $this->belongsToMany(DentalService::class, 'clinic_dental_services')
             ->using(ClinicDentalService::class) // tell Laravel about your custom pivot
-            ->withPivot('clinic_branch_id')     // if you also need that
+            ->withPivot('clinic_id')     // if you also need that
             ->withTimestamps();
     }
 

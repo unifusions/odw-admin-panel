@@ -16,12 +16,12 @@ class ClinicDentist extends Pivot
         'dentist_id', 'clinic_id', 'clinic_branch_id'
     ];
 
-    public function clinic(){
-        return $this->hasOne(Clinic::class);
-    }
+    // public function clinic(){
+    //     return $this->hasOne(Clinic::class);
+    // }
 
-    public function dentist(){
-        return $this->belongsTo(Dentist::class);
-    }
+    // public function dentist(){
+    //     return $this->belongsTo(Dentist::class);
+    // }
     
 }

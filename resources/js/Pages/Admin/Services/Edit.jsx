@@ -79,7 +79,7 @@ export default function Edit() {
 
                                     <ServiceImageHeaderUploader onFileSelect={(file) => setData('header_image_file', file)} existingImage={service.header_image_url} />
 
-                                    <ServiceImageUploader onFileSelect={(file) => setData('image_file', file)} existingImage={service.image_path_url} />
+                                    <ServiceImageUploader onFileSelect={(file) => setData('image_file', file)} existingImage={service.image_path_url} profileCover={true} />
                                     <h5 className="text-center">
                                         {service.name}
                                     </h5>

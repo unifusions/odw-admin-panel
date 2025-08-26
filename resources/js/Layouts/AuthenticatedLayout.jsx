@@ -10,6 +10,9 @@ import Sidebar from '@/Components/Sidebar';
 import Notifications from '@/Components/Notifications';
 
 import { ToastContainer, toast } from 'react-toastify';
+import GlobalSearchBar from '@/Components/GlobalSearch';
+import GlobalSearchs from '@/Components/GlobalSearch';
+import GlobalSearch from '@/Components/GlobalSearch';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
@@ -69,7 +72,8 @@ export default function AuthenticatedLayout({ header, children }) {
                             {header && (<div
                                 className='fs-2 fw-bold text-dark'>{header}</div>)
                             }
-                            <div className="dropdown ms-2">
+                            <GlobalSearch />
+                            {/* <div className="dropdown ms-2">
                                 <div className="d-none d-lg-block">
                                     <div className="input-group input-group-merge input-group-borderless input-group-hover-light navbar-input-group">
                                         <div className="input-group-prepend input-group-text">
@@ -90,7 +94,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
 
 
-                            </div>
+                            </div> */}
 
                         </div>
 

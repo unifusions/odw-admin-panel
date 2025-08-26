@@ -22,11 +22,7 @@ class DentistController extends Controller
         // dd(Dentist::with('clinic')->paginate(25));
         return Inertia::render(
             'Admin/Dentists/Index',
-            ['alldentists' => Dentist::with('clinic',  'services')->paginate(25)->through(function ($dentist){
-                if($dentist->photo)
-                    $dentist->photo = Storage::disk('public')->url($dentist->photo);
-                return $dentist;
-            })]
+            ['alldentists' => Dentist::with('clinics',  'services')->paginate(25)]
         );
     }
 
@@ -71,25 +67,24 @@ class DentistController extends Controller
             'email' => $request->email,
             'photo' => $photo ?? ''
         ]);
-        if ($request->clinic_id) {
-            $clinicDentist = ClinicDentist::create([
-                'dentist_id' => $dentist->id,
-                'clinic_id' => $request->clinic_id,
 
-            ]);
-        }
+        $clinicIds = collect($request->clinics)->map(function ($item) {
+            return is_array($item) ? $item['value'] : $item;
+        })->filter()->unique()->toArray();
 
-        if ($request->services) {
-            foreach ($request->services as $service) {
-                DentistService::create([
-                    'dentist_id' => $dentist->id,
-                    'dental_service_id' => $service['value']
-                ]);
-            }
-        }
+        $dentist->clinics()->sync($clinicIds);
 
 
-        return redirect()->back()->with(['message' => 'Dentist was added']);
+
+        $serviceIds = collect($request->services)->map(function ($item) {
+            return is_array($item) ? $item['value'] : $item;
+        })->filter()->unique()->toArray();
+
+        $dentist->services()->sync($serviceIds);
+
+
+
+        return redirect()->route('dentists.index')->with(['message' => 'Dentist was added']);
     }
 
     /**
@@ -103,17 +98,74 @@ class DentistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Dentist $dentist)
     {
-        //
+
+
+
+        return Inertia::render(
+            'Admin/Dentists/Edit',
+            [
+                'dentist' => $dentist,
+                'selectedClinics' => $dentist->clinics->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                }),
+                'selectedServices' => $dentist->services->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                }),
+                'clinics' => Clinic::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                }),
+                'services' => DentalService::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                })
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Dentist $dentist)
     {
-        //
+
+        $inputs = $request->input('data');
+
+        $dentist->name =  $inputs['name'] ?? $dentist->name;
+        $dentist->practise_from =  $inputs['practise_from'] ?? $dentist->practise_from;
+        $dentist->phone =  $inputs['phone'] ?? $dentist->phone;
+        $dentist->email =  $inputs['email'] ?? $dentist->email;
+        $dentist->photo =  $inputs['photo'] ?? $dentist->photo;
+
+        if ($request->hasFile('photo'))
+            $dentist->photo = $request->file('photo')->store('uploads/dentists', 'public');
+
+        $clinicIds = collect($inputs['clinics'])->map(function ($item) {
+            return is_array($item) ? $item['value'] : $item;
+        })->filter()->unique()->toArray();
+
+        $dentist->clinics()->sync($clinicIds);
+
+        $serviceIds = collect($inputs['services'])->map(function ($item) {
+            return is_array($item) ? $item['value'] : $item;
+        })->filter()->unique()->toArray();
+
+        $dentist->services()->sync($serviceIds);
+
+        $dentist->save();
+        return redirect()->route('dentists.index')->with(['message' => 'Dentist updated successfully']);
     }
 
     /**
@@ -121,6 +173,6 @@ class DentistController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return redirect()->route('dentists.index')->with(['message' => 'Dentist was deleted successfully']);
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DealsController;
 use App\Http\Controllers\Admin\DentistController;
 use App\Http\Controllers\Admin\EstimateController;
 use App\Http\Controllers\Admin\PatientsController;
+use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SecondOpinionController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SpecialistController;
@@ -80,9 +81,9 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::resource('patients', PatientsController::class);
 
     Route::resource('clinics', ClinicsController::class);
-    Route::post('/clinics/{clinic}/update-schedule', [ClinicsController::class,"updateSchedule" ])->name('clinics.updateSchedule');
-    Route::post('/clinics/{clinic}/update-services', [ClinicsController::class,"updateServices" ])->name('clinics.updateServices');
-    Route::delete('/clinics/{clinic}/delete-gallery/{gallery}', [ClinicsController::class,"destroyGallery" ])->name('clinics.destroyGallery');
+    Route::post('/clinics/{clinic}/update-schedule', [ClinicsController::class, "updateSchedule"])->name('clinics.updateSchedule');
+    Route::post('/clinics/{clinic}/update-services', [ClinicsController::class, "updateServices"])->name('clinics.updateServices');
+    Route::delete('/clinics/{clinic}/delete-gallery/{gallery}', [ClinicsController::class, "destroyGallery"])->name('clinics.destroyGallery');
 
     Route::resource('clinics.branches', ClinicBranchController::class);
     Route::resource('clinics.users', ClinicUserController::class);
@@ -96,9 +97,14 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::resource('clinic-users', UsersController::class);
 
 
+
     Route::resource('services', ServiceController::class);
 
     Route::resource('deals', DealsController::class);
+
+    // SEARCH
+
+    Route::get("/search", SearchController::class)->name('search');
 });
 
 Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(function () {

@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
 import { Head, Link, usePage } from "@inertiajs/react"
 import AddDentist from "./AddDentist";
 import DentistIcon from "@/Components/Icons/DentistIcon";
+import Pagination from "@/Components/Pagination";
 
 export default function Index() {
 
@@ -14,7 +15,7 @@ export default function Index() {
 
         >
             <PageHeader>
-                <Link className="btn btn-primary"  href={route('dentists.create')} >
+                <Link className="btn btn-primary" href={route('dentists.create')} >
 
                     <DentistIcon />
                     Add Dentist
@@ -28,10 +29,11 @@ export default function Index() {
                     <thead class="thead-light">
                         <tr>
                             <th>ID</th>
-                        <th>Name</th>
+                            <th>Name</th>
                             <th>Contact</th>
                             <th>Services Offered</th>
-                            <th>Clinic/Branch</th>
+                            <th>Clinic</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -42,9 +44,9 @@ export default function Index() {
                                     <td>#{dentist.id}</td>
 
                                     <td>
-                                        <a href="#!" className="d-flex align-items-center">
+                                        <div className="d-flex align-items-center">
                                             <div className="avatar avatar-soft-primary avatar-circle">
-                                                {dentist.photo !== '' ? <img class="avatar-img" src={dentist.photo} alt="Image Description" height={42} width={42} /> : <span className="avatar-initials">
+                                                {dentist.photo !== '' ? <img class="avatar-img" src={dentist.photo_url} alt="Image Description" height={42} width={42} /> : <span className="avatar-initials">
                                                     {dentist.name.charAt(0)}
                                                 </span>}
 
@@ -53,7 +55,7 @@ export default function Index() {
                                                 <span class="d-block h5 text-inherit mb-0">{dentist.name}</span>
                                                 <span class="d-block fs-5 text-body">{dentist.practise_from}</span>
                                             </div>
-                                        </a>
+                                        </div>
 
                                     </td>
                                     <td>
@@ -61,8 +63,12 @@ export default function Index() {
                                         <span class="d-block fs-5">{dentist.email}</span>
                                     </td>
                                     <td width="30%" className="text-wrap">{dentist.services.map((service) => <> <span class="badge bg-soft-dark text-dark me-2 mb-2">{service.name}</span> </>)}</td>
-                                    <td></td>
-
+                                    <td>
+                                        {dentist.clinics.map((clinic) => clinic.name)}
+                                    </td>
+                                    <td>
+                                        <Link href={route('dentists.edit', dentist)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                    </td>
                                 </tr>
                             ))
                         }
@@ -70,7 +76,7 @@ export default function Index() {
                     </tbody>
                 </table>
             </div>
-
+            <Pagination links={alldentists.links} />
         </AuthenticatedLayout >
     )
 }

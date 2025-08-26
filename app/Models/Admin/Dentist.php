@@ -4,9 +4,11 @@ namespace App\Models\Admin;
 
 use App\ClinicScope;
 use App\Models\ClinicDentist;
+use App\Models\ClinicService;
 use App\Models\DentistService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class Dentist extends Model
@@ -19,45 +21,34 @@ class Dentist extends Model
         'email',
         'photo'
     ];
+    public $appends = ['photo_url'];
 
+    public $casts = [ 'created_at' => 'datetime:m/d/Y H:i',];
     public function clinicdentist()
     {
-        return $this->hasMany(ClinicDentist::class);
+        return $this->hasMany(ClinicDentist::class,);
     }
 
-    public function clinic()
+    public function clinics()
     {
-        return $this->hasOneThrough(
-            Clinic::class,          // Final model
-            ClinicDentist::class,   // Intermediate model
-            'dentist_id',           // FK on ClinicDentist pointing to Dentist
-            'id',                   // FK on Clinic pointing to ClinicDentist (matches ClinicDentist->clinic_id)
-            'id',                   // Local key on Dentist
-            'clinic_id'             // Local key on ClinicDentist
-        );
-    }
-
-    public function branch()
-    {
-        return $this->hasOneThrough(
-            ClinicBranch::class,          // Final model
-            ClinicDentist::class,   // Intermediate model
-            'dentist_id',           // FK on ClinicDentist pointing to Dentist
-            'id',                   // FK on Clinic pointing to ClinicDentist (matches ClinicDentist->clinic_id)
-            'id',                   // Local key on Dentist
-            'clinic_branch_id'             // Local key on ClinicDentist
-        );
+        return $this->belongsToMany(Clinic::class, 'clinic_dentists')
+            ->using(ClinicDentist::class)->withPivot('id')
+            ->withTimestamps();
     }
 
     public function services()
     {
-        return $this->hasManyThrough(
-            DentalService::class,
-            DentistService::class,
-            'dentist_id',
-            'id',
-            'id',
-            'dental_service_id'
-        );
+        return $this->belongsToMany(DentalService::class, 'dentist_services')
+            ->using(DentistService::class)->withPivot('id')
+            ->withTimestamps();
+    }
+
+    public function getPhotoUrlAttribute()
+    {
+        if (!$this->photo) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($this->photo);
     }
 }

@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
-const ServiceImageUploader = ({ onFileSelect, existingImage = null }) => {
+const ServiceImageUploader = ({ onFileSelect, existingImage = null, profileCover = false }) => {
     const [preview, setPreview] = useState(existingImage);
 
     useEffect(() => {
@@ -24,8 +24,8 @@ const ServiceImageUploader = ({ onFileSelect, existingImage = null }) => {
         <>
             <div {...getRootProps()} className="text-center mb-5">
                 <input {...getInputProps()} />
-                <label class="avatar avatar-xxl avatar-circle avatar-uploader profile-cover-avatar" for="editAvatarUploaderModal">
-                    <img id="editAvatarImgModal" class="avatar-img " src={preview} alt="Upload Photo/Icon" />
+                <label class={`avatar avatar-xxl avatar-circle avatar-uploader  ${profileCover && 'profile-cover-avatar'} `} for="editAvatarUploaderModal">
+                    <img id="editAvatarImgModal" class="avatar-img " src={preview} />
 
 
                     <span class="avatar-uploader-trigger">

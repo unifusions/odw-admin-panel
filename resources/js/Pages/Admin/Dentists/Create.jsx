@@ -15,16 +15,20 @@ export default function Create() {
         practise_from: '',
         phone: '',
         email: '',
-        clinic_id: '',
+        clinics: [],
 
         services: [],
 
     });
 
+    const onClinicSelect = (selectedOptions) => {
+        setData('clinics', selectedOptions);
+    }
+
     const onServiceSelect = (selectedOptions) => {
         setData('services', selectedOptions);
     }
-    
+
     const onsubmit = (e) => {
         e.preventDefault();
 
@@ -93,25 +97,47 @@ export default function Create() {
                                 isSingleRow={true}
                             />
 
+                            <TextInputWithLabel
+                                id="phone"
+                                type="text"
+                                value={data.phone}
+                                placeholder="Phone"
+                                onChange={(e) => setData('phone', e.target.value)}
+                                label="Phone"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+                            <TextInputWithLabel
+                                id="phone"
+                                type="email"
+                                value={data.email}
+                                placeholder="Email"
+                                onChange={(e) => setData('email', e.target.value)}
+                                label="Email"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
 
                             <div className="row mb-4">
                                 <InputLabel htmlFor="clinicSelect" className="col-sm-3 col-form-label form-label" value="Clinic" />
                                 <div className="col-sm-9">
-                                    <ReactSelect options={clinics} />
+                                    <ReactSelect options={clinics} isMulti onChange={onClinicSelect} />
 
 
                                 </div>
                             </div>
 
-                            
+
                             <div className="row mb-4">
-                                    <InputLabel htmlFor="branchSelect" className="col-sm-3 col-form-label form-label" value="Services" />
-                                    <div className="col-sm-9">
+                                <InputLabel htmlFor="branchSelect" className="col-sm-3 col-form-label form-label" value="Services" />
+                                <div className="col-sm-9">
 
-                                        <ReactSelect options={services} isMulti onChange={onServiceSelect} />
+                                    <ReactSelect options={services} isMulti onChange={onServiceSelect} />
 
-                                    </div>
                                 </div>
+                            </div>
 
 
 
