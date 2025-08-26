@@ -1,0 +1,1 @@
+import{j as s}from"./app-kW9MjCHe.js";function i({id:r="",title:a,children:e,styles:d}){return s.jsxs("div",{id:r,className:"card mb-3",style:d,children:[a&&s.jsx("div",{className:"card-header",children:s.jsx("h4",{className:"card-header-title",children:a})}),s.jsx("div",{className:"card-body",children:e})]})}export{i as C};
