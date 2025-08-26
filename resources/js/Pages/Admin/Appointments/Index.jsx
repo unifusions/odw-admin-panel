@@ -28,9 +28,9 @@ export default function Index({ appointments, pendingAppointments }) {
         "Tooth Extraction": "#F44336" // Red
     };
 
-    useEffect(() => {
-        fetchAppointments(currentDate);
-    }, [currentDate]);
+    // useEffect(() => {
+    //     fetchAppointments(currentDate);
+    // }, [currentDate]);
 
 
     const fetchAppointments = (date) => {
@@ -48,9 +48,10 @@ export default function Index({ appointments, pendingAppointments }) {
     };
 
     const handleDatesSet = (info) => {
-        setCurrentDate(info.view.currentStart); // Update state when navigating months
+        const newDate = info.view.currentStart;
+        setCurrentDate(newDate);
+        fetchAppointments(newDate);
     };
-
 
 
     const renderEventContent = (eventInfo) => {

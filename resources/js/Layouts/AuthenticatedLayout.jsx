@@ -13,8 +13,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import GlobalSearchBar from '@/Components/GlobalSearch';
 import GlobalSearchs from '@/Components/GlobalSearch';
 import GlobalSearch from '@/Components/GlobalSearch';
+import useInertiaLoading from '@/Helpers/useInertiaLoading';
+import LoadingDots from '@/Components/LoadingDots';
 
 export default function AuthenticatedLayout({ header, children }) {
+    const loading = useInertiaLoading();
     const user = usePage().props.auth.user;
     const flash = usePage().props.flash;
     const { post } = useForm();
@@ -208,9 +211,10 @@ export default function AuthenticatedLayout({ header, children }) {
                         {/* </div> */}
 
                         {/* </div> */}
+                        {/* <div className="align-self-center align-content-center"><LoadingDots /></div> */}
+{loading ? <LoadingDots /> : children}
 
-
-                        {children}
+                        {/* {children} */}
 
                     </div>
 

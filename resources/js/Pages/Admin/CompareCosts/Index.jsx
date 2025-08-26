@@ -1,7 +1,7 @@
 import Breadcrumbs from "@/Components/Breadcrumbs";
 import PageHeader from "@/Components/PageHeader";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout"
-import { Head, usePage } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import AddDentalCare from "./AddDentalCare";
 import DeleteDentalCare from "./DeleteDentalCare";
 import Pagination from "@/Components/Pagination";
@@ -17,7 +17,12 @@ export default function Index() {
         >
             <Head title="Compare Costs" />
             <PageHeader>
-                <AddDentalCare categories={categories} />
+                <Link href={route('compare-costs.create')}
+ className="btn btn-primary"   >
+
+
+                <i className="bi-plus me-1"></i> Add Dental Care
+</Link>                {/* <AddDentalCare categories={categories} /> */}
             </PageHeader>
             <div className="table-responsive datatable-custom">
                 <table className="table table-borderless table-thead-bordered  table-hover  table-sm"
@@ -50,7 +55,8 @@ export default function Index() {
                                     <td  >$ {item.odw_cost}</td>
                                     <td  className="text-end">
 
-                                        <DeleteDentalCare dentalcare={item} />
+                                    <Link href={route('compare-costs.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                        {/* <DeleteDentalCare dentalcare={item} /> */}
                                     </td>
                                 </tr>
                             ))

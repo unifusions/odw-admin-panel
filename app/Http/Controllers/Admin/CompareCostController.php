@@ -17,8 +17,8 @@ class CompareCostController extends Controller
     public function index()
     {
         $dentalCare = DentalCare::with('dentalservice', 'categories')->paginate(25);
-       
-         
+
+
         return Inertia::render(
             'Admin/CompareCosts/Index',
             [
@@ -26,7 +26,7 @@ class CompareCostController extends Controller
                 'categories' => DentalService::all()->map(function ($item) {
                     return [
                         'value' => $item->id,
-                        'label' => $item->name . " [" . $item->medical_name."]" 
+                        'label' => $item->name . " [" . $item->medical_name . "]"
                     ];
                 })
             ]
@@ -38,7 +38,14 @@ class CompareCostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/CompareCosts/Create', [
+            'categories' => DentalService::all()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name
+                ];
+            })
+        ]);
     }
 
     /**
@@ -46,16 +53,23 @@ class CompareCostController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $dentalCare = DentalCare::create([
             'code' => $request->code,
             'name' => $request->name,
-            'dental_service_id' => $request->category_id,
+            'medical_name' => $request->medical_name,
             'national_cost' => $request->national_cost,
             'odw_cost' => $request->odw_cost
         ]);
+        if ($request->categories) {
+            $serviceIds = collect($request->categories)->map(function ($item) {
+                return is_array($item) ? $item['value'] : $item;
+            })->filter()->unique()->toArray();
 
-        return redirect()->back()->with(['message' => 'Service has been added successfully']);
+            $dentalCare->categories()->sync($serviceIds);
+        }
+
+        return redirect()->route('compare-costs.index')->with(['message' => 'Service has been added successfully']);
     }
 
     /**
@@ -69,17 +83,39 @@ class CompareCostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(DentalCare $compare_cost)
     {
-        //
+        return Inertia::render('Admin/CompareCosts/Edit', [
+            'care' => $compare_cost,
+            'selectedCategories' => $compare_cost->categories->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name
+                ];
+            }),
+            'categories' => DentalService::all()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name
+                ];
+            })
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, DentalCare $compare_cost)
     {
-        //
+        // dd($request->input());
+
+        $serviceIds = collect($request->categories)->map(function ($item) {
+            return is_array($item) ? $item['value'] : $item;
+        })->filter()->unique()->toArray();
+
+        $compare_cost->categories()->sync($serviceIds);
+
+        return redirect()->route('compare-costs.index')->with(['message' => 'Data updated successfully']);
     }
 
     /**

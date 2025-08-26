@@ -11,7 +11,7 @@ class DentalCare extends Model
 
     use SoftDeletes;
     protected $fillable = [
-        'code', 'name', 'dental_service_id', 'national_cost', 'odw_cost'
+        'code', 'name', 'dental_service_id', 'national_cost', 'odw_cost', 'medical_name'
     ];
 
     public function category(){

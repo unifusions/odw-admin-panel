@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import axios from "axios";
+import LoadingDots from "./LoadingDots";
 
 
 export default function GlobalSearch() {
@@ -9,7 +10,7 @@ export default function GlobalSearch() {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [activeIndex, setActiveIndex] = useState(-1);
-
+    const [loading, setLoading] = useState(false);
     // Toggle modal with Ctrl+K (or Cmd+K on Mac)
     useEffect(() => {
         const down = (e) => {
@@ -34,10 +35,12 @@ export default function GlobalSearch() {
             return;
         }
 
+        setLoading(true);
         const res = await axios.get(route("search"), { params: { q: value } });
-        console.log(res.data);
+         
         setResults(res.data);
         setActiveIndex(-1);
+        setLoading(false)
     };
 
     const handleKeyDown = (e) => {
@@ -95,6 +98,7 @@ export default function GlobalSearch() {
     };
     // if (!show) return null;
     const Clinic = ({ group, result }) => {
+       
         return (
             <>
 
@@ -144,7 +148,7 @@ export default function GlobalSearch() {
                         <div className="input-group-prepend input-group-text">
                             <i className="bi-search"></i>
                         </div>
-
+                      
                         <input type="search" className="focus form-control"
                             placeholder="Search " aria-label="Search "
 
@@ -153,7 +157,7 @@ export default function GlobalSearch() {
                             onKeyDown={handleKeyDown}
 
                         />
-
+<span class="loader"></span>
                     </div>
                 </div>
 
@@ -165,7 +169,7 @@ export default function GlobalSearch() {
                             <div class="card">
 
                                 <div class="card-body-height">
-
+{loading &&   <LoadingDots dotSize={5} />}
                                     {/* <span class="dropdown-header">Recent searches</span>
 
                                     <div class="dropdown-item bg-transparent text-wrap">

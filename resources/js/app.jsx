@@ -10,7 +10,7 @@ import { createRoot } from 'react-dom/client';
 // import { applyTheme } from './Helpers/ThemeLoader';
 import { useEffect } from 'react';
 
-
+import('../css/dark.css');
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

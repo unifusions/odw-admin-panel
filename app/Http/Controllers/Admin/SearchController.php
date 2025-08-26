@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
+use App\Models\DentalCare;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -59,10 +60,24 @@ class SearchController extends Controller
                     'route' => route('services.edit', $service)
                 ];
             });
+
+        $dentalcares = DentalCare::where('name', 'like', "%{$query}%")->orWhere('code', 'like', "%{$query}%")->limit(5)->get()
+            ->map(function ($service) {
+                return [
+                    'id' => $service->id,
+                    'name' => $service->name,
+                    'photo' => $service->image_path_url,
+                    'type' => 'Services',
+                    'route' => route('compare-costs.edit', $service)
+                ];
+            });
+
         $results = [
             'clinics'  => $clinics->values()->toArray(),
             'dentists' => $dentists->values()->toArray(),
             'treatments' => $treatments->values()->toArray(),
+            'services' => $dentalcares->values()->toArray()
+            
         ];
 
         return response()->json($results);
