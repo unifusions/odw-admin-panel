@@ -1,0 +1,1 @@
+import{j as r}from"./app-Cah_yPJS.js";import o from"./CardGrid-DtOQUXO9.js";import m from"./Faqs-CWkU-iTK.js";import t from"./Hero-D2f3etsU.js";import i from"./Testimonial-DWD-k1S7.js";function j(){return r.jsx(r.Fragment,{children:r.jsxs("main",{id:"content",role:"main",className:"main",children:[r.jsx(t,{}),r.jsx(o,{}),r.jsx(i,{}),r.jsx(m,{})]})})}export{j as default};
