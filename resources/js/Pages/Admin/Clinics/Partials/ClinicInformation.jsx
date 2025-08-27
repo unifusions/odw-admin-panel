@@ -14,6 +14,7 @@ export default function ClinicInformation({ clinic }) {
         city: clinic.city || '',
         zip_code: clinic.zip_code || '',
         latitude: clinic.latitude || '',
+        longitude: clinic.longitude || '',
         desc: clinic.desc || ''
     })
 
