@@ -133,6 +133,13 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Create', 'url' => route('dentists.create')]
             ],
 
+            'dentists.edit' => [
+                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dentists', 'url' => route('dentists.index')],
+                ['name' => optional($dentist)->name ?? 'Treatment', 'url' => $dentist ? route('dentists.edit', $dentist) : '#'],
+                // ['name' => 'Edit', 'url' => route('dentists.create')]
+            ],
+
 
             'appointments.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
@@ -193,6 +200,13 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Treatments', 'url' => route('services.index')],
                 ['name' => optional($service)->name ?? 'Treatment', 'url' => $service ? route('services.show', $service) : '#'],
+            ],
+
+            // DEALS
+
+            'deals.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Deals', 'url' => route('deals.index')]
             ]
 
         ];

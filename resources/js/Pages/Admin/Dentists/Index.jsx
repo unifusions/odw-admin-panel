@@ -4,6 +4,7 @@ import { Head, Link, usePage } from "@inertiajs/react"
 import AddDentist from "./AddDentist";
 import DentistIcon from "@/Components/Icons/DentistIcon";
 import Pagination from "@/Components/Pagination";
+import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
 
 export default function Index() {
 
@@ -24,7 +25,7 @@ export default function Index() {
             <Head title="Dentists" />
 
             <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+                <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle "
                 >
                     <thead class="thead-light">
                         <tr>
@@ -67,7 +68,8 @@ export default function Index() {
                                         {dentist.clinics.map((clinic) => clinic.name)}
                                     </td>
                                     <td>
-                                        <Link href={route('dentists.edit', dentist)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                        <Link href={route('dentists.edit', dentist)} className="btn btn-white btn-sm me-2">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                        <DeleteConfirmModal category="Dentists" processUrl="dentists.destroy" item={dentist} />
                                     </td>
                                 </tr>
                             ))

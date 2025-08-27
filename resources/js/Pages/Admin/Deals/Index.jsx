@@ -1,8 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import AddDeal from "./AddDeal";
 import Lightbox from "@/Components/Lightbox";
 import { useState } from "react";
+import PageHeader from "@/Components/PageHeader";
 
 export default function Index() {
 
@@ -35,39 +36,32 @@ export default function Index() {
     <AuthenticatedLayout header='Deals'>
       <Head title="Deals" />
 
-      <div className="page-header">
-        <div className="row align-items-center mb-3">
-          <div className="col-sm mb-2 mb-sm-0">
-            <h1 className="page-header-title">Deals </h1>
+      <PageHeader>
 
-
-          </div>
-
-
-          <AddDeal />
-
-        </div>
+        <Link href={route('deals.create')}  className="btn btn-primary">Add Deal</Link>
+      </PageHeader>
 
 
 
-        <div className="js-nav-scroller hs-nav-scroller-horizontal">
+{/* 
+      <div className="js-nav-scroller hs-nav-scroller-horizontal">
 
 
 
-          <ul className="nav nav-tabs page-header-tabs" id="pageHeaderTab" role="tablist">
-            <li className="nav-item">
-              <a className="nav-link active" href="#">All Deals</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#" tabindex="-1" aria-disabled="true">Past Deals</a>
-            </li>
+        <ul className="nav nav-tabs page-header-tabs" id="pageHeaderTab" role="tablist">
+          <li className="nav-item">
+            <a className="nav-link active" href="#">All Deals</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" tabindex="-1" aria-disabled="true">Past Deals</a>
+          </li>
 
 
-          </ul>
+        </ul>
 
-        </div>
+      </div> */}
 
-      </div>
+
 
       <div class="card">
 
@@ -130,14 +124,14 @@ export default function Index() {
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div class="card-footer">
 
 
-      </div>
+        <div class="card-footer">
 
 
+        </div>
+
+</div>
 
     </AuthenticatedLayout>
   )

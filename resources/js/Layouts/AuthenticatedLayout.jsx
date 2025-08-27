@@ -233,10 +233,11 @@ export default function AuthenticatedLayout({ header, children }) {
 
                                     <ul className="list-inline list-separator">
                                         <li className="list-inline-item">
-                                            <a className="list-separator-link" href="#">FAQ</a>
+                                            V 0.6.4 - Beta
+                                           
                                         </li>
 
-                                        <li className="list-inline-item">
+                                        {/* <li className="list-inline-item">
                                             <a className="list-separator-link" href="#">License</a>
                                         </li>
 
@@ -246,7 +247,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                                 <i className="bi-command"></i>
                                             </button>
 
-                                        </li>
+                                        </li> */}
                                     </ul>
 
                                 </div>

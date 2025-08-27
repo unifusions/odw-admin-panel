@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import AddSpecialist from "./AddSpecialist";
 import SpecialistIcon from "@/Components/Icons/SpecialistIcon";
+import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
 
 export default function Index() {
 
@@ -65,7 +66,9 @@ export default function Index() {
                                 </td>
 
                                 <td>
-                                    <Link href={route('specialists.edit', specialist)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                    <Link href={route('specialists.edit', specialist)} className="btn btn-white btn-sm me-2">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                    <DeleteConfirmModal category="Specialists" processUrl="specialists.destroy" item={specialist} />
+
                                 </td>
 
                             </tr>

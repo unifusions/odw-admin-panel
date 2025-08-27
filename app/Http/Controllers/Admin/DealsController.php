@@ -33,7 +33,7 @@ class DealsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Deals/Create' );
     }
 
     /**
@@ -54,7 +54,7 @@ class DealsController extends Controller
             'is_active' => true
 
         ]);
-        return redirect()->back()->with(['message' => 'Deal was added']);
+        return redirect()->route('deals.index')->with(['message' => 'Deal was added']);
     }
 
     /**

@@ -171,8 +171,9 @@ class DentistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Dentist $dentist)
     {
+        $dentist->delete();
         return redirect()->route('dentists.index')->with(['message' => 'Dentist was deleted successfully']);
     }
 }
