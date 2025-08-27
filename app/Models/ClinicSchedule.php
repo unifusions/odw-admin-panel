@@ -15,6 +15,12 @@ class ClinicSchedule extends Model
         'is_open'
     ];
 
+    protected $casts = [
+        'is_open' => 'boolean',
+        // 'hasEstimate' => 'boolean'
+     ];
+  
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
