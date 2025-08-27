@@ -8,6 +8,7 @@ use App\Models\ClinicGallery;
 use App\Models\ClinicSchedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Clinic extends Model
 {
@@ -31,6 +32,7 @@ class Clinic extends Model
     ];
 
 
+    public $appends = ['logo_url'];
 
 
 
@@ -85,4 +87,15 @@ class Clinic extends Model
             ->withPivot(['id', 'created_at']); // add extra pivot fields if needed
 
     }
+
+    public function getLogoUrlAttribute()
+    {
+        if (!$this->image_path) {
+            return null;
+        }
+ 
+        return Storage::disk('public')->url($this->image_path);
+ 
+    }
+
 }
