@@ -29,7 +29,10 @@ export default function Edit() {
         max_avg_cost: service.max_avg_cost || '',
         display_order: service.display_order || '',
 
-        header_image_path: service.header_image_path || ''
+        header_image_path: service.header_image_path || '',
+
+        image_file : '',
+        header_image_file: ''
     })
 
 
@@ -39,19 +42,25 @@ export default function Edit() {
         const fmData = new FormData();
 
         if (data.image_path) {
-            fmData.append("image_path", data.image_path);
+            fmData.append("image_file", data.image_file);
         }
+
+        if (data.image_path) {
+            fmData.append("header_image_file", data.header_image_file);
+        }
+
         fmData.append("_method", "PUT");
         router.post(route('services.update', service), {
             _method: 'put',
             data: data,
-            image_path: data.image_path,
+            image_file: data.image_file,
+            header_image_file : data.header_image_file,
             forceFormData: true,
             // onFinish: {() => closeModal}
         });
-        if (modalRef.current) {
-            modalRef.current.hideModal(); // Explicitly hide modal
-        }
+        // if (modalRef.current) {
+        //     modalRef.current.hideModal(); // Explicitly hide modal
+        // }
         // setActiveModal(null);
 
 
@@ -76,6 +85,7 @@ export default function Edit() {
                         <Card title="Treatment">
                             <ul className="list-group list-group-flush list-group-no-gutters">
                                 <li className="list-group-item text-center">
+
 
                                     <ServiceImageHeaderUploader onFileSelect={(file) => setData('header_image_file', file)} existingImage={service.header_image_url} />
 

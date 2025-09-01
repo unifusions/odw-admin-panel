@@ -35,7 +35,7 @@ export default function Index() {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
                                     <td > <div className="avatar ">
-
+ 
                                         <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
                                         {/* <span className="avatar-initials">
                                                     {dentist.full_name.charAt(0)}

@@ -70,21 +70,5 @@ class DentalService extends Model
         // return url($this->header_image);
     }
 
-    // public function setImagePathAttribute($value)
-    // {
-    //     if (is_file($value)) {
-    //         $path = $value->store('services', 'public');
-    //         $this->attributes['image_path'] = $path;
-    //     } else {
-    //         $this->attributes['image_path'] = $value;
-    //     }
-    // }
-
-    // public function getImagePathAttribute($value)
-    // {
-    //     if ($value) {
-    //         return Storage::url($value);
-    //     }
-    //     return null;
-    // }
+    
 }

@@ -7,11 +7,11 @@ export default function ImageCard({ image, onView, onDelete }) {
  
             <div class="card-body">
                 <div class="row col-divider text-center">
-                    <div class="col">
+                    {/* <div class="col">
                         <button class="btn btn-link text-body" onClick = {onView}  data-bs-toggle="tooltip" data-bs-placement="top" data-fslightbox="gallery" aria-label="View" data-bs-original-title="View">
                             <i class="bi-eye"></i>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div class="col">
                         <button class="btn btn-link text-danger"

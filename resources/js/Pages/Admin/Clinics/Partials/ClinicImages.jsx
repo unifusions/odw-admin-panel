@@ -27,10 +27,17 @@ export default function ClinicImages({ clinic, featuredImage, galleryImages }) {
                     <div className="row mb-3">
 
                         {(galleryImages && galleryImages.length > 0) &&
-                            galleryImages.map((image) => <div className="col-md-4"> <ImageCard
-                                image={image.file_path}
+                            galleryImages.map((image) => <div className="col-md-4"> 
+                            
+                             
+
+                            <ImageCard
+                                image={image.image_url}
                                 
-                                onDelete={() => onDelete(image)} /> </div>)
+                                onDelete={() => onDelete(image)} /> 
+                                
+                               
+                                </div>)
                         }
 
 

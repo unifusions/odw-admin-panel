@@ -141,10 +141,8 @@ class ClinicsController extends Controller
                 }),
                 'users' => $clinic->users,
                 'services' => $clinic->services()->pluck('dental_services.id'),
-                'galleries' => $clinic->galleries->map(function ($gallery) {
-                    $gallery->file_path = Storage::disk('public')->url($gallery->file_path);
-                    return $gallery;
-                }),
+                'galleries' => $clinic->galleries,
+               
 
                 'allservices' => DentalService::all()
             ]

@@ -7,6 +7,7 @@ use App\Models\Admin\Clinic;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class ClinicGallery extends Model
 {
@@ -17,8 +18,20 @@ class ClinicGallery extends Model
         'file_path',
     ];
 
+    public $appends = ['image_url'];
+
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->file_path) {
+            return null;
+        }
+ 
+        return Storage::disk('public')->url($this->file_path);
+ 
     }
 }

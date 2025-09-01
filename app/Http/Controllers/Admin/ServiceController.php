@@ -107,8 +107,11 @@ class ServiceController extends Controller
         $service->display_order = $inputs['display_order']  ?? $request->display_order;
 
         $service->avg_cost = $inputs['avg_cost'] ?? $service->avg_cost;
-        if ($request->hasFile('image_path'))
-            $service->image_path = $request->file('image_path')->store('uploads/services', 'public');
+        if ($request->hasFile('image_file'))
+            $service->image_path = $request->file('image_file')->store('uploads/services', 'public');
+
+        if ($request->hasFile('header_image_file'))
+            $service->header_image_path = $request->file('header_image_file')->store('uploads/services', 'public');
         $service->save();
         $message = $service->name . ' has been updated successfully';
         return redirect()->route('services.index')->with(['message' => $message]);
