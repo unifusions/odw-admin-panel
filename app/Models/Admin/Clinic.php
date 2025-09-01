@@ -90,11 +90,11 @@ class Clinic extends Model
 
     public function getLogoUrlAttribute()
     {
-        if (!$this->image_path) {
+        if (!$this->logo) {
             return null;
         }
  
-        return Storage::disk('public')->url($this->image_path);
+        return Storage::disk('public')->url($this->logo);
  
     }   
 
