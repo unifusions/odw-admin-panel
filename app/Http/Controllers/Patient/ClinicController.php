@@ -28,6 +28,7 @@ class ClinicController extends Controller
                 'name' => $clinic->name,
                 'logo' => $clinic->logo,
                 'desc' => $clinic->desc,
+                'logo_url' => $clinic->logo_url,
                 'address_line_1' => $clinic->address_line_1,
                 'address_line_2' => $clinic->address_line_2,
                 'zip_code' => $clinic->zip_code,
