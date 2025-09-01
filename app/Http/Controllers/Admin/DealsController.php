@@ -84,8 +84,10 @@ class DealsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Deal $deal)
     {
-        //
+        $deal->delete();
+        return redirect()->route('deals.index')->with(['message' => 'Deal was deleted']);
+
     }
 }
