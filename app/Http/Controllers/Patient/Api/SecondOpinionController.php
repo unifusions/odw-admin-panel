@@ -46,7 +46,7 @@ class SecondOpinionController extends Controller
                 foreach ($request->dental_cares as $d) {
                     SoDentalCare::create([
                         'second_opinion_id' => $so->id,
-                        'dental_care' => $d
+                        'dental_care_id' => $d
                     ]);
                 }
             }

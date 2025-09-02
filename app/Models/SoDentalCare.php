@@ -8,7 +8,7 @@ class SoDentalCare extends Model
 {
     protected $fillable = [
         'second_opinion_id',
-        'dental_care',
+        'dental_care_id',
 
     ];
     
