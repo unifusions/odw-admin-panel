@@ -24,7 +24,8 @@ class EstimateController extends Controller
         }
 
         $DentalCare = DentalCare::paginate(25);
-        return response()->json($DentalCare);
+        return $query->paginate(25); 
+        // return response()->json($DentalCare);
     }
 
     /**
