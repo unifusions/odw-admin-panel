@@ -16,16 +16,16 @@ class EstimateController extends Controller
     public function index(Request $request)
     {
 
-        $query = DentalCare::query();
+        // $query = DentalCare::query();
 
-        if ($search = $request->input('search')) {
-            $query->where('name', 'like', "%{$search}%")
-                  ->orWhere('medical_name', 'like', "%{$search}%");
-        }
+        // if ($search = $request->input('search')) {
+        //     $query->where('name', 'like', "%{$search}%")
+        //           ->orWhere('medical_name', 'like', "%{$search}%");
+        // }
 
-        $DentalCare = DentalCare::paginate(25);
-        return $query->paginate(25); 
-        // return response()->json($DentalCare);
+        $DentalCare = DentalCare::all();
+        // return $query->paginate(25); 
+        return response()->json($DentalCare);
     }
 
     /**
