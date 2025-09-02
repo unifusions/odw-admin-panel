@@ -23,7 +23,8 @@ class Appointment extends Model
         'appointment_date',
         'time_slot',
         'status',
-        'reschedule_count'
+        'reschedule_count',
+        'dental_service_id'
     ];
 
     public function patient()
