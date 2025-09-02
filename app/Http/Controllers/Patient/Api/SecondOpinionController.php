@@ -35,7 +35,7 @@ class SecondOpinionController extends Controller
                 'patient_id' => $request->patient_id,
                 'subject' => $request->subject,
                 'description' => $request->description,
-                'hasEstimate' => $request->hasEstimate,
+                'hasEstimate' => $request->hasEstimate ?? false,
                 'last_visit' => $request->last_visit,
                 'status' => 'pending',
                 'is_quick' => (bool) $request->is_quick,
