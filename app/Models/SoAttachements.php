@@ -24,7 +24,6 @@ class SoAttachements extends Model
         }
 
         // Example: Generate signed temporary URL for 1 hour
-        return Storage::  // or 'public', depending on your setup
-            url($this->path );
+        return Storage::disk('local')->url($this->path );
     }
 }
