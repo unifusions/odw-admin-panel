@@ -29,6 +29,7 @@ class SoAttachements extends Model
 
     public function getTemporaryUrlAttribute()
     {
+        
         return route('files.show', ['path' => $this->path]);
     }
 }
