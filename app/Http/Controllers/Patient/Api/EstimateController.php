@@ -15,7 +15,7 @@ class EstimateController extends Controller
      */
     public function index()
     {
-        $DentalCare = DentalCare::latest()->take(5)->get();
+        $DentalCare = DentalCare::paginate(25);
         return response()->json($DentalCare);
     }
 
