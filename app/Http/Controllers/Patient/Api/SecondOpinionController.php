@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Patient\Api;
 use App\Http\Controllers\Controller;
 use App\Models\SecondOpinion;
 use App\Models\SoAttachements;
+use App\Models\SoDentalCare;
 use Illuminate\Http\Request;
 
 class SecondOpinionController extends Controller
@@ -38,8 +39,17 @@ class SecondOpinionController extends Controller
                 'last_visit' => $request->last_visit,
                 'status' => 'pending',
                 'is_quick' => (bool) $request->is_quick,
-                'hasEstimate' => false,
+
             ]);
+
+            if (isset($request->dental_cares)) {
+                foreach ($request->dental_cares as $d) {
+                    SoDentalCare::create([
+                        'second_opinion_id' => $so->id,
+                        'dental_care' => $d
+                    ]);
+                }
+            }
 
             if ($request->hasFile('attachments')) {
 
@@ -50,7 +60,7 @@ class SecondOpinionController extends Controller
 
                     SoAttachements::create([
                         'second_opinion_id' => $so->id,
-                        
+
                         'path' => $path,
                         'file_name' => $file->getClientOriginalName(),
                         'size' => $file->getSize(),
