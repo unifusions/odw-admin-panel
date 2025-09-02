@@ -13,8 +13,16 @@ class EstimateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $query = DentalCare::query();
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('medical_name', 'like', "%{$search}%");
+        }
+
         $DentalCare = DentalCare::paginate(25);
         return response()->json($DentalCare);
     }
