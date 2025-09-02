@@ -42,12 +42,13 @@ class EstimateController extends Controller
             'is_quick' => $request->is_quick ?? false,
         ]);
 
-        foreach ($request->dentalcares as $d) {
-            EstimateService::create([
-                'estimate_id' => $estimation->id,
-                'dental_care_id' => $d
-            ]);
-        }
+        if (isset($request->dentalcares))
+            foreach ($request->dentalcares as $d) {
+                EstimateService::create([
+                    'estimate_id' => $estimation->id,
+                    'dental_care_id' => $d
+                ]);
+            }
         return response()->json(['success' => 'Estimation Requested']);
         // $category = json_decode( $request->category);
         // $dentalcares = json_decode($request->selectedItems);
