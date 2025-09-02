@@ -12,6 +12,8 @@ class ClinicDentist extends Pivot
 {
     use HasFactory;
 
+    protected $table = 'clinic_dentists';
+    
     protected $fillable = [
         'dentist_id', 'clinic_id', 'clinic_branch_id'
     ];
