@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
- 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,13 +17,18 @@ class SoAttachements extends Model
     ];
 
     protected $appends = ['temporary_url'];
+    // public function getTemporaryUrlAttribute()
+    // {
+    //     if (!$this->path) {
+    //         return null;
+    //     }
+
+    //     // Example: Generate signed temporary URL for 1 hour
+    //     return Storage::disk('local')->url($this->path);
+    // }
+
     public function getTemporaryUrlAttribute()
     {
-        if (!$this->path) {
-            return null;
-        }
-
-        // Example: Generate signed temporary URL for 1 hour
-        return Storage::disk('local')->url($this->path );
+        return route('files.show', ['path' => $this->path]);
     }
 }

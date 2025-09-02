@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DealsController;
 use App\Http\Controllers\Admin\DentistController;
 use App\Http\Controllers\Admin\EstimateController;
+use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SecondOpinionController;
@@ -62,6 +63,10 @@ Route::get('/dental-services', DentalServicesController::class);
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/files/{path}', [FilesController::class, 'show'])
+    ->where('path', '.*')
+    ->name('files.show');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
