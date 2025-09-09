@@ -23,7 +23,7 @@ class DentalCareController extends Controller
     {
 
         $category = DentalService::find($request->dental_service_id);
-        if ($category->services)
+        if ($category)
             return response()->json($category->services);
         return response()->json([]);
     }
