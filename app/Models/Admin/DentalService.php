@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Appointment;
+use App\Models\CareCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,6 +69,10 @@ class DentalService extends Model
 
         // OR if directly stored in /uploads
         // return url($this->header_image);
+    }
+
+    public function services() {
+        return $this->belongsToMany(DentalService::class,'care_categories')->using(CareCategory::class);
     }
 
     

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CareCategory extends Pivot
 {
     //
+    public $table='care_categories';
 
     public function cares(){
         return $this->belongsTo(DentalCare::class);
