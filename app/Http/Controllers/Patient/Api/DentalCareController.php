@@ -22,9 +22,13 @@ class DentalCareController extends Controller
     public function getServices(Request $request)
     {
 
-        $category = DentalService::find($request->dental_service_id);
-        if ($category)
-            return response()->json($category->services);
-        return response()->json([]);
+        $serviceId = $request->dental_service_id;
+
+        $dentalCares = DentalCare::whereHas('services', function ($query) use ($serviceId) {
+            $query->where('dental_service_id', $serviceId);
+        })->get();
+
+
+        return response()->json($dentalCares);
     }
 }
