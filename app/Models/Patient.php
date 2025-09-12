@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Patient extends Model
 {
-    protected $fillable =[
+    protected $fillable = [
         'user_id',
         'avatar',
         'first_name',
@@ -17,24 +18,40 @@ class Patient extends Model
         'phone_number',
         'sex'
     ];
- 
 
-    public function user(){
+
+    public $appends = ['avatar_url'];
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function insurances(){
+    public function insurances()
+    {
         return $this->hasMany(Insurance::class);
     }
 
-    public function appointments(){
+    public function appointments()
+    {
         return $this->hasMany(Appointment::class);
     }
 
-    public function emergencies(){
+    public function emergencies()
+    {
         return $this->hasMany(DentalEmergency::class);
     }
 
-    public function secondopinions(){
+    public function secondopinions()
+    {
         return $this->hasMany(SecondOpinion::class);
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        if (!$this->avatar) {
+            return null;
+        }
+
+
+        return Storage::disk('public')->url($this->avatar);
     }
 }
