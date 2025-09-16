@@ -233,7 +233,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
                                     <ul className="list-inline list-separator">
                                         <li className="list-inline-item">
-                                            V 0.6.91 - Beta
+                                            V 0.6.92 - Beta
                                            
                                         </li>
 

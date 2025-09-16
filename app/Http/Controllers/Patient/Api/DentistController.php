@@ -30,6 +30,6 @@ class DentistController extends Controller
     }
 
     public function alldentists(){
-        return Dentist::all();
+        return Dentist::with('clinics')->all();
     }
 }
