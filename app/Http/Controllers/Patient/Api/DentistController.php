@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinic;
+use App\Models\Admin\Dentist;
 use App\Models\ClinicDentist;
 use Illuminate\Http\Request;
 
@@ -26,5 +27,9 @@ class DentistController extends Controller
                 'dentist' => $ClinicDentist
             ];  
         });
+    }
+
+    public function alldentists(){
+        return Dentist::all();
     }
 }

@@ -61,6 +61,7 @@ Route::post('/add-insurance', [InsuranceController::class, 'store']);
 // APPOINTMENT DENTIST CONTROLLERS
 
 Route::get('/dentists-by-clinic', [DentistController::class, 'dentistsByClinic']);
+Route::get('/dentists', [DentistController::class, 'alldentists']);
 Route::get('/dentalcare', [EstimateController::class, 'index']);
 
 Route::post('/estimation', [EstimateController::class, 'store']);

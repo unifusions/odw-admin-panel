@@ -19,18 +19,14 @@ import PendingAppointments from './PendingAppointments';
 
 export default function Index({ appointments, pendingAppointments }) {
     const [currentDate, setCurrentDate] = useState(new Date());
-    const serviceColors = {
-        "Teeth Cleaning": "#4CAF50",  // Green
-        "Cavity Treatment": "#FF9800", // Orange
-        "Root Canal": "#E91E63", // Pink
-        "Braces Consultation": "#3F51B5", // Blue
-        "Teeth Whitening": "#9C27B0", // Purple
-        "Tooth Extraction": "#F44336" // Red
-    };
-
-    // useEffect(() => {
-    //     fetchAppointments(currentDate);
-    // }, [currentDate]);
+    // const serviceColors = {
+    //     "Teeth Cleaning": "#4CAF50",  // Green
+    //     "Cavity Treatment": "#FF9800", // Orange
+    //     "Root Canal": "#E91E63", // Pink
+    //     "Braces Consultation": "#3F51B5", // Blue
+    //     "Teeth Whitening": "#9C27B0", // Purple
+    //     "Tooth Extraction": "#F44336" // Red
+    // };
 
 
     const fetchAppointments = (date) => {
