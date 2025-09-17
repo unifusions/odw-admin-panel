@@ -54,7 +54,9 @@ class EstimateController extends Controller
                 'services'=>$estimate->services,
                 'patient' => $estimate->patient,
                 'user' => $estimate->patient?->user,
-                'insurances' => $estimate->patient?->insurances
+                'insurances' => $estimate->patient?->insurances,
+                'replied' => $estimate->replies ? true : false
+
             ]
         );
     }

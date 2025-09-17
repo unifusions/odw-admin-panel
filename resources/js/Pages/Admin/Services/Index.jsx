@@ -9,13 +9,10 @@ export default function Index() {
     const { services } = usePage().props
 
     return (
-        <AuthenticatedLayout header='Treatments'>
+        <AuthenticatedLayout header='Treatments' pageTitle="Treatments"
+            callToAction={<Link href={route('services.create')} className="btn btn-primary" >Add Treatment</Link>}>
 
-            <Head title="Treatments" />
-            <PageHeader>
-                <Link href={route('services.create')} className="btn btn-primary" >Add Treatment</Link>
 
-            </PageHeader>
 
             <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-wrap table-align-middle card-table"
@@ -35,7 +32,7 @@ export default function Index() {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
                                     <td > <div className="avatar ">
- 
+
                                         <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
                                         {/* <span className="avatar-initials">
                                                     {dentist.full_name.charAt(0)}

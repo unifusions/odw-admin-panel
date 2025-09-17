@@ -15,12 +15,8 @@ export default function Index() {
     const { delete: destroy } = useForm();
 
     return (
-        <AuthenticatedLayout header='Clinics'>
-            <Head title="Clinics" />
-            <PageHeader>
-                <Link href={route('clinics.create')} className="btn btn-primary">Add Clinic</Link>
-                {/* <AddClinic /> */}
-            </PageHeader>
+        <AuthenticatedLayout header='Clinics' pageTitle="All Clinics" callToAction={<Link href={route('clinics.create')} className="btn btn-primary">Add Clinic</Link>}>
+ 
 
             <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">

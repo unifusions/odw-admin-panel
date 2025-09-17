@@ -2,7 +2,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, useForm, usePage } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { useEffect, useState, useRef } from 'react';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -15,8 +15,9 @@ import GlobalSearchs from '@/Components/GlobalSearch';
 import GlobalSearch from '@/Components/GlobalSearch';
 import useInertiaLoading from '@/Helpers/useInertiaLoading';
 import LoadingDots from '@/Components/LoadingDots';
+import PageHeader from '@/Components/PageHeader';
 
-export default function AuthenticatedLayout({ header, children }) {
+export default function AuthenticatedLayout({ header, children, callToAction, pageTitle }) {
     const loading = useInertiaLoading();
     const user = usePage().props.auth.user;
     const flash = usePage().props.flash;
@@ -55,13 +56,13 @@ export default function AuthenticatedLayout({ header, children }) {
 
     return (
         <>
-
+            <Head title={pageTitle} />
 
             <div className="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
                 <header id="header" className="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
                     <div className="navbar-nav-wrap">
-                        <Link className="navbar-brand" href="#" aria-label="Front">
+                        <Link className="navbar-brand" href="/" aria-label="Front">
                             <img className="navbar-brand-logo" src="/images/odw-brand.png" alt="Logo" height={20} />
 
                         </Link>
@@ -212,7 +213,11 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         {/* </div> */}
                         {/* <div className="align-self-center align-content-center"><LoadingDots /></div> */}
-{loading ? <LoadingDots /> : children}
+                        {loading ? <LoadingDots /> : <>
+                            <PageHeader title={pageTitle}>
+                                {callToAction}
+                            </PageHeader>
+                            {children}</>}
 
                         {/* {children} */}
 
@@ -233,8 +238,8 @@ export default function AuthenticatedLayout({ header, children }) {
 
                                     <ul className="list-inline list-separator">
                                         <li className="list-inline-item">
-                                            V 0.6.92 - Beta
-                                           
+                                            V 0.7.0 - Beta
+
                                         </li>
 
                                         {/* <li className="list-inline-item">

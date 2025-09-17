@@ -7,13 +7,11 @@ import Pagination from "@/Components/Pagination";
 export default function Index({ users }) {
     return (
         <>
-            <AuthenticatedLayout header='Users'>
+            <AuthenticatedLayout header='Users' pageTitle={"All Users"} callToAction={<AddUser />}>
 
-                <Head title="Users" />
-                <PageHeader>
 
-                    <AddUser />
-                </PageHeader>
+
+
 
                 <div class="table-responsive datatable-custom">
                     <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
@@ -61,7 +59,7 @@ export default function Index({ users }) {
                                         <td>
                                             <span className="d-block h5 text-inherit mb-0">
                                                 {user.clinic && user.clinic.name}
-                                               
+
                                             </span>
                                         </td>
                                         <td>

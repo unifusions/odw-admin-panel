@@ -13,15 +13,15 @@ export default function Index() {
     return (
         < AuthenticatedLayout
             header='Dentists'
-
-        >
-            <PageHeader>
+            callToAction={
                 <Link className="btn btn-primary" href={route('dentists.create')} >
 
                     <DentistIcon />
                     Add Dentist
                 </Link>
-            </PageHeader>
+            }
+        >
+            
             <Head title="Dentists" />
 
             <div class="table-responsive datatable-custom">

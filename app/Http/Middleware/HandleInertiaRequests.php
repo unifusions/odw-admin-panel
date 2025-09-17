@@ -55,6 +55,7 @@ class HandleInertiaRequests extends Middleware
         $secondopinion = request()->route('second_opinion');
         $service = request()->route('service');
         $dentist = request()->route('dentist');
+        $patient = request()->route('patient');
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
@@ -207,8 +208,38 @@ class HandleInertiaRequests extends Middleware
             'deals.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Deals', 'url' => route('deals.index')]
-            ]
+            ],
 
+            // PATIENTS
+
+            'patients.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Patients',  'url' => route('patients.index')]
+            ],
+            'patients.create' => [
+                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Patients', 'url' => route('patients.index')],
+                ['name' => 'Create', 'url' => route('patients.create')]
+            ],
+
+            'patients.show' => [
+                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Patients', 'url' => route('patients.index')],
+                ['name' => optional($patient)->last_name ?? 'Patient', 'url' => $patient ? route('patients.edit', $patient) : '#'],
+                
+            ],
+            'patients.edit' => [
+                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Patients', 'url' => route('patients.index')],
+                ['name' => optional($patient)->last_name ?? 'Patient', 'url' => $patient ? route('patients.edit', $patient) : '#'],
+                
+            ],
+            // SETTINGS
+
+            'admin.settings.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Settings',  'url' =>'']
+            ]
         ];
 
         return $breadcrumbs[$routeName] ?? [];

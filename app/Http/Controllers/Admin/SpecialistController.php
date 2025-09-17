@@ -65,7 +65,13 @@ class SpecialistController extends Controller
             'practise_from' => $request->practise_from,
             'phone' => $request->phone,
             'email' => $request->email,
-            'photo' => $photo ?? ''
+            'photo' => $photo ?? '',
+
+            'about' => $request->about,
+            'no_of_patients' => $request->no_of_patients,
+            'no_of_reviews' => $request->no_of_reviews,
+            'rating' => $request->rating,
+
         ]);
 
         $clinicIds = collect($request->clinics)->map(function ($item) {
@@ -148,6 +154,15 @@ class SpecialistController extends Controller
         $specialist->phone =  $inputs['phone'] ?? $specialist->phone;
         $specialist->email =  $inputs['email'] ?? $specialist->email;
         $specialist->photo =  $inputs['photo'] ?? $specialist->photo;
+
+
+        
+        $specialist->about =  $inputs['about'] ?? $specialist->about;
+        $specialist->no_of_patients =  $inputs['no_of_patients'] ?? $specialist->no_of_patients;
+        $specialist->no_of_reviews =  $inputs['no_of_reviews'] ?? $specialist->no_of_reviews;
+        $specialist->rating =  $inputs['rating'] ?? $specialist->rating;
+
+
 
         if ($request->hasFile('photo'))
             $specialist->photo = $request->file('photo')->store('uploads/specialists', 'public');

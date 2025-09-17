@@ -4,46 +4,43 @@ import AddDeal from "./AddDeal";
 import Lightbox from "@/Components/Lightbox";
 import { useState } from "react";
 import PageHeader from "@/Components/PageHeader";
+import Pagination from "@/Components/Pagination";
 
 export default function Index() {
 
   const [lightboxSrc, setLightboxSrc] = useState(null);
 
-  const EditButtonGroup = () => {
+  const EditButtonGroup = ({ deal }) => {
     return (
-      <div class="btn-group" role="group">
-        <a class="btn btn-white btn-sm" href="#!">
-          <i class="bi-pencil-fill me-1"></i> Edit
-        </a>
 
 
-        <div class="btn-group">
-          <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="productsEditDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+      <Link href={route('deals.edit', deal)} className="btn btn-white btn-sm">
+        <i class="bi-pencil-fill me-1"></i> Edit
+      </Link>
 
-          <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="productsEditDropdown1">
-            <a class="dropdown-item" href="#">
-              <i class="bi-trash dropdown-item-icon"></i> Delete
-            </a>
+      //   <div class="btn-group">
+      //     <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="productsEditDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
 
-          </div>
-        </div>
+      //     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="productsEditDropdown1">
+      //       <a class="dropdown-item" href="#">
+      //         <i class="bi-trash dropdown-item-icon"></i> Delete
+      //       </a>
 
-      </div>
+      //     </div>
+      //   </div>
+
+      // </div>
     )
   }
   const { deals } = usePage().props;
   return (
-    <AuthenticatedLayout header='Deals'>
-      <Head title="Deals" />
-
-      <PageHeader>
-
-        <Link href={route('deals.create')}  className="btn btn-primary">Add Deal</Link>
-      </PageHeader>
+    <AuthenticatedLayout header='Deals' pageTitle="All Deals"
+      callToAction={<Link href={route('deals.create')} className="btn btn-primary">Add Deal</Link>}>
 
 
 
-{/* 
+
+      {/* 
       <div className="js-nav-scroller hs-nav-scroller-horizontal">
 
 
@@ -103,14 +100,14 @@ export default function Index() {
               {deals && deals.data.map((deal) =>
                 <tr>
                   <td>
-                    <img className="avatar cursor-pointer" src={deal.image} onClick={() => setLightboxSrc(deal.image)} />
+                    <img className="avatar cursor-pointer" src={deal.image_url} onClick={() => setLightboxSrc(deal.image_url)} />
                   </td>
                   <td>{deal.title}</td>
                   <td>{deal.description}</td>
                   <td>{deal.start_date}</td>
                   <td>{deal.end_date}</td>
                   <td>{deal.is_active}</td>
-                  <td><EditButtonGroup /></td>
+                  <td><EditButtonGroup deal={deal} /></td>
                 </tr>
               )}
 
@@ -128,10 +125,10 @@ export default function Index() {
 
         <div class="card-footer">
 
-
+          <Pagination links={deals.links} />
         </div>
 
-</div>
+      </div>
 
     </AuthenticatedLayout>
   )

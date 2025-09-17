@@ -49,6 +49,7 @@ class EstimateController extends Controller
             'description' => $request->description,
             'insurance_id' => $request->insurance_id,
             'is_quick' => $request->is_quick ?? false,
+            'status' => 'pending'
         ]);
 
         if (isset($request->dentalcares))

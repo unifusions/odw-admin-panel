@@ -3,6 +3,7 @@ import { Column, DisplayFlex, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import PageHeader from "@/Components/PageHeader";
 import ServiceImageUploader from "@/Components/ServiceImageUploader";
+import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router, useForm, usePage } from "@inertiajs/react";
@@ -20,7 +21,11 @@ export default function Edit() {
         clinics: selectedClinics || [],
 
         services: selectedServices || [],
-        photo: dentist.photo || ''
+        photo: dentist.photo || '',
+        about: dentist.about || '',
+        no_of_patients: dentist.no_of_patients || '',
+        no_of_reviews: dentist.no_of_reviews || '',
+        rating: dentist.rating || ''
 
     });
 
@@ -48,18 +53,17 @@ export default function Edit() {
             forceFormData: true,
             // onFinish: {() => closeModal}
         });
-        
+
     }
 
 
     return (
-        <AuthenticatedLayout>
-            <Head title="Dentists" />
-            <PageHeader />
-            <DisplayFlex className="mb-3 justify-content-between">
-                <h1 className="page-header-title">Edit Dentists</h1>
+        <AuthenticatedLayout
+            header="Dentists"
+            pageTitle={dentist.name}
+        >
 
-            </DisplayFlex>
+
 
 
 
@@ -175,6 +179,78 @@ export default function Edit() {
 
 
 
+
+
+
+                        </Card>
+
+
+                        <Card>
+                            <div className="row mb-4">
+                                <label for="desc" className="col-sm-3 col-form-label form-label">About
+                                </label>
+
+                                <div className="col-sm-9">
+
+
+                                    <TextArea
+                                        name="about"
+                                        style={{ fieldSizing: 'content' }}
+                                        value={data.about}
+                                        onChange={(e) => setData('about', e.target.value)}
+                                    />
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+                            <TextInputWithLabel
+                                id="no_of_patients"
+                                type="number"
+                                value={data.no_of_patients}
+                                placeholder="eg., 5000"
+                                onChange={(e) => setData('no_of_patients', e.target.value)}
+                                label="Patients Attended"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+
+                            <TextInputWithLabel
+                                id="no_of_reviews"
+                                type="number"
+                                value={data.no_of_reviews}
+                                placeholder="eg., 5000"
+                                onChange={(e) => setData('no_of_reviews', e.target.value)}
+                                label="Reviews"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+
+                            <TextInputWithLabel
+                                id="rating"
+                                type="number"
+                                value={data.rating}
+                                placeholder="eg., 1 - 5"
+                                onChange={(e) => setData('rating', e.target.value)}
+                                label="Rating"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+
+
+
+
+
                             <div className="text-end">
 
                                 <button type="submit" className="btn btn-primary">Save Dentist</button>
@@ -183,6 +259,7 @@ export default function Edit() {
 
 
                         </Card>
+
                     </Column>
                 </Row>
             </form>

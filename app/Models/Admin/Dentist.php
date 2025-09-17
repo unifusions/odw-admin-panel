@@ -19,7 +19,12 @@ class Dentist extends Model
         'practise_from',
         'phone',
         'email',
-        'photo'
+        'photo',
+
+        'about',
+        'no_of_patients',
+        'no_of_reviews',
+        'rating'
     ];
     public $appends = ['photo_url'];
 

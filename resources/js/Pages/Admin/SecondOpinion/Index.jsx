@@ -11,10 +11,10 @@ export default function SecondOpinion() {
     return (
         < AuthenticatedLayout
             header='Second Opinion'
+            pageTitle="All Second Opinions"
 
-        >
-            <Head title="2nd Opinion" />
-            <PageHeader />
+        > 
+          
             <div className="table-responsive datatable-custom">
                 <table className="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                     <thead className="thead-light">

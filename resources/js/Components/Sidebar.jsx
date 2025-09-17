@@ -48,6 +48,12 @@ const Sidebar = () => {
                         { name: 'Deals', path: '/admin/deals', icon: 'bi-tag nav-icon', svgIcon: '' },
                         // { name: 'Specialists', path: '/admin/dashboard', icon: '', svgIcon : '' },
                     ]
+            },
+            {
+                section : 'Settings',
+                links: [
+                    {name:'App Settings', path: '/admin/settings/mobile', icon: 'bi-sliders', svgIcon :''}
+                ]
             }
 
         ],

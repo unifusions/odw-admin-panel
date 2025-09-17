@@ -56,7 +56,7 @@ class SecondOpinionController extends Controller
                 foreach ($request->file('attachments') as $file) {
                     // $filename =  $file->getClientOriginalName();
 
-                    $path = $file->store('uploads');
+                    $path = $file->store("uploads/second_opinions/{$so->id}/attachments");
 
                     SoAttachements::create([
                         'second_opinion_id' => $so->id,

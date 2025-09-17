@@ -2,48 +2,43 @@ import Card from "@/Components/Card";
 import { Column, DisplayFlex, PageHeaderTitle, Row, AttachmentView } from "@/Components/Components";
 import PageHeader from "@/Components/PageHeader";
 import PatientInfo from "@/Components/PatientInfo";
- 
+
 import SingleHeader from "@/Components/SingleHeader";
 import { InfoRow } from "@/Helpers/Common";
- 
+
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import MarkAsReview from "./MarkAsReview";
 import MarkAsClosed from "./MarkAsClosed";
+import GiveOpinion from "./GiveOpinion";
 
 export default function Show() {
-    const { secondopinion } = usePage().props;
+    const { secondopinion, replied } = usePage().props;
     const patient = secondopinion.patient;
     const category = secondopinion.category;
 
     const attachs = secondopinion.attachments || [];
 
     return (
-        <AuthenticatedLayout header='Second Opinion'>
-            <Head title={`Second Opinion : ${secondopinion.id}`} />
-            <PageHeader />
-            <DisplayFlex className="mb-3 justify-content-between">
-                <DisplayFlex className="justify-content-between">
-                    <SingleHeader
-                        title={`SO #${secondopinion.id} | ${secondopinion.subject}`}
-                        status={secondopinion.status}
-                        timestamp={secondopinion.created_at}
-                    />
-                </DisplayFlex>
-
-
-
-
-
+        <AuthenticatedLayout header='Second Opinion'
+        
+            pageTitle={<SingleHeader
+                title={`SO #${secondopinion.id} | ${secondopinion.subject}`}
+                status={secondopinion.status}
+                timestamp={secondopinion.created_at}
+            />}
+            callToAction={
                 <div>
-                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion.status == "in_review" || secondopinion.status == "closed") && true} />
+                    <GiveOpinion so={secondopinion} isDisabled={replied} />
+                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion.status == "in_review" || secondopinion.status == "closed" || replied) && true} />
 
 
                     <MarkAsClosed so={secondopinion} isDisabled={secondopinion.status == "closed" && true} />
 
-                </div>
+                </div>}
+        >
+            <Head title={`Second Opinion : ${secondopinion.id}`} />
 
-            </DisplayFlex>
 
             <Row>
                 <Column lg={8} >

@@ -1,5 +1,6 @@
 import PageHeader from "@/Components/PageHeader";
 import Pagination from "@/Components/Pagination";
+import SOBadge from "@/Components/SOBadge";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 
@@ -10,11 +11,11 @@ export default function Index() {
     return (
         <AuthenticatedLayout
             header='Estimates'
+            pageTitle="All Estimates"
         >
-            <Head title="Estimates" />
-            <PageHeader> </PageHeader>
+
             <div class="table-responsive  ">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+                <table class="  table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                 >
 
                     <thead class="thead-light">
@@ -43,18 +44,18 @@ export default function Index() {
                                     </div>
                                 </div>
                             </td>
-                            <td>  <span class="d-block h5 mb-0">{estimate.dentalservice?.name }</span></td>
+                            <td>  <span class="d-block h5 mb-0">{estimate.dentalservice?.name}</span></td>
                             <td>{estimate.description ?? ''}</td>
-                            <td>{estimate.status ?? ''}</td>
+                            <td> <SOBadge status={estimate.status} /> </td>
                             <td className="text-end">
-                                <Link className="btn btn-outline-primary btn-sm me-3" href={route('estimates.show', estimate)} >
+                                <Link className="btn btn-outline-primary btn-sm " href={route('estimates.show', estimate)} >
                                     <i className="bi-eye"></i> View
                                 </Link>
 
-                                <button className="btn btn-outline-danger btn-sm"
+                                {/* <button className="btn btn-outline-danger btn-sm"
                                 > <i className="bi-trash"></i> Mark as Closed
 
-                                </button>
+                                </button> */}
 
                                 <div className="btn-group" role="group">
 

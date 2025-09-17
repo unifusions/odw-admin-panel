@@ -50,7 +50,7 @@ class SecondOpinionController extends Controller
             'Admin/SecondOpinion/Show',
             [
                 'secondopinion' => $second_opinion->load(['patient.user', 'attachments']),
-
+                'replied' => $second_opinion->replies ? true : false
 
             ]
         );

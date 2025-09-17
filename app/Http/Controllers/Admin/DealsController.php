@@ -16,15 +16,11 @@ class DealsController extends Controller
     public function index()
     {
 
-      
+
 
         return Inertia::render(
             'Admin/Deals/Index',
-            ['deals' => Deal::orderBy('end_date')->paginate(25)->through(function ($deal) {
-                    if ($deal->image)
-                        $deal->image = Storage::disk('public')->url($deal->image);
-                    return $deal;
-                })]
+            ['deals' => Deal::orderBy('end_date')->paginate(25)]
         );
     }
 
@@ -33,7 +29,7 @@ class DealsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Deals/Create' );
+        return Inertia::render('Admin/Deals/Create');
     }
 
     /**
@@ -68,9 +64,9 @@ class DealsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Deal $deal)
     {
-        //
+        return Inertia::render('Admin/Deals/Edit', ['deal' => $deal]);
     }
 
     /**
@@ -88,6 +84,5 @@ class DealsController extends Controller
     {
         $deal->delete();
         return redirect()->route('deals.index')->with(['message' => 'Deal was deleted']);
-
     }
 }

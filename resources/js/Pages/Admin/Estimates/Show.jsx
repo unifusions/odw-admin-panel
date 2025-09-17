@@ -7,21 +7,13 @@ import { Head, usePage } from "@inertiajs/react";
 import Respond from "./Respond";
 import PageHeader from "@/Components/PageHeader";
 import { AttachmentView } from "@/Components/Components";
+import GiveEstimate from "./GiveEstimate";
 
 export default function Show() {
-    const { estimate, patient, category, services } = usePage().props;
+    const { estimate, patient, category, services, replied } = usePage().props;
     // const patient = estimate.patient;
 
-    const attachs = [
-        {
-            id: '1',
-            file_name: 'adfadf'
-        },
-        {
-            id: '2',
-            file_name: 'deqw'
-        }
-    ];
+   
     const RenderServices = ({ service }) => {
         return (
             <>
@@ -48,7 +40,7 @@ export default function Show() {
         )
     }
 
-     
+
     return (
         <AuthenticatedLayout header={`Estimate : ${estimate.id}`}>
             <Head title={`Estimate : ${estimate.id}`} />
@@ -64,7 +56,8 @@ export default function Show() {
                 </div>
 
                 <div>
-                    <button className="btn btn-outline-success">Mark As Closed</button>
+                    <GiveEstimate estimate={estimate} isDisabled={replied}  />
+                    {/* <button className="btn btn-success">Mark As Closed</button> */}
 
                 </div>
 

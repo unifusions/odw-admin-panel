@@ -21,6 +21,12 @@ class Patient extends Model
 
 
     public $appends = ['avatar_url'];
+
+    public $casts = [
+        'created_at' => 'datetime:m/d/Y H:i',
+        'updated_at' => 'datetime:m/d/Y H:i',
+        'deleted_at' => 'datetime:m/d/Y H:i'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -43,6 +49,11 @@ class Patient extends Model
     public function secondopinions()
     {
         return $this->hasMany(SecondOpinion::class);
+    }
+
+    public function estimates()
+    {
+        return $this->hasMany(Estimate::class);
     }
 
     public function getAvatarUrlAttribute()

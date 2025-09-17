@@ -2,7 +2,7 @@
 
 export const Row = ({ className, children }) => {
     return (
-        <div className="row">
+        <div className={`row ${className}`}>
             {children}
         </div>
     )

@@ -3,6 +3,7 @@ import { Column, DisplayFlex, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import PageHeader from "@/Components/PageHeader";
 import ServiceImageUploader from "@/Components/ServiceImageUploader";
+import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
@@ -18,7 +19,10 @@ export default function Create() {
         clinics: [],
 
         services: [],
-
+        about: '',
+        no_of_patients: '',
+        no_of_reviews: '',
+        rating: ''
     });
 
     const onClinicSelect = (selectedOptions) => {
@@ -41,13 +45,10 @@ export default function Create() {
 
 
     return (
-        <AuthenticatedLayout>
-            <Head title="Dentists" />
-            <PageHeader />
-            <DisplayFlex className="mb-3 justify-content-between">
-                <h1 className="page-header-title">Add New Dentists</h1>
+        <AuthenticatedLayout
+            header="Dentists"
+            pageTitle="Add New Dentist">
 
-            </DisplayFlex>
 
             <form onSubmit={onsubmit} >
                 <Row>
@@ -141,14 +142,84 @@ export default function Create() {
 
 
 
+
+                        </Card>
+
+                        <Card>
+                            <div className="row mb-4">
+                                <label for="desc" className="col-sm-3 col-form-label form-label">About
+                                </label>
+
+                                <div className="col-sm-9">
+
+
+                                    <TextArea
+                                        name="about"
+                                        style={{ fieldSizing: 'content' }}
+                                        value={data.about}
+                                        onChange={(e) => setData('about', e.target.value)}
+                                    />
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+                            <TextInputWithLabel
+                                id="no_of_patients"
+                                type="number"
+                                value={data.no_of_patients}
+                                placeholder="eg., 5000"
+                                onChange={(e) => setData('no_of_patients', e.target.value)}
+                                label="Patients Attended"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+
+                            <TextInputWithLabel
+                                id="no_of_reviews"
+                                type="number"
+                                value={data.no_of_reviews}
+                                placeholder="eg., 5000"
+                                onChange={(e) => setData('no_of_reviews', e.target.value)}
+                                label="Reviews"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+
+                            <TextInputWithLabel
+                                id="rating"
+                                type="number"
+                                value={data.rating}
+                                placeholder="eg., 1 - 5"
+                                onChange={(e) => setData('rating', e.target.value)}
+                                label="Rating"
+                                className=" mb-4"
+                                isSingleRow={true}
+                            />
+
+
+
+
+
+
+
                             <div className="text-end">
-                                {/* <button type="button" className="btn btn-white me-3" onClick={closeModal}>Close</button> */}
+
                                 <button type="submit" className="btn btn-primary">Save Dentist</button>
 
                             </div>
 
 
                         </Card>
+
                     </Column>
                 </Row>
             </form>

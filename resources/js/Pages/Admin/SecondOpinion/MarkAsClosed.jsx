@@ -21,7 +21,7 @@ export default function MarkAsClosed({ so, isDisabled }) {
 
     return (
         // <form action="" onSubmit={onsubmit} className="">
-        <button className="btn btn-outline-success" disabled={isDisabled} type="submit" onClick={onsubmit}>{processing ? <Spinner currentColor="success" /> : 'Mark As  Closed'} </button>
+        <button className="btn btn-success" disabled={isDisabled} type="submit" onClick={onsubmit}>{processing ? <Spinner currentColor="success" /> : 'Mark As  Closed'} </button>
 
         // </form>
     )

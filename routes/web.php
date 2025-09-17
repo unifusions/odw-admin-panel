@@ -14,11 +14,14 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DealsController;
 use App\Http\Controllers\Admin\DentistController;
 use App\Http\Controllers\Admin\EstimateController;
+use App\Http\Controllers\Admin\EstimateReplyController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SecondOpinionController;
+use App\Http\Controllers\Admin\SecondOpinionReplyController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CitiesController;
@@ -80,8 +83,11 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
     Route::resource('second-opinion', SecondOpinionController::class);
+
+    Route::resource('second-opinion.replies', SecondOpinionReplyController::class)->only(['store']);
     Route::post('second-opinion/{second_opinion}/status', [SecondOpinionController::class, 'updateStatus'])->name('second-opinion.status');
     Route::resource('estimates', EstimateController::class);
+    Route::resource('estimates.replies', EstimateReplyController::class)->only('store');
     Route::resource('compare-costs', CompareCostController::class);
     Route::resource('patients', PatientsController::class);
 
@@ -107,6 +113,10 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 
     Route::resource('deals', DealsController::class);
 
+    Route::prefix('settings')->group(function () {
+        Route::get('/{group}', [SettingsController::class, 'index'])->name('admin.settings.index');
+        Route::put('/{group}', [SettingsController::class, 'update'])->name('admin.settings.update');
+    });
     // SEARCH
 
     Route::get("/search", SearchController::class)->name('search');

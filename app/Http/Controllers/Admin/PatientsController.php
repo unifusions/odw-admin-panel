@@ -39,9 +39,10 @@ class PatientsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Patient $patient)
     {
-        return Inertia::render('Admin/Patients/PatientProfile');
+        $patient->load('user', 'appointments', 'estimates', 'secondopinions');
+        return Inertia::render('Admin/Patients/Show', ['patient' => $patient]);
     }
 
     /**
@@ -49,7 +50,7 @@ class PatientsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return Inertia::render('Admin/Patients/PatientProfile');
     }
 
     /**

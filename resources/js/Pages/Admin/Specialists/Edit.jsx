@@ -3,6 +3,7 @@ import { Column, DisplayFlex, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import PageHeader from "@/Components/PageHeader";
 import ServiceImageUploader from "@/Components/ServiceImageUploader";
+import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router, useForm, usePage } from "@inertiajs/react";
@@ -17,7 +18,13 @@ export default function Edit() {
         email: specialist.email || '',
         clinics: selectedClinic || [],
         services: selectedServices || [],
-        photo : specialist.photo || ''
+        photo: specialist.photo || '',
+
+        about: specialist.about || '',
+        no_of_patients: specialist.no_of_patients || '',
+        no_of_reviews: specialist.no_of_reviews || '',
+        rating: specialist.rating || ''
+
 
     });
 
@@ -69,7 +76,7 @@ export default function Edit() {
 
 
 
-                                        <ServiceImageUploader onFileSelect={(file) => setData('photo', file)} existingImage={specialist.photo_url}/>
+                                        <ServiceImageUploader onFileSelect={(file) => setData('photo', file)} existingImage={specialist.photo_url} />
 
                                     </li>
 
@@ -124,7 +131,9 @@ export default function Edit() {
                                     label="Email"
                                 />
 
-                            </Card>                            <Card title="Clinic & Services">
+                            </Card>
+
+                            <Card title="Clinic & Services">
 
                                 <div className="row mb-4">
                                     <InputLabel htmlFor="clinicSelect" className="col-sm-3 col-form-label form-label" value="Clinic" />
@@ -148,11 +157,87 @@ export default function Edit() {
                                     </div>
                                 </div>
                             </Card>
+
+                            <Card>
+                                <div className="row mb-4">
+                                    <label for="desc" className="col-sm-3 col-form-label form-label">About
+                                    </label>
+
+                                    <div className="col-sm-9">
+
+
+                                        <TextArea
+                                            name="about"
+                                            style={{ fieldSizing: 'content' }}
+                                            value={data.about}
+                                            onChange={(e) => setData('about', e.target.value)}
+                                        />
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <TextInputWithLabel
+                                    id="no_of_patients"
+                                    type="number"
+                                    value={data.no_of_patients}
+                                    placeholder="eg., 5000"
+                                    onChange={(e) => setData('no_of_patients', e.target.value)}
+                                    label="Patients Attended"
+                                    className=" mb-4"
+                                    isSingleRow={true}
+                                />
+
+
+
+                                <TextInputWithLabel
+                                    id="no_of_reviews"
+                                    type="number"
+                                    value={data.no_of_reviews}
+                                    placeholder="eg., 5000"
+                                    onChange={(e) => setData('no_of_reviews', e.target.value)}
+                                    label="Reviews"
+                                    className=" mb-4"
+                                    isSingleRow={true}
+                                />
+
+
+
+                                <TextInputWithLabel
+                                    id="rating"
+                                    type="number"
+                                    value={data.rating}
+                                    placeholder="eg., 1 - 5"
+                                    onChange={(e) => setData('rating', e.target.value)}
+                                    label="Rating"
+                                    className=" mb-4"
+                                    isSingleRow={true}
+                                />
+
+
+
+
+
+
+
+                                <div className="text-end">
+
+                                <button className="btn btn-primary">Save Specialist</button>
+
+                                </div>
+
+
+                            </Card>
+
                         </Column>
 
-                        <Column lg={12}>
-                            <button className="btn btn-primary">Save Specialist</button>
-                        </Column>
+
+
+ 
                     </Row>
 
 

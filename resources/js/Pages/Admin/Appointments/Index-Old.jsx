@@ -1,0 +1,232 @@
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+
+import { Head, router } from '@inertiajs/react';
+
+
+
+import { useState, useEffect, useRef } from 'react';
+
+
+import "@fullcalendar/bootstrap5"; // FullCalendar Bootstrap 5 plugin
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+import Breadcrumbs from '@/Components/Breadcrumbs';
+import PendingAppointments from './PendingAppointments';
+
+
+export default function Index({ appointments, pendingAppointments }) {
+
+    const lastFetched = useRef(null);
+
+
+    const [currentMonth, setCurrentMonth] = useState(null);
+    // const serviceColors = {
+    //     "Teeth Cleaning": "#4CAF50",  // Green
+    //     "Cavity Treatment": "#FF9800", // Orange
+    //     "Root Canal": "#E91E63", // Pink
+    //     "Braces Consultation": "#3F51B5", // Blue
+    //     "Teeth Whitening": "#9C27B0", // Purple
+    //     "Tooth Extraction": "#F44336" // Red
+    // };
+
+
+    const fetchAppointments = (date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Ensure 2-digit format
+
+        router.get(route('appointments.index'), { year: year, month: month }, {
+
+            only: ['appointments'],
+            preserveScroll: true,
+            preserveState: true,
+            replace: true,
+        })
+
+
+    };
+
+    // const handleDatesSet = (info) => {
+    //     // const newDate = info.view.currentStart;
+    //     // setCurrentDate(newDate);
+    //     // fetchAppointments(newDate);
+
+    //     // const newDate = info.view.currentStart;
+
+    //     // prevent unnecessary reload if still same month
+    //     const newDate = info.view.currentStart;
+
+    //     const sameMonth =
+    //         currentDate.getFullYear() === newDate.getFullYear() &&
+    //         currentDate.getMonth() === newDate.getMonth();
+
+    //     if (!sameMonth) {
+    //         setCurrentDate(newDate);
+    //         fetchAppointments(newDate);
+    //     }
+    // };
+
+    useEffect(() => {
+        if (!currentMonth || lastFetched.current === currentMonth) return;
+
+        lastFetched.current = currentMonth;
+        const [year, month] = currentMonth.split("-");
+
+        router.get(route('appointments.index'), { year, month }, {
+            only: ['appointments'],
+            preserveScroll: true,
+            preserveState: true,
+            replace: true,
+        });
+    }, [currentMonth]);
+
+    const handleDatesSet = (info) => {
+        const newDate = info.view.currentStart; // always first day of visible month
+        const year = newDate.getFullYear();
+        const month = (newDate.getMonth() + 1).toString().padStart(2, "0");
+        const ym = `${year}-${month}`;
+
+        // ✅ update state only if changed
+        if (currentMonth !== ym) {
+            setCurrentMonth(ym);
+        }
+    };
+    const renderEventContent = (eventInfo) => {
+        const { extendedProps, title, backgroundColor, start, end } = eventInfo.event;
+        const { location, services } = extendedProps;
+        const bgColor = backgroundColor + '10';
+        const startTime = new Date(start).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+        const endTime = new Date(end).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+
+        return (
+            <div className="custom-event text-truncate" style={{
+
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+            }}>
+                <div className="d-flex align-items-top">
+
+                    <div>
+                        <div>{title}</div>
+
+                        <div className='text-muted mb-3 fs-10'>
+                            {startTime}
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        );
+    };
+
+    const [selectedEvent, setSelectedEvent] = useState(null);
+
+    const handleEventClick = (clickInfo) => {
+        setSelectedEvent({
+            title: clickInfo.event.title,
+            start: clickInfo.event.start.toLocaleString(),
+            end: clickInfo.event.end ? clickInfo.event.end.toLocaleString() : "N/A",
+        });
+
+        // Show the Bootstrap modal
+        const eventModal = new window.bootstrap.Modal(document.getElementById("eventModal"));
+        eventModal.show();
+    };
+
+    const handleDateSelect = (selectInfo) => {
+        const title = prompt('Enter a title for this event');
+        const calendarApi = selectInfo.view.calendar;
+
+        calendarApi.unselect(); // Clear selection
+
+        if (title) {
+            const newEvent = {
+                title,
+                start: selectInfo.startStr,
+                end: selectInfo.endStr,
+                allDay: selectInfo.allDay,
+            };
+
+            // axios.post('/calendar', newEvent)
+            //     .then((response) => {
+            //         setCalendarEvents([...calendarEvents, response.data]);
+            //     });
+        }
+    };
+
+    return (
+        <AuthenticatedLayout
+            header='Appointments'
+
+        >
+            <Head title="Appointments" />
+            <Breadcrumbs />
+
+            {pendingAppointments > 0 && <PendingAppointments pendingEvents={pendingAppointments} />
+
+            }
+
+            <FullCalendar
+                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                initialView="dayGridMonth"
+
+                selectable={false}
+                events={appointments}
+                select={handleDateSelect}
+                // contentClassNames="fullcalendar-custom"
+
+                dayHeaderClassNames="fullcalendar-custom"   // for header cells
+                eventClassNames="fullcalendar-custom"       // for events
+                slotLabelClassNames="fullcalendar-custom"   // for time slots
+
+                eventClick={handleEventClick}
+                eventContent={renderEventContent}
+                themeSystem="bootstrap5"
+                // initialDate={new Date()} // Set today's date as starting point
+                headerToolbar={{
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'prev,next dayGridMonth,timeGridWeek,timeGridDay,today'
+                }}
+                slotMinTime="00:00:00" // Start time for day view
+                slotMaxTime="23:50:00" // End time for day view
+                datesSet={handleDatesSet}
+
+
+
+            />
+
+            <div className="modal fade" id="eventModal" tabIndex="-1" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">{selectedEvent?.title}</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <p>
+                                <strong>Start:</strong> {selectedEvent?.start}
+                            </p>
+                            <p>
+                                <strong>End:</strong> {selectedEvent?.end}
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </AuthenticatedLayout>
+    );
+}

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\SoReply;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,10 +35,15 @@ class SecondOpinion extends Model
       return $this->hasMany(SoDentalCare::class);
    }
 
-    
+
 
    public function attachments()
    {
       return $this->hasMany(SoAttachements::class);
+   }
+
+   public function replies()
+   {
+      return $this->hasOne(SoReply::class);
    }
 }

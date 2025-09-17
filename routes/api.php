@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Patient\Api\AllDentalServices;
 use App\Http\Controllers\Patient\Api\AppointmentController;
 use App\Http\Controllers\Patient\Api\DentalCareController;
@@ -24,6 +25,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+
+Route::get('/app-settings', [SettingsController::class, 'settingsApi']);
 // Route::get('/clinics', ClinicController::class);
 
 

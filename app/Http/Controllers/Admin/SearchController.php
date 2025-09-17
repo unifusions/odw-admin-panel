@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
+use App\Models\Admin\Specialist;
 use App\Models\DentalCare;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -44,9 +46,22 @@ class SearchController extends Controller
                 return [
                     'id'    => $dentist->id,
                     'name'  => $dentist->name,
-                    'photo' => $dentist->photo ? Storage::disk('public')->url($dentist->photo) : false,
+                    'photo' => $dentist->photo_url,
                     'type'  => 'Dentists',
                     'route' => route('dentists.edit', $dentist),
+                ];
+            });
+
+        $specialists = Specialist::where('name', 'like', "%{$query}%")
+            ->limit(5)
+            ->get()
+            ->map(function ($specialist) {
+                return [
+                    'id'    => $specialist->id,
+                    'name'  => $specialist->name,
+                    'photo' => $specialist->photo_url,
+                    'type'  => 'Dentists',
+                    'route' => route('dentists.edit', $specialist),
                 ];
             });
 
@@ -72,13 +87,29 @@ class SearchController extends Controller
                 ];
             });
 
+        $patients = Patient::where('first_name', 'like', "%{$query}%")
+            ->orWhere('last_name', 'like', "%{$query}%")
+            ->orWhere('phone_number', 'like', "%{$query}")->limit(5)->get()->map(function ($patient) {
+                return [
+                    'id' => $patient->id,
+                    'name' => $patient->last_name . ", " . $patient->first_name,
+                    'photo' => $patient->avatar_url,
+                    'route' => route('patients.show', $patient)
+
+                ];
+            });
+
         $results = [
             'clinics'  => $clinics->values()->toArray(),
             'dentists' => $dentists->values()->toArray(),
             'treatments' => $treatments->values()->toArray(),
-            'services' => $dentalcares->values()->toArray()
-            
+            'services' => $dentalcares->values()->toArray(),
+            'specialists' => $specialists->values()->toArray(),
+            'patients' => $patients->values()->toArray()
+
         ];
+
+
 
         return response()->json($results);
     }

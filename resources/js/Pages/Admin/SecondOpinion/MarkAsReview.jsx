@@ -22,7 +22,7 @@ export default function MarkAsReview({ so, isDisabled }) {
 
     return (
         // <form action="" onSubmit={onsubmit} className="">
-        <button className="btn btn-outline-warning me-3" disabled={isDisabled} type="submit" onClick={onsubmit}>{processing ? <Spinner currentColor="warning" /> : 'Mark As In Review'} </button>
+        <button className="btn btn-warning me-2" disabled={isDisabled} type="submit" onClick={onsubmit}>{processing ? <Spinner currentColor="warning" /> : 'Mark As In Review'} </button>
 
         // </form>
     )

@@ -1,1 +1,0 @@
-import{j as s}from"./app-B-cLu4ny.js";import{B as a}from"./Breadcrumbs-CPYnshT_.js";function i({children:e}){return s.jsx("div",{className:"page-header ",children:s.jsxs("div",{className:"row align-items-end",children:[s.jsx("div",{className:"col-sm mb-2 mb-sm-0",children:s.jsx(a,{})}),s.jsx("div",{class:"col-sm-auto",children:e})]})})}export{i as P};

@@ -108,7 +108,7 @@ export default function PendingList({ appointments }) {
                 header='Pending Appointments'>
 
                 <Head title="Appointments" />
-                <Breadcrumbs />
+                
 
 
 

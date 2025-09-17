@@ -65,7 +65,13 @@ class DentistController extends Controller
             'practise_from' => $request->practise_from,
             'phone' => $request->phone,
             'email' => $request->email,
-            'photo' => $photo ?? ''
+            'photo' => $photo ?? '',
+
+            'about' => $request->about,
+            'no_of_patients' => $request->no_of_patients,
+            'no_of_reviews' => $request->no_of_reviews,
+            'rating' => $request->rating,
+
         ]);
 
         $clinicIds = collect($request->clinics)->map(function ($item) {
@@ -148,6 +154,13 @@ class DentistController extends Controller
         $dentist->phone =  $inputs['phone'] ?? $dentist->phone;
         $dentist->email =  $inputs['email'] ?? $dentist->email;
         $dentist->photo =  $inputs['photo'] ?? $dentist->photo;
+
+
+        $dentist->about =  $inputs['about'] ?? $dentist->about;
+        $dentist->no_of_patients =  $inputs['no_of_patients'] ?? $dentist->no_of_patients;
+        $dentist->no_of_reviews =  $inputs['no_of_reviews'] ?? $dentist->no_of_reviews;
+        $dentist->rating =  $inputs['rating'] ?? $dentist->rating;
+
 
         if ($request->hasFile('photo'))
             $dentist->photo = $request->file('photo')->store('uploads/dentists', 'public');

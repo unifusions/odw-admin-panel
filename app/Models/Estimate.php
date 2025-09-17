@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Admin\DentalService;
+use App\Models\Admin\EstimateReply;
 use Illuminate\Database\Eloquent\Model;
 
 class Estimate extends Model
@@ -42,5 +43,9 @@ class Estimate extends Model
     public function attachments()
     {
         return $this->hasMany(EstimateAttachment::class);
+    }
+
+    public function replies(){
+        return $this->hasOne(EstimateReply::class);
     }
 }
