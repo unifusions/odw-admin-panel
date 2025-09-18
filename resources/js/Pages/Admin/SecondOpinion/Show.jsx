@@ -21,9 +21,9 @@ export default function Show() {
 
     return (
         <AuthenticatedLayout header='Second Opinion'
-        
+
             pageTitle={<SingleHeader
-                title={`SO #${secondopinion.id} | ${secondopinion.subject}`}
+                title={`SO #${secondopinion.id} ${secondopinion.subject && (' | ' + secondopinion.subject)}`}
                 status={secondopinion.status}
                 timestamp={secondopinion.created_at}
             />}

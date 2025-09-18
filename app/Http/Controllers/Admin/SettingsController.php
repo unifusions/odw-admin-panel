@@ -54,7 +54,7 @@ class SettingsController extends Controller
     public function settingsApi()
     {
         return response()->json([
-            'settings' => Setting::byGroup('mobile')
+            'settings' => Setting::where('group','mobile')->get(),
         ]);
     }
 }
