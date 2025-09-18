@@ -9,6 +9,7 @@ use App\Http\Controllers\Patient\Api\EstimateController;
 use App\Http\Controllers\Patient\Api\InsuranceController;
 use App\Http\Controllers\Patient\Api\ProfileController;
 use App\Http\Controllers\Patient\Api\SecondOpinionController;
+use App\Http\Controllers\Patient\Api\SpecialistController;
 use App\Http\Controllers\Patient\ClinicController;
 use App\Http\Controllers\Patient\DealsController;
 use App\Http\Controllers\Patient\DentalServiceController;
@@ -69,6 +70,7 @@ Route::get('/dentalcare', [EstimateController::class, 'index']);
 
 Route::post('/estimation', [EstimateController::class, 'store']);
 
+Route::get('/specialists', SpecialistController::class);
 
 
 
