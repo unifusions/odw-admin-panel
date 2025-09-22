@@ -7,7 +7,8 @@ import Pagination from "@/Components/Pagination";
 export default function Index({ users }) {
     return (
         <>
-            <AuthenticatedLayout header='Users' pageTitle={"All Users"} callToAction={<AddUser />}>
+            <AuthenticatedLayout header='Users' pageTitle={"All Users"} 
+            callToAction={<Link href={route('clinic-users.create')} className="btn btn-primary"> <i className="bi-hospital me-1"></i> Add User</Link>}>
 
 
 
