@@ -80,7 +80,7 @@ class SecondOpinionController extends Controller
         $second_opinion->save();
 
         if ($request->status == "closed")
-            Mail::to($second_opinion->patient->user->email)->send(new SecondOpinionClosed($second_opinion->patient->first_name));
+            // Mail::to($second_opinion->patient->user->email)->send(new SecondOpinionClosed($second_opinion->patient->first_name));
         $second_opinion->save();
         return redirect()->back()->with(['message' => 'Successfully updated the status']);
     }

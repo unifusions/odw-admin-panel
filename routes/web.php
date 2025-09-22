@@ -80,6 +80,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function () {
 
+
+    
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
     Route::resource('second-opinion', SecondOpinionController::class);

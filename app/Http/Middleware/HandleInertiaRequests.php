@@ -65,7 +65,15 @@ class HandleInertiaRequests extends Middleware
 
         $dashboardUrl = $dashboardRoutes[$role] ?? route('home');
         $breadcrumbs = [
+            'profile.edit' => [
+
+                [
+                    'name' => 'Profile',
+                    'url' => route('profile.edit')
+                ]
+            ],
             'dashboard' => [['name' => 'Dashboard', 'url' => $dashboardUrl]],
+            'admin.dashboard' => [['name' => 'Dashboard', 'url' => $dashboardUrl]],
             'clinics.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
@@ -125,17 +133,17 @@ class HandleInertiaRequests extends Middleware
             // DENTISTS
 
             'dentists.index' => [
-                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Dentists', 'url' => route('dentists.index')]
             ],
             'dentists.create' => [
-                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Dentists', 'url' => route('dentists.index')],
                 ['name' => 'Create', 'url' => route('dentists.create')]
             ],
 
             'dentists.edit' => [
-                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Dentists', 'url' => route('dentists.index')],
                 ['name' => optional($dentist)->name ?? 'Treatment', 'url' => $dentist ? route('dentists.edit', $dentist) : '#'],
                 // ['name' => 'Edit', 'url' => route('dentists.create')]
@@ -189,7 +197,7 @@ class HandleInertiaRequests extends Middleware
             'services.create' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Treatments', 'url' => route('services.index')],
-               [ 'name' => 'Create', 'url' =>   route('services.create',  ) ],
+                ['name' => 'Create', 'url' =>   route('services.create',)],
             ],
             'services.show' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
@@ -217,28 +225,28 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Patients',  'url' => route('patients.index')]
             ],
             'patients.create' => [
-                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Patients', 'url' => route('patients.index')],
                 ['name' => 'Create', 'url' => route('patients.create')]
             ],
 
             'patients.show' => [
-                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Patients', 'url' => route('patients.index')],
                 ['name' => optional($patient)->last_name ?? 'Patient', 'url' => $patient ? route('patients.edit', $patient) : '#'],
-                
+
             ],
             'patients.edit' => [
-                ['name' => 'Dashboard' , 'url' =>$dashboardUrl],
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Patients', 'url' => route('patients.index')],
                 ['name' => optional($patient)->last_name ?? 'Patient', 'url' => $patient ? route('patients.edit', $patient) : '#'],
-                
+
             ],
             // SETTINGS
 
             'admin.settings.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
-                ['name' => 'Settings',  'url' =>'']
+                ['name' => 'Settings',  'url' => '']
             ]
         ];
 

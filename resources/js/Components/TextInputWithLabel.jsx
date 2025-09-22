@@ -4,7 +4,7 @@ import { Column, Row } from './Components';
 export default forwardRef(function TextInput(
 
 
-    { id = '', isSingleRow = false,
+    { id = '', isSingleRow = false, errorMessage, additionalInfo     ,
         type = 'text', className = '', label = '', isFocused = false, ...props },
     ref,
 ) {
@@ -28,7 +28,7 @@ export default forwardRef(function TextInput(
 
             {isSingleRow ?
                 <>
-                    <Row>
+                    <Row className={"mb-3"}>
                     <label htmlFor={id} className='col-sm-3 col-form-label form-label'>{label}</label>
 
                         <Column md={9}>
@@ -36,11 +36,16 @@ export default forwardRef(function TextInput(
                         {...props}
                         type={type}
                         className={
-                            'form-control form-input-lg mb-3 ' +
+                            'form-control form-input-lg ' +
                             className
                         }
                         ref={localRef}
+
+                        
                     />
+                        {errorMessage && <span className='fs-10 text-danger'>{errorMessage}</span>}
+
+                    {additionalInfo && (additionalInfo)}
                         </Column>
                     </Row>
                 </>

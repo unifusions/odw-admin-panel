@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,32 +60,59 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render(
+            'Admin/Users/Create',
+            [
+                'clinics' => Clinic::all()->map(function ($item) {
+                    return [
+                        'value' => $item->id,
+                        'label' => $item->name
+                    ];
+                }),
+                'roles' => [
+                    ['value' => 'clinic_admin', 'label'=>'Clinic Admin'],
+                    ['value' => 'clinic_user', 'label'=>'Clinic user']
+
+                ]
+    
+            ]
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->full_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role
-        ]);
+        // dd( $request->all());
 
-        $clinicuser = ClinicUser::create([
-            'user_id' => $user->id,
-            'clinic_id' => $request->clinic_id,
-            'clinic_branch_id' => $request->branch_id,
-            'role' => $user->role,
-        ]);
+        // if ($request->validator()->fails()) {
+        //     return redirect('/post/create')
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
 
-        $message = $user->name;
-        $message .= ' has been added successfully';
+        if ($request->validated()) {
+            $user = User::create([
+                'name' => $request->full_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role['value'],
+                'status' => 0
+            ]);
 
-        return redirect()->back()->with(['message' => $message]);
+            $clinicuser = ClinicUser::create([
+                'user_id' => $user->id,
+                'clinic_id' => $request->clinic['value'],
+                // 'clinic_branch_id' => $request->branch_id,
+                'role' => $user->role,
+            ]);
+
+            $message = $user->name;
+            $message .= ' has been added successfully';
+
+            return redirect()->route('users.index')->with(['message' => $message]);
+        }
     }
 
     /**

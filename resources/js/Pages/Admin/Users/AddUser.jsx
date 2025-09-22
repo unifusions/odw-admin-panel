@@ -20,7 +20,7 @@ export default function AddUser() {
         phone: '',
         password: '',
         password_confirmation: '',
-        branch_id: '',
+        // branch_id: '',
         clinic_id: '',
         role: '',
 
@@ -68,7 +68,7 @@ export default function AddUser() {
     const handleClinicSelect = (event) => {
         const clinic_id = event.target.value;
         setData('clinic_id', clinic_id);
-        fetchBranhces(clinic_id);
+        // fetchBranhces(clinic_id);
 
     }
     const onsubmit = (e) => {
@@ -100,14 +100,14 @@ export default function AddUser() {
                         </div>
                         <div className="modal-body">
 
-                            <form action="" onSubmit={onsubmit} noValidate>
+                            <form  onSubmit={onsubmit} >
 
 
                                 <div className="row mb-4">
 
                                     <InputLabel htmlFor="full_name" className="form-label col-sm-3 col-form-label" value="Full Name" />
 
-                                    <div class="col-sm-9">
+                                    <div className="col-sm-9">
 
                                         <TextInput
                                             type="text"
@@ -116,6 +116,8 @@ export default function AddUser() {
                                             className="form-control"
                                             placeholder="Full Name"
                                             onChange={(e) => setData('full_name', e.target.value)}
+                                            required={true}
+                                            value={data.full_name}
                                         />
 
                                     </div>
@@ -134,7 +136,8 @@ export default function AddUser() {
                                             className="form-control"
                                             placeholder="email@domain.com"
                                             onChange={(e) => setData('email', e.target.value)}
-                                        />
+                                            required={true}
+                                       />
                                     </div>
                                 </div>
 
@@ -150,13 +153,15 @@ export default function AddUser() {
                                             className="form-control"
                                             placeholder="+x(xxx)xxx-xx-xx"
                                             onChange={(e) => setData('phone', e.target.value)}
+                                            required={true}
+                                            value = {data.phone}
                                         />
 
                                         <InputError message={errors.phone} className="mt-2" />
                                     </div>
                                 </div>
 
-                                <div class="row mb-4">
+                                <div className="row mb-4">
 
                                     <InputLabel className="form-label col-sm-3 col-form-label" htmlFor="password" value="Password" />
                                     <div className="col-sm-9">
@@ -175,7 +180,7 @@ export default function AddUser() {
                                     </div>
 
                                 </div>
-                                <div class="row mb-4">
+                                <div className="row mb-4">
                                     <InputLabel
                                         htmlFor="password_confirmation"
                                         value="Confirm Password"
@@ -185,7 +190,7 @@ export default function AddUser() {
 
 
 
-                                    <div class="col-sm-9">
+                                    <div className="col-sm-9">
                                         <TextInput
                                             id="password_confirmation"
                                             type="password"
@@ -206,9 +211,9 @@ export default function AddUser() {
 
                                         <h5>Password requirements:</h5>
 
-                                        <p class="fs-6 mb-2">Ensure that these requirements are met:</p>
+                                        <p className="fs-6 mb-2">Ensure that these requirements are met:</p>
 
-                                        <ul class="fs-6">
+                                        <ul className="fs-6">
                                             <li>Minimum 8 characters long - the more, the better</li>
                                             <li>At least one lowercase character</li>
                                             <li>At least one uppercase character</li>
@@ -235,7 +240,7 @@ export default function AddUser() {
                                     </div>
                                 </div>
 
-                                <div className="row mb-4">
+                                {/* <div className="row mb-4">
                                     <label htmlFor="clinic_branch" className="col-sm-3 col-form-label form-label">Branch </label>
 
                                     <div className="col-sm-9">
@@ -253,7 +258,7 @@ export default function AddUser() {
 
 
                                     </div>
-                                </div>
+                                </div> */}
 
 
 

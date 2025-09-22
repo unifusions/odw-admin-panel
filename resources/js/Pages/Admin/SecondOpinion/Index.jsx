@@ -56,7 +56,7 @@ export default function SecondOpinion() {
                                             </Link>
 
 
-                                            <div className="btn-group">
+                                            {/* <div className="btn-group">
                                                 <button type="button" className="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty " id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="true"></button>
 
                                                 <div className="dropdown-menu dropdown-menu-end mt-1 " aria-labelledby="ordersExportDropdown1" data-popper-placement="bottom-end">
@@ -78,7 +78,7 @@ export default function SecondOpinion() {
                                                         <i className="bi-trash dropdown-item-icon"></i> Mark as Closed
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </td>
                                 </tr>

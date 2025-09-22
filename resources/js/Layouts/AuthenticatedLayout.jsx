@@ -153,9 +153,8 @@ export default function AuthenticatedLayout({ header, children, callToAction, pa
 
                                             <div className="dropdown-divider"></div>
 
-                                            <a className="dropdown-item" href="#">Profile &amp; account</a>
-                                            {/* <a className="dropdown-item" href="#">Settings</a> */}
-
+<Link href={route('profile.edit')}  className='dropdown-item'>Profile & Account</Link>
+                                          
 
                                             <div className="dropdown-divider"></div>
 
