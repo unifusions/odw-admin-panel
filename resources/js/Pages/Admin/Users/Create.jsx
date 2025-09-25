@@ -31,7 +31,7 @@ export default function Create() {
 
         >
             <Card>
-                {JSON.stringify(errors.full_name)}
+          
                 <form onSubmit={onsubmit} noValidate>
 
                     <TextInputWithLabel
