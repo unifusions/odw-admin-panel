@@ -111,8 +111,12 @@ class UsersController extends Controller
             $message = $user->name;
             $message .= ' has been added successfully';
 
-            return redirect()->route('users.index')->with(['message' => $message]);
+            return redirect()->route('clinic-users.index')->with(['message' => $message]);
         }
+
+        return redirect()->back()->with([
+            'error' => 'something went wrongs'
+        ]);
     }
 
     /**
