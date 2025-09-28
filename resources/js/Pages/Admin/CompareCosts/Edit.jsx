@@ -30,13 +30,12 @@ export default function Edit() {
     }
 
     return (
-        <AuthenticatedLayout header="Compare Cost">
-            <Head title="Compare Costs" />
-            <PageHeader ></PageHeader>
-            <DisplayFlex className="mb-3 justify-content-between">
-                <h1 className="page-header-title">Edit Service</h1>
+        <AuthenticatedLayout header="Compare Cost"
+            pageTitle="Edit Service"
+        >
 
-            </DisplayFlex>
+
+
 
             <form onSubmit={onSubmit} >
                 <Row>
@@ -112,7 +111,7 @@ export default function Edit() {
 
                         </Card>
 
-<button className="btn btn-primary" type="submit" >Update</button>
+                        <button className="btn btn-primary" type="submit" >Update</button>
 
 
                     </Column>

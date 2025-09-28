@@ -91,6 +91,10 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::resource('estimates', EstimateController::class);
     Route::resource('estimates.replies', EstimateReplyController::class)->only('store');
     Route::resource('compare-costs', CompareCostController::class);
+
+    Route::patch('/compare-costs/{compare_cost}/toggle-featured', [CompareCostController::class, 'toggleFeatured'])
+    ->name('compare-costs.toggle-featured');
+
     Route::resource('patients', PatientsController::class);
 
     Route::resource('clinics', ClinicsController::class);

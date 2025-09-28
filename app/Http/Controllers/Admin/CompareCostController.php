@@ -126,4 +126,19 @@ class CompareCostController extends Controller
         $compare_cost->delete();
         return redirect()->back()->with(['message' => 'Service has been deleted successfully']);
     }
+
+    public function toggleFeatured(DentalCare $compare_cost)
+    {
+        $compare_cost->featured = !$compare_cost->featured;
+        $compare_cost->save();
+        if (request()->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'id' => $compare_cost->id,
+                'featured' => $compare_cost->featured,
+            ]);
+        }
+
+        return back()->with('success', 'Featured status updated.');
+    }
 }
