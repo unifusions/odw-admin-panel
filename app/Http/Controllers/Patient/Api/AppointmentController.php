@@ -57,14 +57,24 @@ class AppointmentController extends Controller
 
         // Create Appointment
         $appointment = Appointment::create([
-            'clinic_id' => $request->clinic_id,
+            // 'clinic_id' => $request->clinic_id,
 
-            'clinic_dentist_id' => $request->clinic_dentist_id ?? null,
-            'patient_id' => $request->patient_id,
+            // 'clinic_dentist_id' => $request->clinic_dentist_id ?? null,
+            // 'patient_id' => $request->patient_id,
+            // 'appointment_date' => $request->appointment_date,
+            // 'time_slot' => $request->time_slot,
+            // 'dental_service_id' => $request->dental_service_id,
+            // 'status' => 'pending',
+
+            'clinic_id'        => $request->clinic_id,
+            'patient_id'       => $request->patient_id,
             'appointment_date' => $request->appointment_date,
-            'time_slot' => $request->time_slot,
-            'dental_service_id' => $request->dental_service_id,
-            'status' => 'pending',
+            'time_slot'        => $request->time_slot,
+            'dental_service_id'=> $request->dental_service_id,
+            'status'           => 'pending',
+            'appointable_id'   => $request->appointable_id,   // <-- dynamic
+            'appointable_type' => $request->appointable_type, // Dentist::class or Specialist::class
+
         ]);
 
         return response()->json(['success' => 'Appointment Booked. Await for confirmation'], 200);

@@ -2,7 +2,7 @@ import { router, useForm } from "@inertiajs/react"
 import { useEffect, useRef, useState } from "react";
 
 export default function DeleteConfirmModal(
-    { item, category, processUrl }
+    { item, category, processUrl, onDeleted  }
 ) {
     const modalRef = useRef(null);
     const modalInstance = useRef(null);
@@ -91,8 +91,10 @@ export default function DeleteConfirmModal(
 
         // Then call Inertia delete
         router.delete(route(processUrl, item), {
+            preserveScroll: true,
             onSuccess: () => {
                 setProcessing(false);
+                if (onDeleted) onDeleted(item.id);
                 cleanupBackdrop();
             },
             onError: () => {

@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Appointment;
 use App\Models\SpecialistClinic;
 use App\Models\SpecialistService;
 use Illuminate\Database\Eloquent\Model;
@@ -51,5 +52,10 @@ class Specialist extends Model
         }
 
         return Storage::disk('public')->url($this->photo);
+    }
+
+    public function appointments()
+    {
+        return $this->morphMany(Appointment::class, 'appointable');
     }
 }

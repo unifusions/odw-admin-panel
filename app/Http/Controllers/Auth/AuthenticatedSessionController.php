@@ -19,7 +19,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(Request $request): Response
     {
-      
+
         // dd(User::all());
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
@@ -40,6 +40,7 @@ class AuthenticatedSessionController extends Controller
         $redirectTo = match ($user->role) {
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
+            'clinic_user' => route('clinic.user.dashboard'),
             default => route('home')
         };
 

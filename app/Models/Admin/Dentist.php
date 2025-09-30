@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\ClinicScope;
+use App\Models\Appointment;
 use App\Models\ClinicDentist;
 use App\Models\ClinicService;
 use App\Models\DentistService;
@@ -59,5 +60,10 @@ class Dentist extends Model
         }
 
         return Storage::disk('public')->url($this->photo);
+    }
+
+    public function appointments()
+    {
+        return $this->morphMany(Appointment::class, 'appointable');
     }
 }

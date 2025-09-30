@@ -12,34 +12,39 @@ class AppointmentController extends Controller
 {
     public function index(Request $request)
     {
+        $year = $request->year ?? now()->year;
+        $month = $request->month ?? now()->month;
+
         $appointments = Appointment::when(
             $request->year && $request->month,
-            fn($query) => $query->whereYear('appointment_date', $request->year)
-                ->whereMonth('appointment_date', $request->month)
-                ->where(function ($query) {
-                    $query->where('status', 'confirmed')
-                        ->orWhere('status', 'rescheduled');
-                })
+            fn($query) => $query->whereYear('appointment_date', $year)
+                ->whereMonth('appointment_date', $month)
         )->get()->map(fn($appointment) => [
             'id' => $appointment->id,
-            'title' => $appointment->patient_id,
+            'title' => $appointment->patient->first_name ?? '',
             'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
-            'end' => Carbon::parse("{$appointment->appointment_date} {$appointment->time_slot}")
-                ->addMinutes(30)->format('Y-m-d\TH:i:s'),
+
             'extendedProps' => [
-                'full_name' => '',  // Uncomment if patient data is available
-                'age' => '',
-                'gender' => '',
-                'location' => '',
-                'services' => [],
-            ]
+                'services' => $appointment->dentalservice,
+                'status' => $appointment->status,
+                'appointment_date' => $appointment->appointment_date,
+                'clinic' => $appointment->clinic,
+                'dentist' => $appointment->dentist,
+                'provider' => $appointment->appointable ? [
+                    'id' => $appointment->appointable->id,
+                    'type' => class_basename($appointment->appointable_type), // Dentist or Specialist
+                    'name' => $appointment->appointable->name ?? '',
+                ] : 'no provider',
+            ],
         ]);
 
         $pendingAppointments = Appointment::where('status', 'pending')->count();
 
         return Inertia::render('Admin/Appointments/Index', [
             'appointments' => $appointments,
-            'pendingAppointments' => $pendingAppointments
+            'pendingAppointments' => $pendingAppointments,
+            'activeYear' => $year,
+            'activeMonth' => $month,
         ]);
     }
 

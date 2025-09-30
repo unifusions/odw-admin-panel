@@ -11,6 +11,7 @@ export default function Create() {
     const { data, setData, post, processing, errors, reset } = useForm({
         full_name: '',
         clinic: null,
+        email: '',
         role: null,
         password: '',
         password_confirmation: ''

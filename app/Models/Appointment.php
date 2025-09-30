@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\ClinicScope;
+use App\Models\Admin\AppointmentHistory;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicBranch;
 use App\Models\Admin\DentalService;
@@ -17,14 +18,14 @@ class Appointment extends Model
     use HasApiTokens, ClinicScope, HasFactory;
     protected $fillable = [
         'clinic_id',
-        'clinic_branch_id',
-        'clinic_dentist_id',
         'patient_id',
         'appointment_date',
         'time_slot',
         'status',
         'reschedule_count',
-        'dental_service_id'
+        'dental_service_id',
+        'appointable_id',
+        'appointable_type',
     ];
 
     public function patient()
@@ -66,4 +67,16 @@ class Appointment extends Model
             'dentist_id'          // ClinicDentist.dentist_id
         );
     }
+
+    public function appointable()
+    {
+        return $this->morphTo();
+    }
+
+    public function histories()
+{
+    return $this->hasMany(AppointmentHistory::class);
+}
+
+
 }

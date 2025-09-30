@@ -9,7 +9,7 @@ import ReactSelect from "react-select";
 
 export default function Edit() {
     const { care, selectedCategories, categories } = usePage().props;
-    const { data, setData, patch, processing, errors } = useForm({
+    const { data, setData, put, processing, errors } = useForm({
         code: care.code || '',
         name: care.name || '',
         medical_name: care.medical_name || '',
@@ -25,7 +25,7 @@ export default function Edit() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        patch(route('compare-costs.update', care));
+        put(route('compare-costs.update', care));
 
     }
 

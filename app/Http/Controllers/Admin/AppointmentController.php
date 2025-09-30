@@ -58,13 +58,18 @@ class AppointmentController extends Controller
             'id' => $appointment->id,
             'title' => $appointment->patient->first_name ?? '',
             'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
-           
+
             'extendedProps' => [
                 'services' => $appointment->dentalservice,
                 'status' => $appointment->status,
                 'appointment_date' => $appointment->appointment_date,
                 'clinic' => $appointment->clinic,
-                'dentist' => $appointment->dentist
+                'dentist' => $appointment->dentist,
+                'provider' => $appointment->appointable ? [
+                    'id' => $appointment->appointable->id,
+                    'type' => class_basename($appointment->appointable_type), // Dentist or Specialist
+                    'name' => $appointment->appointable->name ?? '',
+                ] : 'no provider',
             ],
         ]);
 
@@ -78,9 +83,50 @@ class AppointmentController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function pendingAppointment()
+    {
+
+        $appointments = Appointment::with('patient.user')->where('status', 'pending')->get()->map(fn($appointment) => [
+            'id' => $appointment->id,
+            'title' => $appointment->patient->first_name ?? '',
+            'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
+            'time_slot' => $appointment->time_slot,
+
+            'services' => $appointment->dentalservice,
+            'status' => $appointment->status,
+            'appointment_date' => $appointment->appointment_date,
+            'clinic' => $appointment->clinic,
+            'dentist' => $appointment->dentist,
+            'provider' => $appointment->appointable ? [
+                'id' => $appointment->appointable->id,
+                'type' => class_basename($appointment->appointable_type), // Dentist or Specialist
+                'name' => $appointment->appointable->name ?? '',
+            ] : 'no provider',
+            'patient' => $appointment->patient
+        ]);
+
+        return Inertia::render('Admin/Appointments/PendingList', [
+            'appointments' => $appointments
+        ]);
+    }
+
+    public function confirmAppointment(Appointment $appointment)
+    {
+        $appointment->status = 'confirmed';
+        $appointment->is_confirmed = true;
+        $appointment->save();
+
+        return redirect()->back()->with(['success' => 'Appointment has been confirmed']);
+    }
+
+    public function cancelAppointment(Appointment $appointment)
+    {
+        $appointment->status = 'cancelled';
+        $appointment->is_confirmed = true;
+        $appointment->save();
+
+        return redirect()->back()->with(['success' => 'Appointment has been cancelled']);
+    }
     public function create()
     {
         //
@@ -126,3 +172,29 @@ class AppointmentController extends Controller
         //
     }
 }
+
+
+// future funcitons
+
+// $appointment->histories()->create([
+//     'user_id' => auth()->id(),
+//     'action' => 'created',
+//     'actor_type' => auth()->user()->role, // or "patient" if patient self-booked
+// ]);
+
+// $appointment->update(['status' => 'confirmed']);
+
+// $appointment->histories()->create([
+//     'user_id' => auth()->id(),
+//     'action' => 'confirmed',
+//     'actor_type' => auth()->user()->role,
+// ]);
+
+// $appointment->update(['status' => 'cancelled']);
+
+// $appointment->histories()->create([
+//     'user_id' => auth()->id(),
+//     'action' => 'cancelled',
+//     'actor_type' => auth()->user()->role,
+//     'remarks' => $request->remarks,
+// ]);

@@ -10,6 +10,8 @@ export default function SOStatus({ status }) {
             return (<LegendIndicator color="warning" status="In Review" />)
         case 'answered':
             return (<LegendIndicator color="success" status="Answered" />)
+        case 'confirmed':
+            return (<LegendIndicator color="success" status="Confirmed" />)
         case 'closed':
             return (<LegendIndicator color="secondary" status="Closed" />)
         default:

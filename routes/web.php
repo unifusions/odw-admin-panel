@@ -84,6 +84,9 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
+    Route::get('/appointments/status/pending/', [AppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
+
+    
     Route::resource('second-opinion', SecondOpinionController::class);
 
     Route::resource('second-opinion.replies', SecondOpinionReplyController::class)->only(['store']);
@@ -131,8 +134,17 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(function () {
     Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.dashboard');
     Route::resource('users', UsersController::class);
-    Route::get('/appointments', [AdminClinicAppointmentController::class, 'index']);
-    Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
+    Route::get('/appointments', [AdminClinicAppointmentController::class, 'index'])->name('clinic.appointments.index');;
+    // Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
+    // Route::put('/appointments/confirm/{appointment}', [AdminClinicAppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
+    // Route::put('/appointments/cancel/{appointment}', [AdminClinicAppointmentController::class, 'cancelAppointment'])->name('appointments.cancel');
+});
+
+Route::middleware(['auth', 'role:clinic_user'])->prefix('clinic/user')->group(function () {
+    Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.user.dashboard');
+ 
+    Route::get('/appointments', [AdminClinicAppointmentController::class, 'index'])->name('clinic.user.appointments.index');
+    Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('clinic.user.appointments.pending');
     Route::put('/appointments/confirm/{appointment}', [AdminClinicAppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
     Route::put('/appointments/cancel/{appointment}', [AdminClinicAppointmentController::class, 'cancelAppointment'])->name('appointments.cancel');
 });

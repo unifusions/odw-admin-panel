@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-import { Head, router } from '@inertiajs/react';
+import { Head, router, usePage } from '@inertiajs/react';
 
 
 
@@ -27,6 +27,14 @@ const FlexRowItem = ({ icon, value }) => {
 }
 export default function Index({ appointments, pendingAppointments, activeYear, activeMonth }) {
 
+    const { auth } = usePage().props;
+    const role = auth.user.role; // super_admin, clinic_admin, clinic_user
+
+    let routeName = 'appointments.index';
+    if (role === 'clinic_admin') routeName = 'clinic.appointments.index';
+    if (role === 'clinic_user') routeName = 'clinic.user.appointments.index';
+
+
     const [currentDate, setCurrentDate] = useState(
         new Date(activeYear, activeMonth - 1, 1) // backend date
     );
@@ -45,7 +53,8 @@ export default function Index({ appointments, pendingAppointments, activeYear, a
 
         if (!sameMonth) {
             setCurrentDate(newDate);
-            router.get(route("appointments.index"),
+            router.get(route(routeName)
+                ,
                 { year: newDate.getFullYear(), month: newDate.getMonth() + 1 },
                 {
                     only: ["appointments", "activeYear", "activeMonth", "pendingAppointments"],
@@ -207,9 +216,8 @@ export default function Index({ appointments, pendingAppointments, activeYear, a
 
 
 
-
                             <FlexRowItem icon="person-circle" value={selectedEvent?.title} />
-                            <FlexRowItem icon="capsule" value={selectedEvent?.moreInfo?.services?.name} />
+                            {selectedEvent?.moreInfo?.provider?.type === 'Dentist' && <FlexRowItem icon="capsule" value={selectedEvent?.moreInfo?.services?.name} />}
                             {/* <FlexRowItem icon="clock" value={formatDate(selectedEvent?.start)} /> */}
                             <FlexRowItem icon="pin-map" value={selectedEvent?.moreInfo?.clinic?.name} />
 
@@ -220,8 +228,13 @@ export default function Index({ appointments, pendingAppointments, activeYear, a
                                 <div class="avatar avatar-xs avatar-circle me-2">
                                     <img class="avatar-img" src={selectedEvent?.moreInfo?.dentist?.photo_url} />
                                 </div>
-                                <div className="flex-grow-1">
-                                    <span className="d-block text-dark">{selectedEvent?.moreInfo?.dentist?.name}</span>
+                                <div className="flex-grow-1 d-flex">
+                                    <span className="d-block text-dark me-2">{selectedEvent?.moreInfo?.provider?.name}
+
+                                    </span>
+                                    <span class={`badge ${selectedEvent?.moreInfo?.provider?.type === 'Dentist' ? 'bg-soft-primary text-primary' :
+                                        'bg-soft-info text-info'}`}>{selectedEvent?.moreInfo?.provider?.type}</span>
+
                                 </div>
                             </div>
 

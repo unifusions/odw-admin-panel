@@ -23,7 +23,7 @@ class UsersController extends Controller
         $user = auth()->user();
 
         if ($user->role === 'super_admin') {
-            $users = ClinicUser::with('user.clinic')->paginate(5);
+            $users = User::with('clinic')->where('role', 'clinic_admin')->orWhere('role', 'clinic_user')->paginate(15);
         } else {
 
             $clinicUser = $user->clinicUsers()->first();
@@ -32,20 +32,15 @@ class UsersController extends Controller
             }
 
             $clinicId = $clinicUser->clinic_id;
-            $branchId = $clinicUser->branch_id;
 
-            $users = User::with('branch.clinic')
-                ->whereHas('clinicUsers', function ($query) use ($clinicId, $branchId) {
+            $users = User::with('clinic')
+                ->whereHas('clinicUsers', function ($query) use ($clinicId) {
                     $query->where('clinic_id', $clinicId);
-
-                    if (!is_null($branchId)) {
-                        $query->where('branch_id', $branchId);
-                    }
                 })
-                ->paginate(5);
+                ->paginate(15);
         }
 
-        // return $users;
+
 
         return Inertia::render(
             'Admin/Users/Index',
@@ -70,11 +65,11 @@ class UsersController extends Controller
                     ];
                 }),
                 'roles' => [
-                    ['value' => 'clinic_admin', 'label'=>'Clinic Admin'],
-                    ['value' => 'clinic_user', 'label'=>'Clinic user']
+                    ['value' => 'clinic_admin', 'label' => 'Clinic Admin'],
+                    ['value' => 'clinic_user', 'label' => 'Clinic user']
 
                 ]
-    
+
             ]
         );
     }
@@ -130,24 +125,55 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ClinicUser $clinic_user)
+    public function edit(User $clinic_user)
     {
-        return $clinic_user;
+
+        return Inertia::render('Admin/Users/Edit', [
+            'user' => $clinic_user,
+            'selectedClinic' => [
+                'value' => $clinic_user->clinic->id,
+                'label' => $clinic_user->clinic->name
+            ],
+            'clinics' => Clinic::all()->map(function ($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->name
+                ];
+            }),
+            'selectedRole' => ['value' => $clinic_user->role, 'label' => $clinic_user->role === 'clinic_admin' ? 'Clinic Admin' : 'Clinic User'],
+            'roles' => [
+                ['value' => 'clinic_admin', 'label' => 'Clinic Admin'],
+                ['value' => 'clinic_user', 'label' => 'Clinic user']
+
+            ]
+
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $clinic_user)
     {
-        //
+        $clinic_user->name = $request->full_name;
+        $clinic_user->email = $request->email;
+        $clinic_user->role = $request->role['value'];
+
+
+        $clinicUser = ClinicUser::where('user_id', $clinic_user->id)->first();
+
+        $clinicUser->clinic_id = $request->clinic['value'];
+        $clinicUser->save();
+        $clinic_user->save();
+        return redirect()->route('clinic-users.index')->with(['message' => 'User was updated successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $clinic_user)
     {
-        //
+        $clinic_user->delete();
+        return redirect()->route('clinic-users.index')->with(['message' => 'User was deleted successfully']);
     }
 }

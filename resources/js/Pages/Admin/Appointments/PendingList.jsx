@@ -1,4 +1,5 @@
 import Breadcrumbs from "@/Components/Breadcrumbs";
+import SOBadge from "@/Components/SOBadge";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { format, parse, parseISO } from "date-fns";
@@ -21,7 +22,7 @@ export default function PendingList({ appointments }) {
     const openCancelModal = (item) => {
         setSelectedAppointment(item);
         const modal = new bootstrap.Modal(cancelModalRef.current);
-         modal.show();
+        modal.show();
     }
 
     const openRescheduleModal = (item) => {
@@ -65,8 +66,12 @@ export default function PendingList({ appointments }) {
 
                 <div className="card mb-3">
                     <div class="card-header card-header-content-between border-bottom">
-                        <h4 class="card-header-title">Appointment #<span className="text-body">{item.id}</span> </h4>
+                        <h4 class="card-header-title">
+                            Appointment #<span className="text-body me-3">{item.id}</span>
+                            <span class={`badge ${item?.provider?.type === 'Dentist' ? 'bg-soft-primary text-primary' :
+                                'bg-soft-info text-info'}`}>{item?.provider?.type}</span>
 
+                        </h4>
 
                     </div>
 
@@ -108,7 +113,7 @@ export default function PendingList({ appointments }) {
                 header='Pending Appointments'>
 
                 <Head title="Appointments" />
-                
+
 
 
 

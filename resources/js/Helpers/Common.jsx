@@ -25,10 +25,11 @@ export const InfoRow = ({ index, value }) => {
     )
 }
 
-export   const AttachmentView = ({ attachment }) => {
+export const AttachmentView = ({ attachment }) => {
     return (
         <div className="d-flex badge text-bg-secondary">
             <i class="bi bi-paperclip"></i> {attachment.file_name}
         </div>
     )
 }
+

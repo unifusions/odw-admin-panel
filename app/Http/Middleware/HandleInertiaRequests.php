@@ -56,6 +56,7 @@ class HandleInertiaRequests extends Middleware
         $service = request()->route('compare_cost');
         $dentist = request()->route('dentist');
         $patient = request()->route('patient');
+        $clinicuser = request()->route('clinic-users');
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
@@ -122,6 +123,8 @@ class HandleInertiaRequests extends Middleware
 
             ],
 
+
+
             'clinics.services.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Clinics', 'url' => route('clinics.index')],
@@ -171,6 +174,13 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Users', 'url' => route('clinic-users.index')]
             ],
+
+            'clinic-users.edit' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Users', 'url' => route('clinic-users.index')],
+                ['name' => optional($clinicuser)->id ? $clinicuser  :"Edit"  , 'url' => "#"]
+            ],
+
 
             'compare-costs.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],

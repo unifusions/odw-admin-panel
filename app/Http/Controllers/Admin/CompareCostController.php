@@ -108,13 +108,19 @@ class CompareCostController extends Controller
     public function update(Request $request, DentalCare $compare_cost)
     {
         // dd($request->input());
-
+        
+        $compare_cost->code = $request->code ?? $compare_cost->code;
+        $compare_cost->name = $request->name ?? $compare_cost->name;
+        $compare_cost->medical_name = $request->medical_name ?? $compare_cost->medical_name;
+        $compare_cost->national_cost = $request->national_cost ?? $compare_cost->national_cost;
+        $compare_cost->odw_cost = $request->odw_cost ?? $compare_cost->name;
         $serviceIds = collect($request->categories)->map(function ($item) {
             return is_array($item) ? $item['value'] : $item;
         })->filter()->unique()->toArray();
 
         $compare_cost->categories()->sync($serviceIds);
 
+        $compare_cost->save();
         return redirect()->route('compare-costs.index')->with(['message' => 'Data updated successfully']);
     }
 

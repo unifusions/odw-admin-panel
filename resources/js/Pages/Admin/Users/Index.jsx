@@ -3,12 +3,15 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import AddUser from "./AddUser";
 import Pagination from "@/Components/Pagination";
+import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
 
 export default function Index({ users }) {
+
+    
     return (
         <>
-            <AuthenticatedLayout header='Users' pageTitle={"All Users"} 
-            callToAction={<Link href={route('clinic-users.create')} className="btn btn-primary"> <i className="bi-hospital me-1"></i> Add User</Link>}>
+            <AuthenticatedLayout header='Users' pageTitle={"All Users"}
+                callToAction={<Link href={route('clinic-users.create')} className="btn btn-primary"> <i className="bi-hospital me-1"></i> Add User</Link>}>
 
 
 
@@ -21,7 +24,7 @@ export default function Index({ users }) {
                                 <th>Full Name</th>
                                 <th>Contact </th>
                                 <th>Clinic</th>
-                                <th>Branch</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,7 +41,7 @@ export default function Index({ users }) {
 
                                             <div className="d-flex align-items-center">
                                                 <div className="avatar avatar-soft-primary avatar-circle">
-                                                    <span className="avatar-initials">{Array.from(user.name)[0]}</span>
+                                                    <span className="avatar-initials">{user.name && Array.from(user.name)[0]}</span>
                                                 </div>
                                                 <div className="ms-3">
                                                     <span className="d-block h5 text-inherit mb-0">
@@ -59,7 +62,7 @@ export default function Index({ users }) {
                                         </td>
                                         <td>
                                             <span className="d-block h5 text-inherit mb-0">
-                                                {user.clinic && user.clinic.name}
+                                                {user?.clinic?.name}
 
                                             </span>
                                         </td>
@@ -72,6 +75,7 @@ export default function Index({ users }) {
                                         </td>
                                         <td>
                                             <Link href={route('clinic-users.edit', user)} className="btn btn-white btn-sm fw-bold">   <i class="bi-pencil-fill me-1"></i> Edit</Link>
+                                            <DeleteConfirmModal category="Users" processUrl="clinic-users.destroy" item={user} />
                                         </td>
                                     </tr>
 

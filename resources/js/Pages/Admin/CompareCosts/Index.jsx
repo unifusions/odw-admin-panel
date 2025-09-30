@@ -6,6 +6,7 @@ import AddDentalCare from "./AddDentalCare";
 import DeleteDentalCare from "./DeleteDentalCare";
 import Pagination from "@/Components/Pagination";
 import { useState } from "react";
+import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
 export default function Index() {
 
     const { dentalCare, categories } = usePage().props;
@@ -57,14 +58,14 @@ export default function Index() {
                 >
                     <thead class="thead-light">
                         <tr>
-                            <th style={{ width: "5%" }}>Code</th>
-                            <th style={{ width: "25%" }}  >Service</th>
+                            <th className="col-1" >Code</th>
+                            <th className= "col-2"   >Service</th>
                             <th style={{ width: "20%" }} >Medical Name</th>
                             <th style={{ width: "20%" }} >Category</th>
                             <th style={{ width: "10%" }} >National Cost</th>
                             <th style={{ width: "10%" }}>ODW Cost</th>
-                            <th style={{ width: "10%" }}>Featured</th>
-                            <th style={{ width: "10%" }} className="text-end">Actions</th>
+                            <th style={{ width: "5%" }}>Featured</th>
+                            <th style={{ width: "15%" }} className="text-end">Actions</th>
 
                         </tr>
                     </thead>
@@ -73,7 +74,7 @@ export default function Index() {
                         {
                             services.map((item, index) => (
                                 <tr key={index}>
-                                    <td style={{ width: "5%" }}>{item.code}</td>
+                                    <td  className="col-1">{item.code}</td>
                                     <td  >{item.name}</td>
 
                                     <td style={{ width: "20%" }} >{item.medical_name}</td>
@@ -81,18 +82,23 @@ export default function Index() {
                                     <td>$ {item.national_cost}</td>
                                     <td  >$ {item.odw_cost}</td>
 
-                                    <td>
-                                    <input
-                                        type="checkbox"
-                                        checked={item.featured}
-                                        onChange={() => toggleFeatured(item.id)}
-                                        className="form-check-input"
-                                    />
-                                </td>
+                                    <td className="text-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={item.featured}
+                                            onChange={() => toggleFeatured(item.id)}
+                                            className="form-check-input"
+                                        />
+                                    </td>
 
-                                    <td className="text-end">
+                                    <td className="text-end col-2">
 
-                                        <Link href={route('compare-costs.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                        <Link href={route('compare-costs.edit', item)} className="btn btn-white btn-sm me-2">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                        <DeleteConfirmModal 
+                                          onDeleted={(id) => {
+                                            setServices((prev) => prev.filter((s) => s.id !== id));
+                                        }}
+                                        category="Dental Care" processUrl="compare-costs.destroy" item={item} />
                                         {/* <DeleteDentalCare dentalcare={item} /> */}
                                     </td>
                                 </tr>
@@ -101,6 +107,7 @@ export default function Index() {
 
                     </tbody>
                     <tfoot>
+
                         <Pagination links={dentalCare.links} />
                     </tfoot>
                 </table>
