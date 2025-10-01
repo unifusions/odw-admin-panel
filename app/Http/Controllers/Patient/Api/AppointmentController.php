@@ -83,7 +83,7 @@ class AppointmentController extends Controller
             'dental_service_id'=> $request->dental_service_id,
             'status'           => 'pending',
             'appointable_id'   => $request->appointable_id,   // <-- dynamic
-            'appointable_type' => "App\Models\Admin\{$request->appointable_type}" , // Dentist::class or Specialist::class
+            'appointable_type' => "App\\Models\\Admin\\" . $request->appointable_type , // Dentist::class or Specialist::class
 
         ]);
 
