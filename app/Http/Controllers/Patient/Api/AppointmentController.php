@@ -25,6 +25,11 @@ class AppointmentController extends Controller
                     'appointment_date' => $booking->appointment_date,
                     'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),
                     'dentist' => $booking->dentist,
+                    'provider' => $booking->appointable ? [
+                        'id' => $booking->appointable->id,
+                        'type' => class_basename($booking->appointable_type), // Dentist or Specialist
+                        'name' => $appointment->appointable->name ?? '',
+                    ] : 'no provider',
                 ];
             }),
             'pending' =>  $pendingBookings->map(function ($booking) {
@@ -37,6 +42,11 @@ class AppointmentController extends Controller
                     'appointment_date' => $booking->appointment_date,
                     'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),
                     'dentist' => $booking->dentist,
+                    'provider' => $booking->appointable ? [
+                        'id' => $booking->appointable->id,
+                        'type' => class_basename($booking->appointable_type), // Dentist or Specialist
+                        'name' => $booking->appointable->name ?? '',
+                    ] : 'no provider',
 
                 ];
             })
