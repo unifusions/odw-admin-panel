@@ -30,6 +30,7 @@ class AppointmentController extends Controller
                         'type' => class_basename($booking->appointable_type), // Dentist or Specialist
                         'name' => $appointment->appointable->name ?? '',
                     ] : 'no provider',
+                    'status' => $booking->status,
                 ];
             }),
             'pending' =>  $pendingBookings->map(function ($booking) {
@@ -47,6 +48,7 @@ class AppointmentController extends Controller
                         'type' => class_basename($booking->appointable_type), // Dentist or Specialist
                         'name' => $booking->appointable->name ?? '',
                     ] : 'no provider',
+                    'status' => $booking->status,
 
                 ];
             })
@@ -80,10 +82,10 @@ class AppointmentController extends Controller
             'patient_id'       => $request->patient_id,
             'appointment_date' => $request->appointment_date,
             'time_slot'        => $request->time_slot,
-            'dental_service_id'=> $request->dental_service_id,
+            'dental_service_id' => $request->dental_service_id,
             'status'           => 'pending',
             'appointable_id'   => $request->appointable_id,   // <-- dynamic
-            'appointable_type' => "App\\Models\\Admin\\" . $request->appointable_type , // Dentist::class or Specialist::class
+            'appointable_type' => "App\\Models\\Admin\\" . $request->appointable_type, // Dentist::class or Specialist::class
 
         ]);
 
