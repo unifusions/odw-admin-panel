@@ -28,7 +28,8 @@ class AppointmentController extends Controller
                     'provider' => $booking->appointable ? [
                         'id' => $booking->appointable->id,
                         'type' => class_basename($booking->appointable_type), // Dentist or Specialist
-                        'name' => $appointment->appointable->name ?? '',
+                        'name' => $booking->appointable->name ?? '',
+                        'data' => $booking->appointable,
                     ] : 'no provider',
                     'status' => $booking->status,
                 ];
@@ -47,6 +48,7 @@ class AppointmentController extends Controller
                         'id' => $booking->appointable->id,
                         'type' => class_basename($booking->appointable_type), // Dentist or Specialist
                         'name' => $booking->appointable->name ?? '',
+                        'data' => $booking->appointable,
                     ] : 'no provider',
                     'status' => $booking->status,
 
