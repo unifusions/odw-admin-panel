@@ -73,7 +73,7 @@ Route::post('/estimation', [EstimateController::class, 'store']);
 
 Route::get('/specialists', SpecialistController::class);
 
-Route::get('/my-estimates', [EstimateController::class, 'index', 'myEstimate'] );
+Route::get('/my-estimates', [EstimateController::class,  'myEstimate'] );
 
 
 
