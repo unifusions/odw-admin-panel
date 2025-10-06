@@ -34,6 +34,7 @@ Route::get('/app-settings', [SettingsController::class, 'settingsApi']);
 //ADD URLS BELOW SANCTUM 
 Route::get('/my-appointments', [AppointmentController::class, 'myAppointment']);
 Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
+Route::post('/cancel-appointment', [AppointmentController::class, 'cancelAppointment']);
 Route::get('/dental-services', DentalServiceController::class);
 Route::get('/all-dental-services',AllDentalServices::class);
 
