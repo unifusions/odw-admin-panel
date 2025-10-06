@@ -33,7 +33,7 @@ class EstimateReplyController extends Controller
 
         if ($request->hasFile('estimation')) {
             $file = $request->file('estimation');
-            $path = $file->store("uploads/estimates/{$estimate->id}/estimations/");
+            $path = $file->store("uploads/estimates/{$estimate->id}/estimations");
             $soreply = EstimateReply::create([
                 'estimate_id' => $estimate->id,
                 'user_id' => auth()->user()->id,

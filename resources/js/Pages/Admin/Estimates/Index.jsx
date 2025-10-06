@@ -22,8 +22,8 @@ export default function Index() {
                         <tr>
                             <th>Name</th>
                             <th>Service</th>
-                            <th>Location</th>
-
+                            <th>Notes</th>
+                            <th>Attachments</th>
                             <th>Status</th>
                             <th className="text-end">Action</th>
                         </tr>
@@ -46,6 +46,11 @@ export default function Index() {
                             </td>
                             <td>  <span class="d-block h5 mb-0">{estimate.dentalservice?.name}</span></td>
                             <td>{estimate.description ?? ''}</td>
+                            <td><a href={estimate?.replies?.file_url }>
+                                {estimate?.replies?.file_name}
+                            </a>
+                                {/* {JSON.stringify(estimate.replies,null, 2)} */}
+                                </td>
                             <td> <SOBadge status={estimate.status} /> </td>
                             <td className="text-end">
                                 <Link className="btn btn-outline-primary btn-sm " href={route('estimates.show', estimate)} >

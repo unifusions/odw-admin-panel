@@ -158,6 +158,12 @@ class HandleInertiaRequests extends Middleware
                 ['name' => 'Appointments', 'url' => route('appointments.index')],
             ],
 
+            'appointments.pending' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Appointments', 'url' => route('appointments.index')],
+                ['name' => 'Pending', 'url' => route('appointments.pending')],
+            ],
+
             'second-opinion.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Second Opinions', 'url' => route('second-opinion.index')],

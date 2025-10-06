@@ -17,7 +17,7 @@ class EstimateController extends Controller
         // dd( Estimate::with('dentalservice')->orderByDesc('created_at')->paginate(25));
         return Inertia::render(
             'Admin/Estimates/Index',
-            ['estimates' => Estimate::with('user', 'patient', 'dentalservice')->orderByDesc('created_at')->paginate(25)]
+            ['estimates' => Estimate::with('user', 'patient', 'dentalservice', 'replies')->orderByDesc('created_at')->paginate(25)]
         );
     }
 

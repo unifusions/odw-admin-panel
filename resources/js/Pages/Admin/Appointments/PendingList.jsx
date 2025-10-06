@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { format, parse, parseISO } from "date-fns";
 import { useRef, useState } from "react";
+import Modal from "./Modal";
 
 export default function PendingList({ appointments }) {
 
@@ -12,6 +13,7 @@ export default function PendingList({ appointments }) {
     const rescheduleModalRef = useRef(null);
     const cancelModalRef = useRef(null);
     const { data, put, processing, errors, reset } = useForm();
+    const [modalType, setModalType] = useState(null);
 
     const openConfirmModal = (item) => {
         setSelectedAppointment(item);
@@ -42,15 +44,18 @@ export default function PendingList({ appointments }) {
         put(
             route("appointments.cancel", { appointment: selectedAppointment }),
 
-            {
-                onFinish: () => { closeConfirmModal() },
-            }
+            // {
+            //     onFinish: () => { closeConfirmModal() },
+            // }
         );
     };
 
     const handleConfirm = () => {
         if (!selectedAppointment) return;
 
+        let routeName = 'appointments.cancel';
+        if (role === 'clinic_admin') routeName = 'clinic.appointments.cancel';
+        if (role === 'clinic_user') routeName = 'clinic.user.appointments.cancel';
         put(
             route("appointments.confirm", { appointment: selectedAppointment }),
 
@@ -93,8 +98,19 @@ export default function PendingList({ appointments }) {
 
                             <div class="col-md-auto">
                                 <div class="d-grid d-sm-flex gap-3">
-                                    <a class="btn btn-white" href="#" onClick={() => openCancelModal(item)}>Cancel Appointment</a>
-                                    <button type="button" class="btn btn-primary w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#" onClick={() => openConfirmModal(item)}>Confirm Appointment</button>
+                                    {/* <a class="btn btn-white" href="#" onClick={() => openCancelModal(item)}>Cancel Appointment</a> */}
+
+                                    <button className="btn btn-white" onClick={() => { setSelectedAppointment(item); setModalType("cancel"); }}>
+                                        Cancel Appointment
+                                    </button>
+
+                                    {/* <button type="button" class="btn btn-primary w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#" onClick={() => openConfirmModal(item)}>Confirm Appointment</button> */}
+
+
+                                    <button className="btn btn-primary" onClick={() => { setSelectedAppointment(item); setModalType("confirm"); }}>
+                                        Confirm Appointment
+                                    </button>
+
                                 </div>
                             </div>
 
@@ -123,6 +139,31 @@ export default function PendingList({ appointments }) {
 
                 </div>
 
+
+
+                <Modal
+                    isOpen={modalType === "confirm"}
+                    onClose={() => setModalType(null)}
+                    title="Confirm Appointment"
+                    onConfirm={handleConfirm}
+                    confirmText="Confirm"
+                    confirmClass="btn-success"
+                >
+                    Are you sure you want to confirm appointment #{selectedAppointment?.id} for{" "}
+                    {selectedAppointment?.patient?.first_name} {selectedAppointment?.patient?.last_name}?
+                </Modal>
+
+                <Modal
+                    isOpen={modalType === "cancel"}
+                    onClose={() => setModalType(null)}
+                    title="Cancel Appointment"
+                    onConfirm={handleCancel}
+                    confirmText="Cancel Appointment"
+                    confirmClass="btn-danger"
+                >
+                    Are you sure you want to cancel appointment #{selectedAppointment?.id} for{" "}
+                    {selectedAppointment?.patient?.first_name} {selectedAppointment?.patient?.last_name}?
+                </Modal>
 
                 {/* Confirm Modal */}
                 <div
