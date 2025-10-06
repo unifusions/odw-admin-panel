@@ -97,7 +97,7 @@ class AppointmentController extends Controller
     public function cancelAppointment(Request $request)
     {
         $id = $request->appointment_id;
-        $appointment = Appointment::find($id)->get();
+        $appointment = Appointment::find($id);
         if ($appointment) {
             $appointment->status = 'cancelled';
             $appointment->is_confirmed = false;
