@@ -93,4 +93,15 @@ class AppointmentController extends Controller
 
         return response()->json(['success' => 'Appointment Booked. Await for confirmation'], 200);
     }
+
+    public function cancelAppointment(Request $request)
+    {
+        $id = $request->appointment_id;
+        $appointment = Appointment::find($id);
+        $appointment->status = 'cancelled';
+        $appointment->is_confirmed = true;
+        $appointment->save();
+
+        return response()->json(['success' => 'Appointment has been cancelled']);
+    }
 }
