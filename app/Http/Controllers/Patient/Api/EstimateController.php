@@ -98,4 +98,10 @@ class EstimateController extends Controller
     {
         //
     }
+
+    public function myEstimate(Request $request){
+        $patient = $request->patient_id;
+        $estimates = Estimate::with('replies')->where('patient_id', $patient)->orderBy('created_at', 'DESC')->get();
+        return response()->json($estimates);
+    }
 }
