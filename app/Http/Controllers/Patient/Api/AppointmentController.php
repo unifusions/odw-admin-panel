@@ -98,10 +98,12 @@ class AppointmentController extends Controller
     {
         $id = $request->appointment_id;
         $appointment = Appointment::find($id);
-        $appointment->status = 'cancelled';
-        $appointment->is_confirmed = true;
-        $appointment->save();
+        if ($appointment) {
+            $appointment->status = 'cancelled';
+            $appointment->is_confirmed = true;
+            $appointment->save();
 
-        return response()->json(['success' => 'Appointment has been cancelled']);
+            return response()->json(['success' => 'Appointment has been cancelled']);
+        }
     }
 }
