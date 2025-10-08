@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\SecondOpinion;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class SoReply extends Model
 {
@@ -17,10 +18,18 @@ class SoReply extends Model
         'file_type',
         'size',
     ];
+    public $appends = ['file_url'];
+    public function getFileUrlAttribute()
+    {
+        if (!$this->path) {
+            return null;
+        }
+        return Storage::url($this->path);
+    }
 
-    
 
-    public function secondopinion(){
+    public function secondopinion()
+    {
         return $this->belongsTo(SecondOpinion::class);
     }
 }
