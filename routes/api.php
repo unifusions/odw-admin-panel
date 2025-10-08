@@ -37,7 +37,7 @@ Route::get('/my-appointments', [AppointmentController::class, 'myAppointment']);
 Route::post('/book-appointment', [AppointmentController::class, 'bookAppointment']);
 Route::post('/cancel-appointment', [AppointmentController::class, 'cancelAppointment']);
 Route::get('/dental-services', DentalServiceController::class);
-Route::get('/all-dental-services',AllDentalServices::class);
+Route::get('/all-dental-services', AllDentalServices::class);
 
 Route::get('/categories', [DentalCareController::class, 'getCategories']);
 Route::get('/services', [DentalCareController::class, 'getAllServices']);
@@ -74,12 +74,16 @@ Route::post('/estimation', [EstimateController::class, 'store']);
 
 Route::get('/specialists', SpecialistController::class);
 
-Route::get('/my-estimates', [EstimateController::class,  'myEstimate'] );
+Route::get('/my-estimates', [EstimateController::class,  'myEstimate']);
 
 
-Route::get('/files/{path}', [FilesController::class, 'show'])
-    ->where('path', '.*')
-    ->name('files.show');
+// Route::get('/files/{path}', [FilesController::class, 'show'])
+//     ->where('path', '.*')
+//     ->name('files.show');
 
 
-Route::middleware('auth:sanctum')->group(function () {});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/files/{path}', [FilesController::class, 'show'])
+        ->where('path', '.*')
+        ->name('files.show');
+});
