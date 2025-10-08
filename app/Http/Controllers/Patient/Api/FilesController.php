@@ -10,20 +10,16 @@ class FilesController extends Controller
 {
     public function show(Request $request)
     {
-        dd($request->path);
-        // Check if user is logged in and has permission
-        if (!auth()->check()) {
-            abort(403, 'Unauthorized');
-        }
+     
 
         $disk = Storage::disk('local');
 
-        if (!$disk->exists($path)) {
+        if (!$disk->exists($request->path)) {
             abort(404);
         }
 
         // Return file as download or inline response
-        return response()->file($disk->path($path));
+        return response()->file($disk->path($request->path));
         // or ->download($disk->path($path));
     }
 }
