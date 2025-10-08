@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Patient\Api\AllDentalServices;
 use App\Http\Controllers\Patient\Api\AppointmentController;
@@ -76,6 +77,9 @@ Route::get('/specialists', SpecialistController::class);
 Route::get('/my-estimates', [EstimateController::class,  'myEstimate'] );
 
 
+Route::get('/files/{path}', [FilesController::class, 'show'])
+    ->where('path', '.*')
+    ->name('files.show');
 
 
 Route::middleware('auth:sanctum')->group(function () {});

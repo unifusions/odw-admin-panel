@@ -21,10 +21,12 @@ class SoReply extends Model
     public $appends = ['file_url'];
     public function getFileUrlAttribute()
     {
-        if (!$this->path) {
-            return null;
-        }
-        return Storage::disk('local')->url($this->path);
+        // if (!$this->path) {
+        //     return null;
+        // }
+        // return Storage::disk('local')->url($this->path);
+
+        return route('files.show', ['path' => $this->path]);
     }
 
 
