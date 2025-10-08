@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\FilesController;
+ 
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Patient\Api\AllDentalServices;
 use App\Http\Controllers\Patient\Api\AppointmentController;
 use App\Http\Controllers\Patient\Api\DentalCareController;
 use App\Http\Controllers\Patient\Api\DentistController;
 use App\Http\Controllers\Patient\Api\EstimateController;
+use App\Http\Controllers\Patient\Api\FilesController;
 use App\Http\Controllers\Patient\Api\InsuranceController;
 use App\Http\Controllers\Patient\Api\ProfileController;
 use App\Http\Controllers\Patient\Api\SecondOpinionController;
@@ -83,7 +84,7 @@ Route::get('/my-estimates', [EstimateController::class,  'myEstimate']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/files/{path}', [FilesController::class, 'show'])
+    Route::get('/files', [FilesController::class, 'show'])
         ->where('path', '.*')
         ->name('files.show');
 });
