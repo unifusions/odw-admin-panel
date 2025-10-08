@@ -16,7 +16,7 @@ class SecondOpinionController extends Controller
     public function index(Request $request)
     {
         $patient = $request->patient_id;
-        $secondOpinions = SecondOpinion::where('patient_id', $patient)->orderBy('created_at', 'DESC')->get();
+        $secondOpinions = SecondOpinion::with('replies')->where('patient_id', $patient)->orderBy('created_at', 'DESC')->get();
         return response()->json($secondOpinions);
     }
 
