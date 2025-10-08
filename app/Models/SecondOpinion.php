@@ -22,8 +22,13 @@ class SecondOpinion extends Model
 
    protected $casts = [
       'is_quick' => 'boolean',
-      'hasEstimate' => 'boolean'
+      'hasEstimate' => 'boolean',
+      'created_at' => 'datetime:m/d/Y H:i',
+      'updated_at' => 'datetime:m/d/Y H:i',
+      'deleted_at' => 'datetime:m/d/Y H:i'
    ];
+
+ 
 
    public function patient()
    {
