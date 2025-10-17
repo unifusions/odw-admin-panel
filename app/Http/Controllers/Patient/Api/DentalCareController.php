@@ -15,20 +15,23 @@ class DentalCareController extends Controller
         return response()->json(DentalService::orderBy('display_order')->get());
     }
 
-    public function getAllServices(Request $request )
-    {   
-       
+    public function getAllServices(Request $request)
+    {
+
         return response()->json(DentalCare::all());
     }
     public function getServices(Request $request)
     {
 
         $serviceId = $request->dental_service_id;
-       
-        $dentalCares = DentalCare::whereHas('categories.dentalservice', function ($query) use ($serviceId) {
-            $query->where('id', $serviceId);
-        })->get();
 
+        // $dentalCares = DentalCare::whereHas('categories.dentalservice', function ($query) use ($serviceId) {
+        //     $query->where('id', $serviceId);
+        // })->get();
+
+        $dentalCares = DentalCare::whereHas('categories', function ($query) use ($serviceId) {
+            $query->where('id', $serviceId); // 'id' is from dental_services table
+        })->get();
 
         return response()->json($dentalCares);
     }
