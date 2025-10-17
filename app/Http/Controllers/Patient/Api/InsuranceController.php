@@ -115,8 +115,10 @@ class InsuranceController extends Controller
     
     }
 
-    public function destroy(string $id)
-    {
-   
+    public function destroy(Request $request)
+    {   
+        $insurance = Insurance::find($request->insurance_id);
+
+        return $insurance;
     }
 }

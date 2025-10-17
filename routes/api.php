@@ -60,7 +60,7 @@ Route::post('/update-profile', [ProfileController::class, 'update']);
 
 Route::get('/insurance', [InsuranceController::class, 'index']);
 Route::post('/add-insurance', [InsuranceController::class, 'store']);
-
+Route::post('/delete-insurance',[InsuranceController::class, 'delete']);
 // ESTIMATE CONTROLLER
 
 
