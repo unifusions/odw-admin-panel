@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Patient\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DentalService;
 use App\Models\DentalCare;
 use App\Models\Estimate;
 use App\Models\EstimateService;
@@ -23,9 +24,13 @@ class EstimateController extends Controller
         //           ->orWhere('medical_name', 'like', "%{$search}%");
         // }
 
+        $categories = DentalService::all();
         $DentalCare = DentalCare::with('categories')->get();
         // return $query->paginate(25); 
-        return response()->json($DentalCare);
+        return response()->json([
+            'DentalCare' => $DentalCare,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -99,7 +104,8 @@ class EstimateController extends Controller
         //
     }
 
-    public function myEstimate(Request $request){
+    public function myEstimate(Request $request)
+    {
         $patient = $request->patient_id;
         $estimates = Estimate::with('replies')->where('patient_id', $patient)->orderBy('created_at', 'DESC')->get();
         return response()->json($estimates);
