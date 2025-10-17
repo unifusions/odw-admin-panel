@@ -28,7 +28,7 @@ class EstimateController extends Controller
         $DentalCare = DentalCare::with('categories')->get();
         // return $query->paginate(25); 
         return response()->json([
-            'DentalCare' => $DentalCare,
+            'dentalCares' => $DentalCare,
             'categories' => $categories
         ]);
     }
