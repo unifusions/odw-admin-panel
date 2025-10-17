@@ -23,7 +23,7 @@ class EstimateController extends Controller
         //           ->orWhere('medical_name', 'like', "%{$search}%");
         // }
 
-        $DentalCare = DentalCare::all();
+        $DentalCare = DentalCare::with('categories')->all();
         // return $query->paginate(25); 
         return response()->json($DentalCare);
     }

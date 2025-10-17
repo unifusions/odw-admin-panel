@@ -15,6 +15,12 @@ class DentalCare extends Model
         'featured'
     ];
 
+    protected $casts = [
+        'featured' => 'boolean',
+        // 'hasEstimate' => 'boolean'
+     ];
+  
+
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');
     }
