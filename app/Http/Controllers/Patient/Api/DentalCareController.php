@@ -24,9 +24,9 @@ class DentalCareController extends Controller
     {
 
         $serviceId = $request->dental_service_id;
-        dd($request->input());
-        $dentalCares = DentalCare::whereHas('categories', function ($query) use ($serviceId) {
-            $query->where('dental_service_id', $serviceId);
+       
+        $dentalCares = DentalCare::whereHas('categories.dentalservice', function ($query) use ($serviceId) {
+            $query->where('id', $serviceId);
         })->get();
 
 
