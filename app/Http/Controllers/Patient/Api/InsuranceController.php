@@ -118,7 +118,7 @@ class InsuranceController extends Controller
     public function destroy(Request $request)
     {   
         $insurance = Insurance::find($request->insurance_id);
-
-        return $insurance;
+        $insurance->delete();
+        return response()->json(['success' => 'Insurance has been deleted successfully']);
     }
 }
