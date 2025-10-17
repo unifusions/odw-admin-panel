@@ -17,14 +17,14 @@ class DentalCareController extends Controller
 
     public function getAllServices(Request $request )
     {   
-        dd($request->input());
+       
         return response()->json(DentalCare::all());
     }
     public function getServices(Request $request)
     {
 
         $serviceId = $request->dental_service_id;
-
+        dd($request->input());
         $dentalCares = DentalCare::whereHas('categories', function ($query) use ($serviceId) {
             $query->where('dental_service_id', $serviceId);
         })->get();
