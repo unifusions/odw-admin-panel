@@ -30,7 +30,7 @@ class DentalCareController extends Controller
         // })->get();
 
         $dentalCares = DentalCare::whereHas('categories', function ($query) use ($serviceId) {
-            $query->where('id', $serviceId); // 'id' is from dental_services table
+            $query->where('care_categories.dental_service_id', $serviceId); // 'id' is from dental_services table
         })->get();
 
         return response()->json($dentalCares);
