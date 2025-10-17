@@ -18,7 +18,7 @@ class SoReply extends Model
         'file_type',
         'size',
     ];
-    public $appends = ['file_url'];
+    public $appends = ['file_url', 'static_url'];
     public function getFileUrlAttribute()
     {
         // if (!$this->path) {
@@ -28,6 +28,16 @@ class SoReply extends Model
 
         return route('files.show', ['path' => $this->path]);
     }
+
+    public function getStaticUrlAttribute()
+    {
+        if (!$this->path) {
+            return null;
+        }
+        return Storage::disk('local')->url($this->path);
+    }
+
+
 
 
     public function secondopinion()

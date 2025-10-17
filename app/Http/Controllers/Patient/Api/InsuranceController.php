@@ -119,6 +119,6 @@ class InsuranceController extends Controller
     {   
         $insurance = Insurance::find($request->insurance_id);
         $insurance->delete();
-        return response()->json(['success' => 'Insurance has been deleted successfully']);
+        return response()->json(['success' => 'Insurance has been deleted successfully'], 200);
     }
 }

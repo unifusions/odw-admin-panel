@@ -19,7 +19,7 @@ class FilesController extends Controller
         }
 
         // Return file as download or inline response
-        return response()->file($disk->path($request->path));
-        // or ->download($disk->path($path));
+        // return response()->file($disk->path($request->path));
+        return response()->download($disk->path($request->path));
     }
 }
