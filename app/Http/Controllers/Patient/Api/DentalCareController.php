@@ -33,6 +33,6 @@ class DentalCareController extends Controller
             $query->where('care_categories.dental_service_id', $serviceId); // 'id' is from dental_services table
         })->get();
 
-        return response()->json($dentalCares);
+        return response()->json(['dentalCares' => $dentalCares]);
     }
 }
