@@ -15,8 +15,9 @@ class DentalCareController extends Controller
         return response()->json(DentalService::orderBy('display_order')->get());
     }
 
-    public function getAllServices()
-    {
+    public function getAllServices(Request $request )
+    {   
+        dd($request->input());
         return response()->json(DentalCare::all());
     }
     public function getServices(Request $request)
