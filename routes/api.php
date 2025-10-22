@@ -2,6 +2,7 @@
 
  
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Patient\Api\AllDentalServices;
 use App\Http\Controllers\Patient\Api\AppointmentController;
 use App\Http\Controllers\Patient\Api\DentalCareController;
@@ -82,6 +83,8 @@ Route::get('/my-estimates', [EstimateController::class,  'myEstimate']);
 //     ->where('path', '.*')
 //     ->name('files.show');
 
+Route::post('/store-expo-token', [RegistrationController::class, 'storeExpoToken']);
+ 
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/files', [FilesController::class, 'show'])

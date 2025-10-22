@@ -42,14 +42,17 @@ class RegistrationController extends Controller
     }
     public function register(Request $request)
     {
-        $userExists = User::where('email', $request->email)
-            ->orWhere('phone', $request->phone)
-            ->exists();
+        $userExists =  User::when($request->email, fn($q) => $q->where('email', $request->email))
+        ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone))
+        ->exists();
+        // User::where('email', $request->email)
+        //     ->orWhere('phone', $request->phone)
+        //     ->exists();
         if ($userExists) {
             $status = true;
             return response()->json(['error' => 'Already registered. Login using Phone or Email'], 409);
         } else {
- 
+
             $newUser = User::create([
                 'name' => $request->fullname,
                 'email' => $request->email,
@@ -114,5 +117,16 @@ class RegistrationController extends Controller
         } else {
             return response()->json(['error' => 'Something Went Wrong'], 400);
         }
+    }
+
+    public function storeExpoToken(Request $request)
+    {
+        $request->validate(['token' => 'required|string']);
+        $user = $request->user();
+
+        $user->expo_token = $request->token;
+        $user->save();
+
+        return response()->json(['success' => true]);
     }
 }

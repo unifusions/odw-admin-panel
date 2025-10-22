@@ -32,7 +32,8 @@ class User extends Authenticatable
         'password',
         'role',
         'status',
-        'phone'
+        'phone',
+        'expo_token',
     ];
 
     /**
@@ -43,6 +44,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'expo_token'
     ];
 
     const ROLE_SUPER_ADMIN = 'super_admin';
@@ -135,7 +137,7 @@ class User extends Authenticatable
         // Get user counts grouped by date
 
         $users = User::selectRaw('DATE(created_at) as date, COUNT(*) as total')
-            ->whereBetween('created_at', [$startDate, $endDate])->where('role' , 'patient')
+            ->whereBetween('created_at', [$startDate, $endDate])->where('role', 'patient')
             ->groupByRaw('DATE(created_at)')
             ->orderBy('date')
             ->get()
