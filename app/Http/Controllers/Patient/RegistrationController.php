@@ -42,13 +42,25 @@ class RegistrationController extends Controller
     }
     public function register(Request $request)
     {
-        $userExists =  User::when($request->email, fn($q) => $q->where('email', $request->email))
-        ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone))
-        ->exists();
+     
+        if (!$request->email && !$request->phone) {
+            return response()->json(['error' => 'Empty Inputs'], 410);
+            // no input to check
+        }
+        
+        $exists = User::where(function($query) use ($request) {
+            $query->when($request->email, fn($q) => $q->where('email', $request->email))
+                  ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone));
+        })->exists();
+
+        // $userExists =  User::when($request->email, fn($q) => $q->where('email', $request->email))
+        // ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone))
+        // ->exists();
+        // dd($exists);
         // User::where('email', $request->email)
         //     ->orWhere('phone', $request->phone)
         //     ->exists();
-        if ($userExists) {
+        if ($exists) {
             $status = true;
             return response()->json(['error' => 'Already registered. Login using Phone or Email'], 409);
         } else {
