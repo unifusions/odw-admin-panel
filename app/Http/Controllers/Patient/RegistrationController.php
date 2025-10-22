@@ -43,10 +43,10 @@ class RegistrationController extends Controller
     public function register(Request $request)
     {
      
-        if (!$request->email && !$request->phone) {
-            return response()->json(['error' => 'Empty Inputs'], 410);
-            // no input to check
-        }
+        // if (!$request->email && !$request->phone) {
+        //     return response()->json(['error' => 'Empty Inputs' ], 410);
+        //     // no input to check
+        // }
         
         $exists = User::where(function($query) use ($request) {
             $query->when($request->email, fn($q) => $q->where('email', $request->email))
