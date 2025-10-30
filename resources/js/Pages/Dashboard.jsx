@@ -6,7 +6,9 @@ import { Head, Link, usePage } from '@inertiajs/react';
 
 export default function Dashboard() {
 
-  const { appointmentcount, socount, previousSoCount, previousAppointmentCount, patient_labels, patient_datas } = usePage().props;
+  const { appointmentcount, socount, previousSoCount, previousAppointmentCount,
+    estimatesCount, previousEstimatesCount,
+    patient_labels, patient_datas } = usePage().props;
 
   const RenderUpGraph = ({ percentile }) => {
 
@@ -21,7 +23,7 @@ export default function Dashboard() {
   const RenderDownGraph = ({ percentile }) => {
     return (
       <span className="badge bg-soft-danger text-danger">
-        <i className="bi-graph-down" /> {percentile.toFixed(2) } %
+        <i className="bi-graph-down" /> {percentile.toFixed(2)} %
       </span>
     )
   }
@@ -84,16 +86,14 @@ export default function Dashboard() {
 
               </div>
 
-              <span className="badge bg-soft-success text-success">
-                <i className="bi-graph-up"></i> 12.5%
-              </span>
-              <span className="text-body fs-6 ms-1">from 2</span>
+              {estimatesCount > previousEstimatesCount ? <RenderUpGraph percentile={(estimatesCount / previousEstimatesCount) * 100} /> : <RenderDownGraph percentile={(estimatesCount / previousEstimatesCount) * 100} />}
+              <span className="text-body fs-6 ms-1">from {previousEstimatesCount}</span>
             </div>
           </a>
         </div>
 
         <div class="col-lg-12 mb-3 mb-lg-5">
-          <PatientRegistrationChart  labels = {patient_labels} values = {patient_datas}/>
+          <PatientRegistrationChart labels={patient_labels} values={patient_datas} />
 
         </div>
 

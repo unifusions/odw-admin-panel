@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Estimate;
 use App\Models\SecondOpinion;
 use App\Models\User;
 use Carbon\Carbon;
@@ -25,6 +26,14 @@ class DashboardController extends Controller
             ->whereMonth('appointment_date', Carbon::now()->month)->where('is_confirmed', true)
             ->count();
 
+
+        $estimates = Estimate::whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
+
+        $previousEstimates = Estimate::whereYear('created_at', $previousMonth->year)
+            ->whereMonth('created_at', $previousMonth->month)->count();
+
         $previousAppointments = Appointment::whereYear('appointment_date', $previousMonth->year)
             ->whereMonth('appointment_date', $previousMonth->month)
             ->count();
@@ -35,8 +44,8 @@ class DashboardController extends Controller
         $previousSecondopinions = SecondOpinion::whereYear('created_at', $previousMonth->year)
             ->whereMonth('created_at', $previousMonth->month)->count();
 
-            $patientRegistrationData = User::currentMonthRegistration();
-           
+        $patientRegistrationData = User::currentMonthRegistration();
+
         return Inertia::render(
             'Dashboard',
             [
@@ -44,6 +53,8 @@ class DashboardController extends Controller
                 'previousAppointmentCount' => $previousAppointments,
                 'socount' => $secondopinions,
                 'previousSoCount' => $previousSecondopinions,
+                'estimatesCount' => $estimates,
+                'previousEstimatesCount'=> $previousEstimates,
                 'patient_labels' => $patientRegistrationData['labels'],
                 'patient_datas' => $patientRegistrationData['data']
             ]
