@@ -16,7 +16,7 @@ class FcmNotificationService
         $this->projectId = config('services.fcm.project_id');
 
         $this->client = new Client();
-        $this->client->setAuthConfig(storage_path('app/odw-demo-firebase-adminsdk-fbsvc-4040aa4d53.json'));
+        $this->client->setAuthConfig(storage_path('app/firebase.json'));
         $this->client->addScope('https://www.googleapis.com/auth/firebase.messaging');
     }
 
