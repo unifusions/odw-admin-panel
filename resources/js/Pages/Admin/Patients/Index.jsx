@@ -21,11 +21,13 @@ export default function Index({ patients }) {
 
         < AuthenticatedLayout
             header='Patients'
+            pageTitle={"Registered Patients"}
+
 
         >
-            <Head title="Registered Patients" />
 
-            {console.log(patients)}
+
+
             <div class="table-responsive datatable-custom">
                 <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                     data-hs-datatables-options='{

@@ -12,13 +12,13 @@ export default function Index() {
 
     return (
 
-        <AuthenticatedLayout header='Specialists'>
-            <PageHeader>
-                <Link href={route('specialists.create')} className="btn btn-primary" >
-                    <SpecialistIcon />   Add Specialist
-                </Link>
-            </PageHeader>
-            <Head title="Specialists" />
+        <AuthenticatedLayout header='Specialists'
+            pageTitle={"All Specialists"}
+            callToAction={<Link href={route('specialists.create')} className="btn btn-primary" >
+                <SpecialistIcon />   Add Specialist
+            </Link>}
+        >
+
             <Table>
                 <thead>
                     <tr>

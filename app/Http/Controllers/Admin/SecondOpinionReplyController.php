@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SecondOpinionReplied;
 use App\Models\Admin\SoReply;
 use App\Models\SecondOpinion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SecondOpinionReplyController extends Controller
 {
@@ -30,6 +32,9 @@ class SecondOpinionReplyController extends Controller
      */
     public function store(Request $request, SecondOpinion $second_opinion)
     {
+        Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
+
+        dd($second_opinion->patient->email);
 
         if ($request->hasFile('opinion')) {
             $file = $request->file('opinion');
@@ -48,6 +53,7 @@ class SecondOpinionReplyController extends Controller
                 $second_opinion->save();
             }
         }
+        Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
 
 
         return redirect()->route('second-opinion.show', $second_opinion)->with(['message' => 'Opinion has been sent to the patient']);

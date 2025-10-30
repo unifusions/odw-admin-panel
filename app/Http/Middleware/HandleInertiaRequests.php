@@ -57,6 +57,7 @@ class HandleInertiaRequests extends Middleware
         $dentist = request()->route('dentist');
         $patient = request()->route('patient');
         $clinicuser = request()->route('clinic-users');
+        $specialist = request()->route('specialists');
         $dashboardRoutes = [
             'super_admin' => route('admin.dashboard'),
             'clinic_admin' => route('clinic.dashboard'),
@@ -148,11 +149,31 @@ class HandleInertiaRequests extends Middleware
             'dentists.edit' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Dentists', 'url' => route('dentists.index')],
-                ['name' => optional($dentist)->name ?? 'Treatment', 'url' => $dentist ? route('dentists.edit', $dentist) : '#'],
+                ['name' => optional($dentist)->name ?? 'Dentist', 'url' => $dentist ? route('dentists.edit', $dentist) : '#'],
                 // ['name' => 'Edit', 'url' => route('dentists.create')]
             ],
 
+            // SPECIALISTS
 
+            'specialists.index' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Specialists', 'url' => route('specialists.index')]
+            ],
+
+            'specialists.create' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Specialists', 'url' => route('specialists.index')],
+                ['name' => 'Create', 'url' => route('specialists.create')]
+            ],
+
+            'specialists.edit' => [
+                ['name' => 'Dashboard', 'url' => $dashboardUrl],
+                ['name' => 'Specialists', 'url' => route('specialists.index')],
+                ['name' => optional($specialist)->name ?? 'Specialist', 'url' => $specialist ? route('specialists.edit', $specialist) : '#'],
+                // ['name' => 'Edit', 'url' => route('dentists.create')]
+            ],
+
+            // APPOINTMENTS
             'appointments.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Appointments', 'url' => route('appointments.index')],
@@ -184,7 +205,7 @@ class HandleInertiaRequests extends Middleware
             'clinic-users.edit' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Users', 'url' => route('clinic-users.index')],
-                ['name' => optional($clinicuser)->id ? $clinicuser  :"Edit"  , 'url' => "#"]
+                ['name' => optional($clinicuser)->id ? $clinicuser  : "Edit", 'url' => "#"]
             ],
 
 
