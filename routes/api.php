@@ -8,6 +8,7 @@ use App\Http\Controllers\Patient\Api\AppointmentController;
 use App\Http\Controllers\Patient\Api\DentalCareController;
 use App\Http\Controllers\Patient\Api\DentistController;
 use App\Http\Controllers\Patient\Api\EstimateController;
+use App\Http\Controllers\Patient\Api\FCMController;
 use App\Http\Controllers\Patient\Api\FilesController;
 use App\Http\Controllers\Patient\Api\InsuranceController;
 use App\Http\Controllers\Patient\Api\ProfileController;
@@ -84,7 +85,8 @@ Route::get('/my-estimates', [EstimateController::class,  'myEstimate']);
 //     ->name('files.show');
 
 Route::post('/store-expo-token', [RegistrationController::class, 'storeExpoToken']);
- 
+
+Route::post('/store-fcm-token', FCMController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/files', [FilesController::class, 'show'])

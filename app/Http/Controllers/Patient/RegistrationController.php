@@ -123,7 +123,7 @@ class RegistrationController extends Controller
 
             Cache::forget($key);
             $token = $user->createToken('authToken')->plainTextToken;
-
+          
             $user->load('patient');
             return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
         } else {
