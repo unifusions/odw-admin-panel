@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendOtpMail;
 use App\Models\Patient;
 use App\Models\User;
+use App\Services\FcmNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
+
+    public function __construct(private FcmNotificationService $fcm) {}
+
     public function login(Request $request)
     {
         $input = $request->input('email'); // 'identifier' is either email or phone
@@ -125,6 +129,16 @@ class RegistrationController extends Controller
             $token = $user->createToken('authToken')->plainTextToken;
           
             $user->load('patient');
+
+            $ok = $this->fcm->send(
+                $token,
+                'OTP Verified',
+                'This is a test from Laravel 12 FCM HTTP v1.',
+                ['type' => 'test']
+            );
+    
+           
+
             return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
         } else {
             return response()->json(['error' => 'Something Went Wrong'], 400);
