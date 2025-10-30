@@ -22,4 +22,4 @@ yarn-error.log
 /.vscode
 /.zed
 cheatsheet.md
-/storage/app/odw-demo-firebase-adminsdk-fbsvc-4040aa4d53.json
+/storage/app/firebase.json
