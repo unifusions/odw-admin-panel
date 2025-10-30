@@ -131,7 +131,7 @@ class RegistrationController extends Controller
             $user->load('patient');
 
             $ok = $this->fcm->send(
-                $token,
+                $user->fcm_token,
                 'OTP Verified',
                 'This is a test from Laravel 12 FCM HTTP v1.',
                 ['type' => 'test']
