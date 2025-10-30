@@ -81,7 +81,7 @@ export default function Dashboard() {
 
               <div className="row align-items-center gx-2 mb-1">
                 <div className="col-6">
-                  <h2 className="card-title text-inherit">6</h2>
+                  <h2 className="card-title text-inherit">{estimatesCount}</h2>
                 </div>
 
               </div>

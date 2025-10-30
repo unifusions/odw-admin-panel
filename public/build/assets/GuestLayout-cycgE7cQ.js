@@ -1,1 +1,0 @@
-import{j as t}from"./app-DYLLP1jy.js";function n({children:a}){return t.jsx(t.Fragment,{children:t.jsx("main",{id:"content",role:"main",className:"main","data-bs-theme":"dark",children:a})})}export{n as G};
