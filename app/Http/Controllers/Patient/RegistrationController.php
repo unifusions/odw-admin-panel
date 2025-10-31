@@ -41,7 +41,7 @@ class RegistrationController extends Controller
         $otp = rand(100000, 999999);
         $key = 'otp_' . $request->email;
         Cache::put($key, $otp, now()->addMinutes(10));
-        // Mail::to($request->email)->send(new SendOtpMail($otp));
+        Mail::to($request->email)->send(new SendOtpMail($otp));
         return response()->json(['status' => $status, 'otp' => $otp, 'user' => $user]);
     }
     public function register(Request $request)
@@ -97,10 +97,10 @@ class RegistrationController extends Controller
         $key = $request->email ? 'otp_' . $request->email : 'otp_' . $request->phone;
 
         // $key = 'otp_' . $request->email;
-        // Mail::to($request->email)->send(new SendOtpMail($otp));
+        Mail::to($request->email)->send(new SendOtpMail($otp));
         Cache::put($key, $otp, now()->addMinutes(10));
 
-        return response()->json(['status' => $status, 'message' => $message, 'otp' => $otp]);
+        return response()->json(['status' => 'success', 'message' => $message, 'otp' => $otp]);
     }
 
     public function verifyOtp(Request $request)
