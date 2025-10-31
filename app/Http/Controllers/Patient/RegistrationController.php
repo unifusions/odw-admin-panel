@@ -46,16 +46,19 @@ class RegistrationController extends Controller
     }
     public function register(Request $request)
     {
-     
+
         if (!$request->email && !$request->phone) {
-            return response()->json(['error' => 'Empty Inputs' ], 410);
+            return response()->json(['error' => 'Empty Inputs'], 410);
             // no input to check
         }
         // return response()->json(['input' => $request->all()], 400);
-        $exists = User::where(function($query) use ($request) {
-            $query->when($request->email, fn($q) => $q->where('email', $request->email))
-                  ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone));
-        })->exists();
+        // $exists = User::where(function($query) use ($request) {
+        //     $query->when($request->email, fn($q) => $q->where('email', $request->email))
+        //           ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone));
+        // })->exists();
+
+        $exists = User::where('email', $request->email)->exists();
+
 
         // $userExists =  User::when($request->email, fn($q) => $q->where('email', $request->email))
         // ->when($request->phone, fn($q) => $q->orWhere('phone', $request->phone))
@@ -127,17 +130,11 @@ class RegistrationController extends Controller
 
             Cache::forget($key);
             $token = $user->createToken('authToken')->plainTextToken;
-          
+
             $user->load('patient');
 
-            $ok = $this->fcm->send(
-                $user->fcm_token,
-                'OTP Verified',
-                'This is a test from Laravel 12 FCM HTTP v1.',
-                ['type' => 'test']
-            );
-    
-           
+
+
 
             return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
         } else {
