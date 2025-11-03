@@ -123,8 +123,8 @@ class RegistrationController extends Controller
         return response()->json([
             'status' => $status,
             'otp' => $otp,
-            'user' => $user,
-            'loginInput' => $user->phone,
+            'user' => $newUser,
+            'loginInput' => $email ,
             'isEmail' => false
         ]);
     }
