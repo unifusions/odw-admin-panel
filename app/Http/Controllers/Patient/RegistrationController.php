@@ -126,7 +126,7 @@ class RegistrationController extends Controller
             'user' => $newUser,
             'loginInput' => $email ,
             'isEmail' => false
-        ]);
+        ], 200);
     }
 
     public function verifyOtp(Request $request)
