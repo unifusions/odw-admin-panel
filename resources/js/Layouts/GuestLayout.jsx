@@ -1,18 +1,71 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import * as Logo from '../../../public/images/odw-logo.png';
-export default function GuestLayout({ children }) {
+export default function GuestLayout({ children, header }) {
     return (
         <>
 
-            
 
+            <header className='navbar navbar-expand-lg navbar-center navbar-light bg-white navbar-absolute-top navbar-show-hide'>
+                <div className="container-sm">
+                    <nav className="js-mega-menu navbar-nav-wrap">
+                        <a className="navbar-brand" href="#" aria-label="Front">
+                            <img className="" src="/images/odw-logo-h.png" alt="Logo" data-hs-theme-appearance="default" height={70} width='auto' />
+                            {/* <img className="navbar-brand-logo"src="/images/odw-logo-h.png" alt="Logo" data-hs-theme-appearance="dark" /> */}
+                        </a>
 
-            <main id="content" role="main" className="main"  data-bs-theme="dark">
+                        <div className="navbar-nav-wrap-secondary-content">
+                            <div className="dropdown">
 
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            {header && (<div
+                className='fs-2 fw-bold text-dark'>{header}</div>)
+            }
+            <main id="content"   className="main container"  >
+                <Head title='Privacy Policy' />
                 {children}
 
             </main>
+            <div class="container">
+                <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+                    <div class="col mb-3">
+                        <img src="/images/odw-logo-h.png" alt="" height={75} className='mb-3' />
+                        <p>Our offices are open all 7 days,
+                            24 x 7 for emergencies available on call</p>
+                        <p class="text-body-secondary">© 2025. OneDentalWorld.com - All Rights Reserved</p>
+                    </div>
+
+                    <div class="col mb-3">
+
+                    </div>
+
+                    <div class="col mb-3">
+
+                    </div>
+
+                    <div class="col mb-3">
+                        <h5>For Partners</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Partners & Affiliations</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Our Offices</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col mb-3">
+                        <h5>Company</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About Us</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Services</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Contact</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Career</a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
 
         </>
 

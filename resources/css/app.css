@@ -207,7 +207,22 @@ ul ol,
 ul ul {
     margin-bottom: 0
 }
+ol {
+    counter-reset: item;
+}
 
+ol > li {
+    counter-increment: item;
+}
+
+ol ol > li {
+    display: block;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -20px;
+}
 dt {
     font-weight: 400
 }

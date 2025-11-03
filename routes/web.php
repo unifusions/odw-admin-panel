@@ -31,6 +31,7 @@ use App\Http\Controllers\DentalServicesController;
 use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
 use App\Http\Controllers\Patient\DashboardController;
 use App\Http\Controllers\PreloginController;
+use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
 use App\Http\Middleware\RoleMiddleware;
@@ -45,6 +46,8 @@ Route::get('send-test-mail', function () {
     return view('mail.otp');
     // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
 })->name('sendtestmail');
+
+Route::get('privacy-policy', PrivacyPolicyController::class );
 
 
 // Route::get('/login', [PreloginController::class, 'preLogin'])->name('login');
