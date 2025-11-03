@@ -132,12 +132,12 @@ class RegistrationController extends Controller
     public function verifyOtp(Request $request)
     {
 
-        $input = $request->input('email');
+        $input = $request->input('loginInput');
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             // It's an email
             $status = true;
-            $user = User::where('email', operator: $input)->first();
+            $user = User::where(column: 'email', operator: $input)->first();
         } else {
             if (preg_match('/^\+?[0-9]{7,15}$/', $input))
                 $user = User::where('phone', $input)->first();
