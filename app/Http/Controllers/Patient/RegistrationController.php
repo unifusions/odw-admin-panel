@@ -148,7 +148,8 @@ class RegistrationController extends Controller
         if ($user) {
 
             $otpDigits = implode("", $request->otp);
-            $key = $request->email ? 'otp_' . $request->email : 'otp_' . $request->phone;
+            // $key = $request->email ? 'otp_' . $request->email : 'otp_' . $request->phone;
+            $key = 'otp_' . $input;
             if (Cache::get($key) != $otpDigits) {
                 return response()->json(['message' => $otpDigits], 400);
             }
