@@ -137,7 +137,7 @@ class RegistrationController extends Controller
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             // It's an email
             $status = true;
-            $user = User::where(column: 'email', operator: $input)->first();
+            $user = User::where('email',  $input)->first();
         } else {
             if (preg_match('/^\+?[0-9]{7,15}$/', $input))
                 $user = User::where('phone', $input)->first();
