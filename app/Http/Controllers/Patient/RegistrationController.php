@@ -48,11 +48,18 @@ class RegistrationController extends Controller
 
         $otp = rand(100000, 999999);
         $key =   'otp_' . $input;
-        Cache::put($key, $otp, now()->addMinutes(10));
-        if ($isEmail) {
-            Mail::to($input)->send(new SendOtpMail($otp));
+        if ($user && $user->role !== "") {
+            Cache::put($key, $otp, now()->addMinutes(10));
+            if ($isEmail) {
+                Mail::to($input)->send(new SendOtpMail($otp));
+            }
+            return response()->json(['status' => $status, 'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
+        } else {
+            $token = $user->createToken('authToken')->plainTextToken;
+
+            $user->load('patient');
+            return response()->json(['message' => 'Bypassing verification', 'token' => $token, 'user' => $user]);
         }
-        return response()->json(['status' => $status, 'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
     }
     public function register(Request $request)
     {
@@ -124,7 +131,7 @@ class RegistrationController extends Controller
             'status' => $status,
             'otp' => $otp,
             'user' => $newUser,
-            'loginInput' => $email ,
+            'loginInput' => $email,
             'isEmail' => false
         ], 200);
     }
