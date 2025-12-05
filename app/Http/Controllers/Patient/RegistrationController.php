@@ -7,6 +7,7 @@ use App\Mail\SendOtpMail;
 use App\Models\Patient;
 use App\Models\User;
 use App\Services\FcmNotificationService;
+use App\Services\TwilioService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,11 @@ class RegistrationController extends Controller
 
         $input = $request->input('loginInput');
         $isEmail = false;
+        $isPhone = false;
+        $twilio = new TwilioService();
+
+        
+ 
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             $isEmail = true;
@@ -30,6 +36,7 @@ class RegistrationController extends Controller
             $user = User::where('email', $input)->first();
         } else {
             $isEmail = false;
+            $isPhone = true;
             $input = preg_replace("/[^0-9]/", "", $input);
 
             if (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
@@ -53,6 +60,10 @@ class RegistrationController extends Controller
             if ($isEmail) {
                 Mail::to($input)->send(new SendOtpMail($otp));
             }
+            if($isPhone){
+                $otpMessage = "Your OneDentalWorld Login Verification code is : {$otp}";
+                $twilio->sendSms($user->phone, $otpMessage);
+            }
             return response()->json(['status' => $status, 'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
         } else {
             $token = $user->createToken('authToken')->plainTextToken;
@@ -71,7 +82,7 @@ class RegistrationController extends Controller
 
         $user = null;
 
-
+        $twilio = new TwilioService();
 
         if ($email) {
             $user = User::where('email', $email)->first();
@@ -120,8 +131,11 @@ class RegistrationController extends Controller
 
         $otp = rand(100000, 999999);
         $key = $request->email ? 'otp_' . $request->email : 'otp_' . $request->phone;
-
+        
+        $otpMessage = "Your OneDentalWorld Registration Verification code is : {$otp}";
+        $twilio->sendSms($user->phone, $otpMessage);
         // $key = 'otp_' . $request->email;
+        
         Mail::to($request->email)->send(new SendOtpMail($otp));
         Cache::put($key, $otp, now()->addMinutes(10));
 
@@ -138,6 +152,9 @@ class RegistrationController extends Controller
 
     public function verifyOtp(Request $request)
     {
+
+        // +18777804236
+
 
         $input = $request->input('loginInput');
 
