@@ -36,13 +36,13 @@ class RegistrationController extends Controller
             $user = User::where('email', $input)->first();
         } else {
             $isEmail = false;
-            $isPhone = true;
+            
             $input = preg_replace("/[^0-9]/", "", $input);
 
             if (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
                 // It's a phone number (7-15 digits, allowing optional + at the start)
-                $input = "+{$input}";
-
+               
+                $isPhone = true;
                 $user = User::where('phone', $input)->first();
             } else {
                 return response()->json(['error' => 'Invalid email or phone number'], 400);
@@ -64,7 +64,7 @@ class RegistrationController extends Controller
                 $otpMessage = "Your OneDentalWorld Login Verification code is : {$otp}";
                 $twilio->sendSms($user->phone, $otpMessage);
             }
-            return response()->json(['status' => $status, 'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
+            return response()->json([  'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
         } else {
             $token = $user->createToken('authToken')->plainTextToken;
 
@@ -142,7 +142,7 @@ class RegistrationController extends Controller
         // return response()->json(['status' => 'success', 'message' => $message, 'otp' => $otp]);
 
         return response()->json([
-            'status' => $status,
+            
             'otp' => $otp,
             'user' => $newUser,
             'loginInput' => $email,
