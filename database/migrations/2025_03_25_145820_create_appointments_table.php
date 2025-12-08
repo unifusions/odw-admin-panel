@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Clinic::class)->constrained();
             $table->foreignIdFor(ClinicBranch::class)->constrained();
             $table->foreignIdFor(ClinicDentist::class)->nullable()->constrained();
-            $table->foreignIdFor(Patient::class)->constrained('users');
+            $table->foreignIdFor(Patient::class)->constrained('patients');
             $table->date('appointment_date');
             $table->time('time_slot'); // Stores 30-min slots
             $table->string('status')->default('pending'); // 'pending', 'confirmed', 'rescheduled', 'canceled'

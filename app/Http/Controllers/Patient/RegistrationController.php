@@ -61,7 +61,7 @@ class RegistrationController extends Controller
                 Mail::to($input)->send(new SendOtpMail($otp));
             }
             if($isPhone){
-                $otpMessage = "Your OneDentalWorld Login Verification code is : {$otp}";
+                $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
                 $twilio->sendSms($user->phone, $otpMessage);
             }
             return response()->json([  'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
@@ -132,7 +132,7 @@ class RegistrationController extends Controller
         $otp = rand(100000, 999999);
         $key = $request->email ? 'otp_' . $request->email : 'otp_' . $request->phone;
         
-        $otpMessage = "Your OneDentalWorld Registration Verification code is : {$otp}";
+        $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
         $twilio->sendSms($newUser->phone, $otpMessage);
         // $key = 'otp_' . $request->email;
         
