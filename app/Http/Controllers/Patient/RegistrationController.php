@@ -133,7 +133,7 @@ class RegistrationController extends Controller
         $key = $request->email ? 'otp_' . $request->email : 'otp_' . $request->phone;
         
         $otpMessage = "Your OneDentalWorld Registration Verification code is : {$otp}";
-        $twilio->sendSms($user->phone, $otpMessage);
+        $twilio->sendSms($newUser->phone, $otpMessage);
         // $key = 'otp_' . $request->email;
         
         Mail::to($request->email)->send(new SendOtpMail($otp));
