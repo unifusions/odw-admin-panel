@@ -27,8 +27,8 @@ class RegistrationController extends Controller
         $isPhone = false;
         $twilio = new TwilioService();
 
-        
- 
+
+
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             $isEmail = true;
@@ -36,12 +36,12 @@ class RegistrationController extends Controller
             $user = User::where('email', $input)->first();
         } else {
             $isEmail = false;
-            
+
             $input = preg_replace("/[^0-9]/", "", $input);
 
             if (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
                 // It's a phone number (7-15 digits, allowing optional + at the start)
-               
+
                 $isPhone = true;
                 $user = User::where('phone', $input)->first();
             } else {
@@ -60,11 +60,11 @@ class RegistrationController extends Controller
             if ($isEmail) {
                 Mail::to($input)->send(new SendOtpMail($otp));
             }
-            if($isPhone){
+            if ($isPhone) {
                 $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
                 $twilio->sendSms($user->phone, $otpMessage);
             }
-            return response()->json([  'otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
+            return response()->json(['otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
         } else {
             $token = $user->createToken('authToken')->plainTextToken;
 
@@ -131,18 +131,18 @@ class RegistrationController extends Controller
 
         $otp = rand(100000, 999999);
         $key = 'otp_' . $phone;
-        
+
         $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
         $twilio->sendSms($newUser->phone, $otpMessage);
         // $key = 'otp_' . $request->email;
-        
+
         Mail::to($request->email)->send(new SendOtpMail($otp));
         Cache::put($key, $otp, now()->addMinutes(10));
 
         // return response()->json(['status' => 'success', 'message' => $message, 'otp' => $otp]);
 
         return response()->json([
-            
+
             'otp' => $otp,
             'user' => $newUser,
             'loginInput' => $email,
@@ -155,7 +155,7 @@ class RegistrationController extends Controller
 
         // +18777804236
 
-
+        $user = false;
         $input = $request->input('loginInput');
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
