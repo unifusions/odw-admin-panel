@@ -145,7 +145,7 @@ class RegistrationController extends Controller
 
             'otp' => $otp,
             'user' => $newUser,
-            'loginInput' => $email,
+            'loginInput' => $phone,
             'isEmail' => false
         ], 200);
     }
@@ -163,6 +163,7 @@ class RegistrationController extends Controller
             $status = true;
             $user = User::where('email',  $input)->first();
         } else {
+            $input = preg_replace("/[^0-9]/", "", $input);
             if (preg_match('/^\+?[0-9]{7,15}$/', $input))
                 $user = User::where('phone', $input)->first();
         }
