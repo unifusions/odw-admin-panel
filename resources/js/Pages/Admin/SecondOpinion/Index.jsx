@@ -37,11 +37,11 @@ export default function SecondOpinion() {
                                                 <span className="avatar-initials">A</span>
                                             </div>
                                             <div className="ms-3">
-                                                <span className="d-block h5 text-inherit mb-0">{secondopinion.patient.first_name}
+                                                <span className="d-block h5 text-inherit mb-0">{secondopinion?.patient?.first_name}
 
                                                     {/* <i className="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> */}
                                                 </span>
-                                                <span className="d-block fs-5 text-body">{secondopinion.patient.user.email}</span>
+                                                <span className="d-block fs-5 text-body">{secondopinion?.patient?.user?.email}</span>
                                             </div>
                                         </a>
                                     </td>
