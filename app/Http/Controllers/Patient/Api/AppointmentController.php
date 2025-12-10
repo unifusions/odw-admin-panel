@@ -39,7 +39,7 @@ class AppointmentController extends Controller
                 return [
                     'appointment_id' => $booking->id,
                     'service' => $booking->dentalservice,
-                    'clinic' => $booking->clinic->name,
+                    'clinic' => optional($booking->clinic)->name,
                     // 'branch' => $booking->clinicbranch->name,
                     'appointment_date' => $booking->appointment_date,
                     'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),

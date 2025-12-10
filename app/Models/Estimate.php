@@ -16,6 +16,8 @@ class Estimate extends Model
         'description',
         'insurance_id',
         'is_quick',
+        'status',
+        'is_closed'
     ];
 
     protected $appends = ['statuse'];
