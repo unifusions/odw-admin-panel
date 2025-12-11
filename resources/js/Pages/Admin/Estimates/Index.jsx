@@ -40,7 +40,7 @@ export default function Index() {
                                         <span class="d-block h5 text-inherit mb-0">{estimate.patient?.first_name}
                                             {/* <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> */}
                                         </span>
-                                        <span class="d-block fs-5 text-body">{estimate.user.email}</span>
+                                        <span class="d-block fs-5 text-body">{estimate.user?.email}</span>
                                     </div>
                                 </div>
                             </td>
