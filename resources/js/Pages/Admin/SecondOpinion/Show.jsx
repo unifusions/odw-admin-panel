@@ -23,17 +23,17 @@ export default function Show() {
         <AuthenticatedLayout header='Second Opinion'
 
             pageTitle={<SingleHeader
-                title={`SO #${secondopinion.id} ${secondopinion.subject && (' | ' + secondopinion.subject)}`}
+                title={`SO #${secondopinion.id} ${secondopinion?.subject && (' | ' + secondopinion?.subject)}`}
                 status={secondopinion.status}
                 timestamp={secondopinion.created_at}
             />}
             callToAction={
                 <div>
                     <GiveOpinion so={secondopinion} isDisabled={replied} />
-                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion.status == "in_review" || secondopinion.status == "closed" || replied) && true} />
+                    <MarkAsReview so={secondopinion} isDisabled={(secondopinion?.status == "in_review" || secondopinion?.status == "closed" || replied) && true} />
 
 
-                    <MarkAsClosed so={secondopinion} isDisabled={secondopinion.status == "closed" && true} />
+                    <MarkAsClosed so={secondopinion} isDisabled={secondopinion?.status == "closed" && true} />
 
                 </div>}
         >
@@ -44,11 +44,11 @@ export default function Show() {
                 <Column lg={8} >
                     <Card title="Second Opinion Info">
                         <InfoRow index="Second Opinion #" value={`# ${secondopinion.id}`} />
-                        <InfoRow index="Subject" value={secondopinion.subject} />
-                        <InfoRow index="Requested On" value={secondopinion.created_at} />
-                        {!secondopinion.is_quick &&
+                        <InfoRow index="Subject" value={secondopinion?.subject} />
+                        <InfoRow index="Requested On" value={secondopinion?.created_at} />
+                        {!secondopinion?.is_quick &&
                             <>
-                                <InfoRow index="Category" value={category && category.name || 'NA'} />
+                                <InfoRow index="Category" value={category && category?.name || 'NA'} />
                                 <InfoRow index="Insurance" value="Yes" />
                                 <InfoRow index="Estimate Required" value="Yes" />
                             </>
@@ -61,7 +61,7 @@ export default function Show() {
 
                     <Card title="Patient Notes/Request">
                         <InfoRow index="Last Dental Visit" value="3 weeks ago" />
-                        <InfoRow index="Patient Notes/Request" value={secondopinion.description} />
+                        <InfoRow index="Patient Notes/Request" value={secondopinion?.description} />
 
                     </Card>
 

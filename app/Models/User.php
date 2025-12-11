@@ -126,7 +126,7 @@ class User extends Authenticatable
             'id',       // Local key on Clinic table
             'id',       // Local key on User table
             'clinic_id' // Foreign key on ClinicUser table
-        );
+        )->select('clinics.*');
     }
 
     public static function currentMonthRegistration()

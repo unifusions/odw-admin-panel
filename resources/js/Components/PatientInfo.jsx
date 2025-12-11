@@ -16,7 +16,7 @@ export default function PatientInfo({ patient }) {
                                     </span>
                                 </div>
                                 <div className="ms-3">
-                                    <span class="d-block h5 text-inherit mb-0">{patient.first_name || ''} {patient.last_name || ''}</span>
+                                    <span class="d-block h5 text-inherit mb-0">{patient?.first_name || ''} {patient?.last_name || ''}</span>
                                     <span class="d-block fs-5 text-body">User Since</span>
                                 </div>
                             </div>
@@ -29,8 +29,8 @@ export default function PatientInfo({ patient }) {
                             </div>
 
                             <ul class="list-unstyled list-py-2 text-body">
-                                <li><i class="bi-at me-2"></i>{patient.user.email}</li>
-                                <li><i class="bi-phone me-2"></i>{patient.user.phone}</li>
+                                <li><i class="bi-at me-2"></i>{patient?.user?.email}</li>
+                                <li><i class="bi-phone me-2"></i>{patient?.user?.phone}</li>
                             </ul>
                         </li>
 
