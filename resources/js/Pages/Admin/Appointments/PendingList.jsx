@@ -86,7 +86,7 @@ export default function PendingList({ appointments }) {
                             <div class="col-md mb-4 mb-md-0">
                                 <div class="mb-4">
                                     <span class="card-subtitle text-lowercase"></span>
-                                    <h3>{item.patient && (<>{item.patient.last_name}, {item.patient.first_name} </>)}</h3>
+                                    <h3>{item.patient && (<>{item.patient?.last_name}, {item.patient?.first_name} </>)}</h3>
                                 </div>
 
                                 <div>

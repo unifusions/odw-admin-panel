@@ -7,7 +7,7 @@ export default function Show({ patient }) {
     return (
         <AuthenticatedLayout
             header="Patients"
-            pageTitle={patient.last_name + ', ' + patient.first_name}
+            pageTitle={patient?.last_name + ', ' + patient?.first_name}
         >
 
             <Row>
@@ -18,14 +18,14 @@ export default function Show({ patient }) {
                             <div class="flex-shrink-0">
 
 
-                                {patient.avatar_url ?
-                                    <div class="avatar avatar-lg avatar-circle"> <img class="avatar-img" src={patient.avatar_url} alt="" />
+                                {patient?.avatar_url ?
+                                    <div class="avatar avatar-lg avatar-circle"> <img class="avatar-img" src={patient?.avatar_url} alt="" />
                                     </div> : <>
 
                                         <div className="avatar avatar-soft-primary avatar-circle">
                                             <span className="avatar-initials">
 
-                                                {patient.first_name.charAt(0)}
+                                                {patient?.first_name.charAt(0)}
                                             </span>
                                         </div>
 
@@ -35,13 +35,13 @@ export default function Show({ patient }) {
 
                             <div class="flex-grow-1 mx-3">
                                 <div class="d-flex mb-1">
-                                    <h3 class="mb-0 me-3">{patient.first_name} {patient.last_name}</h3>
+                                    <h3 class="mb-0 me-3">{patient?.first_name} {patient?.last_name}</h3>
 
 
 
                                 </div>
 
-                                <span class="fs-6">User Since {patient.created_at}</span>
+                                <span class="fs-6">User Since {patient?.created_at}</span>
                             </div>
 
 

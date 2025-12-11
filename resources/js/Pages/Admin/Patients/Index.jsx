@@ -54,22 +54,22 @@ export default function Index({ patients }) {
                                         <a href="#!" className="d-flex align-items-center">
                                             <div className="avatar avatar-soft-primary avatar-circle">
                                                 <span className="avatar-initials">
-                                                    {patient.first_name?.charAt(0)}
+                                                    {patient?.first_name?.charAt(0)}
                                                 </span>
                                             </div>
                                             <div className="ms-3">
-                                                <span class="d-block h5 text-inherit mb-0">{patient.first_name}</span>
-                                                <span class="d-block fs-5 text-body">{calculateAge(patient.dob)} / {patient.sex}</span>
+                                                <span class="d-block h5 text-inherit mb-0">{patient?.first_name}</span>
+                                                <span class="d-block fs-5 text-body">{calculateAge(patient?.dob)} / {patient?.sex}</span>
                                             </div>
                                         </a>
 
                                     </td>
                                     <td>
-                                        <span class="d-block h5 mb-0">{patient.phone}</span>
-                                        <span class="d-block fs-5">{patient.email}</span>
+                                        <span class="d-block h5 mb-0">{patient?.phone}</span>
+                                        <span class="d-block fs-5">{patient?.email}</span>
                                     </td>
-                                    <td>{patient.services}</td>
-                                    <td>{patient.clinic}</td>
+                                    <td>{patient?.services}</td>
+                                    <td>{patient?.clinic}</td>
                                 </tr>
                             ))
                         }

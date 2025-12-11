@@ -34,10 +34,10 @@ export default function Index() {
                             <td>
                                 <div className="d-flex  align-items-center">
                                     <div class="avatar avatar-soft-primary avatar-circle">
-                                        <span class="avatar-initials">{estimate.patient.first_name.charAt(0)}</span>
+                                        <span class="avatar-initials">{estimate.patient?.first_name.charAt(0)}</span>
                                     </div>
                                     <div class="ms-3">
-                                        <span class="d-block h5 text-inherit mb-0">{estimate.patient.first_name}
+                                        <span class="d-block h5 text-inherit mb-0">{estimate.patient?.first_name}
                                             {/* <i class="bi-patch-check-fill text-primary" data-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i> */}
                                         </span>
                                         <span class="d-block fs-5 text-body">{estimate.user.email}</span>
