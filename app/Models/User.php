@@ -34,6 +34,7 @@ class User extends Authenticatable
         'status',
         'phone',
         'expo_token',
+        'fcm_token',
     ];
 
     /**
@@ -127,6 +128,11 @@ class User extends Authenticatable
             'id',       // Local key on User table
             'clinic_id' // Foreign key on ClinicUser table
         )->select('clinics.*');
+    }
+
+    public function devices()
+    {
+        return $this->hasMany(Device::class);
     }
 
     public static function currentMonthRegistration()
