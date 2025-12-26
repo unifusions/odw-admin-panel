@@ -23,3 +23,7 @@ yarn-error.log
 /.zed
 cheatsheet.md
 /storage/app/firebase.json
+routes/web.php
+storage/.DS_Store
+.gitignore
+.DS_Store

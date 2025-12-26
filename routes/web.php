@@ -32,6 +32,7 @@ use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentCont
 use App\Http\Controllers\Patient\DashboardController;
 use App\Http\Controllers\PreloginController;
 use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
 use App\Http\Middleware\RoleMiddleware;
@@ -48,6 +49,7 @@ Route::get('send-test-mail', function () {
 })->name('sendtestmail');
 
 Route::get('privacy-policy', PrivacyPolicyController::class );
+Route::get('support', SupportController::class );
 
 
 // Route::get('/login', [PreloginController::class, 'preLogin'])->name('login');
