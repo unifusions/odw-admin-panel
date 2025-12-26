@@ -1,185 +1,189 @@
 {
-  "_AuthenticatedLayout-JWQ1OI35.js": {
-    "file": "assets/AuthenticatedLayout-JWQ1OI35.js",
+  "_AuthenticatedLayout-Bura-3bM.js": {
+    "file": "assets/AuthenticatedLayout-Bura-3bM.js",
     "name": "AuthenticatedLayout",
     "imports": [
       "resources/js/app.jsx",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js"
     ]
   },
-  "_Card-Dj3sPb2Z.js": {
-    "file": "assets/Card-Dj3sPb2Z.js",
+  "_Card-Bks9e2Rn.js": {
+    "file": "assets/Card-Bks9e2Rn.js",
     "name": "Card",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_Components-k4A5tvRo.js": {
-    "file": "assets/Components-k4A5tvRo.js",
+  "_Components-CgB0zIWE.js": {
+    "file": "assets/Components-CgB0zIWE.js",
     "name": "Components",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_DeleteConfirmModal-D8WAVHrg.js": {
-    "file": "assets/DeleteConfirmModal-D8WAVHrg.js",
+  "_DeleteConfirmModal-DbrlLUUY.js": {
+    "file": "assets/DeleteConfirmModal-DbrlLUUY.js",
     "name": "DeleteConfirmModal",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_DentistIcon-DURlZtbG.js": {
-    "file": "assets/DentistIcon-DURlZtbG.js",
+  "_DentistIcon-Du42aAw9.js": {
+    "file": "assets/DentistIcon-Du42aAw9.js",
     "name": "DentistIcon",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_FileUploader-BH0PcxOS.js": {
-    "file": "assets/FileUploader-BH0PcxOS.js",
+  "_FileUploader-NOsZx4Zb.js": {
+    "file": "assets/FileUploader-NOsZx4Zb.js",
     "name": "FileUploader",
     "imports": [
       "resources/js/app.jsx",
-      "_index-CbVTwq4s.js"
+      "_index-CPyOZgBv.js"
     ]
   },
-  "_GuestLayout-Bj5Lb0sb.js": {
-    "file": "assets/GuestLayout-Bj5Lb0sb.js",
+  "_GuestLayout-eWNf6s3K.js": {
+    "file": "assets/GuestLayout-eWNf6s3K.js",
     "name": "GuestLayout",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_ImageUploader-CTkQAlWR.js": {
-    "file": "assets/ImageUploader-CTkQAlWR.js",
+  "_ImageUploader-DHiHnkZe.js": {
+    "file": "assets/ImageUploader-DHiHnkZe.js",
     "name": "ImageUploader",
     "imports": [
       "resources/js/app.jsx",
-      "_index-CbVTwq4s.js"
+      "_index-CPyOZgBv.js"
     ]
   },
-  "_InputError-BFVLeSCV.js": {
-    "file": "assets/InputError-BFVLeSCV.js",
+  "_InputError-BJE5lsj1.js": {
+    "file": "assets/InputError-BJE5lsj1.js",
     "name": "InputError",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_InputLabel-CV13bN8s.js": {
-    "file": "assets/InputLabel-CV13bN8s.js",
+  "_InputLabel-BE3jnjdn.js": {
+    "file": "assets/InputLabel-BE3jnjdn.js",
     "name": "InputLabel",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_LegendIndicator-CNkow7eY.js": {
-    "file": "assets/LegendIndicator-CNkow7eY.js",
+  "_LegendIndicator-DL3w-Pgt.js": {
+    "file": "assets/LegendIndicator-DL3w-Pgt.js",
     "name": "LegendIndicator",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_Pagination-BCOsjmTc.js": {
-    "file": "assets/Pagination-BCOsjmTc.js",
+  "_Pagination-D-wbedjb.js": {
+    "file": "assets/Pagination-D-wbedjb.js",
     "name": "Pagination",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_PrimaryButton-Cm-DCbU6.js": {
-    "file": "assets/PrimaryButton-Cm-DCbU6.js",
+  "_PrimaryButton-BjvVXCgJ.js": {
+    "file": "assets/PrimaryButton-BjvVXCgJ.js",
     "name": "PrimaryButton",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_SOBadge-TvEld-KN.js": {
-    "file": "assets/SOBadge-TvEld-KN.js",
+  "_SOBadge-RJzAV1xJ.js": {
+    "file": "assets/SOBadge-RJzAV1xJ.js",
     "name": "SOBadge",
     "imports": [
       "resources/js/app.jsx",
-      "_LegendIndicator-CNkow7eY.js"
+      "_LegendIndicator-DL3w-Pgt.js"
     ]
   },
-  "_SOStatus-CMeo2oiq.js": {
-    "file": "assets/SOStatus-CMeo2oiq.js",
+  "_SOStatus-CGJs1k38.js": {
+    "file": "assets/SOStatus-CGJs1k38.js",
     "name": "SOStatus",
     "imports": [
       "resources/js/app.jsx",
-      "_LegendIndicator-CNkow7eY.js"
+      "_LegendIndicator-DL3w-Pgt.js"
     ]
   },
-  "_ServiceImageHeaderUploader-CNNQRpJb.js": {
-    "file": "assets/ServiceImageHeaderUploader-CNNQRpJb.js",
+  "_ServiceImageHeaderUploader-Bf9syNiP.js": {
+    "file": "assets/ServiceImageHeaderUploader-Bf9syNiP.js",
     "name": "ServiceImageHeaderUploader",
     "imports": [
       "resources/js/app.jsx",
-      "_index-CbVTwq4s.js"
+      "_index-CPyOZgBv.js"
     ]
   },
-  "_ServiceImageUploader-BiWICD2i.js": {
-    "file": "assets/ServiceImageUploader-BiWICD2i.js",
+  "_ServiceImageUploader-D1f_R0Lc.js": {
+    "file": "assets/ServiceImageUploader-D1f_R0Lc.js",
     "name": "ServiceImageUploader",
     "imports": [
       "resources/js/app.jsx",
-      "_index-CbVTwq4s.js"
+      "_index-CPyOZgBv.js"
     ]
   },
-  "_ServicesChart-BDe5EBkb.js": {
-    "file": "assets/ServicesChart-BDe5EBkb.js",
+  "_ServicesChart-Bpu0rGr1.js": {
+    "file": "assets/ServicesChart-Bpu0rGr1.js",
     "name": "ServicesChart",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_Sidebar-BWgOxClJ.js": {
-    "file": "assets/Sidebar-BWgOxClJ.js",
+  "_Sidebar-B-71J0ee.js": {
+    "file": "assets/Sidebar-B-71J0ee.js",
     "name": "Sidebar",
     "imports": [
       "resources/js/app.jsx",
-      "_DentistIcon-DURlZtbG.js"
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
-  "_SingleHeader-3LiNOY_D.js": {
-    "file": "assets/SingleHeader-3LiNOY_D.js",
+  "_SingleHeader-DZGIdU-9.js": {
+    "file": "assets/SingleHeader-DZGIdU-9.js",
     "name": "SingleHeader",
     "imports": [
       "resources/js/app.jsx",
-      "_SOBadge-TvEld-KN.js"
+      "_SOBadge-RJzAV1xJ.js"
     ]
   },
-  "_Spinner-CxXrCC-q.js": {
-    "file": "assets/Spinner-CxXrCC-q.js",
+  "_Spinner-BVgqtDzA.js": {
+    "file": "assets/Spinner-BVgqtDzA.js",
     "name": "Spinner",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_TextArea-D8CUHYqa.js": {
-    "file": "assets/TextArea-D8CUHYqa.js",
+  "_TextArea-DLg0jScJ.js": {
+    "file": "assets/TextArea-DLg0jScJ.js",
     "name": "TextArea",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_TextInput-DTGC7zNp.js": {
-    "file": "assets/TextInput-DTGC7zNp.js",
+  "_TextInput-CDvFCIFG.js": {
+    "file": "assets/TextInput-CDvFCIFG.js",
     "name": "TextInput",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_TextInputWithLabel-C2XRRRIT.js": {
-    "file": "assets/TextInputWithLabel-C2XRRRIT.js",
+  "_TextInputWithLabel-BKxhlUL0.js": {
+    "file": "assets/TextInputWithLabel-BKxhlUL0.js",
     "name": "TextInputWithLabel",
     "imports": [
       "resources/js/app.jsx",
-      "_Components-k4A5tvRo.js"
+      "_Components-CgB0zIWE.js"
     ]
   },
-  "_flatpickr-BJ6F9t-q.js": {
-    "file": "assets/flatpickr-BJ6F9t-q.js",
+  "_flatpickr-BsM4JrO0.css": {
+    "file": "assets/flatpickr-BsM4JrO0.css",
+    "src": "_flatpickr-BsM4JrO0.css"
+  },
+  "_flatpickr-fS5fe0vh.js": {
+    "file": "assets/flatpickr-fS5fe0vh.js",
     "name": "flatpickr",
     "imports": [
       "resources/js/app.jsx",
@@ -189,12 +193,39 @@
       "assets/flatpickr-BsM4JrO0.css"
     ]
   },
-  "_flatpickr-BsM4JrO0.css": {
-    "file": "assets/flatpickr-BsM4JrO0.css",
-    "src": "_flatpickr-BsM4JrO0.css"
+  "_index-B8Psmte6.js": {
+    "file": "assets/index-B8Psmte6.js",
+    "name": "index",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
   },
-  "_index-3-wcmcvn.js": {
-    "file": "assets/index-3-wcmcvn.js",
+  "_index-BIukeF_B.js": {
+    "file": "assets/index-BIukeF_B.js",
+    "name": "index",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-B8Psmte6.js"
+    ]
+  },
+  "_index-BtupkPQ0.css": {
+    "file": "assets/index-BtupkPQ0.css",
+    "src": "_index-BtupkPQ0.css"
+  },
+  "_index-CPyOZgBv.js": {
+    "file": "assets/index-CPyOZgBv.js",
+    "name": "index",
+    "imports": [
+      "resources/js/app.jsx",
+      "_index-Chjiymov.js"
+    ]
+  },
+  "_index-Chjiymov.js": {
+    "file": "assets/index-Chjiymov.js",
+    "name": "index"
+  },
+  "_index-DYe1IcrB.js": {
+    "file": "assets/index-DYe1IcrB.js",
     "name": "index",
     "imports": [
       "resources/js/app.jsx"
@@ -207,51 +238,20 @@
       "assets/bootstrap-icons-BOrJxbIo.woff"
     ]
   },
-  "_index-BQH9de5I.js": {
-    "file": "assets/index-BQH9de5I.js",
-    "name": "index",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index-C510A9Bq.js"
-    ]
-  },
-  "_index-BtupkPQ0.css": {
-    "file": "assets/index-BtupkPQ0.css",
-    "src": "_index-BtupkPQ0.css"
-  },
-  "_index-C510A9Bq.js": {
-    "file": "assets/index-C510A9Bq.js",
-    "name": "index",
-    "imports": [
-      "resources/js/app.jsx"
-    ]
-  },
-  "_index-CbVTwq4s.js": {
-    "file": "assets/index-CbVTwq4s.js",
-    "name": "index",
-    "imports": [
-      "resources/js/app.jsx",
-      "_index-Chjiymov.js"
-    ]
-  },
-  "_index-Chjiymov.js": {
-    "file": "assets/index-Chjiymov.js",
-    "name": "index"
-  },
   "_parseISO--ZgRdplT.js": {
     "file": "assets/parseISO--ZgRdplT.js",
     "name": "parseISO"
   },
-  "_react-select.esm-DKEd-RY0.js": {
-    "file": "assets/react-select.esm-DKEd-RY0.js",
+  "_react-select.esm-Bb7QfqHN.js": {
+    "file": "assets/react-select.esm-Bb7QfqHN.js",
     "name": "react-select.esm",
     "imports": [
       "resources/js/app.jsx",
-      "_index-C510A9Bq.js"
+      "_index-B8Psmte6.js"
     ]
   },
-  "_transition-BFm1HyCV.js": {
-    "file": "assets/transition-BFm1HyCV.js",
+  "_transition-Dm1vceRS.js": {
+    "file": "assets/transition-Dm1vceRS.js",
     "name": "transition",
     "imports": [
       "resources/js/app.jsx"
@@ -270,41 +270,41 @@
     "src": "public/images/odw-logo.png"
   },
   "resources/js/Pages/Admin/Appointments/Index-Old.jsx": {
-    "file": "assets/Index-Old-DZ1mbFeI.js",
+    "file": "assets/Index-Old-DBvbYSVZ.js",
     "name": "Index-Old",
     "src": "resources/js/Pages/Admin/Appointments/Index-Old.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-BQH9de5I.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-BIukeF_B.js",
       "resources/js/Pages/Admin/Appointments/PendingAppointments.jsx",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Appointments/Index.jsx": {
-    "file": "assets/Index-DqjLq8oi.js",
+    "file": "assets/Index-CovJz7Av.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Appointments/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-BQH9de5I.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-BIukeF_B.js",
       "resources/js/Pages/Admin/Appointments/PendingAppointments.jsx",
-      "_SOStatus-CMeo2oiq.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js",
-      "_LegendIndicator-CNkow7eY.js"
+      "_SOStatus-CGJs1k38.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js",
+      "_LegendIndicator-DL3w-Pgt.js"
     ]
   },
   "resources/js/Pages/Admin/Appointments/Modal.jsx": {
-    "file": "assets/Modal-CUu3qMhl.js",
+    "file": "assets/Modal-BE0IT-8w.js",
     "name": "Modal",
     "src": "resources/js/Pages/Admin/Appointments/Modal.jsx",
     "isDynamicEntry": true,
@@ -313,7 +313,7 @@
     ]
   },
   "resources/js/Pages/Admin/Appointments/PendingAppointments.jsx": {
-    "file": "assets/PendingAppointments-BnKyjpjn.js",
+    "file": "assets/PendingAppointments-B4RTv9DZ.js",
     "name": "PendingAppointments",
     "src": "resources/js/Pages/Admin/Appointments/PendingAppointments.jsx",
     "isDynamicEntry": true,
@@ -322,22 +322,22 @@
     ]
   },
   "resources/js/Pages/Admin/Appointments/PendingList.jsx": {
-    "file": "assets/PendingList-BDC8OaKa.js",
+    "file": "assets/PendingList-DCktMp97.js",
     "name": "PendingList",
     "src": "resources/js/Pages/Admin/Appointments/PendingList.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Admin/Appointments/Modal.jsx",
       "_parseISO--ZgRdplT.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/AddBranch.jsx": {
-    "file": "assets/AddBranch-XDzoY92V.js",
+    "file": "assets/AddBranch-D2g8Pp4R.js",
     "name": "AddBranch",
     "src": "resources/js/Pages/Admin/Clinics/AddBranch.jsx",
     "isDynamicEntry": true,
@@ -346,38 +346,38 @@
       "resources/js/Pages/Admin/Clinics/AddBranchModal.jsx",
       "resources/js/Pages/Admin/Clinics/BranchList.jsx",
       "resources/js/Pages/Admin/Clinics/ClinicLayout.jsx",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInput-DTGC7zNp.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInput-CDvFCIFG.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
       "_parseISO--ZgRdplT.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/AddBranchModal.jsx": {
-    "file": "assets/AddBranchModal-B2SAmBzF.js",
+    "file": "assets/AddBranchModal-Bp2rFkz2.js",
     "name": "AddBranchModal",
     "src": "resources/js/Pages/Admin/Clinics/AddBranchModal.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInput-DTGC7zNp.js"
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInput-CDvFCIFG.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/AddClinic.jsx": {
-    "file": "assets/AddClinic-CC5dB8ru.js",
+    "file": "assets/AddClinic-aRu2yvaW.js",
     "name": "AddClinic",
     "src": "resources/js/Pages/Admin/Clinics/AddClinic.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-DTGC7zNp.js"
+      "_TextInput-CDvFCIFG.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/BranchList.jsx": {
-    "file": "assets/BranchList-he6uMQgZ.js",
+    "file": "assets/BranchList-CjzXXHu1.js",
     "name": "BranchList",
     "src": "resources/js/Pages/Admin/Clinics/BranchList.jsx",
     "isDynamicEntry": true,
@@ -386,152 +386,152 @@
     ]
   },
   "resources/js/Pages/Admin/Clinics/ClinicLayout.jsx": {
-    "file": "assets/ClinicLayout-CVBCv7Er.js",
+    "file": "assets/ClinicLayout-rn6V-C0R.js",
     "name": "ClinicLayout",
     "src": "resources/js/Pages/Admin/Clinics/ClinicLayout.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "_parseISO--ZgRdplT.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Create.jsx": {
-    "file": "assets/Create-DOUNETH0.js",
+    "file": "assets/Create-B3XG9Wxf.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/Clinics/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_ImageUploader-CTkQAlWR.js",
-      "_index-CbVTwq4s.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_Card-Bks9e2Rn.js",
+      "_ImageUploader-DHiHnkZe.js",
+      "_index-CPyOZgBv.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "_index-Chjiymov.js",
-      "_Components-k4A5tvRo.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_Components-CgB0zIWE.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/EditClinic.jsx": {
-    "file": "assets/EditClinic-Dz_9wwd5.js",
+    "file": "assets/EditClinic-e0sq3OQW.js",
     "name": "EditClinic",
     "src": "resources/js/Pages/Admin/Clinics/EditClinic.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_Card-Bks9e2Rn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Admin/Clinics/Partials/ClinicInformation.jsx",
       "resources/js/Pages/Admin/Clinics/Partials/WorkingHours.jsx",
       "resources/js/Pages/Admin/Clinics/Partials/ClinicImages.jsx",
       "resources/js/Pages/Admin/Clinics/Partials/ClinicServices.jsx",
-      "_Components-k4A5tvRo.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
+      "_Components-CgB0zIWE.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
       "resources/js/Pages/Admin/Clinics/Partials/AddClinicImages.jsx",
-      "_index-CbVTwq4s.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/EditClinicOls.jsx": {
-    "file": "assets/EditClinicOls-D6b8xOew.js",
+    "file": "assets/EditClinicOls-B_hMPU7T.js",
     "name": "EditClinicOls",
     "src": "resources/js/Pages/Admin/Clinics/EditClinicOls.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Admin/Clinics/ClinicLayout.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
       "_parseISO--ZgRdplT.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Index.jsx": {
-    "file": "assets/Index-Q_42GBhH.js",
+    "file": "assets/Index-vvKHuI91.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Clinics/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_TextInput-DTGC7zNp.js",
-      "_Pagination-BCOsjmTc.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_TextInput-CDvFCIFG.js",
+      "_Pagination-D-wbedjb.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Partials/AddClinicImages.jsx": {
-    "file": "assets/AddClinicImages-D-ySCyAI.js",
+    "file": "assets/AddClinicImages-BqUM5Uzg.js",
     "name": "AddClinicImages",
     "src": "resources/js/Pages/Admin/Clinics/Partials/AddClinicImages.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_index-CbVTwq4s.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Partials/ClinicImages.jsx": {
-    "file": "assets/ClinicImages-CjtOPA30.js",
+    "file": "assets/ClinicImages-DiQgyC-m.js",
     "name": "ClinicImages",
     "src": "resources/js/Pages/Admin/Clinics/Partials/ClinicImages.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
+      "_Card-Bks9e2Rn.js",
       "resources/js/Pages/Admin/Clinics/Partials/AddClinicImages.jsx",
-      "_index-CbVTwq4s.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Partials/ClinicInformation.jsx": {
-    "file": "assets/ClinicInformation-D5F4dcjQ.js",
+    "file": "assets/ClinicInformation-Xp-Q2BNt.js",
     "name": "ClinicInformation",
     "src": "resources/js/Pages/Admin/Clinics/Partials/ClinicInformation.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_Components-k4A5tvRo.js"
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_Components-CgB0zIWE.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Partials/ClinicServices.jsx": {
-    "file": "assets/ClinicServices-Cgi9-F0k.js",
+    "file": "assets/ClinicServices-D9X73aew.js",
     "name": "ClinicServices",
     "src": "resources/js/Pages/Admin/Clinics/Partials/ClinicServices.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js"
+      "_Card-Bks9e2Rn.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Partials/WorkingHours.jsx": {
-    "file": "assets/WorkingHours-C5SBknTp.js",
+    "file": "assets/WorkingHours-6absAMRQ.js",
     "name": "WorkingHours",
     "src": "resources/js/Pages/Admin/Clinics/Partials/WorkingHours.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js"
+      "_Card-Bks9e2Rn.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/ServiceList.jsx": {
-    "file": "assets/ServiceList-CVlJ6ZxM.js",
+    "file": "assets/ServiceList-CQ-sHEii.js",
     "name": "ServiceList",
     "src": "resources/js/Pages/Admin/Clinics/ServiceList.jsx",
     "isDynamicEntry": true,
@@ -539,62 +539,62 @@
       "resources/js/app.jsx",
       "resources/js/Pages/Admin/Clinics/ClinicLayout.jsx",
       "resources/js/Pages/Admin/Clinics/Services/AddService.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
       "_parseISO--ZgRdplT.js",
-      "_TextInput-DTGC7zNp.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-C510A9Bq.js"
+      "_TextInput-CDvFCIFG.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Services/AddService.jsx": {
-    "file": "assets/AddService-Dz8xE47e.js",
+    "file": "assets/AddService-DZU1HlA3.js",
     "name": "AddService",
     "src": "resources/js/Pages/Admin/Clinics/Services/AddService.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-DTGC7zNp.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-C510A9Bq.js"
+      "_TextInput-CDvFCIFG.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Users/AddUser.jsx": {
-    "file": "assets/AddUser-BUy4kEGq.js",
+    "file": "assets/AddUser-B2Xxap1D.js",
     "name": "AddUser",
     "src": "resources/js/Pages/Admin/Clinics/Users/AddUser.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInput-DTGC7zNp.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInput-CDvFCIFG.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Users/Index.jsx": {
-    "file": "assets/Index-arrD7Eiu.js",
+    "file": "assets/Index-D_lSJzOg.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Clinics/Users/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
       "resources/js/Pages/Admin/Clinics/ClinicLayout.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Admin/Clinics/Users/UserList.jsx",
       "resources/js/Pages/Admin/Clinics/Users/AddUser.jsx",
       "_parseISO--ZgRdplT.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInput-DTGC7zNp.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInput-CDvFCIFG.js"
     ]
   },
   "resources/js/Pages/Admin/Clinics/Users/UserList.jsx": {
-    "file": "assets/UserList-BUuKO9C4.js",
+    "file": "assets/UserList-BBr2IIRG.js",
     "name": "UserList",
     "src": "resources/js/Pages/Admin/Clinics/Users/UserList.jsx",
     "isDynamicEntry": true,
@@ -603,39 +603,39 @@
     ]
   },
   "resources/js/Pages/Admin/CompareCosts/AddDentalCare.jsx": {
-    "file": "assets/AddDentalCare-BKzIK4oW.js",
+    "file": "assets/AddDentalCare-DOE70zOr.js",
     "name": "AddDentalCare",
     "src": "resources/js/Pages/Admin/CompareCosts/AddDentalCare.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInput-DTGC7zNp.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-C510A9Bq.js"
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInput-CDvFCIFG.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/CompareCosts/Create.jsx": {
-    "file": "assets/Create-BAXo0yBj.js",
+    "file": "assets/Create-3P25Y4nY.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/CompareCosts/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/CompareCosts/DeleteDentalCare.jsx": {
-    "file": "assets/DeleteDentalCare-a8aJ9jn_.js",
+    "file": "assets/DeleteDentalCare-CqLEUaRo.js",
     "name": "DeleteDentalCare",
     "src": "resources/js/Pages/Admin/CompareCosts/DeleteDentalCare.jsx",
     "isDynamicEntry": true,
@@ -644,231 +644,231 @@
     ]
   },
   "resources/js/Pages/Admin/CompareCosts/Edit.jsx": {
-    "file": "assets/Edit-BMrlvKBn.js",
+    "file": "assets/Edit-JEyWb0G0.js",
     "name": "Edit",
     "src": "resources/js/Pages/Admin/CompareCosts/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/CompareCosts/Index.jsx": {
-    "file": "assets/Index-C09NISvh.js",
+    "file": "assets/Index-CaTuVlMA.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/CompareCosts/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_TextInput-DTGC7zNp.js",
-      "_Pagination-BCOsjmTc.js",
-      "_DeleteConfirmModal-D8WAVHrg.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_TextInput-CDvFCIFG.js",
+      "_Pagination-D-wbedjb.js",
+      "_DeleteConfirmModal-DbrlLUUY.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Deals/AddDeal.jsx": {
-    "file": "assets/AddDeal-P4FrNods.js",
+    "file": "assets/AddDeal-DaXwqXrm.js",
     "name": "AddDeal",
     "src": "resources/js/Pages/Admin/Deals/AddDeal.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_ImageUploader-CTkQAlWR.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_flatpickr-BJ6F9t-q.js",
-      "_index-CbVTwq4s.js",
+      "_ImageUploader-DHiHnkZe.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_flatpickr-fS5fe0vh.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Deals/Create.jsx": {
-    "file": "assets/Create-DXnnZYUf.js",
+    "file": "assets/Create-DJeIqzAe.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/Deals/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_ServiceImageHeaderUploader-CNNQRpJb.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_flatpickr-BJ6F9t-q.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_ServiceImageHeaderUploader-Bf9syNiP.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_flatpickr-fS5fe0vh.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Deals/Edit.jsx": {
-    "file": "assets/Edit-Ds27GTrI.js",
+    "file": "assets/Edit-CwIannjf.js",
     "name": "Edit",
     "src": "resources/js/Pages/Admin/Deals/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_ServiceImageHeaderUploader-CNNQRpJb.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_flatpickr-BJ6F9t-q.js",
-      "_DeleteConfirmModal-D8WAVHrg.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_ServiceImageHeaderUploader-Bf9syNiP.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_flatpickr-fS5fe0vh.js",
+      "_DeleteConfirmModal-DbrlLUUY.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Deals/Index.jsx": {
-    "file": "assets/Index-BM1Zmlc7.js",
+    "file": "assets/Index-BKt8IhwZ.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Deals/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_flatpickr-BJ6F9t-q.js",
-      "_Pagination-BCOsjmTc.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_flatpickr-fS5fe0vh.js",
+      "_Pagination-D-wbedjb.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Dentists/AddDentist.jsx": {
-    "file": "assets/AddDentist-DlucpNxs.js",
+    "file": "assets/AddDentist-Bf8srd_g.js",
     "name": "AddDentist",
     "src": "resources/js/Pages/Admin/Dentists/AddDentist.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_DentistIcon-DURlZtbG.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-C510A9Bq.js"
+      "_DentistIcon-Du42aAw9.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Dentists/Create.jsx": {
-    "file": "assets/Create-B3KZWbvV.js",
+    "file": "assets/Create-JNorRHdn.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/Dentists/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_ServiceImageUploader-BiWICD2i.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_ServiceImageUploader-D1f_R0Lc.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Dentists/Edit.jsx": {
-    "file": "assets/Edit-DzsItzAb.js",
+    "file": "assets/Edit-Bn6PjB13.js",
     "name": "Edit",
     "src": "resources/js/Pages/Admin/Dentists/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_ServiceImageUploader-BiWICD2i.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_ServiceImageUploader-D1f_R0Lc.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Dentists/Index.jsx": {
-    "file": "assets/Index-Cig5QAgZ.js",
+    "file": "assets/Index-Kkd11hEg.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Dentists/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_Pagination-BCOsjmTc.js",
-      "_DeleteConfirmModal-D8WAVHrg.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_Pagination-D-wbedjb.js",
+      "_DeleteConfirmModal-DbrlLUUY.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js"
     ]
   },
   "resources/js/Pages/Admin/Estimates/GiveEstimate.jsx": {
-    "file": "assets/GiveEstimate-YwQqIBEo.js",
+    "file": "assets/GiveEstimate-CbiUyPir.js",
     "name": "GiveEstimate",
     "src": "resources/js/Pages/Admin/Estimates/GiveEstimate.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_Spinner-CxXrCC-q.js",
-      "_TextArea-D8CUHYqa.js",
-      "_FileUploader-BH0PcxOS.js",
-      "_index-CbVTwq4s.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_Spinner-BVgqtDzA.js",
+      "_TextArea-DLg0jScJ.js",
+      "_FileUploader-NOsZx4Zb.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Estimates/Index.jsx": {
-    "file": "assets/Index-DCzEm-3i.js",
+    "file": "assets/Index-DbUh8q4m.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Estimates/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Pagination-BCOsjmTc.js",
-      "_SOBadge-TvEld-KN.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_LegendIndicator-CNkow7eY.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_Pagination-D-wbedjb.js",
+      "_SOBadge-RJzAV1xJ.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_LegendIndicator-DL3w-Pgt.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Estimates/Respond.jsx": {
-    "file": "assets/Respond-DrZ09Tz0.js",
+    "file": "assets/Respond-DQdKdBu6.js",
     "name": "Respond",
     "src": "resources/js/Pages/Admin/Estimates/Respond.jsx",
     "isDynamicEntry": true,
@@ -877,227 +877,227 @@
     ]
   },
   "resources/js/Pages/Admin/Estimates/Show.jsx": {
-    "file": "assets/Show-DO6Q_E_J.js",
+    "file": "assets/Show-CSphACgf.js",
     "name": "Show",
     "src": "resources/js/Pages/Admin/Estimates/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_SingleHeader-3LiNOY_D.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_Card-Bks9e2Rn.js",
+      "_SingleHeader-DZGIdU-9.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Admin/Estimates/GiveEstimate.jsx",
-      "_SOBadge-TvEld-KN.js",
-      "_LegendIndicator-CNkow7eY.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_Spinner-CxXrCC-q.js",
-      "_TextArea-D8CUHYqa.js",
-      "_FileUploader-BH0PcxOS.js",
-      "_index-CbVTwq4s.js",
+      "_SOBadge-RJzAV1xJ.js",
+      "_LegendIndicator-DL3w-Pgt.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_Spinner-BVgqtDzA.js",
+      "_TextArea-DLg0jScJ.js",
+      "_FileUploader-NOsZx4Zb.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Patients/Index.jsx": {
-    "file": "assets/Index-VK_V5CBi.js",
+    "file": "assets/Index-DKfPbEsL.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Patients/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Patients/InsuranceDetails.jsx": {
-    "file": "assets/InsuranceDetails-DQnJEi67.js",
+    "file": "assets/InsuranceDetails-B1e4sZf3.js",
     "name": "InsuranceDetails",
     "src": "resources/js/Pages/Admin/Patients/InsuranceDetails.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_flatpickr-BJ6F9t-q.js",
+      "_flatpickr-fS5fe0vh.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Patients/PatientProfile.jsx": {
-    "file": "assets/PatientProfile-BS5ikYWo.js",
+    "file": "assets/PatientProfile-CiUc73I1.js",
     "name": "PatientProfile",
     "src": "resources/js/Pages/Admin/Patients/PatientProfile.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Admin/Patients/InsuranceDetails.jsx",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_flatpickr-BJ6F9t-q.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_flatpickr-fS5fe0vh.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Patients/Show.jsx": {
-    "file": "assets/Show-BHp1bPoF.js",
+    "file": "assets/Show-C0egj2z4.js",
     "name": "Show",
     "src": "resources/js/Pages/Admin/Patients/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/SecondOpinion/GiveOpinion.jsx": {
-    "file": "assets/GiveOpinion-Db4HtMDM.js",
+    "file": "assets/GiveOpinion-CKrBkN1D.js",
     "name": "GiveOpinion",
     "src": "resources/js/Pages/Admin/SecondOpinion/GiveOpinion.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_Spinner-CxXrCC-q.js",
-      "_TextArea-D8CUHYqa.js",
-      "_FileUploader-BH0PcxOS.js",
-      "_index-CbVTwq4s.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_Spinner-BVgqtDzA.js",
+      "_TextArea-DLg0jScJ.js",
+      "_FileUploader-NOsZx4Zb.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/SecondOpinion/Index.jsx": {
-    "file": "assets/Index-CCAOAiu_.js",
+    "file": "assets/Index-BoP1CH79.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/SecondOpinion/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Pagination-BCOsjmTc.js",
-      "_SOStatus-CMeo2oiq.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_LegendIndicator-CNkow7eY.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_Pagination-D-wbedjb.js",
+      "_SOStatus-CGJs1k38.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_LegendIndicator-DL3w-Pgt.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/SecondOpinion/MarkAsClosed.jsx": {
-    "file": "assets/MarkAsClosed-DlT6L6bH.js",
+    "file": "assets/MarkAsClosed-oqUthABD.js",
     "name": "MarkAsClosed",
     "src": "resources/js/Pages/Admin/SecondOpinion/MarkAsClosed.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Spinner-CxXrCC-q.js"
+      "_Spinner-BVgqtDzA.js"
     ]
   },
   "resources/js/Pages/Admin/SecondOpinion/MarkAsReview.jsx": {
-    "file": "assets/MarkAsReview--rdHNNQC.js",
+    "file": "assets/MarkAsReview-C-ZzJ7-D.js",
     "name": "MarkAsReview",
     "src": "resources/js/Pages/Admin/SecondOpinion/MarkAsReview.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Spinner-CxXrCC-q.js"
+      "_Spinner-BVgqtDzA.js"
     ]
   },
   "resources/js/Pages/Admin/SecondOpinion/Show.jsx": {
-    "file": "assets/Show-CEwz4iqp.js",
+    "file": "assets/Show-CfTk-NrV.js",
     "name": "Show",
     "src": "resources/js/Pages/Admin/SecondOpinion/Show.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_SingleHeader-3LiNOY_D.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_SingleHeader-DZGIdU-9.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Admin/SecondOpinion/MarkAsReview.jsx",
       "resources/js/Pages/Admin/SecondOpinion/MarkAsClosed.jsx",
       "resources/js/Pages/Admin/SecondOpinion/GiveOpinion.jsx",
-      "_SOBadge-TvEld-KN.js",
-      "_LegendIndicator-CNkow7eY.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_Spinner-CxXrCC-q.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextArea-D8CUHYqa.js",
-      "_FileUploader-BH0PcxOS.js",
-      "_index-CbVTwq4s.js",
+      "_SOBadge-RJzAV1xJ.js",
+      "_LegendIndicator-DL3w-Pgt.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_Spinner-BVgqtDzA.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextArea-DLg0jScJ.js",
+      "_FileUploader-NOsZx4Zb.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Services/Create.jsx": {
-    "file": "assets/Create-Upsgkagx.js",
+    "file": "assets/Create-y7gyexrb.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/Services/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_ServiceImageHeaderUploader-CNNQRpJb.js",
-      "_ServiceImageUploader-BiWICD2i.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_ServiceImageHeaderUploader-Bf9syNiP.js",
+      "_ServiceImageUploader-D1f_R0Lc.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Services/Edit.jsx": {
-    "file": "assets/Edit-Dm8aSsKQ.js",
+    "file": "assets/Edit-D8I_vRly.js",
     "name": "Edit",
     "src": "resources/js/Pages/Admin/Services/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_DeleteConfirmModal-D8WAVHrg.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_ServiceImageHeaderUploader-CNNQRpJb.js",
-      "_ServiceImageUploader-BiWICD2i.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInput-DTGC7zNp.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_DeleteConfirmModal-DbrlLUUY.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_ServiceImageHeaderUploader-Bf9syNiP.js",
+      "_ServiceImageUploader-D1f_R0Lc.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Services/Index.jsx": {
-    "file": "assets/Index-BCvUhV9v.js",
+    "file": "assets/Index-D5ikjmlh.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Services/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Pagination-BCOsjmTc.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_Pagination-D-wbedjb.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Services/ServiceModal.jsx": {
-    "file": "assets/ServiceModal-IxP-a7JP.js",
+    "file": "assets/ServiceModal-Cl-g-zyY.js",
     "name": "ServiceModal",
     "src": "resources/js/Pages/Admin/Services/ServiceModal.jsx",
     "isDynamicEntry": true,
@@ -1106,39 +1106,39 @@
     ]
   },
   "resources/js/Pages/Admin/Settings/BookSpecialist.jsx": {
-    "file": "assets/BookSpecialist-B8T6gUpa.js",
+    "file": "assets/BookSpecialist-Ce5Cxe5X.js",
     "name": "BookSpecialist",
     "src": "resources/js/Pages/Admin/Settings/BookSpecialist.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_ServiceImageHeaderUploader-CNNQRpJb.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_ServiceImageHeaderUploader-Bf9syNiP.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Settings/Index.jsx": {
-    "file": "assets/Index-CNfdTRiu.js",
+    "file": "assets/Index-9sSN43Ow.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Settings/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_InputLabel-CV13bN8s.js",
-      "_Components-k4A5tvRo.js",
-      "_Card-Dj3sPb2Z.js",
-      "_ServiceImageHeaderUploader-CNNQRpJb.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_Components-CgB0zIWE.js",
+      "_Card-Bks9e2Rn.js",
+      "_ServiceImageHeaderUploader-Bf9syNiP.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js"
     ]
   },
   "resources/js/Pages/Admin/Specialists/AddSpecialist.jsx": {
-    "file": "assets/AddSpecialist-B54czBeF.js",
+    "file": "assets/AddSpecialist-CHsIXX_6.js",
     "name": "AddSpecialist",
     "src": "resources/js/Pages/Admin/Specialists/AddSpecialist.jsx",
     "isDynamicEntry": true,
@@ -1147,291 +1147,291 @@
     ]
   },
   "resources/js/Pages/Admin/Specialists/Create.jsx": {
-    "file": "assets/Create-CQmDy5Ta.js",
+    "file": "assets/Create-CIXn879-.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/Specialists/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_ServiceImageUploader-BiWICD2i.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_ServiceImageUploader-D1f_R0Lc.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js",
-      "_index-C510A9Bq.js"
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Specialists/Edit.jsx": {
-    "file": "assets/Edit-DLfEeQLV.js",
+    "file": "assets/Edit-CaaM4zmP.js",
     "name": "Edit",
     "src": "resources/js/Pages/Admin/Specialists/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_ServiceImageUploader-BiWICD2i.js",
-      "_TextArea-D8CUHYqa.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-CbVTwq4s.js",
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_ServiceImageUploader-D1f_R0Lc.js",
+      "_TextArea-DLg0jScJ.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-CPyOZgBv.js",
       "_index-Chjiymov.js",
-      "_index-C510A9Bq.js"
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Specialists/Index.jsx": {
-    "file": "assets/Index-wRYS4lxH.js",
+    "file": "assets/Index-BFysBuiW.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Specialists/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DeleteConfirmModal-D8WAVHrg.js",
-      "_index-3-wcmcvn.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DeleteConfirmModal-DbrlLUUY.js",
+      "_index-DYe1IcrB.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Admin/Users/AddUser.jsx": {
-    "file": "assets/AddUser-T2-9YcWo.js",
+    "file": "assets/AddUser-GKGI3Wd7.js",
     "name": "AddUser",
     "src": "resources/js/Pages/Admin/Users/AddUser.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInput-DTGC7zNp.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInput-CDvFCIFG.js"
     ]
   },
   "resources/js/Pages/Admin/Users/Create.jsx": {
-    "file": "assets/Create-BCysN1lE.js",
+    "file": "assets/Create-Bb2QEdKp.js",
     "name": "Create",
     "src": "resources/js/Pages/Admin/Users/Create.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Users/Edit.jsx": {
-    "file": "assets/Edit-D8FtBFZq.js",
+    "file": "assets/Edit-B2A5nAuM.js",
     "name": "Edit",
     "src": "resources/js/Pages/Admin/Users/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_Components-k4A5tvRo.js",
-      "_InputLabel-CV13bN8s.js",
-      "_TextInputWithLabel-C2XRRRIT.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_react-select.esm-DKEd-RY0.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_index-C510A9Bq.js"
+      "_Card-Bks9e2Rn.js",
+      "_Components-CgB0zIWE.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_TextInputWithLabel-BKxhlUL0.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_react-select.esm-Bb7QfqHN.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_index-B8Psmte6.js"
     ]
   },
   "resources/js/Pages/Admin/Users/Index.jsx": {
-    "file": "assets/Index-DUGez0hn.js",
+    "file": "assets/Index-CCTrYMEG.js",
     "name": "Index",
     "src": "resources/js/Pages/Admin/Users/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_TextInput-DTGC7zNp.js",
-      "_Pagination-BCOsjmTc.js",
-      "_DeleteConfirmModal-D8WAVHrg.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_TextInput-CDvFCIFG.js",
+      "_Pagination-D-wbedjb.js",
+      "_DeleteConfirmModal-DbrlLUUY.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Auth/ConfirmPassword.jsx": {
-    "file": "assets/ConfirmPassword-B0s70TC0.js",
+    "file": "assets/ConfirmPassword-BWZqnmbe.js",
     "name": "ConfirmPassword",
     "src": "resources/js/Pages/Auth/ConfirmPassword.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/ForgotPassword-old.jsx": {
-    "file": "assets/ForgotPassword-old-w1G9bu2t.js",
+    "file": "assets/ForgotPassword-old-daT11T-M.js",
     "name": "ForgotPassword-old",
     "src": "resources/js/Pages/Auth/ForgotPassword-old.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/ForgotPassword.jsx": {
-    "file": "assets/ForgotPassword-uoBXOcxG.js",
+    "file": "assets/ForgotPassword-ClEegnWj.js",
     "name": "ForgotPassword",
     "src": "resources/js/Pages/Auth/ForgotPassword.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-w6dLSf2Y.js",
+    "file": "assets/Login-kq6JDvCR.js",
     "name": "Login",
     "src": "resources/js/Pages/Auth/Login.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/Prelogin.jsx": {
-    "file": "assets/Prelogin-BUteJck3.js",
+    "file": "assets/Prelogin-Daq4oFNV.js",
     "name": "Prelogin",
     "src": "resources/js/Pages/Auth/Prelogin.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/Register.jsx": {
-    "file": "assets/Register-D62DmEAt.js",
+    "file": "assets/Register-Cy5SN3AF.js",
     "name": "Register",
     "src": "resources/js/Pages/Auth/Register.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/ResetPassword.jsx": {
-    "file": "assets/ResetPassword-CNiK3zH-.js",
+    "file": "assets/ResetPassword-Bj2MNhlL.js",
     "name": "ResetPassword",
     "src": "resources/js/Pages/Auth/ResetPassword.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/TwoStep.jsx": {
-    "file": "assets/TwoStep-Cb40tkGP.js",
+    "file": "assets/TwoStep-D038BqFm.js",
     "name": "TwoStep",
     "src": "resources/js/Pages/Auth/TwoStep.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-DTGC7zNp.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_TextInput-CDvFCIFG.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Auth/VerifyEmail.jsx": {
-    "file": "assets/VerifyEmail-mKxfmuMH.js",
+    "file": "assets/VerifyEmail-CAY8vvD2.js",
     "name": "VerifyEmail",
     "src": "resources/js/Pages/Auth/VerifyEmail.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Clinic/Dashboard.jsx": {
-    "file": "assets/Dashboard-CoN2em0E.js",
+    "file": "assets/Dashboard-CThylR1G.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Clinic/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_ServicesChart-BDe5EBkb.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_ServicesChart-Bpu0rGr1.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Dashboard.jsx": {
-    "file": "assets/Dashboard-CmmdwGxQ.js",
+    "file": "assets/Dashboard-CQZIuOap.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_ServicesChart-BDe5EBkb.js",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_ServicesChart-Bpu0rGr1.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Patient/Appointment/BookAppointment.jsx": {
-    "file": "assets/BookAppointment-BmDCrt9l.js",
+    "file": "assets/BookAppointment-CMmaluve.js",
     "name": "BookAppointment",
     "src": "resources/js/Pages/Patient/Appointment/BookAppointment.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Patient/Appointment/ClinicCard.jsx": {
-    "file": "assets/ClinicCard-DOLQaNix.js",
+    "file": "assets/ClinicCard-CDnZ1L9_.js",
     "name": "ClinicCard",
     "src": "resources/js/Pages/Patient/Appointment/ClinicCard.jsx",
     "isDynamicEntry": true,
@@ -1440,44 +1440,44 @@
     ]
   },
   "resources/js/Pages/Patient/Appointment/Index.jsx": {
-    "file": "assets/Index-CNW2bUnP.js",
+    "file": "assets/Index-j_Aocr3b.js",
     "name": "Index",
     "src": "resources/js/Pages/Patient/Appointment/Index.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
       "resources/js/Pages/Patient/Appointment/ClinicCard.jsx",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js"
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Patient/BookAppointment.jsx": {
-    "file": "assets/BookAppointment-BJt1vRRL.js",
+    "file": "assets/BookAppointment-Br7joTlV.js",
     "name": "BookAppointment",
     "src": "resources/js/Pages/Patient/BookAppointment.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_index-3-wcmcvn.js"
+      "_index-DYe1IcrB.js"
     ]
   },
   "resources/js/Pages/Patient/Dashboard.jsx": {
-    "file": "assets/Dashboard-aWoOq6Pv.js",
+    "file": "assets/Dashboard-ChrcJLL8.js",
     "name": "Dashboard",
     "src": "resources/js/Pages/Patient/Dashboard.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
       "resources/js/Pages/Patient/Profile/Information.jsx",
-      "_DentistIcon-DURlZtbG.js"
+      "_DentistIcon-Du42aAw9.js"
     ]
   },
   "resources/js/Pages/Patient/Profile/Information.jsx": {
-    "file": "assets/Information-BQr_H5do.js",
+    "file": "assets/Information-DnKn50nl.js",
     "name": "Information",
     "src": "resources/js/Pages/Patient/Profile/Information.jsx",
     "isDynamicEntry": true,
@@ -1486,90 +1486,90 @@
     ]
   },
   "resources/js/Pages/Privacy.jsx": {
-    "file": "assets/Privacy-DaizdAYM.js",
+    "file": "assets/Privacy-cvaos23o.js",
     "name": "Privacy",
     "src": "resources/js/Pages/Privacy.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Profile/Edit.jsx": {
-    "file": "assets/Edit-BTIbejMJ.js",
+    "file": "assets/Edit-Dtzq1ucR.js",
     "name": "Edit",
     "src": "resources/js/Pages/Profile/Edit.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_AuthenticatedLayout-JWQ1OI35.js",
-      "_TextInput-DTGC7zNp.js",
+      "_AuthenticatedLayout-Bura-3bM.js",
+      "_TextInput-CDvFCIFG.js",
       "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
       "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
-      "_Card-Dj3sPb2Z.js",
-      "_index-3-wcmcvn.js",
-      "_Sidebar-BWgOxClJ.js",
-      "_DentistIcon-DURlZtbG.js",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_transition-BFm1HyCV.js"
+      "_Card-Bks9e2Rn.js",
+      "_index-DYe1IcrB.js",
+      "_Sidebar-B-71J0ee.js",
+      "_DentistIcon-Du42aAw9.js",
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_transition-Dm1vceRS.js"
     ]
   },
   "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx": {
-    "file": "assets/DeleteUserForm-BDdBRbIa.js",
+    "file": "assets/DeleteUserForm-Dysp0xwK.js",
     "name": "DeleteUserForm",
     "src": "resources/js/Pages/Profile/Partials/DeleteUserForm.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_transition-BFm1HyCV.js",
-      "_index-C510A9Bq.js",
-      "_TextInput-DTGC7zNp.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_transition-Dm1vceRS.js",
+      "_index-B8Psmte6.js",
+      "_TextInput-CDvFCIFG.js"
     ]
   },
   "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx": {
-    "file": "assets/UpdatePasswordForm-OWEo0HL7.js",
+    "file": "assets/UpdatePasswordForm-DkkjQvPn.js",
     "name": "UpdatePasswordForm",
     "src": "resources/js/Pages/Profile/Partials/UpdatePasswordForm.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_transition-BFm1HyCV.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_transition-Dm1vceRS.js"
     ]
   },
   "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx": {
-    "file": "assets/UpdateProfileInformationForm-D3P1GVxq.js",
+    "file": "assets/UpdateProfileInformationForm-BEbA4adj.js",
     "name": "UpdateProfileInformationForm",
     "src": "resources/js/Pages/Profile/Partials/UpdateProfileInformationForm.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_InputError-BFVLeSCV.js",
-      "_InputLabel-CV13bN8s.js",
-      "_PrimaryButton-Cm-DCbU6.js",
-      "_TextInput-DTGC7zNp.js",
-      "_transition-BFm1HyCV.js"
+      "_InputError-BJE5lsj1.js",
+      "_InputLabel-BE3jnjdn.js",
+      "_PrimaryButton-BjvVXCgJ.js",
+      "_TextInput-CDvFCIFG.js",
+      "_transition-Dm1vceRS.js"
     ]
   },
   "resources/js/Pages/Support.jsx": {
-    "file": "assets/Support-GIDckR2z.js",
+    "file": "assets/Support-CLqLsoii.js",
     "name": "Support",
     "src": "resources/js/Pages/Support.jsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.jsx",
-      "_GuestLayout-Bj5Lb0sb.js"
+      "_GuestLayout-eWNf6s3K.js"
     ]
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-dFde1wWN.js",
+    "file": "assets/Welcome-DLKG7gHv.js",
     "name": "Welcome",
     "src": "resources/js/Pages/Welcome.jsx",
     "isDynamicEntry": true,
@@ -1583,7 +1583,7 @@
     ]
   },
   "resources/js/Pages/Welcome/CardGrid.jsx": {
-    "file": "assets/CardGrid-DBcEJ2-u.js",
+    "file": "assets/CardGrid-BtaBdu-W.js",
     "name": "CardGrid",
     "src": "resources/js/Pages/Welcome/CardGrid.jsx",
     "isDynamicEntry": true,
@@ -1592,7 +1592,7 @@
     ]
   },
   "resources/js/Pages/Welcome/Documentation.jsx": {
-    "file": "assets/Documentation-CESIeyrp.js",
+    "file": "assets/Documentation-C6RqrIZj.js",
     "name": "Documentation",
     "src": "resources/js/Pages/Welcome/Documentation.jsx",
     "isDynamicEntry": true,
@@ -1601,7 +1601,7 @@
     ]
   },
   "resources/js/Pages/Welcome/Faqs.jsx": {
-    "file": "assets/Faqs-Bd4ywNdB.js",
+    "file": "assets/Faqs-Bx87brVz.js",
     "name": "Faqs",
     "src": "resources/js/Pages/Welcome/Faqs.jsx",
     "isDynamicEntry": true,
@@ -1610,7 +1610,7 @@
     ]
   },
   "resources/js/Pages/Welcome/Hero.jsx": {
-    "file": "assets/Hero-DnUsCGlr.js",
+    "file": "assets/Hero-D7fAMqJl.js",
     "name": "Hero",
     "src": "resources/js/Pages/Welcome/Hero.jsx",
     "isDynamicEntry": true,
@@ -1619,7 +1619,7 @@
     ]
   },
   "resources/js/Pages/Welcome/Pricing.jsx": {
-    "file": "assets/Pricing-b5ztcU1E.js",
+    "file": "assets/Pricing-Bh5rVp3e.js",
     "name": "Pricing",
     "src": "resources/js/Pages/Welcome/Pricing.jsx",
     "isDynamicEntry": true,
@@ -1628,7 +1628,7 @@
     ]
   },
   "resources/js/Pages/Welcome/Testimonial.jsx": {
-    "file": "assets/Testimonial-DVbOpxzk.js",
+    "file": "assets/Testimonial-HRAPDMLX.js",
     "name": "Testimonial",
     "src": "resources/js/Pages/Welcome/Testimonial.jsx",
     "isDynamicEntry": true,
@@ -1637,7 +1637,7 @@
     ]
   },
   "resources/js/Pages/Welcome/Tools.jsx": {
-    "file": "assets/Tools-BUn3ACqq.js",
+    "file": "assets/Tools-DTI51CnP.js",
     "name": "Tools",
     "src": "resources/js/Pages/Welcome/Tools.jsx",
     "isDynamicEntry": true,
@@ -1646,7 +1646,7 @@
     ]
   },
   "resources/js/Pages/Welcome/WelcomeContent.jsx": {
-    "file": "assets/WelcomeContent-DQqfb7-6.js",
+    "file": "assets/WelcomeContent-BEb9X8kk.js",
     "name": "WelcomeContent",
     "src": "resources/js/Pages/Welcome/WelcomeContent.jsx",
     "isDynamicEntry": true,
@@ -1659,7 +1659,7 @@
     ]
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-C1K6nQVK.js",
+    "file": "assets/app-Dx39kq6g.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,

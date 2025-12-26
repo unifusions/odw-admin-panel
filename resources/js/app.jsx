@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 // import('../css/dark.css');
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'One Dental World';
 
 // useEffect(() => {
 //     window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle");

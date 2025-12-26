@@ -19,7 +19,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
             <header className='navbar navbar-expand-lg navbar-center navbar-light bg-white navbar-absolute-top navbar-show-hide'>
                 <div className="container-sm">
                     <nav className="js-mega-menu navbar-nav-wrap">
-                        <a className="navbar-brand" href="#" aria-label="Front">
+                        <a className="navbar-brand" href="/" aria-label="Front">
                             <img className="" src="/images/odw-logo-h.png" alt="Logo" data-hs-theme-appearance="default" height={70} width='auto' />
                             {/* <img className="navbar-brand-logo"src="/images/odw-logo-h.png" alt="Logo" data-hs-theme-appearance="dark" /> */}
                         </a>

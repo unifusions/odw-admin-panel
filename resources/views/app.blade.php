@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title inertia>One Dental World</title>
+        <title >One Dental World</title>
 <link rel="icon" href="{{ asset('images/odw-brand.png') }}">
 
         <!-- Fonts -->
