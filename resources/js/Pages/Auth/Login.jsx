@@ -60,11 +60,11 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <div className="container py-5 py-sm-7">
+            <div className="container py-5 py-sm-7 mt-5">
 
-                <div className="d-flex justify-content-center   mb-5">   <img className="zi-2" src='/images/odw-logo.png' alt="Image Description" style={{ width: '4rem' }} /></div>
-
-
+                
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
 
                 <div className="mx-auto" style={{ maxWidth: '30rem' }}>
 
@@ -113,7 +113,7 @@ export default function Login({ status, canResetPassword }) {
                                         value={data.password}
                                         className={errors.password && 'is-invalid'}
                                         autoComplete="current-password"
-                                        placeholder="8+ characters required"
+                                        placeholder="********"
                                         onChange={(e) => setData('password', e.target.value)}
                                     />
 

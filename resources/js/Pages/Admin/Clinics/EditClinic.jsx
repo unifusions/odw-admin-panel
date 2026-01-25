@@ -16,7 +16,7 @@ export default function EditClinic() {
         <>
             <AuthenticatedLayout header="Edit Clinic"
             >
-                <PageHeader />
+                
                 <Head title="Edit Clinic" />
 
                 <DisplayFlex className="mb-3 justify-content-between">

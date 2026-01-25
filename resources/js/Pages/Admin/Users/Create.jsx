@@ -60,7 +60,7 @@ export default function Create() {
                     <TextInputWithLabel
                         label="Password"
                         placeholder="Password"
-                        id="password"
+                        id="password"type="password"
                         value={data.password}
                         isSingleRow={true}
                         onChange={(e) => setData('password', e.target.value)}
@@ -74,6 +74,7 @@ export default function Create() {
                         placeholder="Confirm Password"
                         id="password_confirmation"
                         name="password_confirmation"
+                        type="password"
                         value={data.password_confirmation}
                         isSingleRow={true}
                         onChange={(e) => setData('password_confirmation', e.target.value)}

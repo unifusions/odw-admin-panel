@@ -16,7 +16,9 @@ class SecondOpinionReplyController extends Controller
      * Display a listing of the resource.
      */
 
-    public function __construct(private FcmNotificationService $fcm) {}
+    public function __construct(private FcmNotificationService $fcm)
+    {
+    }
 
     public function index()
     {
@@ -48,15 +50,17 @@ class SecondOpinionReplyController extends Controller
                 'path' => $path,
                 'file_name' => $file->getClientOriginalName(),
                 'size' => $file->getSize(),
-                'file_type' =>  $file->extension(),
+                'file_type' => $file->extension(),
             ]);
             if ($soreply) {
                 $second_opinion->status = "answered";
                 $second_opinion->save();
             }
         }
-        Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
 
+        if (!empty($second_opinion->patient?->email)) {
+            Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
+        }
 
         $ok = $this->fcm->send(
             $second_opinion->patient->user->fcm_token,
@@ -69,12 +73,10 @@ class SecondOpinionReplyController extends Controller
         return redirect()->route('second-opinion.show', $second_opinion)->with(['message' => 'Opinion has been sent to the patient']);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -85,19 +87,15 @@ class SecondOpinionReplyController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+     
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+     
     public function destroy(string $id)
     {
-        //
+        
     }
 }
