@@ -35,12 +35,12 @@ return [
         'team_id' => env('APN_TEAM_ID'),
         'app_bundle_id' => env('APN_BUNDLE_ID'),
         // Enable either `private_key_path` or `private_key_content` depending on your environment
-        // 'private_key_path' => env('APN_PRIVATE_KEY'),
-        'private_key_content' => env('APN_PRIVATE_KEY'),
-        'private_key_secret' => env('APN_PRIVATE_SECRET'),
+        'private_key_path' => env('APN_PRIVATE_KEY'),
+        // 'private_key_content' => env('APN_PRIVATE_KEY'),
+        // 'private_key_secret' => env('APN_PRIVATE_SECRET'),
         'production' => env('APN_PRODUCTION', true),
     ],
-    
+
         'reverb' => [
             'driver' => 'reverb',
             'key' => env('REVERB_APP_KEY'),
