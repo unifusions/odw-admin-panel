@@ -5,6 +5,7 @@ import AddClinic from "./AddClinic";
 import PageHeader from "@/Components/PageHeader";
 import { useToast } from "@/Components/ToastContext";
 import Pagination from "@/Components/Pagination";
+import { LinkButton } from "@/Components/ui/link-button";
 
 export default function Index() {
 
@@ -16,13 +17,13 @@ export default function Index() {
 
     return (
         <AuthenticatedLayout 
-        header='Clinics' 
-        pageTitle="All Clinics" 
+        
+        pageTitle="Clinics" 
         callToAction={<Link href={route('clinics.create')} className="btn btn-primary">Add Clinic</Link>}>
- 
+ <LinkButton href={route('clinics.create')} > Add Clinic </LinkButton>
 
-            <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+            <div class="data-table">
+                <table class="w-full">
                     <thead class="thead-light">
                         <tr>
                             <th>Clinic Name</th>

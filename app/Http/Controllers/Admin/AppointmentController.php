@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\AppointmentReschedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -55,28 +56,28 @@ class AppointmentController extends Controller
             fn($query) => $query->whereYear('appointment_date', $year)
                 ->whereMonth('appointment_date', $month)
         )->get()->map(fn($appointment) => [
-            'id' => $appointment->id,
-            'title' => $appointment->patient->first_name ?? '',
-            'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
+                'id' => $appointment->id,
+                'title' => $appointment->patient->first_name ?? '',
+                'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
 
-            'extendedProps' => [
-                'services' => $appointment->dentalservice,
-                'status' => $appointment->status,
-                'appointment_date' => $appointment->appointment_date,
-                'clinic' => $appointment->clinic,
-                'dentist' => $appointment->dentist,
-                'provider' => $appointment->appointable ? [
-                    'id' => $appointment->appointable->id,
-                    'type' => class_basename($appointment->appointable_type), // Dentist or Specialist
-                    'name' => $appointment->appointable->name ?? '',
-                ] : 'no provider',
-            ],
-        ]);
+                'extendedProps' => [
+                    'services' => $appointment->dentalservice,
+                    'status' => $appointment->status,
+                    'appointment_date' => $appointment->appointment_date,
+                    'clinic' => $appointment->clinic,
+                    'dentist' => $appointment->dentist,
+                    'provider' => $appointment->appointable ? [
+                        'id' => $appointment->appointable->id,
+                        'type' => class_basename($appointment->appointable_type), // Dentist or Specialist
+                        'name' => $appointment->appointable->name ?? '',
+                    ] : 'no provider',
+                ],
+            ]);
 
         $pendingAppointments = Appointment::where('status', 'pending')->count();
 
         return Inertia::render('Admin/Appointments/Index', [
-            'appointments' => $appointments,
+            'appointments' => Appointment::with(['patient', 'appointable', 'clinic', 'dentalservice'])->get(),
             'pendingAppointments' => $pendingAppointments,
             'activeYear' => $year,
             'activeMonth' => $month,
@@ -126,6 +127,28 @@ class AppointmentController extends Controller
         $appointment->save();
 
         return redirect()->back()->with(['success' => 'Appointment has been cancelled']);
+    }
+
+    public function rescheduleAppointment(Request $request, Appointment $appointment)
+    {
+
+  
+        AppointmentReschedule::create([
+            'appointment_id' => $appointment->id,
+            'appointment_date' => $appointment->appointment_date,
+            'time_slot' => $appointment->time_slot,
+            'rescheduled_by' => 'clinic',
+            'user_id' => auth()->user()->id
+        ]);
+        $appointment->status = 'confirmed';
+        $appointment->is_confirmed = true;
+        $appointment->reschedule_count = $appointment->reschedule_count + 1;
+        $appointment->appointment_date = $request->new_dt;
+        $appointment->time_slot = $request->new_slot;
+        $appointment->reschedule_requested_by = 'clinic';
+$appointment->save();
+                return redirect()->back()->with(['success' => 'Appointment has been rescheduled']);
+
     }
     public function create()
     {

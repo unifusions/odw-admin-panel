@@ -1,5 +1,10 @@
-import Card from "@/Components/Card";
+
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Input } from "@/Components/ui/input";
+import { Switch } from "@/Components/ui/switch";
 import { useForm } from "@inertiajs/react";
+import { Clock } from "lucide-react";
 
 export default function WorkingHours({ clinic, clinicschedule }) {
 
@@ -32,32 +37,42 @@ export default function WorkingHours({ clinic, clinicschedule }) {
     return (
         <>
             <form onSubmit={updateSchedule}  >
-                <Card id="working-hours" styles={{ scrollMarginTop: '80px' }} title="Working Hours"  >
-                    {console.log(data.schedule)}
-                    {daysOfWeek.map((day) => (
-                        <div key={day} className="row px-3 align-items-center">
-                            <label className="col-lg-3 form-check form-switch mb-3 ">
 
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    checked={data.schedule[day].is_open}
-                                    onChange={(e) =>
-                                        setData("schedule", {
-                                            ...data.schedule,
-                                            [day]: {
-                                                ...data.schedule[day],
-                                                is_open: e.target.checked,
-                                            },
-                                        })}
+                <Card className="shadow-card">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <Clock className="h-5 w-5 text-primary" />
+                            Business Hours
+                        </CardTitle>
+                        <CardDescription>
+                            Set your clinic's operating hours
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
 
-                                />
-                                {" "}{day}
-                            </label>
-                            {data.schedule[day] && (
-                                <div className="col-lg-6 mb-3 align-items-center">
-                                    <div className="input-group input-group-md-vertical align-items-center">
-                                        <input
+                        {daysOfWeek.map((day) => (
+                            <div key={day} className="flex items-center justify-between">
+                                <div className="flex items-center gap-3 ">
+                                    <Switch
+                                        checked={data.schedule[day].is_open}
+                                        onCheckedChange={(e) => {
+
+                                            setData("schedule", {
+                                                ...data.schedule,
+                                                [day]: {
+                                                    ...data.schedule[day],
+                                                    is_open: e,
+                                                },
+                                            })
+                                        }}
+                                    />
+                                    <span className="w-24 font-medium">{day}</span>
+
+                                </div>
+                                {data.schedule[day] && (
+                                    <div className="flex items-center gap-2 text-sm">
+
+                                        <Input
                                             className="form-control"
                                             type="time"
                                             disabled={!data.schedule[day].is_open}
@@ -72,8 +87,9 @@ export default function WorkingHours({ clinic, clinicschedule }) {
                                                 })
                                             }
                                         />
-                                        <div className="mx-3"> TO </div>
-                                        <input
+                                        <span className="text-muted-foreground">to</span>
+
+                                        <Input
                                             className="form-control"
                                             type="time"
                                             value={data.schedule[day].close_time}
@@ -89,19 +105,25 @@ export default function WorkingHours({ clinic, clinicschedule }) {
                                                 })
                                             }
                                         />
+
+
                                     </div>
 
-                                </div>
+                                )}
+                            </div>
+                        ))}
 
-                            )}
-                        </div>
-                    ))}
 
-                    <button className="mt-3 btn btn-primary btn-sm">
-                        Update Schedule
-                    </button>
 
+                    </CardContent>
+                    <CardFooter>
+                        <Button type="submit">
+                            Update Business Hours
+                        </Button>
+                    </CardFooter>
                 </Card>
+
+                 
             </form>
         </>
     )

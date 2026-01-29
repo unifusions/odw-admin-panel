@@ -1,10 +1,12 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, usePage } from "@inertiajs/react";
-import AddDeal from "./AddDeal";
-import Lightbox from "@/Components/Lightbox";
+import {  Link, usePage } from "@inertiajs/react";
+ 
 import { useState } from "react";
-import PageHeader from "@/Components/PageHeader";
+ 
 import Pagination from "@/Components/Pagination";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
+import { LinkButton } from "@/Components/ui/link-button";
+import DataPagination from "@/Components/Pagination";
 
 export default function Index() {
 
@@ -35,7 +37,8 @@ export default function Index() {
   const { deals } = usePage().props;
   return (
     <AuthenticatedLayout header='Deals' pageTitle="All Deals"
-      callToAction={<Link href={route('deals.create')} className="btn btn-primary">Add Deal</Link>}>
+
+    >
 
 
 
@@ -58,77 +61,41 @@ export default function Index() {
 
       </div> */}
 
+<div className="flex items-center justify-between">
+   <Pagination links={deals.links} />
+<LinkButton href={route('deals.create')} className="mb-3" >Add Deal</LinkButton>
 
+</div>
+      
 
-      <div class="card">
-
-        <div class="card-header card-header-content-md-between">
-          <div class="mb-2 mb-md-0">
-            {/* <form>
-
-              <div class="input-group input-group-merge input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="bi-search"></i>
+      <div className="grid grid-cols-3 gap-6">
+        {deals && deals.data.map((deal) => <>
+          <Card   className="shadow-card hover:shadow-card-hover transition-all animate-fade-in cursor-pointer">
+            <CardHeader>
+              <img className="w-full h-25 object-cover rounded-lg" src={deal.image_url} onClick={() => setLightboxSrc(deal.image_url)} />
+              <CardTitle>{deal.title}</CardTitle>
+              <CardDescription>{deal.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center border-t border-border py-2 justify-between">
+                <div>
+                  From : {deal.start_date} <br/>
+                  To : {deal.end_date}
                 </div>
-                <input id="datatableSearch" type="search" class="form-control" placeholder="Search users" aria-label="Search Deals" />
+
+                <LinkButton href={route('deals.edit', deal)} variant="outline" size='sm'>
+                  <i class="bi-pencil-fill me-1"></i> Edit
+                </LinkButton>
               </div>
+            </CardContent>
+ 
+          </Card>
+        </>)}
 
-            </form> */}
-          </div>
-
-
-        </div>
-
-        <div class="table-responsive">
-
-
-
-          <table id="datatable" class="table  ">
-            <thead class="thead-light">
-              <tr role="row">
-                <th></th>
-                <th class="" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending">Title</th>
-                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending">Description</th>
-                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Stocks" >Start Date</th>
-                <th rowspan="1" colspan="1" aria-label="SKU: activate to sort column ascending">End Date</th>
-                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" >Status</th>
-                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" >Actions</th></tr>
-            </thead>
-
-            <tbody>
-
-              {deals && deals.data.map((deal) =>
-                <tr>
-                  <td>
-                    <img className="avatar cursor-pointer" src={deal.image_url} onClick={() => setLightboxSrc(deal.image_url)} />
-                  </td>
-                  <td>{deal.title}</td>
-                  <td>{deal.description}</td>
-                  <td>{deal.start_date}</td>
-                  <td>{deal.end_date}</td>
-                  <td>{deal.is_active}</td>
-                  <td><EditButtonGroup deal={deal} /></td>
-                </tr>
-              )}
-
-
-
-              {lightboxSrc &&
-
-                <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />}
-
-
-            </tbody>
-          </table>
-        </div>
-
-
-        <div class="card-footer">
-
-          <Pagination links={deals.links} />
-        </div>
-
+        <DataPagination links={deals.links} />
       </div>
+ 
+      
 
     </AuthenticatedLayout>
   )

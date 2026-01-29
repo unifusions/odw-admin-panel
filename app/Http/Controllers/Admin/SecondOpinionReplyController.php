@@ -16,9 +16,9 @@ class SecondOpinionReplyController extends Controller
      * Display a listing of the resource.
      */
 
-    public function __construct(private FcmNotificationService $fcm)
-    {
-    }
+    // public function __construct(private FcmNotificationService $fcm)
+    // {
+    // }
 
     public function index()
     {
@@ -62,12 +62,12 @@ class SecondOpinionReplyController extends Controller
             Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
         }
 
-        $ok = $this->fcm->send(
-            $second_opinion->patient->user->fcm_token,
-            'Your Second Opinion is Ready',
-            'Review your personalized feedback from our dental team.',
-            ['type' => 'so-alert']
-        );
+        // $ok = $this->fcm->send(
+        //     $second_opinion->patient->user->fcm_token,
+        //     'Your Second Opinion is Ready',
+        //     'Review your personalized feedback from our dental team.',
+        //     ['type' => 'so-alert']
+        // );
 
 
         return redirect()->route('second-opinion.show', $second_opinion)->with(['message' => 'Opinion has been sent to the patient']);

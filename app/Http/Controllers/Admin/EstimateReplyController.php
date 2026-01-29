@@ -47,9 +47,13 @@ class EstimateReplyController extends Controller
                 $estimate->status = "answered";
                 $estimate->save();
             }
+            return redirect()->route('estimates.show', parameters: $estimate)->with(["message" => "Estimate has been sent to Patient"]);
+        }
+        else{
+            return  redirect()-> back()->with(["message"=> "No estimate attached", "status" => 'error']);
         }
 
-        return redirect()->route('estimates.show', parameters: $estimate)->with(["message" => "Estimate has been sent to Patient"]);
+        
     }
 
     /**

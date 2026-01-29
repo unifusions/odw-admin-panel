@@ -5,6 +5,7 @@ namespace App\Models\Admin;
 use App\Models\SecondOpinion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class SoReply extends Model
 {
@@ -21,12 +22,12 @@ class SoReply extends Model
     public $appends = ['file_url', 'static_url'];
     public function getFileUrlAttribute()
     {
-        // if (!$this->path) {
-        //     return null;
-        // }
-        // return Storage::disk('local')->url($this->path);
+        return URL::signedRoute(
+        'secure.file',                 
+               // link expiry
+        ['path' => $this->path]);    
 
-        return route('files.show', ['path' => $this->path]);
+        // return route('files.show', ['path' => $this->path]);
     }
 
     public function getStaticUrlAttribute()

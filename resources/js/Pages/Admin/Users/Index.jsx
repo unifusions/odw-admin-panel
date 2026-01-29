@@ -1,24 +1,41 @@
-import PageHeader from "@/Components/PageHeader";
+
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
-import AddUser from "./AddUser";
+import { Link } from "@inertiajs/react";
+
 import Pagination from "@/Components/Pagination";
 import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
+import { Button } from "@/Components/ui/button";
+
+import useDeleteModal from "@/hooks/useDeleteModal";
+import Avatar from "@/Components/ui/avatar";
+import { LinkButton } from "@/Components/ui/link-button";
+import { User } from "lucide-react";
 
 export default function Index({ users }) {
 
-    
+const roleLabels = {
+    super_admin: "Administrator",
+    moderator: "Moderator",
+    clinic_user: "Clinic Staff",
+    clinic_admin: "Clinic Admin"
+};
+
+
+    const deleteModal = useDeleteModal()
+
     return (
         <>
             <AuthenticatedLayout header='Users' pageTitle={"All Users"}
-                callToAction={<Link href={route('clinic-users.create')} className="btn btn-primary"> <i className="bi-hospital me-1"></i> Add User</Link>}>
+                 >
 
 
+<LinkButton href={route('clinic-users.create')} >
+<User />Add User
+</LinkButton>
 
 
-
-                <div class="table-responsive datatable-custom">
-                    <table class="js-datatable table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                <div class="data-table mt-3">
+                    <table class="w-full">
                         <thead class="thead-light">
                             <tr>
                                 <th>Full Name</th>
@@ -38,19 +55,8 @@ export default function Index({ users }) {
                                     <tr key={index}>
 
                                         <td>
+                                            <Avatar text={user.name} />
 
-                                            <div className="d-flex align-items-center">
-                                                <div className="avatar avatar-soft-primary avatar-circle">
-                                                    <span className="avatar-initials">{user.name && Array.from(user.name)[0]}</span>
-                                                </div>
-                                                <div className="ms-3">
-                                                    <span className="d-block h5 text-inherit mb-0">
-                                                        {user.name}
-                                                    </span>
-                                                    <span class="d-block fs-5 text-body">{user.role}</span>
-
-                                                </div>
-                                            </div>
                                         </td>
 
                                         <td>
@@ -68,14 +74,26 @@ export default function Index({ users }) {
                                         </td>
                                         <td>
                                             <span className="d-block h5 text-inherit mb-0">
-                                                {user.role}
+                                                {roleLabels[user.role]}
                                             </span>
 
 
                                         </td>
                                         <td>
-                                            <Link href={route('clinic-users.edit', user)} className="btn btn-white btn-sm fw-bold">   <i class="bi-pencil-fill me-1"></i> Edit</Link>
-                                            <DeleteConfirmModal category="Users" processUrl="clinic-users.destroy" item={user} />
+                                            <div className="flex items-center gap-2">
+                                                <Link href={route('clinic-users.edit', user)} className="">   <i class="bi-pencil-fill me-1"></i> Edit</Link>
+
+
+
+                                                <Button
+                                                    variant="outline" size='sm' o
+                                                    onClick={() =>
+                                                        deleteModal.confirm(user, "clinic-users.destroy")
+                                                    }
+                                                > Delete</Button>
+                                            </div>
+
+
                                         </td>
                                     </tr>
 
@@ -93,6 +111,12 @@ export default function Index({ users }) {
                 </div>
 
                 <Pagination links={users.links} />
+                <DeleteConfirmModal dialogOpen={deleteModal.open}
+                    onConfirm={deleteModal.destroy}
+                    setDialogOpen={deleteModal.setOpen}
+                    category="Users" processUrl="clinic-users.destroy"
+                    loading={deleteModal.loading} itemName={deleteModal?.item?.name} />
+
             </AuthenticatedLayout>
         </>
     )

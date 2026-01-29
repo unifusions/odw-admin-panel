@@ -1,11 +1,18 @@
-import Card from "@/Components/Card";
+
 import ImageUploader from "@/Components/ImageUploader";
 import ServiceImageUploader from "@/Components/ServiceImageUploader";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
+import { Switch } from "@/Components/ui/switch";
+import { Textarea } from "@/Components/ui/textarea";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
+import { Building2, Clock, Globe, Image, Mail, MapPin, Phone, Trash } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from 'react-dropzone';
 
@@ -59,7 +66,7 @@ export default function Create() {
         }
 
         setData('categories', updatedItems);
-
+        console.log(data.categories)
     };
 
     const handleImageChange = (e) => {
@@ -123,7 +130,7 @@ export default function Create() {
     };
 
     function DropzoneArea() {
-        const { getRootProps, getInputProps } = useDropzone({
+        const { getRootProps, getInputProps, isDragActive } = useDropzone({
             accept: {
                 'image/*': []
             },
@@ -135,14 +142,20 @@ export default function Create() {
         });
 
         return (
-            <div
-                {...getRootProps({
-                    className: "dz-dropzone dz-clickable border rounded p-4 text-center",
-                    style: { cursor: 'pointer', backgroundColor: '#fafafa' },
-                })}
-            >
-                <input {...getInputProps()} />
-                <p className="mb-0">Drag & drop images here, or click to select files</p>
+            <div {...getRootProps()} className={`
+        p-10 border-4 rounded-lg text-center cursor-pointer transition-colors
+        ${isDragActive ? 'border-blue-500 bg-blue-100' : 'border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100'}
+      `}>
+
+                <label class="profile-cover-uploader-label btn btn-sm btn-white" for="profileCoverUplaoder">
+                    <i class="bi-camera-fill"></i>
+                    <input {...getInputProps()} />
+                    {
+                        isDragActive ?
+                            <p className="text-blue-600">Drop the files here ...</p> :
+                            <p className="text-gray-500">Drag 'n' drop some files here, or click to select files</p>
+                    }
+                </label>
             </div>
         );
     }
@@ -151,293 +164,240 @@ export default function Create() {
     return (
         <AuthenticatedLayout header="Add Clinic">
             <Head title="Add Clinic" />
-
-
-
-
-            <div className="row " style={{ flexGrow: 1 }}>
-                <div className="col-lg-3 mb-3 mb-lg-0 " style={{ position: "sticky", top: "80px", alignSelf: "flex-start", height: "calc(100vh - 180px)" }}>
-                    <div className="">
-                        <div id="navbarVerticalNavMenu" className=" navbar-collapse" >
-                            <ul id="navbarSettings" className="  card card-navbar-nav nav nav-tabs nav-lg nav-vertical "   >
-                                <li className="nav-item">
-                                    <button className="nav-link" onClick={() => scrollToSection('information')}>
-                                        <i class="bi-info-circle nav-icon"></i>
-
-                                        Clinic Information
-                                    </button>
-                                </li>
-                                <li className="nav-item">
-                                    <button className="nav-link" href="#emailSection" onClick={() => scrollToSection('working-hours')}>
-                                        <i className="bi-alarm nav-icon"></i> Working Hours
-                                    </button>
-                                </li>
-
-                                <li className="nav-item">
-                                    <button className="nav-link" onClick={() => scrollToSection('gallery')}>
-                                        <i className="bi-images nav-icon"></i> Images
-                                    </button>
-                                </li>
-
-                                <li className="nav-item">
-                                    <button className="nav-link" onClick={() => scrollToSection('treatments')}>
-                                        <i className="bi-capsule nav-icon"></i> Treatments
-                                    </button>
-                                </li>
-
-                                <li className="nav-item">
-                                    <button className="nav-link" href="#twoStepVerificationSection" onClick={() => scrollToSection('publish')}>
-                                        <i className="bi-plus-circle nav-icon"></i> Publish
-                                    </button>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div className="col-lg-9 mb-3 mb-lg-0">
-
-                    <form action="" onSubmit={onsubmit} noValidate >
-
-                        <Card id="information" title="Clinic Information">
-
-                            <TextInputWithLabel
-                                id="clinic_name"
-                                type="text"
-                                value={data.clinic_name}
-                                placeholder="Clinic Name"
-                                onChange={(e) => setData('clinic_name', e.target.value)}
-                                label="Name"
-                                className=" mb-4"
-                            />
-
-                            <div className="row">
-                                <div className="col-sm-6">
-
-                                    <TextInputWithLabel
-                                        id="email"
-                                        type="email"
-                                        value={data.email}
-                                        placeholder="email@address.com"
-                                        onChange={(e) => setData('email', e.target.value)}
-                                        label="Contact Email"
-                                    />
-
-
+ <form   onSubmit={onsubmit} noValidate >
+            <div className="grid gap-6 lg:grid-cols-1">
+               
+                    <Card className="shadow-card">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Building2 className="h-5 w-5 text-primary" />
+                                Clinic Information
+                            </CardTitle>
+                            <CardDescription>
+                                Update your clinic's basic information
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="clinicName">Clinic Name</Label>
+                                <Input id="clinicName"
+                                    placeholder="Clinic Name" value={data.clinic_name}
+                                    onChange={(e) => setData('clinic_name', e.target.value)} />
+                            </div>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <div className="space-y-2">
+                                    <Label htmlFor="email">Email</Label>
+                                    <div className="relative">
+                                        <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            value={data.email}
+                                            placeholder="email@address.com"
+                                            onChange={(e) => setData('email', e.target.value)}
+                                            className="pl-9"
+                                        />
+                                    </div>
                                 </div>
-
-
-                                <div className="col-sm-6">
-
-                                    <div className="mb-4">
-
-
-                                        <TextInputWithLabel
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone">Phone</Label>
+                                    <div className="relative">
+                                        <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                        <Input
                                             id="phone"
-                                            label="Phone Number"
                                             value={data.phone}
-                                            className="form-control"
                                             placeholder="+x(xxx)xxx-xx-xx"
                                             onChange={(e) => setData('phone', e.target.value)}
+                                            className="pl-9"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="address">Address</Label>
+                                <div className="relative">
+                                    <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                    <div className="grid gap-4 sm:grid-cols-2">
+                                        <Input
+                                            id="address"
+                                            defaultValue="123 Medical Center Dr, New York, NY 10001"
+                                            value={data.address_line_1}
+                                            placeholder="Address Line 1"
+                                            onChange={(e) => setData('address_line_1', e.target.value)}
+                                            className="pl-9 mb-3"
                                         />
 
+                                        <Input
+                                            id="address"
+                                            value={data.address_line_2}
+                                            placeholder="Address Line 2"
+                                            onChange={(e) => setData('address_line_2', e.target.value)}
 
-
+                                        />
 
                                     </div>
 
-                                </div>
 
 
-                                <div className="col-sm-6">
 
-                                    <TextInputWithLabel
-                                        id="address_line_1"
-                                        type="text"
-                                        value={data.address_line_1}
-                                        placeholder=""
-                                        onChange={(e) => setData('address_line_1', e.target.value)}
-                                        label="Address Line 1"
-                                    />
+
+
+
 
 
                                 </div>
+                            </div>
 
-
-                                <div className="col-sm-6 mb-3">
-
-
-                                    <TextInputWithLabel
-                                        id="address_line_2"
-                                        type="text"
-                                        value={data.address_line_2}
-                                        placeholder=""
-                                        onChange={(e) => setData('address_line_2', e.target.value)}
-                                        label="Address Line 2"
-                                    />
-
-
-                                </div>
-
-                                <div className="col-sm-6 mb-3">
-
-
-                                    <TextInputWithLabel
+                            <div className="space-y-2 grid grid-cols-3 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="city">City</Label>
+                                    <Input
                                         id="city"
-                                        type="text"
                                         value={data.city}
-                                        placeholder=""
                                         onChange={(e) => setData('city', e.target.value)}
-                                        label="City"
+
+                                        placeholder="City"
                                     />
-
-
                                 </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="state">State</Label>
+                                    <Input
+                                        id="state"
 
-                                <div className="col-sm-6 mb-3">
-
-
-                                    <TextInputWithLabel
-                                        id="city"
-                                        type="text"
                                         value={data.state}
-                                        placeholder=""
+
                                         onChange={(e) => setData('state', e.target.value)}
-                                        label="State"
+
+                                        placeholder="State"
+
                                     />
-
-
                                 </div>
 
-
-                                <div className="col-sm-6 mb-3">
-
-
-                                    <TextInputWithLabel
+                                <div className="space-y-2">
+                                    <Label htmlFor="zip_code">Zip Code</Label>
+                                    <Input
                                         id="zip_code"
-                                        type="text"
+
                                         value={data.zip_code}
-                                        placeholder="20001"
+
                                         onChange={(e) => setData('zip_code', e.target.value)}
-                                        label="ZIP Code"
+                                        placeholder="Zip Code"
+
                                     />
-
-
                                 </div>
-
-
-
-
-
-
                             </div>
-
-                            <hr />
-
-                            <div className="row">
-                                <div className="col-sm-6 mb-3">
-
-
-                                    <TextInputWithLabel
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">   <Label htmlFor="zip_code">Latitude</Label>
+                                    <Input
                                         id="latitude"
-                                        type="text"
                                         value={data.latitude}
-                                        placeholder="38.9072"
                                         onChange={(e) => setData('latitude', e.target.value)}
-                                        label="Latitude"
+                                        className="pl-9"
+                                    /></div>
+                                <div className="space-y-2"><Label htmlFor="longitude">Longitude</Label>
+                                    <Input
+                                        id="longitude"
+                                        value={data.longitude}
+                                        onChange={(e) => setData('longitude', e.target.value)}
+                                        className="pl-9"
                                     />
-
-
                                 </div>
 
-                                <div className="col-sm-6 mb-3">
+
+                            </div>
 
 
-                                    <TextInputWithLabel
-                                        id="longitude"
-                                        type="text"
-                                        value={data.longitude}
-                                        placeholder="77.0369"
-                                        onChange={(e) => setData('longitude', e.target.value)}
-                                        label="Longitude"
-                                    />
-
-
+                            <div className="space-y-2">
+                                <Label htmlFor="website">Description</Label>
+                                <div className="relative">
+                                    <Textarea value={data.desc}
+                                        placeholder="General Info"
+                                        onChange={(e) => setData('desc', e.target.value)} />
                                 </div>
                             </div>
 
-                            <label className="form-label">General Info </label>
+                            {/* <div className="space-y-2">
+                            <Label htmlFor="website">Website</Label>
+                            <div className="relative">
+                                <Globe className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                <Input
+                                    id="website"
+                                    defaultValue="https://dentalcare.com"
+                                    className="pl-9"
+                                />
+                            </div>
+                        </div> */}
+                             
+                        </CardContent>
+                    </Card>
 
-                            <TextArea name="desc"
-                                className="form-control"
-                                value={data.desc}
-                                placeholder="General Info"
-                                onChange={(e) => setData('desc', e.target.value)} />
+                    <Card className="shadow-card">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Clock className="h-5 w-5 text-primary" />
+                                Business Hours
+                            </CardTitle>
+                            <CardDescription>
+                                Set your clinic's operating hours
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
 
-
-
-
-
-                        </Card>
-
-
-                        <Card id="working-hours" styles={{ scrollMarginTop: '80px' }} title="Working Hours">
                             {daysOfWeek.map((day) => (
-                                <div key={day} className="row px-3 align-items-center">
-                                    <label className="col-lg-3 form-check form-switch mb-3 ">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
+                                <div key={day} className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3 ">
+                                        <Switch
                                             checked={data.schedule[day].isOpen}
-                                            onChange={(e) =>
+                                            onCheckedChange={(e) => {
+
                                                 setData("schedule", {
                                                     ...data.schedule,
                                                     [day]: {
                                                         ...data.schedule[day],
-                                                        isOpen: e.target.checked,
+                                                        isOpen: e,
                                                     },
-                                                })}
-
+                                                })
+                                            }}
                                         />
-                                        {" "}{day}
-                                    </label>
-                                    {data.schedule[day] && (
-                                        <div className="col-lg-6 mb-3 align-items-center">
-                                            <div className="input-group input-group-md-vertical align-items-center">
-                                                <input
-                                                    className="form-control"
-                                                    type="time"
-                                                    disabled={!data.schedule[day].isOpen}
-                                                    value={data.schedule[day].open}
-                                                    onChange={(e) =>
-                                                        setData("schedule", {
-                                                            ...data.schedule,
-                                                            [day]: {
-                                                                ...data.schedule[day],
-                                                                open: e.target.value,
-                                                            },
-                                                        })
-                                                    }
-                                                />
-                                                <div className="mx-3"> TO </div>
-                                                <input
-                                                    className="form-control"
-                                                    type="time"
-                                                    value={data.schedule[day].close}
-                                                    disabled={!data.schedule[day].isOpen}
+                                        <span className="w-24 font-medium">{day}</span>
 
-                                                    onChange={(e) =>
-                                                        setData("schedule", {
-                                                            ...data.schedule,
-                                                            [day]: {
-                                                                ...data.schedule[day],
-                                                                close: e.target.value,
-                                                            },
-                                                        })
-                                                    }
-                                                />
-                                            </div>
+                                    </div>
+                                    {data.schedule[day] && (
+                                        <div className="flex items-center gap-2 text-sm">
+
+                                            <Input
+                                                className="form-control"
+                                                type="time"
+                                                disabled={!data.schedule[day].isOpen}
+                                                value={data.schedule[day].open}
+                                                onChange={(e) =>
+                                                    setData("schedule", {
+                                                        ...data.schedule,
+                                                        [day]: {
+                                                            ...data.schedule[day],
+                                                            open: e.target.value,
+                                                        },
+                                                    })
+                                                }
+                                            />
+                                            <span className="text-muted-foreground">to</span>
+                                            <Input
+                                                className="form-control"
+                                                type="time"
+                                                value={data.schedule[day].close}
+                                                disabled={!data.schedule[day].isOpen}
+
+                                                onChange={(e) =>
+                                                    setData("schedule", {
+                                                        ...data.schedule,
+                                                        [day]: {
+                                                            ...data.schedule[day],
+                                                            close: e.target.value,
+                                                        },
+                                                    })
+                                                }
+                                            />
+
 
                                         </div>
 
@@ -445,101 +405,121 @@ export default function Create() {
                                 </div>
                             ))}
 
-                        </Card>
-
-                        <Card id="treatments" styles={{ scrollMarginTop: '80px' }} title="Treatment">
-                            <div className="row" >
 
 
+                        </CardContent>
+                    </Card>
+                    <Card className="shadow-card">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Clock className="h-5 w-5 text-primary" />
+                                Available Treatments
+                            </CardTitle>
+                            <CardDescription>
+                                Set your clinic's treatment services
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="grid grid-cols-4 gap-6">
                                 {categories.map((category) => {
                                     const isSelected = data.categories.includes(category.id);
                                     return (
 
 
-                                        <div key={category.id} className="col-lg-4 mb-3">
+                                        <div key={category.id} className="flex items-center gap-2">
 
-                                            <label className="form-check form-switch mb-3 ">
-                                                {category.name}
 
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    checked={isSelected}
-                                                    onChange={() => handleCategorySelect(category.id)}
-                                                />
-                                            </label>
+
+
+                                            <Switch
+
+                                                checked={isSelected}
+                                                onCheckedChange={() => handleCategorySelect(category.id)}
+                                            />  {category.name}
+
                                         </div>
                                     )
                                 })}
                             </div>
-                        </Card>
+
+                        </CardContent>
+                    </Card>
 
 
+                    <Card  >
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Image className="h-5 w-5 text-primary" />
+                                Image Gallery
+                            </CardTitle>
+                            <CardDescription>
+                                Update your clinic's logo/featured image and image gallery
+                            </CardDescription>
+                        </CardHeader>
 
-                        <Card id="gallery" styles={{ scrollMarginTop: '80px' }} title="Images">
+                        <CardContent className="space-y-2">
+                            <div className="space-y-2 ">
+                                <Label>Logo / Featured Image</Label>
+                                <ImageUploader onFileSelect={(file) => setData('image_file', file)} existingImage={data.logo} deleteFile={() => setData('image_file', null)} />
 
-                            <h4>Logo</h4>
-                            <ImageUploader onFileSelect={(file) => setData('image_file', file)} />
-
-                            <h4 className="mt-3 mb-3">Gallery</h4>
-
-                            <div className="dropzone-container">
-                                <DropzoneArea />
                             </div>
 
-                            {data.images.length > 0 && (
-                                <div className="row mt-3">
-                                    {data.images.map((file, index) => (
-                                        <div key={index} className="col-3 mb-3">
-
-                                            <div class="card card-sm">
-                                                <img class="card-img-top" src={URL.createObjectURL(file)} alt={`Preview ${index}`} />
-
-                                                <div class="card-body">
-                                                    <div class="row col-divider text-center">
+                            <div className="space-y-2">
+                                <Label>Galleries</Label>
 
 
-                                                        <div class="col">
-                                                            <a class="text-danger" onClick={() => {
-                                                                const updatedImages = [...data.images];
-                                                                updatedImages.splice(index, 1);
-                                                                setData("images", updatedImages);
-                                                            }}
-                                                            >
-                                                                <i class="bi-trash"></i>
-                                                            </a>
+                                {data.images.length > 0 && (
+                                    <div className="grid grid-cols-6">
+                                        {data.images.map((file, index) => (
+                                            <div key={index} className=" ">
+
+                                                <div class="card card-sm">
+                                                    <img class="block h-20 w-full rounded-lg object-cover object-center" src={URL.createObjectURL(file)} alt={`Preview ${index}`} />
+
+                                                    <div class="card-body">
+                                                        <div class="row col-divider text-center">
+
+
+                                                            <div class="col">
+                                                                <Button variant="ghost" type="button" className="" onClick={() => {
+                                                                    const updatedImages = [...data.images];
+                                                                    updatedImages.splice(index, 1);
+                                                                    setData("images", updatedImages);
+                                                                }}
+                                                                >
+                                                                    <Trash className="h-5" />
+                                                                </Button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
+                                        ))}
+                                    </div>
+                                )}
 
-                                        </div>
-                                    ))}
+                                <div className="dropzone-container">
+                                    <DropzoneArea />
                                 </div>
-                            )}
-                        </Card>
 
+                            </div>
 
+                        </CardContent>
 
+                        <CardFooter className="border-t border-border">
 
-                        <Card id="publish"
-                            title="Publish">
-                            <button type="submit" className="btn btn-lg btn-primary " >
+                            <Button type="submit" >
                                 Publish
-                            </button>
-                        </Card>
+                            </Button>
 
-                    </form>
-                </div>
+                        </CardFooter>
 
-                <div className="col-lg-4">
-
-
-
-
-                </div>
-
+                    </Card>
+                
             </div>
+
+</form>
 
 
         </AuthenticatedLayout>

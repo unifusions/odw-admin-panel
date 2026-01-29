@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class ClinicDentalService extends Pivot
 {
     use ClinicScope, HasApiTokens, HasFactory;
-
+protected $table = "clinic_dental_services";
     protected $fillable = [
         'clinic_id',
         'clinic_branch_id',

@@ -23,19 +23,26 @@ const ServiceImageHeaderUploader = ({ onFileSelect, existingImage = null }) => {
     return (
         <>
 
-            <div className="profile-cover">
-                <div className="profile-cover-img-wrapper">
-                    {preview && (
-                        <img src={preview} className="profile-cover-img" />
-                    )}
-                </div>
+            <div className="">
 
-                <div {...getRootProps()} class="profile-cover-content profile-cover-uploader p-3">
-                  
+                {preview && (
+                    <img src={preview} className="h-30 w-full object-cover rounded mb-3 shadow-sm" />
+                )}
+
+
+                <div {...getRootProps()} className={`
+        p-10 border-4 rounded-lg text-center cursor-pointer transition-colors
+        ${isDragActive ? 'border-blue-500 bg-blue-100' : 'border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100'}
+      `}>
+
                     <label class="profile-cover-uploader-label btn btn-sm btn-white" for="profileCoverUplaoder">
                         <i class="bi-camera-fill"></i>
                         <input {...getInputProps()} />
-                        <span class="d-none d-sm-inline-block ms-1">Upload header</span>
+                        {
+                            isDragActive ?
+                                <p className="text-blue-600">Drop the files here ...</p> :
+                                <p className="text-gray-500">Drag 'n' drop some files here, or click to select files</p>
+                        }
                     </label>
                 </div>
 

@@ -1,30 +1,61 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
+import { Card, CardContent } from "./ui/card";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationNext,
+    PaginationPrevious,
+    PaginationLink,
+    PaginationEllipsis,
+} from "@/components/ui/pagination";
 
-export default function Pagination({ links }) {
+export default function DataPagination({ links 
+  }) {
+  
     if (links.length === 3) return null;
     return (
-        <nav>
-            <ul className="pagination">
-                {links.map(({ active, label, url }, index) => {
+        <Card className="p-0 mt-3">
+            <CardContent>
+<Pagination>
+      <PaginationContent>
+        {links.map((link, index) => {
+          if (link.label.includes("Previous")) {
+            return (
+              <PaginationItem key={index}>
+                <PaginationPrevious
+                  onClick={() => link.url && router.visit(link.url)}
+                  className={!link.url ? "pointer-events-none opacity-50" : ""}
+                />
+              </PaginationItem>
+            )
+          }
 
-                    return url === null ? (
-                        // <PageInactive keyIndex={index} label={label} />
-                        <li key={index} className="page-item disabled" >
-                            <span className="page-link" dangerouslySetInnerHTML={{ __html: label }}></span>
-                        </li>
-                    ) : (
+          if (link.label.includes("Next")) {
+            return (
+              <PaginationItem key={index}>
+                <PaginationNext
+                  onClick={() => link.url && router.visit(link.url)}
+                  className={!link.url ? "pointer-events-none opacity-50" : ""}
+                />
+              </PaginationItem>
+            )
+          }
 
-                        // <PageLink keyIndex={index} label={label} active={active} url={url} />
-                        <li className={`page-item ${active ? 'active' : ''}`} key={index} >
-                            <Link className="page-link" href={url}>
-                                <span dangerouslySetInnerHTML={{ __html: label }}></span>
-                            </Link>
-                        </li>
-
-
-                    );
-                })}
-            </ul>
-        </nav>
+          return (
+            <PaginationItem key={index}>
+              <PaginationLink
+                isActive={link.active}
+                onClick={() => link.url && router.visit(link.url)}
+                dangerouslySetInnerHTML={{ __html: link.label }}
+              />
+            </PaginationItem>
+          )
+        })}
+      </PaginationContent>
+    </Pagination>
+            </CardContent>
+        </Card>
+       
     );
 }

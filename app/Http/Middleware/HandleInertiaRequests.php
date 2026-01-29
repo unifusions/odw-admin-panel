@@ -5,7 +5,9 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
+ 
 use Inertia\Middleware;
+use URL;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -40,7 +42,14 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn() => $request->session()->get('message'),
                 'failed' => fn() => $request->session()->get('failed')
             ],
-            'breadcrumbs' => $this->generateBreadcrumbs()
+            'breadcrumbs' => $this->generateBreadcrumbs(),
+            'urlPrevious' => function () {
+                // Ensure the previous URL is not the current one or a login page, etc.
+                if (URL::previous() !== URL::current()) {
+                    return URL::previous();
+                }
+                return null; // or an empty string/specific fallback
+            }
         ];
     }
 
@@ -205,7 +214,7 @@ class HandleInertiaRequests extends Middleware
             'clinic-users.edit' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Users', 'url' => route('clinic-users.index')],
-                ['name' => optional($clinicuser)->id ? $clinicuser  : "Edit", 'url' => "#"]
+                ['name' => optional($clinicuser)->id ? $clinicuser : "Edit", 'url' => "#"]
             ],
 
 
@@ -242,7 +251,7 @@ class HandleInertiaRequests extends Middleware
             'services.create' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
                 ['name' => 'Treatments', 'url' => route('services.index')],
-                ['name' => 'Create', 'url' =>   route('services.create',)],
+                ['name' => 'Create', 'url' => route('services.create', )],
             ],
             'services.show' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
@@ -267,7 +276,7 @@ class HandleInertiaRequests extends Middleware
 
             'patients.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
-                ['name' => 'Patients',  'url' => route('patients.index')]
+                ['name' => 'Patients', 'url' => route('patients.index')]
             ],
             'patients.create' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
@@ -291,7 +300,7 @@ class HandleInertiaRequests extends Middleware
 
             'admin.settings.index' => [
                 ['name' => 'Dashboard', 'url' => $dashboardUrl],
-                ['name' => 'Settings',  'url' => '']
+                ['name' => 'Settings', 'url' => '']
             ]
         ];
 

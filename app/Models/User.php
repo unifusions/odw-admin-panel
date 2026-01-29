@@ -171,4 +171,26 @@ class User extends Authenticatable
             'data' => $data,
         ];
     }
+
+    public static function monthlyRegistration()
+    {
+        // Define the date range you want
+        $startDate = Carbon::now()->subMonth()->startOfMonth();
+        $endDate = Carbon::now()->subMonth()->endOfMonth();
+        // Get user counts grouped by date
+
+        $users = User::whereBetween('created_at', [$startDate, $endDate])->where('role', 'patient')
+           
+            ->get()->count();
+            
+
+        
+        return [
+            'current' =>  User::whereBetween('created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])->where('role', 'patient')
+           
+            ->get()->count(),
+            'previous' => $users,
+        ];
+    }
+
 }

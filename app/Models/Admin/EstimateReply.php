@@ -6,6 +6,7 @@ use App\Models\Estimate;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class EstimateReply extends Model
 {
@@ -30,9 +31,9 @@ class EstimateReply extends Model
 
     public function getFileUrlAttribute()
     {
-        if (!$this->path) {
-            return null;
-        }
-        return Storage::url($this->path);
+        return URL::signedRoute(
+        'secure.file',                 
+               // link expiry
+        ['path' => $this->path]);    
     }
 }

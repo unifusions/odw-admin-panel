@@ -4,8 +4,13 @@ import { Head, useForm } from "@inertiajs/react";
 import { useState } from "react";
 import InputLabel from "@/Components/InputLabel";
 import { Column, Row } from "@/Components/Components";
-import Card from "@/Components/Card";
+ 
 import ServiceImageHeaderUploader from "@/Components/ServiceImageHeaderUploader";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Building2, Globe, Mail, MapPin, Phone } from "lucide-react";
+import { Label } from "@/Components/ui/label";
+import { Input } from "@/Components/ui/input";
+import { Button } from "@/Components/ui/button";
 
 export default function Index({ settings, group }) {
 
@@ -35,18 +40,32 @@ export default function Index({ settings, group }) {
             pageTitle={`Settings (${group})`} >
                
 
-                <form onSubmit={handleSubmit} className="space-y-4"  encType="multipart/form-data">
-                    <Card>
-                        {settings.map((setting) => (
-                            <Row key={setting.key} className="mb-3">
-                                <InputLabel htmlFor="" className="form-label col-sm-3 col-form-label" value={setting.key.replace(/_/g, " ")} />
+<Card className="shadow-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Building2 className="h-5 w-5 text-primary" />
+                  Settings
+                </CardTitle>
+                <CardDescription>
+                  Handle with care
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                
+              
+               <form onSubmit={handleSubmit} className="space-y-4"  encType="multipart/form-data">
+               
 
-                                <Column lg={9}>
+                     {settings.map((setting) => (
+                            <div key={setting.id}  className="space-y-2">
+                                <Label > {setting.key.replace(/_/g, " ")}</Label>
+
+                              
 
 
 
                                     {setting.type === "boolean" && (
-                                        <input
+                                        <Input
                                             type="checkbox"
                                             checked={!!formValues[setting.key]}
                                             onChange={(e) => handleChange(setting.key, e.target.checked ? 1 : 0)}
@@ -54,20 +73,20 @@ export default function Index({ settings, group }) {
                                     )}
 
                                     {setting.type === "string" && (
-                                        <input
+                                        <Input
                                             type="text"
                                             value={formValues[setting.key] || ""}
                                             onChange={(e) => handleChange(setting.key, e.target.value)}
-                                            className="border rounded p-2 w-full"
+                                           
                                         />
                                     )}
 
                                     {setting.type === "number" && (
-                                        <input
+                                        <Input
                                             type="number"
                                             value={formValues[setting.key] || ""}
                                             onChange={(e) => handleChange(setting.key, e.target.value)}
-                                            className="border rounded p-2 w-full"
+                                           
                                         />
                                     )}
 
@@ -81,7 +100,7 @@ export default function Index({ settings, group }) {
                                     )}
 
                                     {setting.type === "file" && (
-                                        <Row>
+                                        <div className="space-y-2">
 
 
 
@@ -100,27 +119,26 @@ export default function Index({ settings, group }) {
                                                     />
                                                 </div>
                                             )} */}
-                                        </Row>
+                                        </div>
                                     )}
-                                </Column>
-                            </Row>
+                               
+                            </div>
                         ))}
 
-                        <button
-                            type="submit"
-                            className="btn btn-primary"
-                        >
-                            Save
-                        </button>
-                    </Card>
-
-
-                    {progress && (
+ {progress && (
                         <div className="mt-2 text-sm text-gray-600">
                             Uploading: {progress.percentage}%
                         </div>
                     )}
+                <Button className="mt-4" type="submit">Save Settings</Button>
+ 
                 </form>
+              </CardContent>
+            </Card>
+
+               
+                  
+                 
             </AuthenticatedLayout>
         </>
     )

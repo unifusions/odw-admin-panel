@@ -1,9 +1,9 @@
-export default function DentistIcon(second) {
+export default function DentistIcon({second, fill}) {
     return (
         <>
-            <svg className='me-3'
-                fill="#000000" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 512.00 512.00" xml:space="preserve" stroke="#000000" stroke-width="0.00512">
+            <svg className=''
+                fill={fill} height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 512.00 512.00" xml:space="preserve" stroke={fill} stroke-width="0.00512">
 
                 <g id="SVGRepo_iconCarrier">
                     <g>

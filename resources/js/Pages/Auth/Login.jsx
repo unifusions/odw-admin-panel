@@ -3,11 +3,31 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
+ 
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { Button, Form } from 'react-bootstrap';
+ 
 
 import odwLogo from '../../../../public/images/odw-logo.png';
+import { Label } from '@/Components/ui/label';
+import { Input } from '@/Components/ui/input';
+
+
+import { Button } from "@/components/ui/button"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    Field,
+    FieldDescription,
+    FieldGroup,
+    FieldLabel,
+} from "@/components/ui/field"
+import { cn } from '@/lib/utils';
+ 
 
 export default function Login({ status, canResetPassword }) {
 
@@ -41,107 +61,64 @@ export default function Login({ status, canResetPassword }) {
 `);
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
-
-            <div className="position-fixed top-0 end-0 start-0 bg-img-start" style={{ height: '32rem', backgroundImage: `url("data:image/svg+xml,${bgSvg}")` }} >
-
-                <div className="shape shape-bottom zi-1">
-                    <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
-                        <polygon fill="#fff" points="0,273 1921,273 1921,0 "></polygon>
-                    </svg>
-                </div>
-
-            </div>
-
-            {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
-
-            <div className="container py-5 py-sm-7 mt-5">
-
-                
-                <div className="mt-5"></div>
-                <div className="mt-5"></div>
-
-                <div className="mx-auto" style={{ maxWidth: '30rem' }}>
-
-                    <div className="card card-lg mb-5">
-                        <div className="card-body">
-
-                            <form onSubmit={onsubmit} noValidate>
-
-                                <div className="text-center">
-                                    <div className="mb-5">
-                                        <h1 className="display-5">Sign in</h1>
-
-                                    </div>
+        <>
+            <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+                <div className="w-full max-w-sm">
 
 
-
-
-                                </div>
-                                <div className="mb-4">
-                                    <InputLabel htmlFor="email" className="form-label" value="Email" />
-
-                                    <TextInput
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        className={errors.email && 'is-invalid'}
-
-                                        placeholder="email@address.com"
-                                        onChange={(e) => setData('email', e.target.value)}
-                                    />
-
-                                    <InputError message={errors.email} className="mt-2" />
-                                </div>
-
-
-
-
-                                <div className="mb-4">
-                                    <InputLabel htmlFor="password" className="form-label" value="Password" />
-
-                                    <TextInput
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        value={data.password}
-                                        className={errors.password && 'is-invalid'}
-                                        autoComplete="current-password"
-                                        placeholder="********"
-                                        onChange={(e) => setData('password', e.target.value)}
-                                    />
-
-                                    <InputError message={errors.password} className="mt-2" />
-                                </div>
-                                <div className="d-grid">
-
-                                    <PrimaryButton className="btn btn-primary btn-lg" disabled={processing}>
-                                        Log in
-                                    </PrimaryButton>
-
-
-                                </div>
-
-
-                            </form>
-
-                        </div>
+                    <div className="flex flex-col gap-6">
+                        <Card>
+                            <CardHeader>
+                                 <img className="h-15 text-center mx-auto mb-5" src="/images/odw-logo-h.png" alt="Logo" />
+                                <CardTitle>Login to your account</CardTitle>
+                                <CardDescription>
+                                    Enter your email below to login to your account
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={onsubmit} >
+                                    <FieldGroup>
+                                        <Field>
+                                            <FieldLabel htmlFor="email">Email</FieldLabel>
+                                            <Input
+                                                id="email"
+                                                type="email"
+                                                placeholder="email@example.com"
+                                                 onChange={(e) => setData('email', e.target.value)}
+                                                required
+                                            />
+                                        </Field>
+                                        <Field>
+                                            <div className="flex items-center">
+                                                <FieldLabel htmlFor="password">Password</FieldLabel>
+                                                <Link
+                                                    href="/forgot-password"
+                                                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                                                >
+                                                    Forgot your password?
+                                                </Link>
+                                            </div>
+                                            <Input id="password" type="password" required
+                                            placeholder="********"
+                                            onChange={(e) => setData('password', e.target.value)}
+                                            />
+                                        </Field>
+                                        <Field>
+                                            <Button type="submit">Login</Button>
+                                             
+                                        </Field>
+                                    </FieldGroup>
+                                </form>
+                            </CardContent>
+                        </Card>
                     </div>
 
-
-
+                   
                 </div>
-
             </div>
 
 
+        </>
 
-        </GuestLayout>
-    );
+    )     
 }

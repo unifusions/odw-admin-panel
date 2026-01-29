@@ -1,6 +1,12 @@
 import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel"
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
+import { Textarea } from "@/Components/ui/textarea";
 import { useForm } from "@inertiajs/react"
+import { Building2, Mail, MapPin, Phone } from "lucide-react";
 
 export default function ClinicInformation({ clinic }) {
 
@@ -27,184 +33,177 @@ export default function ClinicInformation({ clinic }) {
         <>
 
             <form action="" onSubmit={onsubmit}>
-                <TextInputWithLabel
-                    id="clinic_name"
-                    type="text"
-                    value={data.clinic_name}
-                    placeholder="Clinic Name"
-                    onChange={(e) => setData('clinic_name', e.target.value)}
-                    label="Name"
-                    className=" mb-4"
-                />
+                <Card className="shadow-card">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <Building2 className="h-5 w-5 text-primary" />
+                            Clinic Information
+                        </CardTitle>
+                        <CardDescription>
+                            Update your clinic's basic information
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="clinicName">Clinic Name</Label>
+                            <Input id="clinicName"
+                                placeholder="Clinic Name" value={data.clinic_name}
+                                onChange={(e) => setData('clinic_name', e.target.value)} />
+                        </div>
+                        <div className="grid gap-4 sm:grid-cols-2">
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        value={data.email}
+                                        placeholder="email@address.com"
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        className="pl-9"
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="phone">Phone</Label>
+                                <div className="relative">
+                                    <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                    <Input
+                                        id="phone"
+                                        value={data.phone}
+                                        placeholder="+x(xxx)xxx-xx-xx"
+                                        onChange={(e) => setData('phone', e.target.value)}
+                                        className="pl-9"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="address">Address</Label>
+                            <div className="relative">
+                                <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                                <div className="grid gap-4 sm:grid-cols-2">
+                                    <Input
+                                        id="address"
+                                        defaultValue="123 Medical Center Dr, New York, NY 10001"
+                                        value={data.address_line_1}
+                                        placeholder="Address Line 1"
+                                        onChange={(e) => setData('address_line_1', e.target.value)}
+                                        className="pl-9 mb-3"
+                                    />
 
-                <div className="row">
-                    <div className="col-sm-6">
+                                    <Input
+                                        id="address"
+                                        value={data.address_line_2}
+                                        placeholder="Address Line 2"
+                                        onChange={(e) => setData('address_line_2', e.target.value)}
 
-                        <TextInputWithLabel
-                            id="email"
-                            type="email"
-                            value={data.email}
-                            placeholder="email@address.com"
-                            onChange={(e) => setData('email', e.target.value)}
-                            label="Contact Email"
-                        />
+                                    />
+
+                                </div>
 
 
-                    </div>
 
 
-                    <div className="col-sm-6">
-
-                        <div className="mb-4">
 
 
-                            <TextInputWithLabel
-                                id="phone"
-                                label="Phone Number"
-                                value={data.phone}
-                                className="form-control"
-                                placeholder="+x(xxx)xxx-xx-xx"
-                                onChange={(e) => setData('phone', e.target.value)}
-                            />
 
 
+
+                            </div>
+                        </div>
+
+                        <div className="space-y-2 grid grid-cols-3 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="city">City</Label>
+                                <Input
+                                    id="city"
+                                    value={data.city}
+                                    onChange={(e) => setData('city', e.target.value)}
+
+                                    placeholder="City"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="state">State</Label>
+                                <Input
+                                    id="state"
+
+                                    value={data.state}
+
+                                    onChange={(e) => setData('state', e.target.value)}
+
+                                    placeholder="State"
+
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="zip_code">Zip Code</Label>
+                                <Input
+                                    id="zip_code"
+
+                                    value={data.zip_code}
+
+                                    onChange={(e) => setData('zip_code', e.target.value)}
+                                    placeholder="Zip Code"
+
+                                />
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">   <Label htmlFor="zip_code">Latitude</Label>
+                                <Input
+                                    id="latitude"
+                                    value={data.latitude}
+                                    onChange={(e) => setData('latitude', e.target.value)}
+                                    className="pl-9"
+                                /></div>
+                            <div className="space-y-2"><Label htmlFor="longitude">Longitude</Label>
+                                <Input
+                                    id="longitude"
+                                    value={data.longitude}
+                                    onChange={(e) => setData('longitude', e.target.value)}
+                                    className="pl-9"
+                                />
+                            </div>
 
 
                         </div>
 
-                    </div>
 
+                        <div className="space-y-2">
+                            <Label htmlFor="website">Description</Label>
+                            <div className="relative">
+                                <Textarea value={data.desc}
+                                    placeholder="General Info"
+                                    onChange={(e) => setData('desc', e.target.value)} />
+                            </div>
+                        </div>
 
-                    <div className="col-sm-6">
+                        {/* <div className="space-y-2">
+                            <Label htmlFor="website">Website</Label>
+                            <div className="relative">
+                                <Globe className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                <Input
+                                    id="website"
+                                    defaultValue="https://dentalcare.com"
+                                    className="pl-9"
+                                />
+                            </div>
+                        </div> */}
 
-                        <TextInputWithLabel
-                            id="address_line_1"
-                            type="text"
-                            value={data.address_line_1}
-                            placeholder=""
-                            onChange={(e) => setData('address_line_1', e.target.value)}
-                            label="Address Line 1"
-                        />
-
-
-                    </div>
-
-
-                    <div className="col-sm-6 mb-3">
-
-
-                        <TextInputWithLabel
-                            id="address_line_2"
-                            type="text"
-                            value={data.address_line_2}
-                            placeholder=""
-                            onChange={(e) => setData('address_line_2', e.target.value)}
-                            label="Address Line 2"
-                        />
-
-
-                    </div>
-
-                    <div className="col-sm-6 mb-3">
-
-
-                        <TextInputWithLabel
-                            id="city"
-                            type="text"
-                            value={data.city}
-                            placeholder=""
-                            onChange={(e) => setData('city', e.target.value)}
-                            label="City"
-                        />
-
-
-                    </div>
-
-                    <div className="col-sm-6 mb-3">
-
-
-                        <TextInputWithLabel
-                            id="city"
-                            type="text"
-                            value={data.state}
-                            placeholder=""
-                            onChange={(e) => setData('state', e.target.value)}
-                            label="State"
-                        />
-
-
-                    </div>
-
-
-                    <div className="col-sm-6 mb-3">
-
-
-                        <TextInputWithLabel
-                            id="zip_code"
-                            type="text"
-                            value={data.zip_code}
-                            placeholder="20001"
-                            onChange={(e) => setData('zip_code', e.target.value)}
-                            label="ZIP Code"
-                        />
-
-
-                    </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button type="submit" className="btn btn-primary mt-3">Update Information</Button>
+                    </CardFooter>
+                </Card>
 
 
 
 
 
-
-                </div>
-
-                <hr />
-
-                <div className="row">
-                    <div className="col-sm-6 mb-3">
-
-
-                        <TextInputWithLabel
-                            id="latitude"
-                            type="text"
-                            value={data.latitude}
-                            placeholder="38.9072"
-                            onChange={(e) => setData('latitude', e.target.value)}
-                            label="Latitude"
-                        />
-
-
-                    </div>
-
-                    <div className="col-sm-6 mb-3">
-
-
-                        <TextInputWithLabel
-                            id="longitude"
-                            type="text"
-                            value={data.longitude}
-                            placeholder="77.0369"
-                            onChange={(e) => setData('longitude', e.target.value)}
-                            label="Longitude"
-                        />
-
-
-                    </div>
-                </div>
-
-                <label className="form-label">General Info </label>
-
-                <TextArea name="desc"
-                    className="form-control"
-                    value={data.desc}
-                    placeholder="General Info"
-                    onChange={(e) => setData('desc', e.target.value)} />
-
-
-
-
-
-                <button type="submit" className="btn btn-primary mt-3">Update Information</button>
             </form>
 
         </>

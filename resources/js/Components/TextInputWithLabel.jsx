@@ -1,5 +1,9 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Column, Row } from './Components';
+import { Label } from './ui/label';
+import { Input } from './ui/input';
+import { cn } from '@/lib/utils';
+import { FieldDescription } from './ui/field';
 
 export default forwardRef(function TextInput(
 
@@ -49,20 +53,20 @@ export default forwardRef(function TextInput(
                         </Column>
                     </Row>
                 </>
-                : <>
-                    <label htmlFor={id} className='form-label'>{label}</label>
+                : <div className='space-y-2'>
+                    <Label htmlFor={id} className='form-label'>{label}</Label>
 
 
-                    <input
+                    <Input
                         {...props}
                         type={type}
-                        className={
-                            'form-control form-input-lg mb-3 ' +
-                            className
-                        }
+                        className={cn(className)}
                         ref={localRef}
                     />
-                </>
+                    <FieldDescription>
+                         {additionalInfo && (additionalInfo)}
+                    </FieldDescription>
+                </div>
 
             }
 

@@ -72,9 +72,7 @@ Route::get('/dental-services', DentalServicesController::class);
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/files/{path}', [FilesController::class, 'show'])
-    ->where('path', '.*')
-    ->name('files.show');
+
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -89,6 +87,10 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
+    Route::put('/appointments/confirm/{appointment}', [AppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
+    
+    Route::put('/appointments/reschedule/{appointment}', [AppointmentController::class, 'rescheduleAppointment'])->name('appointments.reschedule');
+    
     Route::get('/appointments/status/pending/', [AppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
     Route::put('/appointments/status/cancel/{appointment}', [AppointmentController::class, 'cancelAppointment'])->name('appointments.cancel');
 
@@ -98,6 +100,8 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::post('second-opinion/{second_opinion}/status', [SecondOpinionController::class, 'updateStatus'])->name('second-opinion.status');
     Route::resource('estimates', EstimateController::class);
     Route::resource('estimates.replies', EstimateReplyController::class)->only('store');
+    Route::post('estimates/{estimate}/status', [EstimateController::class, 'updateStatus'])->name('estimates.status');
+    
     Route::resource('compare-costs', CompareCostController::class);
 
     Route::patch('/compare-costs/{compare_cost}/toggle-featured', [CompareCostController::class, 'toggleFeatured'])
@@ -176,6 +180,17 @@ require __DIR__ . '/auth.php';
 Route::get('preview-notification', function () {
     return view('mail.appointmentconfirmation');
 }); 
+
+// Route::get('/files/{path}', [FilesController::class, 'show'])
+//     ->where('path', '.*')
+//     ->name('files.show');
+
+
+
+Route::get('/secure-file/{path}', [FilesController::class, 'show'])
+    ->name('secure.file')
+    ->middleware('signed')
+    ->where('path', '.*');
 
 // Route::middleware('api')->prefix('api')->group(function () {
 //     require __DIR__ . '/api.php';

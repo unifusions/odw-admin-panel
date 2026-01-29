@@ -2,7 +2,7 @@
 
 export const Row = ({ className, children }) => {
     return (
-        <div className={`row ${className}`}>
+        <div className={`grid grid-cols-${className}`}>
             {children}
         </div>
     )

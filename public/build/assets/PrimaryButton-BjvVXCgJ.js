@@ -1,1 +1,0 @@
-import{j as m}from"./app-Dx39kq6g.js";function a({className:r="",disabled:t,children:n,...o}){return m.jsx("button",{...o,className:`btn btn-primary btn-sm ${t&&"opacity-25"} `+r,disabled:t,children:n})}export{a as P};

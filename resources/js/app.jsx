@@ -1,7 +1,7 @@
 import '../css/app.css';
 // import '../css/dark.css';
 import './bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle'
+// import 'bootstrap/dist/js/bootstrap.bundle'
 // import 'bootstrap/dist/css/bootstrap.css';
 
 import { createInertiaApp } from '@inertiajs/react';
@@ -18,20 +18,20 @@ const appName = import.meta.env.VITE_APP_NAME || 'One Dental World';
 //     window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle");
 //   }, []);
 
-function ThemeLoader({ children }) {
-    useEffect(() => {
-        // const theme = localStorage.getItem('theme') || 'light';
-        const theme = 'light';
+// function ThemeLoader({ children }) {
+//     useEffect(() => {
+//         // const theme = localStorage.getItem('theme') || 'light';
+//         const theme = 'light';
 
-        if (theme === 'dark') {
-            import('../css/dark.css');
-        } else {
-            import('../css/app.css');
-        }
-    }, []);
+//         if (theme === 'dark') {
+//             import('../css/dark.css');
+//         } else {
+//             import('../css/app.css');
+//         }
+//     }, []);
 
-    return children;
-}
+//     return children;
+// }
 
 
 createInertiaApp({

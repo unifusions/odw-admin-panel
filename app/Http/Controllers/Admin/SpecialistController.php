@@ -147,6 +147,8 @@ class SpecialistController extends Controller
      */
     public function update(Request $request, Specialist $specialist)
     {
+        
+     
         $inputs = $request->input('data');
  
         $specialist->name =  $inputs['name'] ?? $specialist->name;
@@ -164,8 +166,10 @@ class SpecialistController extends Controller
 
 
 
-        if ($request->hasFile('photo'))
-            $specialist->photo = $request->file('photo')->store('uploads/specialists', 'public');
+        if ($request->hasFile('image_path'))
+            $specialist->photo = $request->file('image_path')->store('uploads/specialists', 'public');
+
+     
 
         $clinicIds = collect($inputs['clinics'])->map(function ($item) {
             return is_array($item) ? $item['value'] : $item;

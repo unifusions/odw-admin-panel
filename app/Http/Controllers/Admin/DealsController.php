@@ -20,7 +20,7 @@ class DealsController extends Controller
 
         return Inertia::render(
             'Admin/Deals/Index',
-            ['deals' => Deal::orderBy('end_date')->paginate(25)]
+            ['deals' => Deal::orderBy('created_at', 'desc')->paginate(25)]
         );
     }
 

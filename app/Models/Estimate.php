@@ -41,10 +41,27 @@ class Estimate extends Model
         return $this->belongsTo(Patient::class);
     }
 
+    public function insurance(){
+        return $this->belongsTo(Insurance::class);
+    }
+
     public function services()
     {
         return $this->hasMany(EstimateService::class);
     }
+
+     public function dentalcares()
+    {
+        return $this->hasManyThrough(
+            DentalCare::class,
+            EstimateService::class,
+            'estimate_id',      // Foreign key on EstimateService
+            'id',               // Foreign key on DentalCare
+            'id',               // Local key on Estimate
+            'dental_care_id'    // Local key on EstimateService
+        );
+    }
+
     public function dentalservice()
     {
         return $this->belongsTo(DentalService::class, 'dental_service_id');

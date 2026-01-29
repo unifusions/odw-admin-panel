@@ -1,10 +1,15 @@
-import Card from "@/Components/Card";
+
 import { Column, DisplayFlex, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import PageHeader from "@/Components/PageHeader";
 import ServiceImageUploader from "@/Components/ServiceImageUploader";
 import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
+import { Textarea } from "@/Components/ui/textarea";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import ReactSelect from "react-select";
@@ -51,177 +56,187 @@ export default function Create() {
 
 
             <form onSubmit={onsubmit} >
-                <Row>
 
-                    <Column lg={4}>
+                <div className="grid grid-cols-3 gap-4">
+
+                    <div  >
                         <Card title="Dentists">
-                            <ul className="list-group list-group-flush list-group-no-gutters">
-                                <li className="list-group-item">
+                            <CardHeader>
+                                <CardTitle>
+                                    Dentists Image
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
 
 
 
-                                    <ServiceImageUploader onFileSelect={(file) => setData('photo', file)} />
+                                <ServiceImageUploader onFileSelect={(file) => setData('photo', file)} />
 
-                                </li>
+                            </CardContent>
 
-
-
-                            </ul>
 
                         </Card>
-                    </Column>
+                    </div>
 
-                    <Column lg={8}>
+                    <div className="col-span-2">
                         <Card>
+                            <CardContent className="space-y-2">
+                                <div className="space-y-2">
+                                    <Label>Dentist Name</Label>
+                                    <Input
+                                        id="dentist_name"
+                                        type="text"
+                                        value={data.name}
+                                        placeholder="Dentist Name"
+                                        onChange={(e) => setData('name', e.target.value)}
+                                        label="Name"
+                                        className=" mb-4"
+                                        isSingleRow={true}
+                                    />
 
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Practising From</Label>
 
-                            <TextInputWithLabel
-                                id="dentist_name"
-                                type="text"
-                                value={data.name}
-                                placeholder="Dentist Name"
-                                onChange={(e) => setData('name', e.target.value)}
-                                label="Name"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
+                                    <Input
+                                        id="practise_from"
+                                        type="date"
+                                        value={data.practise_from}
 
+                                        onChange={(e) => setData('practise_from', e.target.value)}
+                                        label="Practise From"
+                                        className=" mb-4"
+                                        isSingleRow={true}
+                                    />
 
-                            <TextInputWithLabel
-                                id="practise_from"
-                                type="date"
-                                value={data.practise_from}
-                                placeholder="Dentist Name"
-                                onChange={(e) => setData('practise_from', e.target.value)}
-                                label="Practise From"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">   
+                                            <Label>Phone Number</Label>
+                                             <Input
+                                            id="phone"
+                                            type="text"
+                                            value={data.phone}
+                                            placeholder="Phone"
+                                            onChange={(e) => setData('phone', e.target.value)}
+                                            label="Phone"
+                                            className=" mb-4"
+                                            isSingleRow={true}
+                                        />
 
-                            <TextInputWithLabel
-                                id="phone"
-                                type="text"
-                                value={data.phone}
-                                placeholder="Phone"
-                                onChange={(e) => setData('phone', e.target.value)}
-                                label="Phone"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                             <Label>Email</Label>
+                                            <Input
+                                                id="phone"
+                                                type="email"
+                                                value={data.email}
+                                                placeholder="Email"
+                                                onChange={(e) => setData('email', e.target.value)}
+                                                label="Email"
+                                                className=" mb-4"
+                                                isSingleRow={true}
+                                            />
+                                        </div>
+                                    </div>
 
-
-                            <TextInputWithLabel
-                                id="phone"
-                                type="email"
-                                value={data.email}
-                                placeholder="Email"
-                                onChange={(e) => setData('email', e.target.value)}
-                                label="Email"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
-
-                            <div className="row mb-4">
-                                <InputLabel htmlFor="clinicSelect" className="col-sm-3 col-form-label form-label" value="Clinic" />
-                                <div className="col-sm-9">
+                                </div>
+                                <div className="space-y-2 mb-5">
+                                    <Label>Clinics</Label>
                                     <ReactSelect options={clinics} isMulti onChange={onClinicSelect} />
-
-
                                 </div>
-                            </div>
-
-
-                            <div className="row mb-4">
-                                <InputLabel htmlFor="branchSelect" className="col-sm-3 col-form-label form-label" value="Services" />
-                                <div className="col-sm-9">
-
+                                <div className="space-y-2 mb-5"> <Label>Services</Label>
                                     <ReactSelect options={services} isMulti onChange={onServiceSelect} />
-
                                 </div>
-                            </div>
 
-
-
-
-                        </Card>
-
-                        <Card>
-                            <div className="row mb-4">
-                                <label for="desc" className="col-sm-3 col-form-label form-label">About
-                                </label>
-
-                                <div className="col-sm-9">
-
-
-                                    <TextArea
+                                <div className="space-y-2">
+                                    <Label>About Dentist</Label>
+                                    <Textarea
                                         name="about"
                                         style={{ fieldSizing: 'content' }}
                                         value={data.about}
                                         onChange={(e) => setData('about', e.target.value)}
                                     />
-
-
-
                                 </div>
-                            </div>
+
+                                <div className="space-y-4">
+                                    <p className="font-medium">Additional Information (optional)</p>
+                                    <div className="grid grid-cols-3 gap-4">
+                                        <div className="space-y-2">
+                                            <Label>Patients Attended</Label>
+                                            <Input
+                                                id="no_of_patients"
+                                                type="number"
+                                                value={data.no_of_patients}
+                                                placeholder="eg., 5000"
+                                                onChange={(e) => setData('no_of_patients', e.target.value)}
+                                                label="Patients Attended"
+                                                className=" mb-4"
+                                                isSingleRow={true}
+                                            />
+
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label>Reviews</Label>
+                                            <Input
+                                                id="no_of_reviews"
+                                                type="number"
+                                                value={data.no_of_reviews}
+                                                placeholder="eg., 5000"
+                                                onChange={(e) => setData('no_of_reviews', e.target.value)}
+                                                label="Reviews"
+                                                className=" mb-4"
+                                                isSingleRow={true}
+                                            /></div>
+                                        <div className="space-y-2">
+                                            <Label>Rating</Label>
+                                            <Input
+                                                id="rating"
+                                                type="number"
+                                                value={data.rating}
+                                                placeholder="eg., 1 - 5"
+                                                onChange={(e) => setData('rating', e.target.value)}
+                                                label=""
+                                                className=" mb-4"
+                                                isSingleRow={true}
+                                            />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardContent>
 
 
 
 
-                            <TextInputWithLabel
-                                id="no_of_patients"
-                                type="number"
-                                value={data.no_of_patients}
-                                placeholder="eg., 5000"
-                                onChange={(e) => setData('no_of_patients', e.target.value)}
-                                label="Patients Attended"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
+                            <CardFooter className="border-t border-border">
+                                <Button type="submit" className="btn btn-primary">Save Dentist</Button>
+                            </CardFooter>
 
 
-
-                            <TextInputWithLabel
-                                id="no_of_reviews"
-                                type="number"
-                                value={data.no_of_reviews}
-                                placeholder="eg., 5000"
-                                onChange={(e) => setData('no_of_reviews', e.target.value)}
-                                label="Reviews"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
-
-
-
-                            <TextInputWithLabel
-                                id="rating"
-                                type="number"
-                                value={data.rating}
-                                placeholder="eg., 1 - 5"
-                                onChange={(e) => setData('rating', e.target.value)}
-                                label="Rating"
-                                className=" mb-4"
-                                isSingleRow={true}
-                            />
-
-
-
-
-
-
-
-                            <div className="text-end">
-
-                                <button type="submit" className="btn btn-primary">Save Dentist</button>
-
-                            </div>
 
 
                         </Card>
 
-                    </Column>
-                </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
             </form>
 
         </AuthenticatedLayout>

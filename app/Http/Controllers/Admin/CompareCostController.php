@@ -59,7 +59,8 @@ class CompareCostController extends Controller
             'name' => $request->name,
             'medical_name' => $request->medical_name,
             'national_cost' => $request->national_cost,
-            'odw_cost' => $request->odw_cost
+            'odw_cost' => $request->odw_cost,
+            'featured' => $request->is_featured
         ]);
         if ($request->categories) {
             $serviceIds = collect($request->categories)->map(function ($item) {
@@ -114,6 +115,7 @@ class CompareCostController extends Controller
         $compare_cost->medical_name = $request->medical_name ?? $compare_cost->medical_name;
         $compare_cost->national_cost = $request->national_cost ?? $compare_cost->national_cost;
         $compare_cost->odw_cost = $request->odw_cost ?? $compare_cost->name;
+        $compare_cost->featured = $request->is_featured ?? $compare_cost->featured;
         $serviceIds = collect($request->categories)->map(function ($item) {
             return is_array($item) ? $item['value'] : $item;
         })->filter()->unique()->toArray();

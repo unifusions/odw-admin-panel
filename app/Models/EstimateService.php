@@ -16,4 +16,9 @@ class EstimateService extends Model
     public function dentalcare(){
         return $this->belongsTo(DentalCare::class, 'dental_care_id');
     }
+    
+    public function estimate()
+    {
+        return $this->belongsTo(Estimate::class, 'estimate_id');
+    }
 }

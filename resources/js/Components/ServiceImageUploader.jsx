@@ -1,3 +1,4 @@
+import { Pencil } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -24,14 +25,24 @@ const ServiceImageUploader = ({ onFileSelect, existingImage = null, profileCover
         <>
             <div {...getRootProps()} className="text-center mb-5">
                 <input {...getInputProps()} />
-                <label class={`avatar avatar-xxl avatar-circle avatar-uploader  ${profileCover && 'profile-cover-avatar'} `} for="editAvatarUploaderModal">
-                    <img id="editAvatarImgModal" class="avatar-img " src={preview} />
+                <div className="relative w-full h-48 group">
+
+                    <img id="editAvatarImgModal" className="object-cover w-full h-full rounded-lg" src={preview} />
+
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                        <button
+                            type="button"
+                            class="p-3 text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            aria-label="Edit image"
+                            onclick="alert('Edit action triggered!')"
+                        >
+                            <Pencil />
+                        </button>
+                    </div>
 
 
-                    <span class="avatar-uploader-trigger">
-                        <i class="bi-pencil-fill avatar-uploader-icon shadow-sm"></i>
-                    </span>
-                </label>
+                </div>
+
 
 
 

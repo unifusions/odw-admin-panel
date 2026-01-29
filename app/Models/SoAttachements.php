@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class SoAttachements extends Model
 {
@@ -29,7 +30,12 @@ class SoAttachements extends Model
 
     public function getTemporaryUrlAttribute()
     {
-        
-        return route('files.show', ['path' => $this->path]);
+        return URL::temporarySignedRoute(
+        'secure.file',                 // route name
+        now()->addMinutes(10),         // link expiry
+        ['path' => $this->path]   // stored path like invoices/a.pdf
+    );
+
+        // return route('files.show', ['path' => $this->path]);
     }
 }

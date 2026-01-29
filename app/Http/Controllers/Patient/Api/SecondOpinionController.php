@@ -16,7 +16,7 @@ class SecondOpinionController extends Controller
     public function index(Request $request)
     {
         $patient = $request->patient_id;
-        $secondOpinions = SecondOpinion::with('replies')->where('patient_id', $patient)->orderBy('created_at', 'DESC')->get();
+        $secondOpinions = SecondOpinion::with(['attachments','replies'])->where('patient_id', $patient)->orderBy('created_at', 'DESC')->get();
         return response()->json($secondOpinions);
     }
 
@@ -30,6 +30,7 @@ class SecondOpinionController extends Controller
      */
     public function store(Request $request)
     {
+      
         try {
             $so = SecondOpinion::create([
                 'patient_id' => $request->patient_id,
@@ -38,7 +39,7 @@ class SecondOpinionController extends Controller
                 'hasEstimate' => $request->hasEstimate ?? false,
                 'last_visit' => $request->last_visit,
                 'status' => 'pending',
-                'is_quick' => (bool) $request->is_quick,
+                'is_quick' => (bool) $request->is_quick ?? false,
 
             ]);
 

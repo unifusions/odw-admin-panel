@@ -37,17 +37,37 @@ const FileUploader = ({ onFileSelect, selectedFile }) => {
         <>
 
             {!selectedFile &&
-                <div {...getRootProps()} className="js-dropzone row dz-dropzone dz-dropzone-card mx-0">
+                <div {...getRootProps()}
+                 className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition
+            ${
+              isDragActive
+                ? "border-blue-500 bg-blue-50"
+                : "border-gray-300 hover:border-blue-400"
+            }`}
+                 >
 
                     <input {...getInputProps()} />
                     {isDragActive ? (
-                        <p>Drop the files here ...</p>
+                     <p className="text-blue-600 font-medium">
+              Drop the file here...
+            </p>
                     ) : (
                         <>
-                            {error && <div className="text-danger text-center">{error}</div>}
-                            <h5 className="text-center">Drag and drop your file here</h5>
-                            <p className="mb-2 text-center">or</p>
-                            <span className="btn btn-white btn-sm">Browse files</span>
+                            {error && (
+                <div className="text-red-500 text-sm mb-2">
+                  {error}
+                </div>
+              )}
+
+              <h5 className="text-gray-800 font-semibold">
+                Drag and drop your file here
+              </h5>
+
+              <p className="my-2 text-gray-500">or</p>
+
+              <span className="inline-block px-4 py-2 text-sm font-medium border rounded-md bg-white text-gray-700 hover:bg-gray-100">
+                Browse files
+              </span>
                         </>
                     )}
                 </div>
@@ -57,19 +77,19 @@ const FileUploader = ({ onFileSelect, selectedFile }) => {
             }
 
             {selectedFile && (
-                <div>
+                <div className="flex items-center justify-between mt-4 p-3 border rounded-md">
+          <strong className="text-gray-800 truncate">
+            {selectedFile?.name}
+          </strong>
 
-
-                    <strong className="me-3">{selectedFile?.name}</strong>
-
-                    <button
-                        type="button"
-                        onClick={handleDelete}
-                        className="btn btn-sm btn-outline-danger"
-                    >
-                        Delete
-                    </button>
-                </div>
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="ml-4 px-3 py-1 text-sm font-medium text-red-600 border border-red-500 rounded hover:bg-red-50"
+          >
+            Delete
+          </button>
+        </div>
             )}
 
 

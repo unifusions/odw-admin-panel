@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Estimate;
+use App\Models\Patient;
 use App\Models\SecondOpinion;
 use App\Models\User;
 use Carbon\Carbon;
@@ -45,7 +46,10 @@ class DashboardController extends Controller
             ->whereMonth('created_at', $previousMonth->month)->count();
 
         $patientRegistrationData = User::currentMonthRegistration();
-
+         $todays_appointments = Appointment::with('patient')->whereDate('appointment_date', now())
+        //  ->where('is_confirmed',true)
+         ->get();
+ 
         return Inertia::render(
             'Dashboard',
             [
@@ -55,8 +59,13 @@ class DashboardController extends Controller
                 'previousSoCount' => $previousSecondopinions,
                 'estimatesCount' => $estimates,
                 'previousEstimatesCount'=> $previousEstimates,
+                'patient_registration' => $patientRegistrationData,
                 'patient_labels' => $patientRegistrationData['labels'],
-                'patient_datas' => $patientRegistrationData['data']
+                'patient_datas' => $patientRegistrationData['data'],
+                'patients_count' => User::monthlyRegistration(),
+                'todays_appointment' =>$todays_appointments,
+                'weeklyStats' => Appointment::weeklyStats(),
+                'patientStats' => Patient::yearlyRegistrationStats(),
             ]
         );
     }

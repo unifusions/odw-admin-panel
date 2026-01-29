@@ -1,7 +1,7 @@
 import Breadcrumbs from "@/Components/Breadcrumbs";
 import SOBadge from "@/Components/SOBadge";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { format, parse, parseISO } from "date-fns";
 import { useRef, useState } from "react";
 import Modal from "./Modal";
@@ -14,6 +14,10 @@ export default function PendingList({ appointments }) {
     const cancelModalRef = useRef(null);
     const { data, put, processing, errors, reset } = useForm();
     const [modalType, setModalType] = useState(null);
+
+
+    const { auth } = usePage().props;
+    const role = auth.user.role;
 
     const openConfirmModal = (item) => {
         setSelectedAppointment(item);
@@ -40,24 +44,26 @@ export default function PendingList({ appointments }) {
 
     const handleCancel = () => {
         if (!selectedAppointment) return;
-
+        if (role === 'clinic_admin') routeName = 'clinic.appointments.cancel';
+        if (role === 'clinic_user') routeName = 'clinic.user.appointments.cancel';
         put(
-            route("appointments.cancel", { appointment: selectedAppointment }),
+            route(routeName, { appointment: selectedAppointment }),
 
-            // {
-            //     onFinish: () => { closeConfirmModal() },
-            // }
+            {
+                onFinish: () => { closeConfirmModal() },
+            }
         );
     };
 
     const handleConfirm = () => {
         if (!selectedAppointment) return;
 
-        let routeName = 'appointments.cancel';
-        if (role === 'clinic_admin') routeName = 'clinic.appointments.cancel';
-        if (role === 'clinic_user') routeName = 'clinic.user.appointments.cancel';
+        let routeName = 'appointments.confirm';
+
+        if (role === 'clinic_admin') routeName = 'clinic.appointments.confirm';
+        if (role === 'clinic_user') routeName = 'clinic.user.appointments.confirm';
         put(
-            route("appointments.confirm", { appointment: selectedAppointment }),
+            route(routeName, { appointment: selectedAppointment }),
 
             {
                 onFinish: () => { closeConfirmModal() },
@@ -91,7 +97,10 @@ export default function PendingList({ appointments }) {
 
                                 <div>
                                     <span class="card-subtitle">Request Date/Time</span>
-                                    <h1 class="text-primary"> {format(parseISO(item.appointment_date), 'dd-MMM-yyyy')} | {format(parse(item.time_slot, 'HH:mm:ss', new Date()), 'h:mm a')}</h1>
+                                    <h1 class="text-primary"> {format(new Date(item?.appointment_date), 'dd-MMM-yyyy')} | {format(parse(item?.time_slot, 'HH:mm', new Date()), 'h:mm a')}</h1>
+                                    {/* <h1 class="text-primary"> {format(parse(item?.appointment_date), 'dd-MMM-yyyy')} | {format(parse(item?.time_slot, 'HH:mm:ss', new Date()), 'h:mm a')}</h1> */}
+
+
                                 </div>
                             </div>
 

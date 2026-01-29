@@ -8,9 +8,11 @@ use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicBranch;
 use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class Appointment extends Model
@@ -26,14 +28,19 @@ class Appointment extends Model
         'dental_service_id',
         'appointable_id',
         'appointable_type',
+        'is_confirmed',
+        'reschedule_requested_by'
     ];
+protected $appends = ['appointable_label'];
 
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
 
-    public function user() {}
+    public function user()
+    {
+    }
 
     public function dentalservices()
     {
@@ -74,9 +81,48 @@ class Appointment extends Model
     }
 
     public function histories()
+    {
+        return $this->hasMany(AppointmentHistory::class);
+    }
+public function getAppointableLabelAttribute()
 {
-    return $this->hasMany(AppointmentHistory::class);
+    return class_basename($this->appointable_type);
 }
+    public static function weeklyStats()
+    {
+
+        $days = collect(range(0, 6))->map(function ($i) {
+            $date = Carbon::now()->subDays(6 - $i);
+
+            return [
+                'date' => $date->toDateString(),
+                'day' => $date->format('D'), // Mon, Tue
+                'appointments' => 0,
+                'completed' => 0,
+            ];
+        });
+
+        $data = self::select(
+            DB::raw("DATE(created_at) as date"),
+            DB::raw("COUNT(*) as appointments"),
+            DB::raw("SUM(is_confirmed = 1) as completed")
+        )
+            ->where('created_at', '>=', Carbon::now()->subDays(6)->startOfDay())
+            ->groupBy('date')
+            ->get()
+            ->keyBy('date');
+
+        // 3️⃣ Merge DB data into day skeleton
+        return $days->map(function ($day) use ($data) {
+            if ($data->has($day['date'])) {
+                $day['appointments'] = (int) $data[$day['date']]->appointments;
+                $day['completed'] = (int) $data[$day['date']]->completed;
+            }
+
+            unset($day['date']); // remove helper key
+            return $day;
+        })->values();
+    }
 
 
 }

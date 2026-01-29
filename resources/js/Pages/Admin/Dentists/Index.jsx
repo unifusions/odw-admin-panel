@@ -5,6 +5,9 @@ import AddDentist from "./AddDentist";
 import DentistIcon from "@/Components/Icons/DentistIcon";
 import Pagination from "@/Components/Pagination";
 import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
+import ProviderCard from "@/Components/provider-card";
+import DataPagination from "@/Components/Pagination";
+import { LinkButton } from "@/Components/ui/link-button";
 
 export default function Index() {
 
@@ -14,71 +17,18 @@ export default function Index() {
         < AuthenticatedLayout
             header='Dentists'
             pageTitle={"Dentists"}
-            callToAction={
-                <Link className="btn btn-primary" href={route('dentists.create')} >
-
-                    <DentistIcon />
-                    Add Dentist
-                </Link>
-            }
+           
         >
+               <LinkButton className="mb-3" href={route('dentists.create')} >
+
+                    <DentistIcon fill='#FFFFFF' />
+                    Add Dentist
+                </LinkButton>
+ <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{ dentists.map((dentist, index) => <ProviderCard provider={dentist} providerLink={route('dentists.edit', {dentist:dentist})} />)}</div>
 
 
-            <div class="table-responsive datatable-custom">
-                <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle "
-                >
-                    <thead class="thead-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Contact</th>
-                            <th>Services Offered</th>
-                            <th>Clinic</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {
-                            dentists.map((dentist, index) => (
-                                <tr key={index}>
-                                    <td>#{dentist.id}</td>
-
-                                    <td>
-                                        <div className="d-flex align-items-center">
-                                            <div className="avatar avatar-soft-primary avatar-circle">
-                                                {dentist.photo !== '' ? <img class="avatar-img" src={dentist.photo_url} alt="Image Description" height={42} width={42} /> : <span className="avatar-initials">
-                                                    {dentist.name.charAt(0)}
-                                                </span>}
-
-                                            </div>
-                                            <div className="ms-3">
-                                                <span class="d-block h5 text-inherit mb-0">{dentist.name}</span>
-                                                <span class="d-block fs-5 text-body">{dentist.practise_from}</span>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    <td>
-                                        <span class="d-block h5 mb-0">{dentist.phone}</span>
-                                        <span class="d-block fs-5">{dentist.email}</span>
-                                    </td>
-                                    <td width="30%" className="text-wrap">{dentist.services.map((service) => <> <span class="badge bg-soft-dark text-dark me-2 mb-2">{service.name}</span> </>)}</td>
-                                    <td>
-                                        {dentist.clinics.map((clinic) => clinic.name)}
-                                    </td>
-                                    <td>
-                                        <Link href={route('dentists.edit', dentist)} className="btn btn-white btn-sm me-2">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
-                                        <DeleteConfirmModal category="Dentists" processUrl="dentists.destroy" item={dentist} />
-                                    </td>
-                                </tr>
-                            ))
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-            <Pagination links={alldentists.links} />
+         
+            <DataPagination links={alldentists.links} />
         </AuthenticatedLayout >
     )
 }

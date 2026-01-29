@@ -19,7 +19,11 @@ class SecondOpinionController extends Controller
 
         return Inertia::render(
             'Admin/SecondOpinion/Index',
-            ['secondopinions' => SecondOpinion::with('patient.user', 'dentalcares')->orderBy('status')->paginate(25)]
+            [
+                  'so_pending_count'=> SecondOpinion::where('status', 'pending')->count(),
+                  'so_review_count'=> SecondOpinion::where('status', 'in_review')->count(),
+                  'so_completed_count'=> SecondOpinion::where('status', 'completed')->count(),
+                'secondopinions' => SecondOpinion::with('patient.user', 'dentalcares', 'replies')->orderBy('status')->paginate(25)]
         );
     }
 
@@ -49,7 +53,8 @@ class SecondOpinionController extends Controller
         return Inertia::render(
             'Admin/SecondOpinion/Show',
             [
-                'secondopinion' => $second_opinion->load(['patient.user', 'attachments']),
+              
+                'opinion' => $second_opinion->load(['patient', 'attachments','replies', 'dentalcares' ]),
                 'replied' => $second_opinion->replies ? true : false
 
             ]

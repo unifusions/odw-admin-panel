@@ -41,7 +41,7 @@ class PatientsController extends Controller
      */
     public function show(Patient $patient)
     {
-        $patient->load('user', 'appointments', 'estimates', 'secondopinions');
+        $patient->load('user', 'appointments.appointable', 'estimates', 'secondopinions','insurances');
         return Inertia::render('Admin/Patients/Show', ['patient' => $patient]);
     }
 

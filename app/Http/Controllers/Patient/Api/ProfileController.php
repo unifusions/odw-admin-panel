@@ -62,7 +62,7 @@ class ProfileController extends Controller
         $patient_id = $request->patient_id;
        
         $patient = Patient::find($patient_id);
-        
+       
         $patient->first_name = $request->first_name ?? $patient->first_name;
          
         $patient->middle_name = $request->middle_name ?? $patient->middle_name;

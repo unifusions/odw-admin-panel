@@ -1,5 +1,6 @@
 import PageHeader from "@/Components/PageHeader";
-import Pagination from "@/Components/Pagination";
+import DataPagination from "@/Components/Pagination";
+ 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 
@@ -14,8 +15,8 @@ export default function Index() {
 
 
 
-            <div class="table-responsive datatable-custom">
-                <table class="js-datatable table table-borderless table-thead-bordered table-wrap table-align-middle card-table"
+            <div class="data-table">
+                <table class="w-full"
                 >
                     <thead class="thead-light">
                         <tr>
@@ -31,27 +32,27 @@ export default function Index() {
                         {
                             services.data.map((item, index) => (
                                 <tr key={index} className="text-dark text-500">
-                                    <td > <div className="avatar ">
-
-                                        <img class="avatar-img" src={item.image_path} alt="Image Description" height={42} width={42} />
+                                    <td width="10%">  
+ 
+                                        <img class="rounded object-cover h-10 w-10" src={item.image_path} alt="Image Description" height={42} width={42} />
                                         {/* <span className="avatar-initials">
                                                     {dentist.full_name.charAt(0)}
                                                 </span> */}
-                                    </div></td>
-                                    <td className="text-wrap " style={{ width: "50%" }} width="50%">
-                                        <div className="d-flex align-items-center flex-wrap text-wrap">
+                                     </td>
+                                    <td className="text-wrap"  width="30%">
+                                        <div className=" flex  items-center  ">
 
                                             <div className="ms-3">
-                                                <span class="d-block h5 text-inherit mb-0"> {item.name} </span>
-                                                <span class="d-block fs-5 text-body">{item.desc}</span>
+                                                <span class="font-medium"> {item.name} </span><br/>
+                                                <p class="text-xs text-muted-foreground line-clamp-3">{item.desc}</p>
                                             </div>
                                         </div>
 
                                     </td>
-                                    <td width="10%">$ {item.cost} - $ {item.max_cost}</td>
-                                    <td width="10%">$ {item.avg_cost} - $ {item.max_avg_cost}</td>
-                                    <td width="10%">{item.display_order}</td>
-                                    <td width="10%"><Link href={route('services.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
+                                    <td width="20%">$ {item.cost} - $ {item.max_cost}</td>
+                                    <td width="20%">$ {item.avg_cost} - $ {item.max_avg_cost}</td>
+                                    <td width="5%">{item.display_order}</td>
+                                    <td width="5%"><Link href={route('services.edit', item)} className="btn btn-white btn-sm">  <i className="bi-pencil-fill me-1"></i>  Edit </Link>
                                     </td>
                                 </tr>
                             ))
@@ -60,7 +61,7 @@ export default function Index() {
                     </tbody>
                 </table>
             </div>
-            <Pagination links={services.links} />
+            <DataPagination links={services.links} />
 
         </AuthenticatedLayout>
     )

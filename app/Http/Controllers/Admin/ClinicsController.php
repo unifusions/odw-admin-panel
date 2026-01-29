@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicBranch;
+use App\Models\Admin\ClinicDentalService;
 use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
 use App\Models\Admin\ZipCode;
@@ -51,6 +52,7 @@ class ClinicsController extends Controller
     public function store(Request $request)
     {
 
+   
         $transaction = DB::transaction(function () use ($request) {
             $logo_path = '';
             if ($request->hasFile('image_file')) {
@@ -77,10 +79,11 @@ class ClinicsController extends Controller
 
             if ($request->has('categories')) {
                 foreach ($request->categories as $categoryId) {
-                    $clinic->services()->create([
-                        'clinic_id' => $clinic->id,
+                    ClinicDentalService::create([
+  'clinic_id' => $clinic->id,
                         'dental_service_id' => $categoryId
                     ]);
+                   
                 }
             }
 
@@ -109,7 +112,7 @@ class ClinicsController extends Controller
 
             return $clinic;
         });
-        return redirect()->back()->with(['message' => $transaction->name . ' has been added successfully']);
+        return redirect()->route('clinics.index')->with(['message' => $transaction->name . ' has been added successfully']);
     }
 
     public function storeDentist(Request $request)
