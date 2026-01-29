@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Device;
 use App\Models\Patient;
+use App\Notifications\TestPushNotification;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use NotificationChannels\Apn\ApnMessage;
 
 class PatientsController extends Controller
 {
@@ -67,5 +70,21 @@ class PatientsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getDevices(Patient $patient){
+        return Inertia::render('Admin/Patients/PushDevices', ['patient'=> $patient, 'devices' => $patient->user->devices ]);
+    }
+
+    public function pushNotifications(Request $request, Patient $patient, Device $device){
+        // dd($device);
+       try {
+        // This triggers the toApn() method in your Notification class
+        $device->notify(new TestPushNotification());
+        
+        return back()->with('message', 'Notification sent successfully!');
+    } catch (\Exception $e) {
+        return back()->with('error', 'Failed to send: ' . $e->getMessage());
+    }
     }
 }

@@ -108,7 +108,8 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
         ->name('compare-costs.toggle-featured');
 
     Route::resource('patients', PatientsController::class);
-
+Route::get('patients/{patient}/devices', [PatientsController::class,'getDevices'])->name('patients.devices');
+Route::post('patients/{patient}/devices/{device}', [PatientsController::class,'pushNotifications'])->name('patients.testnotification');
     Route::resource('clinics', ClinicsController::class);
     Route::post('/clinics/{clinic}/update-schedule', [ClinicsController::class, "updateSchedule"])->name('clinics.updateSchedule');
     Route::post('/clinics/{clinic}/update-services', [ClinicsController::class, "updateServices"])->name('clinics.updateServices');

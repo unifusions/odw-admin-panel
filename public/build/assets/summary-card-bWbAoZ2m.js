@@ -1,6 +1,0 @@
-import{c as r}from"./createLucideIcon-CvfrgLOc.js";import{j as e}from"./app-BAQAwIW-.js";import{c as n}from"./button-ioYCQu1g.js";import{C as i,d as o}from"./card-BbZEX8Rg.js";/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */const d=[["path",{d:"M8 2v4",key:"1cmpym"}],["path",{d:"M12 2v4",key:"3427ic"}],["path",{d:"M16 2v4",key:"4m81vk"}],["rect",{width:"16",height:"18",x:"4",y:"4",rx:"2",key:"1u9h20"}],["path",{d:"M8 10h6",key:"3oa6kw"}],["path",{d:"M8 14h8",key:"1fgep2"}],["path",{d:"M8 18h5",key:"17enja"}]],y=r("notepad-text",d),m={primary:"bg-primary/10 text-primary",accent:"bg-accent/10 text-accent",success:"bg-success/10 text-success",warning:"bg-warning/10 text-warning",info:"bg-info/10 text-info"};function f({title:s,value:a,icon:t,iconColor:c="primary"}){return e.jsx(i,{className:"shadow-card",children:e.jsx(o,{className:"p-4",children:e.jsxs("div",{className:"flex items-center justify-between",children:[e.jsxs("div",{children:[e.jsx("p",{className:"text-sm text-muted-foreground",children:s}),e.jsx("p",{className:"text-2xl font-bold",children:a})]}),e.jsx("div",{className:n("rounded-xl p-3",m[c]),children:t&&e.jsx(t,{className:"h-6 w-6"})})]})})})}export{y as N,f as S};
