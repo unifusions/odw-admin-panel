@@ -5,6 +5,7 @@ namespace App\Providers;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Container\Attributes\Auth;
+use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,7 +33,13 @@ class AppServiceProvider extends ServiceProvider
                 return $this->redirectTo($request);
             });
         });
-
+\Event::listen(NotificationFailed::class, function ($event) {
+        // This logs the ACTUAL error from Apple's servers
+        \Log::error('APN Delivery Failed', [
+            'token' => $event->notifiable->routeNotificationForApn(),
+            'error' => $event->data
+        ]);
+    });
         
     }
 
