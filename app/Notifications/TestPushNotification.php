@@ -34,18 +34,12 @@ class TestPushNotification extends Notification
         $channels = [];
 
         // ANDROID device
-        if (
-            
-            !empty($notifiable->fcm_token)
-        ) {
+        if (!empty($notifiable->fcm_token)) {
             $channels[] =  FcmChannel::class;
         }
 
         // IOS device
-        if (
-            
-            !empty($notifiable->apn_token)
-        ) {
+        if (!empty($notifiable->apn_token)) {
             $channels[] =  ApnChannel::class;
         }
 
@@ -75,6 +69,11 @@ class TestPushNotification extends Notification
 
     public function toFcm($notifiable)
     {
+
+    if ($notifiable->platform !== 'android') {
+            return null;
+        }
+        
         return (new FcmMessage(notification: new FcmNotification(
             title: 'Account Activated',
             body: 'Your account has been activated.',
