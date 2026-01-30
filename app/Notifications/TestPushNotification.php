@@ -31,7 +31,25 @@ class TestPushNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return [ApnChannel::class, FcmChannel::class];
+        $channels = [];
+
+        // ANDROID device
+        if (
+            
+            !empty($notifiable->fcm_token)
+        ) {
+            $channels[] =  FcmChannel::class;
+        }
+
+        // IOS device
+        if (
+            
+            !empty($notifiable->apn_token)
+        ) {
+            $channels[] =  ApnChannel::class;
+        }
+
+        return $channels;
     }
 
     /**
