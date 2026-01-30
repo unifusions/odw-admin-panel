@@ -13,6 +13,7 @@ use Notifiable;
         'user_id',
         'name',
         'fcm_token',
+        'apn_token',
         'device_id', 
         'platform',
         'manufacturer',
@@ -26,7 +27,13 @@ use Notifiable;
 
     public function routeNotificationForApn()
     { 
-        \Log::info('Sending APN to token: ' . $this->fcm_token);
-        return $this->fcm_token; // Or whichever column stores your iOS device token
+        \Log::info('Sending APN to token: ' . $this->apn_token);
+        return $this->apn_token; // Or whichever column stores your iOS device token
     }
+
+    public function routeNotificationForFcm()
+{
+    return $this->fcm_token;
+}
+
 }

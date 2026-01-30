@@ -113,10 +113,10 @@ class AppointmentController extends Controller
 
     public function confirmAppointment(Appointment $appointment)
     {
-        $appointment->status = 'confirmed';
-        $appointment->is_confirmed = true;
-        $appointment->save();
-
+        // $appointment->status = 'confirmed';
+        // $appointment->is_confirmed = true;
+        // $appointment->save();
+$appointment->confirm();
         return redirect()->back()->with(['success' => 'Appointment has been confirmed']);
     }
 

@@ -10,6 +10,7 @@ use NotificationChannels\Apn\ApnChannel;
 use NotificationChannels\Apn\ApnMessage;
 use NotificationChannels\Fcm\FcmChannel;
 use NotificationChannels\Fcm\FcmMessage;
+use NotificationChannels\Fcm\Resources\Notification as FcmNotification;
 
 class TestPushNotification extends Notification
 {
@@ -30,44 +31,55 @@ class TestPushNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-         return [ApnChannel::class, FcmChannel::class];
+        return [ApnChannel::class, FcmChannel::class];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    
-public function toApn($notifiable)
+
+    public function toApn($notifiable)
     {
 
-    
-     \Log::error('🔥 toApn() EXECUTED 🔥', [
-        'device_id' => $notifiable->id,
-        'token_length' => strlen($notifiable->fcm_token ?? ''),
-    ]);
+
+        \Log::error('🔥 toApn() EXECUTED 🔥', [
+            'device_id' => $notifiable->id,
+            'token_length' => strlen($notifiable->fcm_token ?? ''),
+        ]);
 
         return ApnMessage::create()
-            ->badge(5)
+            ->badge(5)->sound('default')
             ->title('Test Notification')
             ->body('This is a test notification from Laravel!');
-            
-         
+
+
     }
 
     public function toFcm($notifiable)
     {
-        return FcmMessage::create()
-            ->setData([
-                'title' => 'Hello',
-                'body' => 'Message for Android',
-            ])
-            ->setNotification(
-                \NotificationChannels\Fcm\Resources\Notification::create()
-                    ->setTitle('Hello')
-                    ->setBody('Message for Android')
-            );
+        return (new FcmMessage(notification: new FcmNotification(
+            title: 'Account Activated',
+            body: 'Your account has been activated.',
+           
+        )))
+            ->data(['data1' => 'value', 'data2' => 'value2'])
+            ->custom([
+                'android' => [
+                    'notification' => [
+                        'channel_id' => 'default',
+                        'sound' => 'default',
+                        'notification_priority' => 'PRIORITY_MAX',
+                        'default_sound' => true,
+            'default_vibrate_timings' => true,
+                    ],
+                    'fcm_options' => [
+                        'analytics_label' => 'analytics',
+                    ],
+                ],
+
+            ]);
     }
-    
+
     /**
      * Get the array representation of the notification.
      *

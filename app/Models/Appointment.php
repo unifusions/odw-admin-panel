@@ -8,6 +8,7 @@ use App\Models\Admin\Clinic;
 use App\Models\Admin\ClinicBranch;
 use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
+use App\Notifications\AppointmentConfirmedNotification;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -124,5 +125,24 @@ public function getAppointableLabelAttribute()
         })->values();
     }
 
+    // NOTIFICATIONS
+
+    public function confirm(){
+        $this->update(['status' => 'confirmed',
+        'is_confirmed' => true]);
+        $this->notifyPatient();
+    }
+
+
+    protected function notifyPatient()
+    {
+        $devices = $this->patient->devices;
+
+        foreach ($devices as $device) {
+            $device->notify(
+                new AppointmentConfirmedNotification($this)
+            );
+        }
+    }
 
 }
