@@ -27,8 +27,7 @@ use Notifiable;
 
     public function routeNotificationForApn()
     { 
-        \Log::info('Sending APN to token: ' . $this->apn_token);
-        return $this->apn_token; // Or whichever column stores your iOS device token
+         return $this->apn_token; // Or whichever column stores your iOS device token
     }
 
     public function routeNotificationForFcm()

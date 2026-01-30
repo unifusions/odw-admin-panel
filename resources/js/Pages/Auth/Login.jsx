@@ -88,7 +88,7 @@ export default function Login({ status, canResetPassword }) {
                                                 required
                                             />
                                         </Field>
-                                        <Field>
+                                        <Field data-invalid= {!!errors.password || undefined}>
                                             <div className="flex items-center">
                                                 <FieldLabel htmlFor="password">Password</FieldLabel>
                                                 <Link
@@ -104,9 +104,10 @@ export default function Login({ status, canResetPassword }) {
                                             />
                                         </Field>
                                         <Field>
-                                            <Button type="submit">Login</Button>
+                                            <Button type="submit" disabled={processing}>Login   </Button>
                                              
                                         </Field>
+                                        
                                     </FieldGroup>
                                 </form>
                             </CardContent>

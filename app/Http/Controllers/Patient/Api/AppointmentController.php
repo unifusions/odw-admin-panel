@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Patient\Api;
 
+use App\Events\AdminNotify;
+use App\Events\AppointmentRequested;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Str;
 
 class AppointmentController extends Controller
 {
@@ -90,6 +93,20 @@ class AppointmentController extends Controller
             'appointable_type' => $request->appointable_type ? "App\\Models\\Admin\\" . $request->appointable_type : null, // Dentist::class or Specialist::class
 
         ]);
+
+         ;
+
+//         broadcast(new AdminNotify([
+//     'id' => Str::uuid(),
+//     'type' => 'appointment.created',
+//     'title' => 'New Appointment',
+//     'message' => "New Appointment request from {$appointment->patient->first_name} ",
+//     'entity' => 'appointment',
+//     'entity_id' => $appointment->id,
+//     'url' => route('appointments.index'),
+//     'level' => 'info',
+//     'created_at' => now()->toISOString(),
+// ]));
 
         return response()->json(['success' => 'Appointment Booked. Await for confirmation'], 200);
     }

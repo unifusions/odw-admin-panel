@@ -14,7 +14,16 @@ import { format, parse } from "date-fns";
 import { Calendar } from "lucide-react";
 import { useState } from "react";
 
-export default function Index({ appointments, pendingAppointments }) {
+
+const statusLabel =
+{
+  pending: 'Pending',
+  confirmed: 'Confirmed',
+  completed: 'Completed',
+  cancelled: 'Cancelled'
+}
+
+export default function Index({ appointments, pendingAppointments, monthlyStats }) {
   const { auth } = usePage().props;
   const role = auth.user.role;
 
@@ -73,7 +82,7 @@ export default function Index({ appointments, pendingAppointments }) {
       new_dt: parsedDate,
     });
 
- 
+
   };
 
   const handleConfirm = (
@@ -87,12 +96,7 @@ export default function Index({ appointments, pendingAppointments }) {
     if (role === 'clinic_user') routeName = 'clinic.user.appointments.confirm';
     router.put(
       route(routeName, { appointment: selectedAppointment }),
-      // {
-      //     onFinish: () => { 
-      //       setSelectedAppointment(null)
-      //       // setConfirmDialogOpen(false) 
-      //     },
-      // }
+
     );
   };
 
@@ -128,30 +132,17 @@ export default function Index({ appointments, pendingAppointments }) {
 
       {/* Status Summary */}
       <div className="grid gap-4 md:grid-cols-4 mb-6">
-        <AppointmentSummaryCard
-          title="Confirmed"
-          value={appointments.length}
-
-        />
-
-        <AppointmentSummaryCard
-          title="Pending"
-          value={appointments.length}
+        {Object.entries(monthlyStats).map(([key, value]) => <AppointmentSummaryCard
+          key={key}
+          title={statusLabel[key] ?? key}
+          value={value}
 
         />
 
 
-        <AppointmentSummaryCard
-          title="Completed"
-          value={appointments.length}
+        )}
 
-        />
-
-        <AppointmentSummaryCard
-          title="Cancelled"
-          value={appointments.length}
-
-        />
+ 
 
       </div>
 

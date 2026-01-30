@@ -9,6 +9,7 @@ use App\Models\Admin\ClinicBranch;
 use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
 use App\Notifications\AppointmentConfirmedNotification;
+use App\Notifications\AppointmentConfirmedPushNotification;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,15 +33,11 @@ class Appointment extends Model
         'is_confirmed',
         'reschedule_requested_by'
     ];
-protected $appends = ['appointable_label'];
+    protected $appends = ['appointable_label'];
 
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'patient_id');
-    }
-
-    public function user()
-    {
     }
 
     public function dentalservices()
@@ -85,10 +82,10 @@ protected $appends = ['appointable_label'];
     {
         return $this->hasMany(AppointmentHistory::class);
     }
-public function getAppointableLabelAttribute()
-{
-    return class_basename($this->appointable_type);
-}
+    public function getAppointableLabelAttribute()
+    {
+        return class_basename($this->appointable_type);
+    }
     public static function weeklyStats()
     {
 
@@ -125,23 +122,45 @@ public function getAppointableLabelAttribute()
         })->values();
     }
 
+    public static function indexMonthlyStats()
+    {
+
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        // self::whereMonth('created_at', $currentMonth)
+//                     ->whereYear('created_at', $currentYear)
+//                     ->where('status', 'pending')
+//                     ->count(),
+        return [
+            'pending' => self::where('status', 'pending')->count(),
+            'confirmed' => self::where('status', 'confirmed')->count(),
+            'cancelled' => self::where('status', 'cancelled')->count(),
+            'completed' => self::where('status', 'completed')->count()
+        ];
+    }
+
     // NOTIFICATIONS
 
-    public function confirm(){
-        $this->update(['status' => 'confirmed',
-        'is_confirmed' => true]);
+    public function confirm()
+    {
+        // $this->update(['status' => 'confirmed',
+        // 'is_confirmed' => true]);
         $this->notifyPatient();
     }
 
 
     protected function notifyPatient()
     {
-        $devices = $this->patient->devices;
+        $user = $this->patient->user;
 
-        foreach ($devices as $device) {
-            $device->notify(
-                new AppointmentConfirmedNotification($this)
-            );
+        if (!$user) {
+            return;
+        }
+
+
+
+        foreach ($user->devices as $device) {
+            $device->notify(new AppointmentConfirmedPushNotification($this));
         }
     }
 

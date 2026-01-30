@@ -81,6 +81,7 @@ class AppointmentController extends Controller
             'pendingAppointments' => $pendingAppointments,
             'activeYear' => $year,
             'activeMonth' => $month,
+            'monthlyStats' => Appointment::indexMonthlyStats()
         ]);
     }
 
@@ -123,7 +124,7 @@ $appointment->confirm();
     public function cancelAppointment(Appointment $appointment)
     {
         $appointment->status = 'cancelled';
-        $appointment->is_confirmed = true;
+        $appointment->is_confirmed = false;
         $appointment->save();
 
         return redirect()->back()->with(['success' => 'Appointment has been cancelled']);

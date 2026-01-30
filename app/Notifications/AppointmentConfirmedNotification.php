@@ -7,10 +7,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Apn\ApnChannel;
-use NotificationChannels\Apn\ApnMessage;
-use NotificationChannels\Fcm\FcmChannel;
-use NotificationChannels\Fcm\FcmMessage;
 
 class AppointmentConfirmedNotification extends Notification
 {
@@ -31,8 +27,7 @@ class AppointmentConfirmedNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail', FcmChannel::class,
-            ApnChannel::class,];
+        return ['mail' ];
     }
 
     /**
@@ -45,37 +40,9 @@ class AppointmentConfirmedNotification extends Notification
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
-
-    public function toFcm($notifiable)
-    {
-        if ($notifiable->platform !== 'android') {
-            return null;
-        }
-
-        return FcmMessage::create()
-            ->setNotification([
-                'title' => 'Appointment Confirmed',
-                'body'  => 'Your appointment is confirmed ✅',
-            ])
-            ->setData([
-                'type' => 'appointment_confirmed',
-                'appointment_id' => (string) $this->appointment->id,
-            ]);
-    }
+ 
     
-    public function toApn($notifiable)
-    {
-        if ($notifiable->platform !== 'ios') {
-            return null;
-        }
-
-        return ApnMessage::create()
-            ->title('Appointment Confirmed')
-            ->body('Your appointment is confirmed ✅')
-            ->sound('default')
-            ->badge(1);
-    }
-    
+  
     /**
      * Get the array representation of the notification.
      *
