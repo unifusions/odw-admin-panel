@@ -44,7 +44,7 @@ class PatientsController extends Controller
      */
     public function show(Patient $patient)
     {
-        $patient->load('user', 'appointments.appointable', 'estimates', 'secondopinions','insurances');
+        $patient->load('user', 'appointments.appointable', 'estimates', 'secondopinions', 'insurances');
         return Inertia::render('Admin/Patients/Show', ['patient' => $patient]);
     }
 
@@ -72,19 +72,22 @@ class PatientsController extends Controller
         //
     }
 
-    public function getDevices(Patient $patient){
-        return Inertia::render('Admin/Patients/PushDevices', ['patient'=> $patient, 'devices' => $patient->user->devices ]);
+    public function getDevices(Patient $patient)
+    {
+        return Inertia::render('Admin/Patients/PushDevices', ['patient' => $patient, 'devices' => $patient->user->devices]);
     }
 
-    public function pushNotifications(Request $request, Patient $patient, Device $device){
-        // dd($device);
-       try {
-        // This triggers the toApn() method in your Notification class
-        $device->notify(new TestPushNotification());
-        
-        return back()->with('message', 'Notification sent successfully!');
-    } catch (\Exception $e) {
-        return back()->with('error', 'Failed to send: ' . $e->getMessage());
-    }
+    public function pushNotifications(Request $request, Patient $patient, Device $device)
+    {
+    
+    
+        try {
+            // This triggers the toApn() method in your Notification class
+            $device->notify(new TestPushNotification());
+
+            return back()->with('message', 'Notification sent successfully!');
+        } catch (\Exception $e) {
+             dd($e->getMessage(), $e->getTraceAsString());
+        }
     }
 }

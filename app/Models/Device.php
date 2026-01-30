@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Device extends Model
-{use Notifiable;
+{
+    
+use Notifiable;
     protected $fillable = [ 
         'user_id',
         'name',

@@ -21,13 +21,16 @@ class FCMController extends Controller
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
+
+        $token = $request->pushToken['token'];
+        $platform = $request->platform;
         Device::updateOrCreate([
             'user_id' => $user->id,
             'device_id' => $request->device_id,
         ], [
-            'fcm_token' => $request->pushToken['token'],
-            'platform' => $request->platform,
             'manufacturer' => $request->device_manufacturer,
+            'apn_token' => $platform === 'ios' ? $token : null,
+            'fcm_token' => $platform === 'android' ? $token : null,
             'last_active_at' => now()
 
         ]);
