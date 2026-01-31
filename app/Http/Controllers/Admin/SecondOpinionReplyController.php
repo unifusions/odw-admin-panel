@@ -61,6 +61,7 @@ class SecondOpinionReplyController extends Controller
         if (!empty($second_opinion->patient?->email)) {
             Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
         }
+        $soreply->isReplied();
 
         // $ok = $this->fcm->send(
         //     $second_opinion->patient->user->fcm_token,
