@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Estimate;
 
+use App\Notifications\EstimateReplyPushNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -26,7 +27,7 @@ class EstimateReply extends Model
 
     public function estimate()
     {
-        return $this->belongsTo(Estimate::class);
+        return $this->belongsTo(Estimate::class,'estimate_id', 'id');
     }
 
     public function getFileUrlAttribute()
@@ -36,4 +37,21 @@ class EstimateReply extends Model
                // link expiry
         ['path' => $this->path]);    
     }
+
+    public function isReplied(){
+
+    $user= $this->estimate?->patient?->user;
+
+        if (!$user) {
+            return;
+        }
+
+
+
+        foreach ($user->devices as $device) {
+            $device->notify(new EstimateReplyPushNotification( ));
+        }
+    
+    }
+
 }
