@@ -10,8 +10,7 @@ import Notifications from '@/Components/Notifications';
 import { ToastContainer, toast } from 'react-toastify';
  
 import useInertiaLoading from '@/Helpers/useInertiaLoading';
-import LoadingDots from '@/Components/LoadingDots';
-import PageHeader from '@/Components/PageHeader';
+ 
 import { cn } from '@/lib/util';
 import { Header } from '@/Components/layouts/header';
 import { Sidebar } from '@/Components/layouts/sidebar';
