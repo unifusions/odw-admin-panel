@@ -29,6 +29,9 @@ class FCMController extends Controller
             'device_id' => $request->device_id,
         ], [
             'manufacturer' => $request->device_manufacturer,
+            'name' => ucfirst($platform),
+            'platform' => $platform,
+            'model'=> $request->device_model,
             'apn_token' => $platform === 'ios' ? $token : null,
             'fcm_token' => $platform === 'android' ? $token : null,
             'last_active_at' => now()

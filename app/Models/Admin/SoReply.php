@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\SecondOpinion;
+use App\Notifications\SecondOpinionReplyPushNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -44,5 +45,21 @@ class SoReply extends Model
     public function secondopinion()
     {
         return $this->belongsTo(SecondOpinion::class);
+    }
+
+    public function isReplied(){
+
+    $user= $this->secondopinion->patient->user;
+
+        if (!$user) {
+            return;
+        }
+
+
+
+        foreach ($user->devices as $device) {
+            $device->notify(new SecondOpinionReplyPushNotification( ));
+        }
+    
     }
 }

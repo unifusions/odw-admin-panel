@@ -3,57 +3,44 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Apn\ApnChannel;
 use NotificationChannels\Apn\ApnMessage;
 use NotificationChannels\Fcm\FcmChannel;
 use NotificationChannels\Fcm\FcmMessage;
 use NotificationChannels\Fcm\Resources\Notification as FcmNotification;
-class AppointmentConfirmedPushNotification extends Notification
+class SecondOpinionReplyPushNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-public function __construct()
+
+    public $title;
+    public $body;
+    public function __construct()
     {
-        //
+    $this->title =  "Second Opinion is Ready";
+    $this->body = "Your second opinion is now available. You can log in to the app and review your personalized feedback from our dental team.";
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
+
     public function via(object $notifiable): array
     {
         $channels = [];
-
-        // ANDROID device
-        if (
-            
-            !empty($notifiable->fcm_token)
-        ) {
-            $channels[] =  FcmChannel::class;
+        if (!empty($notifiable->fcm_token)) {
+            $channels[] = FcmChannel::class;
         }
 
-        // IOS device
-        if (
-            
-            !empty($notifiable->apn_token)
-        ) {
-            $channels[] =  ApnChannel::class;
+        if (!empty($notifiable->apn_token)) {
+            $channels[] = ApnChannel::class;
         }
 
         return $channels;
     }
 
-    /**
-     * Get the mail representation of the notification.
-     */
     public function toApn($notifiable)
     {
         if ($notifiable->platform !== 'ios') {
@@ -61,22 +48,22 @@ public function __construct()
         }
 
         return ApnMessage::create()
-            ->title('Appointment Confirmed')
-            ->body('Your appointment is confirmed ✅')
+            ->title($this->title)
+            ->body($this->body)
             ->sound('default')
             ->badge(1);
     }
-    
+
     public function toFcm($notifiable)
     {
         if ($notifiable->platform !== 'android') {
             return null;
         }
 
-       return (new FcmMessage(notification: new FcmNotification(
-            title: 'Appointment Confirmed',
-            body: 'Your appointment is confirmed ✅',
-           
+        return (new FcmMessage(notification: new FcmNotification(
+            title: $this->title,
+            body: $this->body,
+
         )))
             ->data(['data1' => 'value', 'data2' => 'value2'])
             ->custom([
@@ -86,7 +73,7 @@ public function __construct()
                         'sound' => 'default',
                         'notification_priority' => 'PRIORITY_MAX',
                         'default_sound' => true,
-            'default_vibrate_timings' => true,
+                        'default_vibrate_timings' => true,
                     ],
                     'fcm_options' => [
                         'analytics_label' => 'analytics',
