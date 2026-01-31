@@ -138,6 +138,12 @@ class Appointment extends Model
             'completed' => self::where('status', 'completed')->count()
         ];
     }
+    // NOTES
+
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'noteable');
+    }
 
     // NOTIFICATIONS
 

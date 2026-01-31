@@ -17,71 +17,37 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
 
-        // $appointments = Appointment::when(
-        //     $request->year && $request->month,
-        //     fn($query) => $query->whereYear('appointment_date', $request->year)
-        //         ->whereMonth('appointment_date', $request->month)
-        //         // ->where(function ($query) {
-        //         //     $query->where('status', 'confirmed')
-        //         //         ->orWhere('status', 'rescheduled');
-        //         // })
-
-        // )->get()->map(fn($appointment) => [
-        //     'id' => $appointment->id,
-        //     'title' => $appointment->patient->first_name ?? '',
-        //     'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
-        //     // 'end' => Carbon::parse("{$appointment->appointment_date} {$appointment->time_slot}")
-        //     //     ->addMinutes(30)->format('Y-m-d\TH:i:s'),
-        //     'extendedProps' => [
-        //         'full_name' => '',  // Uncomment if patient data is available
-        //         'age' => '',
-        //         'gender' => '',
-        //         'location' => '',
-        //         'services' => $appointment->dentalservices,
-        //     ]
-        // ]);
 
 
-
-        // return Inertia::render('Admin/Appointments/Index', [
-        //     'appointments' => $appointments,
-        //     // 'pendingAppointments' => $pendingAppointments
-        // ]);
-
-        $year = $request->year ?? now()->year;
-        $month = $request->month ?? now()->month;
-
-        $appointments = Appointment::when(
-            $request->year && $request->month,
-            fn($query) => $query->whereYear('appointment_date', $year)
-                ->whereMonth('appointment_date', $month)
-        )->get()->map(fn($appointment) => [
-                'id' => $appointment->id,
-                'title' => $appointment->patient->first_name ?? '',
-                'start' => "{$appointment->appointment_date}T{$appointment->time_slot}",
-
-                'extendedProps' => [
-                    'services' => $appointment->dentalservice,
-                    'status' => $appointment->status,
-                    'appointment_date' => $appointment->appointment_date,
-                    'clinic' => $appointment->clinic,
-                    'dentist' => $appointment->dentist,
-                    'provider' => $appointment->appointable ? [
-                        'id' => $appointment->appointable->id,
-                        'type' => class_basename($appointment->appointable_type), // Dentist or Specialist
-                        'name' => $appointment->appointable->name ?? '',
-                    ] : 'no provider',
-                ],
-            ]);
 
         $pendingAppointments = Appointment::where('status', 'pending')->count();
-
+        $appointments = Appointment::query()
+            // ->when($request->search, function ($q, $search) {
+            //     $q->where('patient_name', 'like', "%{$search}%")
+            //       ->orWhere('patient_phone', 'like', "%{$search}%");
+            // })
+            ->when(
+                $request->status,
+                function ($q, $status) {
+                    if ($status != 'all')
+                        $q->where('status', $status);
+                }
+            )
+            ->when(
+                $request->date,
+                fn($q, $date) =>
+                $q->whereDate('appointment_date', $date)
+            )
+            ->latest()
+            ->get();
+        $appointments->load(['patient', 'appointable', 'clinic', 'dentalservice']);
         return Inertia::render('Admin/Appointments/Index', [
-            'appointments' => Appointment::with(['patient', 'appointable', 'clinic', 'dentalservice'])->get(),
+            'appointments' => $appointments,
+            //  Appointment::with(['patient', 'appointable', 'clinic', 'dentalservice'])->get(),
             'pendingAppointments' => $pendingAppointments,
-            'activeYear' => $year,
-            'activeMonth' => $month,
-            'monthlyStats' => Appointment::indexMonthlyStats()
+            'statusFilter' => $request->status ?? 'all',
+            'monthlyStats' => Appointment::indexMonthlyStats(),
+            'filters' => $request->only(['search', 'status', 'date']),
         ]);
     }
 
@@ -112,12 +78,20 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function confirmAppointment(Appointment $appointment)
+    public function confirmAppointment(Request $request, Appointment $appointment)
     {
-        // $appointment->status = 'confirmed';
-        // $appointment->is_confirmed = true;
-        // $appointment->save();
-$appointment->confirm();
+         
+         $type = 'confirmation';
+       $appointment->confirm();
+
+        $appointment->notes()->create([
+            'type' => $type,
+            'title' => 'Appointment Confirmed',
+            'content' => $request->content ?? '',
+            'user_id' => auth()->id(),
+
+        ]);
+
         return redirect()->back()->with(['success' => 'Appointment has been confirmed']);
     }
 
@@ -133,7 +107,7 @@ $appointment->confirm();
     public function rescheduleAppointment(Request $request, Appointment $appointment)
     {
 
-  
+
         AppointmentReschedule::create([
             'appointment_id' => $appointment->id,
             'appointment_date' => $appointment->appointment_date,
@@ -147,8 +121,8 @@ $appointment->confirm();
         $appointment->appointment_date = $request->new_dt;
         $appointment->time_slot = $request->new_slot;
         $appointment->reschedule_requested_by = 'clinic';
-$appointment->save();
-                return redirect()->back()->with(['success' => 'Appointment has been rescheduled']);
+        $appointment->save();
+        return redirect()->back()->with(['success' => 'Appointment has been rescheduled']);
 
     }
     public function create()

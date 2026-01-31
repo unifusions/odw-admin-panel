@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -30,6 +30,8 @@ export function ConfirmDialog({
   onOpenChange,
   appointment,
   onConfirm,
+  processing,
+  isConfirmed  
 } ) {
   const [notes, setNotes] = useState("");
   const [sendEmail, setSendEmail] = useState(true);
@@ -44,6 +46,12 @@ export function ConfirmDialog({
     onOpenChange(false);
   };
 
+  useEffect(() => {
+  if (isConfirmed) {
+    setStep("success");
+  }
+}, [isConfirmed]);
+
   const handleConfirm = () => {
     if (appointment) {
       const notifications  = [];
@@ -51,7 +59,7 @@ export function ConfirmDialog({
       if (sendSMS) notifications.push("sms");
       
       onConfirm(appointment, notes, notifications);
-      setStep("success");
+      
     }
   };
 
@@ -120,6 +128,7 @@ export function ConfirmDialog({
                   className="resize-none"
                   rows={3}
                 />
+                
               </div>
 
               {/* Notification Options */}
@@ -172,7 +181,7 @@ export function ConfirmDialog({
               <Button variant="outline" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button onClick={handleConfirm}>Confirm Appointment</Button>
+              <Button onClick={handleConfirm}  disabled = {processing}>Confirm Appointment {processing && 'Processing'}</Button>
             </DialogFooter>
           </>
         ) : (

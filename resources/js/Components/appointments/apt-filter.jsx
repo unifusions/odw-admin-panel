@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { useState } from "react";
 import { Button } from "../ui/button";
 
-export default function AppointmentFilter({ viewMode, setViewMode }) {
+export default function AppointmentFilter({ viewMode, setViewMode, statusFilter, setStatusFilter }) {
 
 
     return (
@@ -22,9 +22,9 @@ export default function AppointmentFilter({ viewMode, setViewMode }) {
                                 //   onChange={(e) => setSearchQuery(e.target.value)}
                                 className="pl-9"
                             />
-                        </div>
+                        </div> */}
                         <Select
-                        //    value={statusFilter} onValueChange={setStatusFilter}
+                           value={statusFilter} onValueChange={setStatusFilter}
                         >
                             <SelectTrigger className="w-[160px]">
                                 <Filter className="mr-2 h-4 w-4" />
@@ -38,7 +38,7 @@ export default function AppointmentFilter({ viewMode, setViewMode }) {
                                 <SelectItem value="cancelled">Cancelled</SelectItem>
                             </SelectContent>
                         </Select>
-                    </div> */}
+               {/*     </div> */}
                     <div className="flex gap-2 items-center">
                         <Tabs value={viewMode} onValueChange={setViewMode}>
                             <TabsList className="h-9">

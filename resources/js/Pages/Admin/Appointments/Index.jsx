@@ -9,11 +9,11 @@ import SummaryCard from "@/Components/summary-card";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { router, useForm, usePage } from "@inertiajs/react";
+import { router, useForm, usePage} from "@inertiajs/react";
 import { format, parse } from "date-fns";
 import { Calendar } from "lucide-react";
 import { useState } from "react";
-
+ 
 
 const statusLabel =
 {
@@ -23,7 +23,7 @@ const statusLabel =
   cancelled: 'Cancelled'
 }
 
-export default function Index({ appointments, pendingAppointments, monthlyStats }) {
+export default function Index({ appointments, statusFilter, monthlyStats }) {
   const { auth } = usePage().props;
   const role = auth.user.role;
 
@@ -34,6 +34,9 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
+
+  const [confirmProcessing, setConfirmProcessing] = useState(false);
+  const [appointmentConfirmed, setAppointmentConfirmed] = useState(false);
   const handleOpenReschedule = (appointment) => {
     setSelectedAppointment(appointment);
     setRescheduleDialogOpen(true);
@@ -41,10 +44,15 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
 
 
   const handleOpenConfirm = (appointment) => {
+    setAppointmentConfirmed(false);
     setSelectedAppointment(appointment);
     setConfirmDialogOpen(true);
   };
 
+
+  const {data, put, processing} = useForm({
+    
+  });
   const convertTo24Hour = (time12h) => {
 
     const clean = time12h.replace(/\s+/g, ' ').replace(/\u202F/g, ' ');
@@ -94,10 +102,23 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
 
     if (role === 'clinic_admin') routeName = 'clinic.appointments.confirm';
     if (role === 'clinic_user') routeName = 'clinic.user.appointments.confirm';
-    router.put(
+
+     setConfirmProcessing(true);
+
+    put(
       route(routeName, { appointment: selectedAppointment }),
+      {
+        content: notes,
+        notifications: notifications,
+ onFinish : ()  => {
+   setConfirmProcessing(false);
+  setAppointmentConfirmed(true);
+ }
+      }
+
 
     );
+       
   };
 
   const handleOpenCancel = (appointment) => {
@@ -110,23 +131,47 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
     if (!selectedAppointment) return;
     if (role === 'clinic_admin') routeName = 'clinic.appointments.cancel';
     if (role === 'clinic_user') routeName = 'clinic.user.appointments.cancel';
+   
     router.put(
       route(routeName, { appointment: selectedAppointment }),
 
       {
         onFinish: () => {
-          setSelectedAppointment(null);
+         
           setCancelDialogOpen(false);
         },
+        onSuccess: () => {
+        setAppointmentConfirmed(true);
+      },
       }
     );
+
 
     // toast({
     //   title: "Appointment Cancelled",
     //   description: `Appointment for ${selectedAppointment.patientName} has been cancelled`,
     //   variant: "destructive",
     // });
+
+
+
   };
+
+
+ 
+  const handleApplyFilter = (e) => {
+
+    router.get(route('appointments.index', {
+      // search,
+      status: e,
+      // date,
+    }, {
+      preserveState: true,
+      replace: true,
+    }))
+  }
+
+
   return (
     <AuthenticatedLayout pageTitle="Appointments" subTitle="Review and manage patient appointment requests">
 
@@ -142,7 +187,7 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
 
         )}
 
- 
+
 
       </div>
 
@@ -150,6 +195,10 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
 
         viewMode={viewMode}
         setViewMode={(v) => setViewMode(v)}
+        statusFilter={statusFilter}
+        setStatusFilter={(e) => handleApplyFilter(e)}
+
+
       />
 
       {viewMode === "list" ? (
@@ -197,6 +246,8 @@ export default function Index({ appointments, pendingAppointments, monthlyStats 
         onOpenChange={setConfirmDialogOpen}
         appointment={selectedAppointment}
         onConfirm={handleConfirm}
+        processing = {confirmProcessing}
+        isConfirmed = {appointmentConfirmed}
       />
 
       <CancelDialog

@@ -7,24 +7,7 @@ import LoadingDots from "./LoadingDots";
 
 import { Search, Package, Users, ShoppingCart, FileText, Receipt, Settings, Image, Warehouse, LayoutDashboard, FolderTree, Tags, Layers } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import Avatar from "./ui/avatar";
-const pages = [
-    { type: "page", icon: LayoutDashboard, title: "Dashboard", description: "Overview & analytics", href: "/admin" },
-    { type: "page", icon: Receipt, title: "POS - New Sale", description: "Create a new sale", href: "/admin/pos" },
-    { type: "page", icon: Receipt, title: "POS - Sales History", description: "View past transactions", href: "/admin/pos/sales" },
-    { type: "page", icon: FileText, title: "Invoices", description: "Manage invoices", href: "/admin/invoices" },
-    { type: "page", icon: Package, title: "Products", description: "Manage products", href: "/admin/products" },
-    { type: "page", icon: Tags, title: "Attributes", description: "Product attributes", href: "/admin/products/attributes" },
-    { type: "page", icon: FolderTree, title: "Categories", description: "Product categories", href: "/admin/products/categories" },
-    { type: "page", icon: Layers, title: "Collections", description: "Product collections", href: "/admin/products/collections" },
-    { type: "page", icon: Image, title: "Media", description: "Media library", href: "/admin/media" },
-    { type: "page", icon: Warehouse, title: "Inventory", description: "Stock management", href: "/admin/inventory" },
-    { type: "page", icon: ShoppingCart, title: "Orders", description: "Order management", href: "/admin/orders" },
-    { type: "page", icon: Users, title: "Customers", description: "Customer management", href: "/admin/customers" },
-    { type: "page", icon: Settings, title: "Settings", description: "Admin settings", href: "/admin/settings" },
-];
-
+ 
 
 export default function GlobalSearch() {
 
@@ -254,7 +237,7 @@ export default function GlobalSearch() {
                     <Input
                         ref={inputRef}
                         type="text"
-                        placeholder="Search pages, products..."
+                        placeholder="Search appointments, opinions, estimates..."
                         value={query}
                         onChange={handleSearch}
                     
