@@ -9,6 +9,7 @@ use App\Models\SecondOpinion;
 use App\Services\FcmNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Inertia\Inertia;
 
 class SecondOpinionReplyController extends Controller
 {
@@ -20,9 +21,12 @@ class SecondOpinionReplyController extends Controller
     // {
     // }
 
-    public function index()
+    public function index(SecondOpinion $secondopinion)
+
     {
-        //
+       return Inertia::render('Admin/SecondOpinion/Replies', [
+        'replies' => SoReply::with(['secondopinion.patient.user'])->get(),
+       ]);
     }
 
     /**

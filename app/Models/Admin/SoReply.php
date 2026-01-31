@@ -44,12 +44,12 @@ class SoReply extends Model
 
     public function secondopinion()
     {
-        return $this->belongsTo(SecondOpinion::class);
+        return $this->belongsTo(SecondOpinion::class, 'second_opinion_id', 'id');
     }
 
     public function isReplied(){
 
-    $user= $this->secondopinion->patient->user;
+    $user= $this->secondopinion?->patient?->user;
 
         if (!$user) {
             return;

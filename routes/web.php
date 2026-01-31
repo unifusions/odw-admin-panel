@@ -96,7 +96,7 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
 
     Route::resource('second-opinion', SecondOpinionController::class);
 
-    Route::resource('second-opinion.replies', SecondOpinionReplyController::class)->only(['store']);
+    Route::resource('second-opinion.replies', SecondOpinionReplyController::class)->only(['index','store']);
     Route::post('second-opinion/{second_opinion}/status', [SecondOpinionController::class, 'updateStatus'])->name('second-opinion.status');
     Route::resource('estimates', EstimateController::class);
     Route::resource('estimates.replies', EstimateReplyController::class)->only('store');
