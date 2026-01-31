@@ -54,6 +54,8 @@ class SecondOpinionReplyController extends Controller
             ]);
             if ($soreply) {
                 $second_opinion->status = "answered";
+                 $soreply->isReplied();
+
                 $second_opinion->save();
             }
         }
@@ -61,8 +63,7 @@ class SecondOpinionReplyController extends Controller
         if (!empty($second_opinion->patient?->email)) {
             Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
         }
-        $soreply->isReplied();
-
+       
         // $ok = $this->fcm->send(
         //     $second_opinion->patient->user->fcm_token,
         //     'Your Second Opinion is Ready',
