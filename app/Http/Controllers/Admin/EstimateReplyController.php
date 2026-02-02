@@ -45,7 +45,7 @@ class EstimateReplyController extends Controller
             ]);
             if ($soreply) {
                 $estimate->status = "answered";
-                $estimate->isReplied();
+                $soreply->isReplied();
                 $estimate->save();
             }
             return redirect()->route('estimates.show', parameters: $estimate)->with(["message" => "Estimate has been sent to Patient"]);
