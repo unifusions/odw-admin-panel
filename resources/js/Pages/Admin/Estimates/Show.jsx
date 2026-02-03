@@ -262,7 +262,7 @@ export default function Show() {
  
                  
               
-                    {estimate?.patient && <PatientInfo patient={patient} />}
+                    {/* {estimate?.patient && <PatientInfo patient={patient} />} */}
                  
              
         </AuthenticatedLayout>

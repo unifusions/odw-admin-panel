@@ -6,14 +6,15 @@ import AddDentalCare from "./AddDentalCare";
 import DeleteDentalCare from "./DeleteDentalCare";
 import Pagination from "@/Components/Pagination";
 import { useState } from "react";
-import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
+ 
 import { Button } from "@/Components/ui/button";
-import { Pencil, Plus, Search } from "lucide-react";
-import { Input } from "@/Components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/Components/ui/select";
-import { LinkButton } from "@/Components/ui/link-button";
+import { Pencil, PencilIcon, Plus, Search, Trash } from "lucide-react";
+ 
+ import { LinkButton } from "@/Components/ui/link-button";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { Badge } from "@/Components/ui/badge";
+import useDeleteModal from "@/hooks/useDeleteModal";
+import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
 
   const getSavingsPercentage = (nationalCost , ourCost ) => {
     return Math.round(((nationalCost - ourCost) / nationalCost) * 100);
@@ -25,8 +26,12 @@ export default function Index() {
     const { dentalCare, categories } = usePage().props;
     const [selectedService, setSelectedService] = useState(null);
     const [dialogOpen, setDialogOpen] = useState(false);
-    // const SERVICES = dentalCare.data;
+  
     const [services, setServices] = useState(dentalCare.data);
+
+        const deleteModal = useDeleteModal()
+    
+
     const toggleFeatured = async (id) => {
         try {
             await router.patch(
@@ -36,15 +41,15 @@ export default function Index() {
                     preserveScroll: true,
                     preserveState: true,
                     only: [], // prevent full reload
-                    onSuccess: (page) => {
-                        setServices((prev) =>
-                            prev.map((service) =>
-                                service.id === id
-                                    ? { ...service, featured: !service.featured }
-                                    : service
-                            )
-                        );
-                    },
+                    // onSuccess: (page) => {
+                    //     setServices((prev) =>
+                    //         prev.map((service) =>
+                    //             service.id === id
+                    //                 ? { ...service, featured: !service.featured }
+                    //                 : service
+                    //         )
+                    //     );
+                    // },
                 }
             );
         } catch (error) {
@@ -64,15 +69,10 @@ export default function Index() {
 
             pageTitle="Compare Costs"
             subTitle="Manage Your Dental Services"
-            callToAction={<Link href={route('compare-costs.create')}
-                className="btn btn-primary"   >
-
-
-                <i className="bi-plus me-1"></i> Add Dental Care
-            </Link>}
+           
 
         >
-
+ 
 
 
             <div className="flex flex-col gap-4 sm:flex-row mb-3">
@@ -137,7 +137,7 @@ export default function Index() {
 
                     <tbody>
                         {
-                            services.map((item, index) => (
+                            dentalCare.data.map((item, index) => (
                                 <tr key={index} className="align-top">
                                     <td >{item.code}</td>
                                     <td  >   <div >
@@ -171,21 +171,21 @@ export default function Index() {
 
                                     <td className="text-end col-2">
 
-                                        {/* <Button
-                                            variant="ghost"
-                                            size="icon"
-                                            onClick={() => handleEdit(item)}
-                                        >
-                                            <Pencil className="h-4 w-4" />
-                                        </Button> */}
+                                        
+<div className="flex items-center gap-1">
+<LinkButton variant="outline" size="sm" href={route('compare-costs.edit', item)}  > <PencilIcon className="h-2 w-2" />  Edit </LinkButton>
+                                        
 
-                                        <LinkButton variant="outline" href={route('compare-costs.edit', item)} className="btn btn-white btn-sm me-2">  <i className="bi-pencil-fill me-1"></i>  Edit </LinkButton>
-                                        {/* <DeleteConfirmModal 
-                                          onDeleted={(id) => {
-                                            setServices((prev) => prev.filter((s) => s.id !== id));
-                                        }}
-                                        category="Dental Care" processUrl="compare-costs.destroy" item={item} /> */}
-                                        {/* <DeleteDentalCare dentalcare={item} /> */}
+                                                <Button
+                                                    variant="destructive" size='sm'  
+                                                    onClick={() =>
+                                                        deleteModal.confirm(item, "compare-costs.destroy")
+                                                    }
+                                                ><Trash /> Delete</Button>
+</div>
+                                        
+
+                                      
                                     </td>
                                 </tr>
                             ))
@@ -198,6 +198,14 @@ export default function Index() {
     </CardContent>
     <CardFooter>
  <Pagination links={dentalCare.links} />
+
+  <DeleteConfirmModal dialogOpen={deleteModal.open}
+                     onConfirm={deleteModal.destroy}
+                     setDialogOpen={deleteModal.setOpen}
+                     category="Dental Care" processUrl="compare-costs.destroy"
+                     loading={deleteModal.loading} itemName={deleteModal?.item?.name} />
+ 
+
     </CardFooter>
 </Card>
            

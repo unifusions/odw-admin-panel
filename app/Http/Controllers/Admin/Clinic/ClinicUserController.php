@@ -53,7 +53,7 @@ class ClinicUserController extends Controller
     {
 
 
-        dd($request->all());
+        // dd($request->all());
         if ($request->validated()) {
             $user = User::create([
                 'name' => $request->full_name,

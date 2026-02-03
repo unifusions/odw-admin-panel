@@ -132,7 +132,7 @@ class CompareCostController extends Controller
     public function destroy(DentalCare $compare_cost)
     {
         $compare_cost->delete();
-        return redirect()->back()->with(['message' => 'Service has been deleted successfully']);
+        return redirect()->route('compare-costs.index')->with(['message' => 'Service has been deleted successfully']);
     }
 
     public function toggleFeatured(DentalCare $compare_cost)

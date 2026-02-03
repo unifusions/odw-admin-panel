@@ -9,11 +9,11 @@ import SummaryCard from "@/Components/summary-card";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { router, useForm, usePage} from "@inertiajs/react";
+import { router, useForm, usePage } from "@inertiajs/react";
 import { format, parse } from "date-fns";
 import { Calendar } from "lucide-react";
 import { useState } from "react";
- 
+
 
 const statusLabel =
 {
@@ -50,8 +50,8 @@ export default function Index({ appointments, statusFilter, monthlyStats }) {
   };
 
 
-  const {data, put, processing} = useForm({
-    
+  const { data, put, processing } = useForm({
+
   });
   const convertTo24Hour = (time12h) => {
 
@@ -103,22 +103,22 @@ export default function Index({ appointments, statusFilter, monthlyStats }) {
     if (role === 'clinic_admin') routeName = 'clinic.appointments.confirm';
     if (role === 'clinic_user') routeName = 'clinic.user.appointments.confirm';
 
-     setConfirmProcessing(true);
+    setConfirmProcessing(true);
 
     put(
       route(routeName, { appointment: selectedAppointment }),
       {
         content: notes,
         notifications: notifications,
- onFinish : ()  => {
-   setConfirmProcessing(false);
-  setAppointmentConfirmed(true);
- }
+        onFinish: () => {
+          setConfirmProcessing(false);
+          setAppointmentConfirmed(true);
+        }
       }
 
 
     );
-       
+
   };
 
   const handleOpenCancel = (appointment) => {
@@ -131,21 +131,22 @@ export default function Index({ appointments, statusFilter, monthlyStats }) {
     if (!selectedAppointment) return;
     if (role === 'clinic_admin') routeName = 'clinic.appointments.cancel';
     if (role === 'clinic_user') routeName = 'clinic.user.appointments.cancel';
-   
+
     router.put(
       route(routeName, { appointment: selectedAppointment }),
 
       {
         onFinish: () => {
-         
+
           setCancelDialogOpen(false);
         },
         onSuccess: () => {
-        setAppointmentConfirmed(true);
-      },
+           
+          setCancelDialogOpen(false);
+        },
       }
     );
-
+ setCancelDialogOpen(false);
 
     // toast({
     //   title: "Appointment Cancelled",
@@ -158,7 +159,7 @@ export default function Index({ appointments, statusFilter, monthlyStats }) {
   };
 
 
- 
+
   const handleApplyFilter = (e) => {
 
     router.get(route('appointments.index', {
@@ -246,8 +247,8 @@ export default function Index({ appointments, statusFilter, monthlyStats }) {
         onOpenChange={setConfirmDialogOpen}
         appointment={selectedAppointment}
         onConfirm={handleConfirm}
-        processing = {confirmProcessing}
-        isConfirmed = {appointmentConfirmed}
+        processing={confirmProcessing}
+        isConfirmed={appointmentConfirmed}
       />
 
       <CancelDialog

@@ -84,18 +84,20 @@ export default function Support() {
                         </p>
                     </section>
 
-                    <section>
-                        <h2>App Information</h2>
+<section>
+            <h2 className="text-2xl font-semibold text-foreground mb-4">App Information</h2>
+            {/* <p className="text-muted-foreground leading-relaxed">
+              If you have questions about this Privacy Policy, please contact us at:
+            </p> */}
+            <div className="mt-4 rounded-lg bg-muted/50 p-4">
+              <p className="text-foreground font-medium">App Name : OneDentalWorld</p>
+              <p className="text-muted-foreground">iOS & Android</p>
+              <p className="text-muted-foreground">Current Version : 1.0.6</p>
+              <p className="text-muted-foreground">Last Update : 31, January 2026</p>
+            </div>
+          </section>
 
-                        <ul>
-                            <li>App Name : OneDentalWorld</li>
-                            <li>iOS & Android</li>
-                            <li>Current Version : 1.0.4</li>
-                            <li>Last Update : 26, December 2025</li>
-                        </ul>
-
-                    </section>
-
+                 
                 </div>
             </div>
 

@@ -1,17 +1,22 @@
-import { Send, XCircle } from "lucide-react";
+import { Loader, Send, XCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { useForm } from "@inertiajs/react";
 import FileUploader from "../FileUploader";
+import Spinner from "../Spinner";
 
 export default function EstimateReply({estimate}){
 
-    const { data, post, processing, errors, reset, setData } = useForm({
+    const { data, post, 
+      processing, 
+      errors, reset, setData } = useForm({
             message: "",
             estimation: null
         });
+
+      
     
      const onsubmit = (e) => {
         e.preventDefault();
@@ -55,11 +60,12 @@ export default function EstimateReply({estimate}){
                  
                   <Button 
                   type="submit"
+                  disabled={processing}
                 //   onClick={handleSendResponse} 
                 //   disabled={!responseText.trim()}
                   >
-                    <Send className="h-4 w-4 mr-2" />
-                    Send Estimate
+                   
+                    { processing ?    <Loader className="animate-spin" /> :  <Send className="h-4 w-4 mr-2" />} Send Estimate
                   </Button>
                 </div>
               </CardContent>

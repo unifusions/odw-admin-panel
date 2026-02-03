@@ -37,6 +37,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatesController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Mail\SendOtpMail;
+use App\Models\Appointment;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -179,9 +180,12 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
 require __DIR__ . '/auth.php';
 
 Route::get('preview-notification', function () {
-    return view('mail.appointmentconfirmation');
+    return view('mail.appointmentconfirmation')->with([
+        'type' => 'confirmed',
+        'appointment' => Appointment::find(27)
+    ]);
 }); 
-
+    
 // Route::get('/files/{path}', [FilesController::class, 'show'])
 //     ->where('path', '.*')
 //     ->name('files.show');

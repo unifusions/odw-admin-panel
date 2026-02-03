@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Appointment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,7 @@ class AppointmentConfirmation extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Appointment $appointment, public string $type)
     {
         //
     }
@@ -27,7 +28,7 @@ class AppointmentConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'ODW : Appointment Confirmation',
+            subject: 'ODW : Appointment ' . $this->type,
 
         );
     }
@@ -41,6 +42,15 @@ class AppointmentConfirmation extends Mailable
             view: 'mail.appointmentconfirmation',
         );
     }
+
+     public function build()
+    {
+        return $this->view('mail.appointmentconfirmation')
+                    ->with(['appointment' => $this->appointment, 
+                    'type' => $this->type]);
+                    
+    }
+
 
     /**
      * Get the attachments for the message.

@@ -97,6 +97,7 @@ export default function Privacy() {
     }
     return (
         <GuestLayout header="Privacy Policy">
+            <p className="mb-8 text-muted-foreground">Last updated: January 1, 2024</p>
             <div className="row container-sm content-space-t-1 content-space-t-lg-2 content-space-b-2 mt-5" style={{ padding: '20px', lineHeight: '1.6' }}>
                 {/* <div className="col-sm-2">
                     {/* <ul class="nav flex-column">

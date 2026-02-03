@@ -86,7 +86,7 @@ const roleLabels = {
 
 
                                                 <Button
-                                                    variant="outline" size='sm' o
+                                                    variant="outline" size='sm'  
                                                     onClick={() =>
                                                         deleteModal.confirm(user, "clinic-users.destroy")
                                                     }

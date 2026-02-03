@@ -1,71 +1,67 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Head, Link } from '@inertiajs/react';
-import * as Logo from '../../../public/images/odw-logo.png';
+
 export default function GuestLayout({ children, header }) {
     return (
         <>
 
+            <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 
-            <header className='navbar navbar-expand-lg navbar-center navbar-light bg-white navbar-absolute-top navbar-show-hide'>
-                <div className="container-sm">
-                    <nav className="js-mega-menu navbar-nav-wrap">
-                        <a className="navbar-brand" href="#" aria-label="Front">
-                            <img className="" src="/images/odw-logo-h.png" alt="Logo" data-hs-theme-appearance="default" height={70} width='auto' />
-                            {/* <img className="navbar-brand-logo"src="/images/odw-logo-h.png" alt="Logo" data-hs-theme-appearance="dark" /> */}
-                        </a>
+                <Head title={header} />
+                <div className="container mx-auto flex h-20 items-center justify-between px-4">
+                    <div className="flex items-center gap-2  ">
+                        <img className="h-15" src="/images/odw-logo-h.png" alt="Logo" width='auto' />
 
-                        <div className="navbar-nav-wrap-secondary-content">
-                            <div className="dropdown">
 
-                            </div>
-                        </div>
-                    </nav>
+                    </div>
+
+                    {/* <div className="flex items-center gap-3">
+            <Link to="/dashboard">
+              <Button variant="ghost" size="sm">
+                Admin Portal
+              </Button>
+            </Link>
+            <a href="#download">
+              <Button size="sm">
+                Download App
+              </Button>
+            </a>
+          </div> */}
                 </div>
             </header>
-            {header && (<div
-                className='fs-2 fw-bold text-dark'>{header}</div>)
-            }
-            <main id="content"   className="main container"  >
-                <Head title='Privacy Policy' />
+
+            <main className="container mx-auto max-w-4xl px-4 py-12"  >
+
+
+                {header && (<h1 className="mb-8 text-4xl font-bold text-foreground">{header}</h1>)
+                }
                 {children}
 
             </main>
-            <div class="container">
-                <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-                    <div class="col mb-3">
-                        <img src="/images/odw-logo-h.png" alt="" height={75} className='mb-3' />
-                        <p>Our offices are open all 7 days,
-                            24 x 7 for emergencies available on call</p>
-                        <p class="text-body-secondary">© 2025. OneDentalWorld.com - All Rights Reserved</p>
+            {/* Footer */}
+            <footer className="border-t bg-card py-12">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+                        <div className="flex items-center gap-2">
+                            <img src="/images/odw-logo-h.png" alt="" className='h-14' />
+                        </div>
+
+                        <p className="text-sm text-muted-foreground">
+                            © 2025-26 OneDentalWorld. All rights reserved.
+                        </p>
+
+                        <div className="flex gap-6">
+                            <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                                Privacy Policy
+                            </Link>
+                            <Link href="/support" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                                App Support
+                            </Link>
+                        </div>
                     </div>
+                </div>
+            </footer>
 
-                    <div class="col mb-3">
-
-                    </div>
-
-                    <div class="col mb-3">
-
-                    </div>
-
-                    <div class="col mb-3">
-                        <h5>For Partners</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Partners & Affiliations</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Our Offices</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col mb-3">
-                        <h5>Company</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About Us</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Services</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Contact</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Career</a></li>
-                        </ul>
-                    </div>
-                </footer>
-            </div>
 
         </>
 
