@@ -163,13 +163,19 @@ class Appointment extends Model
         if (!$user) {
             return;
         }
-
-
+        $user->notify(new AppointmentStatusPushNotification($this, 'confirmed'));
 
         foreach ($user->devices as $device) {
-            // $device->notify(new AppointmentConfirmedPushNotification($this));
-            $device->notify(new AppointmentStatusPushNotification($this , 'confirmed'));
+            $device->notify(
+                new AppointmentStatusPushNotification($this, 'confirmed')
+            );
         }
+
+
+        // foreach ($user->devices as $device) {
+        //     $device->notify(new AppointmentConfirmedPushNotification($this));
+
+        // }
     }
 
 }

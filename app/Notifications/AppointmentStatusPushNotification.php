@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Apn\ApnChannel;
+use NotificationChannels\Apn\ApnMessage;
 use NotificationChannels\Fcm\FcmChannel;
  
  
@@ -37,7 +38,17 @@ class AppointmentStatusPushNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        $channels = ['database', 'mail', TwilioChannel::class];
+        $channels = ['database'];
+
+          if (!empty($notifiable->email)) {
+        $channels[] = 'mail';
+    }
+
+    if (!empty($notifiable->phone)) {
+        $channels[] = TwilioChannel::class;
+    }
+
+
         // ANDROID device
         if (!empty($notifiable->fcm_token)) {
             $channels[] =  FcmChannel::class;
@@ -65,14 +76,17 @@ class AppointmentStatusPushNotification extends Notification
             'action_url' => '/appointments',
         ];
     }
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(object $notifiable) 
     {
 
-      return new AppointmentConfirmation($this->appointment, $this->type);
+      return (new AppointmentConfirmation(
+        $this->appointment,
+        $this->type
+    ))->to($notifiable->email);
         
       
     }
-    public function toApn($notifiable)
+    public function toApn($notifiable) 
     {
         if ($notifiable->platform !== 'ios') {
             return null;

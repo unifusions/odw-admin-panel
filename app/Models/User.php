@@ -180,17 +180,51 @@ class User extends Authenticatable
         // Get user counts grouped by date
 
         $users = User::whereBetween('created_at', [$startDate, $endDate])->where('role', 'patient')
-           
-            ->get()->count();
-            
 
-        
+            ->get()->count();
+
+
+
         return [
-            'current' =>  User::whereBetween('created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])->where('role', 'patient')
-           
-            ->get()->count(),
+            'current' => User::whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->where('role', 'patient')
+
+                ->get()->count(),
             'previous' => $users,
         ];
     }
+
+    public function routeNotificationForMail()
+    {
+      
+        return $this->email;
+    }
+
+    public function routeNotificationForTwilio()
+{
+    return $this->phone;
+}
+    
+    // public function routeNotificationForFcm()
+    // {
+        
+    //     $tokens = $this->devices()
+    //     ->whereNotNull('fcm_token')
+    //     ->where('fcm_token', '!=', '')
+    //     ->pluck('fcm_token')
+    //     ->toArray();
+ 
+    //         return $tokens;
+    // }
+
+    // public function routeNotificationForApn()
+    // {
+    //   $tokens = $this->devices()
+    //     ->whereNotNull('apn_token')
+    //     ->where('apn_token', '!=', '')
+    //     ->pluck('apn_token')
+    //     ->toArray();
+
+    // return $tokens;
+    // }
 
 }

@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class Patient extends Model
 {
+    use Notifiable;
     protected $fillable = [
         'user_id',
         'avatar',
@@ -106,5 +108,10 @@ class Patient extends Model
                 'registrations' => $data[$key] ?? 0,
             ];
         });
+    }
+
+    public function routeNotificationForMail()
+    {
+        return $this->email;
     }
 }

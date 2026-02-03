@@ -507,7 +507,7 @@ export function AppointmentCalendar({
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <Mail className="h-4 w-4 text-muted-foreground" />
-                      <span>{selectedAppointment?.patient?.first_name?.toLowerCase().replace(" ", ".")}@email.com</span>
+                      <span>{selectedAppointment?.patient?.email?.toLowerCase()}</span>
                     </div>
                   </div>
                 </div>
