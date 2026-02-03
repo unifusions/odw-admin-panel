@@ -150,8 +150,8 @@ class Appointment extends Model
 
     public function confirm()
     {
-        // $this->update(['status' => 'confirmed',
-        // 'is_confirmed' => true]);
+        $this->update(['status' => 'confirmed',
+        'is_confirmed' => true]);
         $this->notifyPatient();
     }
 
@@ -172,10 +172,7 @@ class Appointment extends Model
         }
 
 
-        // foreach ($user->devices as $device) {
-        //     $device->notify(new AppointmentConfirmedPushNotification($this));
-
-        // }
+      
     }
 
 }

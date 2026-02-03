@@ -2,8 +2,9 @@
 
 namespace App\Notifications;
 
-use App\Mail\AppointmentConfirmation;
-use App\Models\Appointment;
+use App\Mail\SecondOpinionReplied;
+use App\Mail\SecondOpinionRequested;
+use App\Models\SecondOpinion;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -17,25 +18,25 @@ use NotificationChannels\Fcm\FcmMessage;
 use NotificationChannels\Fcm\Resources\Notification as FcmNotification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
-class AppointmentStatusPushNotification extends Notification
+class SecondOpinionNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(
-        public Appointment $appointment,
-        public string $type // confirmed | rescheduled | cancelled)
-    ) {
+    public  $title = [
+    'replied' => "Your Second Opinion is Ready",
+    'requested' => "Second Opinion Request Received"
+    ];
+
+    public $message = [
+        'replied' => "Your second opinion is now available. You can log in to the app and review your personalized feedback from our dental team.",
+        'requested' => "Thanks for submitting your treatment plan for a second opinion. Our team is reviewing the information."
+    ];
+    public function __construct(public SecondOpinion $secondopinion, public string $type)
+    {
         //
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
+
     public function via(object $notifiable): array
     {
         $channels = ['database'];
@@ -60,32 +61,33 @@ class AppointmentStatusPushNotification extends Notification
         }
 
         return $channels;
-
     }
 
     /**
      * Get the mail representation of the notification.
      */
-
-    public function toDatabase(object $notifiable): array
+    public function toDatabase(object $notifiable)
     {
         return [
             'type' => $this->type,
-            'title' => "Appointment {$this->type}",
-            'message' => "Your appointment is {$this->type}",
-            'action_url' => '/appointments',
+            'title' => $this->title[$this->type] ,
+            'message' =>$this->message[$this->type],
+            'action_url' => '/second-opinions',
         ];
     }
     public function toMail(object $notifiable)
     {
+        
+            return (new SecondOpinionRequested(
+                $this->secondopinion,
+               $this->type,
+            ))->to($notifiable->email);
 
-        return (new AppointmentConfirmation(
-            $this->appointment,
-            $this->type
-        ))->to($notifiable->email);
-
+        
 
     }
+
+
     public function toApn($notifiable)
     {
         if ($notifiable->platform !== 'ios') {
@@ -93,8 +95,8 @@ class AppointmentStatusPushNotification extends Notification
         }
 
         return ApnMessage::create()
-            ->title("Appointment {$this->type}")
-            ->body("Your appointment has been {$this->type}")
+            ->title($this->title[$this->type])
+            ->body($this->message[$this->type])
             ->sound('default')
             ->badge(1);
     }
@@ -106,8 +108,8 @@ class AppointmentStatusPushNotification extends Notification
         }
 
         return (new FcmMessage(notification: new FcmNotification(
-            title: "Appointment {$this->type}",
-            body: "Your appointment has been {$this->type}",
+            title:$this->title[$this->type],
+            body:$this->message[$this->type]
 
         )))
 
@@ -128,12 +130,17 @@ class AppointmentStatusPushNotification extends Notification
             ]);
     }
 
+
+
     public function toTwilio($notifiable)
     {
+        $messages = [
+            'replied' => "Your second opinion is now available. You can log in to the app and review your personalized feedback from our dental team.",
+            'requested' => "Thanks for submitting your treatment plan for a second opinion. Our team is reviewing the information."
+        ];
         return (new TwilioSmsMessage())
-            ->content("Your appointment has been {$this->type} with ODW");
+            ->content($messages[$this->type]);
     }
-
 
     public function toArray(object $notifiable): array
     {

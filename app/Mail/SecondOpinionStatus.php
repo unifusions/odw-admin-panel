@@ -10,18 +10,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SecondOpinionRequested extends Mailable
+class SecondOpinionStatus extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-
-  
     public function __construct(public SecondOpinion $secondopinion, public string $type)
     {
-      
+        //
     }
 
     /**
@@ -30,7 +28,7 @@ class SecondOpinionRequested extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'ODW : Second Opinion Requested',
+            subject: 'Second Opinion Status',
         );
     }
 
@@ -41,7 +39,11 @@ class SecondOpinionRequested extends Mailable
     {
         return new Content(
             view: 'mail.secondopinion.sonotification',
-            with : ['secondopinion' , $this->secondopinion]
+            with: [
+                'secondopinion',
+                $this->secondopinion,
+                'type' => $this->type,
+            ]
         );
     }
 

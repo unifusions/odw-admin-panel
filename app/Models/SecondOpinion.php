@@ -51,4 +51,5 @@ class SecondOpinion extends Model
    {
       return $this->hasOne(SoReply::class);
    }
+   
 }

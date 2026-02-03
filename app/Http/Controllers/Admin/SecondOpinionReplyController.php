@@ -57,16 +57,15 @@ class SecondOpinionReplyController extends Controller
                 'file_type' => $file->extension(),
             ]);
             if ($soreply) {
-                $second_opinion->status = "answered";
+                // $second_opinion->status = "answered";
                  $soreply->isReplied();
-
-                $second_opinion->save();
+                // $second_opinion->save();
             }
         }
 
-        if (!empty($second_opinion->patient?->email)) {
-            Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
-        }
+        // if (!empty($second_opinion->patient?->email)) {
+        //     Mail::to($second_opinion->patient->email)->send(new SecondOpinionReplied($second_opinion->patient->first_name));
+        // }
        
         // $ok = $this->fcm->send(
         //     $second_opinion->patient->user->fcm_token,

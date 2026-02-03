@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\SecondOpinion;
+use App\Notifications\SecondOpinionNotification;
 use App\Notifications\SecondOpinionReplyPushNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -24,9 +25,10 @@ class SoReply extends Model
     public function getFileUrlAttribute()
     {
         return URL::signedRoute(
-        'secure.file',                 
-               // link expiry
-        ['path' => $this->path]);    
+            'secure.file',
+            // link expiry
+            ['path' => $this->path]
+        );
 
         // return route('files.show', ['path' => $this->path]);
     }
@@ -47,19 +49,24 @@ class SoReply extends Model
         return $this->belongsTo(SecondOpinion::class, 'second_opinion_id', 'id');
     }
 
-    public function isReplied(){
+    public function isReplied()
+    {
 
-    $user= $this->secondopinion?->patient?->user;
 
+        $user = $this->secondopinion?->patient?->user;
+   
         if (!$user) {
             return;
         }
 
 
-
+        $user->notify(new SecondOpinionNotification($this->secondopinion, 'replied'));
         foreach ($user->devices as $device) {
-            $device->notify(new SecondOpinionReplyPushNotification( ));
+            $device->notify(new SecondOpinionNotification($this->secondopinion, 'replied'));
         }
-    
+
     }
+
+
+
 }
