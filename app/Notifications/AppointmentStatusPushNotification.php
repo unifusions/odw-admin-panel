@@ -68,8 +68,8 @@ class AppointmentStatusPushNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
 
-      return (new AppointmentConfirmation($this->appointment, $this->type))
-        ->to($this->appointment->patient->email ??  $this->appointment->patient->user->email);
+      return new AppointmentConfirmation($this->appointment, $this->type);
+        
       
     }
     public function toApn($notifiable)
