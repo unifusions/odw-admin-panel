@@ -10,6 +10,7 @@ use App\Models\Admin\DentalService;
 use App\Models\Admin\Dentist;
 use App\Notifications\AppointmentConfirmedNotification;
 use App\Notifications\AppointmentConfirmedPushNotification;
+use App\Notifications\AppointmentStatusPushNotification;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -166,7 +167,8 @@ class Appointment extends Model
 
 
         foreach ($user->devices as $device) {
-            $device->notify(new AppointmentConfirmedPushNotification($this));
+            // $device->notify(new AppointmentConfirmedPushNotification($this));
+            $device->notify(new AppointmentStatusPushNotification($this , 'confirmed'));
         }
     }
 
