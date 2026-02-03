@@ -69,7 +69,7 @@ class AppointmentStatusPushNotification extends Notification
     {
 
       return (new AppointmentConfirmation($this->appointment, $this->type))
-        ->to($notifiable->email);
+        ->to($this->appointment->patient->email ??  $this->appointment->patient->user->email);
       
     }
     public function toApn($notifiable)
