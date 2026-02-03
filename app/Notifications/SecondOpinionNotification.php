@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Mail\SecondOpinionReplied;
 use App\Mail\SecondOpinionRequested;
+use App\Mail\SecondOpinionStatus;
 use App\Models\SecondOpinion;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -78,7 +79,7 @@ class SecondOpinionNotification extends Notification
     public function toMail(object $notifiable)
     {
         
-            return (new SecondOpinionRequested(
+            return (new SecondOpinionStatus(
                 $this->secondopinion,
                $this->type,
             ))->to($notifiable->email);

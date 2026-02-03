@@ -18,32 +18,16 @@ export default function Dashboard() {
     weeklyStats
   } = usePage().props;
 
-  const RenderUpGraph = ({ percentile }) => {
 
-    return (
-      <> <span className="badge bg-soft-success text-success">
-        <i className="bi-graph-up" /> {percentile.toFixed(2)} %
-      </span>
-      </>
-    )
-  }
-
-  const RenderDownGraph = ({ percentile }) => {
-    return (
-      <span className="badge bg-soft-danger text-danger">
-        <i className="bi-graph-down" /> {percentile.toFixed(2)} %
-      </span>
-    )
-  }
   return (
     <AuthenticatedLayout
       header='Dashboard'
-pageTitle = "Dashboard"
+      pageTitle="Dashboard"
     >
-       
-<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-  <StatsCard
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+        <StatsCard
           title="Patient Registrations"
           value={patients_count?.current}
           change={{ value: 12, trend: "up" }}
@@ -54,15 +38,15 @@ pageTitle = "Dashboard"
         <StatsCard
           title="Appointments"
           value={appointmentcount}
-          change={{ value: previousAppointmentCount, trend: appointmentcount > previousAppointmentCount  ? "up" : "down" }}
+          change={{ value: previousAppointmentCount, trend: appointmentcount > previousAppointmentCount ? "up" : "down" }}
           icon={Calendar}
           iconColor="primary"
         />
-        
-           <StatsCard
+
+        <StatsCard
           title="Second Opinions"
           value={socount}
-          change={{ value: previousSoCount, trend: socount > previousSoCount ? "up" : "down"}}
+          change={{ value: previousSoCount, trend: socount > previousSoCount ? "up" : "down" }}
           icon={MessageSquare}
           iconColor="info"
         />
@@ -70,14 +54,14 @@ pageTitle = "Dashboard"
         <StatsCard
           title="Estimates"
           value={estimatesCount}
-          change={{ value: previousEstimatesCount, trend: estimatesCount > previousEstimatesCount ?"up" :"down" }}
+          change={{ value: previousEstimatesCount, trend: estimatesCount > previousEstimatesCount ? "up" : "down" }}
           icon={FileText}
           iconColor="warning"
         />
-     
+
       </div>
-    
- <div className="mt-6 grid gap-6 lg:grid-cols-2">
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <Card className="shadow-card">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-base font-semibold">
@@ -95,7 +79,7 @@ pageTitle = "Dashboard"
             </div>
           </CardHeader>
           <CardContent>
-             
+
             <AppointmentChart stats={weeklyStats} />
           </CardContent>
         </Card>
@@ -112,14 +96,14 @@ pageTitle = "Dashboard"
           </CardHeader>
           <CardContent>
             {/* {JSON.stringify( patient_registration)} */}
-            <RevenueChart  stats={patientStats}  />
+            <RevenueChart stats={patientStats} />
           </CardContent>
         </Card>
       </div>
 
       {/* Appointments and Activity Row */}
       {/* <div className="mt-6 grid gap-6 lg:grid-cols-3"> */}
-{/*    
+      {/*    
         <div className="lg:col-span-2">
           <Card className="shadow-card">
             <CardHeader className="flex flex-row items-center justify-between pb-4">
@@ -142,8 +126,8 @@ pageTitle = "Dashboard"
           </Card>
         </div> */}
 
-        {/* Recent Activity */}
-        {/* <div>
+      {/* Recent Activity */}
+      {/* <div>
           <Card className="shadow-card">
             <CardHeader className="pb-4">
               <CardTitle className="text-base font-semibold">
@@ -160,7 +144,7 @@ pageTitle = "Dashboard"
         </div> */}
       {/* </div> */}
 
-      
+
     </AuthenticatedLayout>
   );
 }

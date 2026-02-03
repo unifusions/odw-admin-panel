@@ -80,9 +80,9 @@ class AppointmentController extends Controller
 
     public function confirmAppointment(Request $request, Appointment $appointment)
     {
-         
-         $type = 'confirmation';
-       $appointment->confirm();
+
+        $type = 'confirmation';
+        $appointment->confirm();
 
         $appointment->notes()->create([
             'type' => $type,

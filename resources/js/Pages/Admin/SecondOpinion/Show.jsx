@@ -321,7 +321,7 @@ const SecondOpinionView = () => {
                                         // disabled={!selectedDoctor}
                                     >
                                         <Stethoscope className="h-4 w-4 mr-2" />
-                                        Assign Doctor
+                                        Assign Status
                                     </Button>
                                 </div>
                             )}

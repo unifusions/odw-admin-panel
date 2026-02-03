@@ -1,4 +1,5 @@
 
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
 import { Input } from "@/Components/ui/input";
@@ -18,7 +19,7 @@ export default function WorkingHours({ clinic, clinicschedule }) {
         return acc;
     }, {});
 
-    const { data, setData, post } = useForm({
+    const { data, setData, post, processing } = useForm({
         schedule: {
             ...daysOfWeek.reduce((acc, day) => {
                 acc[day] = clinicschedule[day] || { isOpen: false, open: "", close: "" };
@@ -117,9 +118,12 @@ export default function WorkingHours({ clinic, clinicschedule }) {
 
                     </CardContent>
                     <CardFooter>
-                        <Button type="submit">
-                            Update Business Hours
-                        </Button>
+                         <SubmitButton
+                                                    processing={processing}
+                                                    actionText="Update Business Hours"
+                        
+                                                />
+                     
                     </CardFooter>
                 </Card>
 

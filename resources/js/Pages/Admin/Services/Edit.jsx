@@ -9,6 +9,7 @@ import SingleHeader from "@/Components/SingleHeader";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, router, useForm, usePage } from "@inertiajs/react";
 
@@ -275,7 +276,12 @@ export default function Edit() {
 
                             <div className="text-end">
                                 {/* <button type="button" className="btn btn-white me-3" onClick={closeModal}>Close</button> */}
-                                <button type="submit" className="btn btn-primary">Update Treatment</button>
+                               
+ <SubmitButton
+                            processing={processing}
+                            actionText="Update Treatment"
+
+                        />
 
                             </div>
 

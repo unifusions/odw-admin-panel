@@ -2,6 +2,7 @@
 import { Column, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { Label } from "@/Components/ui/label";
@@ -122,9 +123,12 @@ export default function Edit({ user, selectedClinic, clinics, roles, selectedRol
 
 
 <CardFooter className="border-t border-border">
-    <Button type="submit">
-        Save User
-    </Button>
+     <SubmitButton 
+                                                    processing={processing}
+                                                    actionText="Save User"
+                                                   
+                                                />
+   
 </CardFooter>
 
 

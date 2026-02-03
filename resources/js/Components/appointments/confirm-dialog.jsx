@@ -20,6 +20,7 @@ import {
   MessageSquare,
   Mail,
   Phone,
+  Loader,
 } from "lucide-react";
 import ConfirmedAppointment from "./confirmed";
  
@@ -181,7 +182,7 @@ export function ConfirmDialog({
               <Button variant="outline" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button onClick={handleConfirm}  disabled = {processing}>Confirm Appointment {processing && 'Processing'}</Button>
+              <Button onClick={handleConfirm}  disabled = {processing}> {processing ?   <Loader className="w-5 animate-spin" /> : 'Confirm Appointment'}</Button>
             </DialogFooter>
           </>
         ) : (

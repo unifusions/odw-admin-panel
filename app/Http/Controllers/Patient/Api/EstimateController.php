@@ -7,13 +7,12 @@ use App\Models\Admin\DentalService;
 use App\Models\DentalCare;
 use App\Models\Estimate;
 use App\Models\EstimateService;
+use App\Notifications\EstimateNotification;
 use Illuminate\Http\Request;
 
 class EstimateController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+     
     public function index(Request $request)
     {
 
@@ -64,6 +63,7 @@ class EstimateController extends Controller
                     'dental_care_id' => $d
                 ]);
             }
+            $estimation->user->notify(new EstimateNotification($estimation,'requested'));
         return response()->json(['success' => 'Estimation Requested']);
         // $category = json_decode( $request->category);
         // $dentalcares = json_decode($request->selectedItems);

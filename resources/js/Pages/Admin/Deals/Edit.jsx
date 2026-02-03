@@ -20,6 +20,7 @@ import { DateRangePicker } from "@/Components/ui/date-range-picker";
 import { Button } from "@/Components/ui/button";
 import { X } from "lucide-react";
 import { Textarea } from "@/Components/ui/textarea";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 
 
 export default function Edit() {
@@ -149,9 +150,12 @@ export default function Edit() {
                   </div> 
                     </CardContent>
                     <CardFooter className="border-t border-border">
-                        <Button type="submit" className="btn btn-primary" disabled={processing}>{processing ? <div className="spinner-border spinner-border-sm" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div> : 'Update Deal'} </Button>
+                       <SubmitButton
+                                                  processing={processing}
+                                                  actionText="Update Deal"
+                      
+                                              />
+                      
                     </CardFooter>
                 </Card>
            

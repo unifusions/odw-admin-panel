@@ -4,6 +4,7 @@ import ServiceImageUploader from "@/Components/ServiceImageUploader";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
 import { Input } from "@/Components/ui/input";
@@ -509,9 +510,14 @@ export default function Create() {
 
                         <CardFooter className="border-t border-border">
 
-                            <Button type="submit" >
-                                Publish
-                            </Button>
+ <SubmitButton
+                            processing={processing}
+                            actionText="Add Clinic"
+
+                        />
+
+
+                          
 
                         </CardFooter>
 

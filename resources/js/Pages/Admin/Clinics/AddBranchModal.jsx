@@ -1,5 +1,6 @@
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { useForm } from "@inertiajs/react";
 import axios from "axios";
 import { useEffect, useState, useRef } from "react"
@@ -297,7 +298,13 @@ export default function AddBranchModal({ clinic }) {
 
                                 <div className="text-end">
                                     <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary">Save Clinic</button>
+                                     <SubmitButton
+                                                                processing={processing}
+                                                                actionText="Save Clinic"
+                                    
+                                                            />
+                                    
+
 
                                 </div>
 

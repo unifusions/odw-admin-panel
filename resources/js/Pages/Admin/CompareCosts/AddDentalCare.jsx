@@ -1,5 +1,6 @@
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { useForm } from "@inertiajs/react";
 import { useEffect, useRef } from "react";
 import ReactSelect from "react-select";
@@ -146,9 +147,12 @@ export default function AddDentalCare({ categories }) {
 
                                 <div className="text-end">
                                     <button type="button" className="btn btn-white me-3" onClick={toggleModal}>Close</button>
-                                    <button type="submit" className="btn btn-primary" disabled={processing}>{processing ? <div className="spinner-border spinner-border-sm" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div> : 'Save'} </button>
+                                     <SubmitButton
+                                                                processing={processing}
+                                                                actionText="Add Service"
+                                    
+                                                            />
+                                    
 
                                 </div>
 

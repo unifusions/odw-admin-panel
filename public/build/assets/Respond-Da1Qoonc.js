@@ -1,0 +1,1 @@
+import{j as s}from"./app-Cxiu3gMj.js";import"./app-Dgm9znLA.js";function i({estimate:t}){return s.jsxs("button",{className:"btn btn-primary",children:[s.jsx("i",{class:"bi bi-reply"})," Respond"]})}export{i as default};

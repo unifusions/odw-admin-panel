@@ -5,6 +5,7 @@ import PageHeader from "@/Components/PageHeader";
 import ServiceImageUploader from "@/Components/ServiceImageUploader";
 import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { Label } from "@/Components/ui/label";
@@ -191,7 +192,12 @@ export default function Create() {
                                     </div>
                                 </CardContent>
                                 <CardFooter className="border-t border-border">
-                                    <Button type="submit">Save Specialist</Button>
+                                   <SubmitButton
+                                                              processing={processing}
+                                                              actionText="Update Specialists"
+                                  
+                                                          />
+                                  
                                 </CardFooter>
 
 

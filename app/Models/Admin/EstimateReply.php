@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Estimate;
 
+use App\Notifications\EstimateNotification;
 use App\Notifications\EstimateReplyPushNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -27,31 +28,34 @@ class EstimateReply extends Model
 
     public function estimate()
     {
-        return $this->belongsTo(Estimate::class,'estimate_id', 'id');
+        return $this->belongsTo(Estimate::class, 'estimate_id', 'id');
     }
 
     public function getFileUrlAttribute()
     {
         return URL::signedRoute(
-        'secure.file',                 
-               // link expiry
-        ['path' => $this->path]);    
+            'secure.file',
+            // link expiry
+            ['path' => $this->path]
+        );
     }
 
-    public function isReplied(){
+    public function isReplied()
+    {
 
-    $user= $this->estimate?->patient?->user;
+        $user = $this->estimate?->patient?->user;
 
         if (!$user) {
             return;
         }
 
 
+            $user->notify(new EstimateNotification($this->estimate, 'replied'));
 
         foreach ($user->devices as $device) {
-            $device->notify(new EstimateReplyPushNotification( ));
+            $device->notify(new EstimateNotification($this->estimate, 'replied'));
         }
-    
+
     }
 
 }

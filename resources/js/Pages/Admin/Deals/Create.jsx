@@ -17,6 +17,7 @@ import { Button } from "@/Components/ui/button";
 import { X } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { Textarea } from "@/Components/ui/textarea";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 
 export default function Create() {
 
@@ -144,9 +145,13 @@ const formatDate = (date) => {
                   </div> 
                     </CardContent>
                     <CardFooter className="border-t border-border">
-                        <Button type="submit" className="btn btn-primary" disabled={processing}>{processing ? <div className="spinner-border spinner-border-sm" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div> : 'Save Deal'} </Button>
+                         <SubmitButton
+                                                    processing={processing}
+                                                    actionText="Save Deal"
+                        
+                                                />
+                        
+                      
                     </CardFooter>
                 </Card>
            

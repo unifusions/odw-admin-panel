@@ -4,6 +4,7 @@ import { Column, DisplayFlex, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import PageHeader from "@/Components/PageHeader";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 import { Combobox, ComboboxChip, ComboboxChips, ComboboxChipsInput, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxValue, useComboboxAnchor } from "@/Components/ui/combobox";
@@ -214,7 +215,12 @@ export default function Edit() {
                                     </FieldContent>
                                 </Field>
                             </FieldLabel>
-                            <Button type="submit" >{processing && <LoaderIcon className="size-4 animate-spin" />}Update</Button>
+                             <SubmitButton
+                                                        processing={processing}
+                                                        actionText="Update"
+                            
+                                                    />
+                            
                         </CardContent>
                     </Card>
 

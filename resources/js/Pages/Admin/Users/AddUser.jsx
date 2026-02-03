@@ -1,6 +1,7 @@
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { useForm, usePage } from "@inertiajs/react";
 import { useRef, useState } from "react";
 
@@ -282,7 +283,12 @@ export default function AddUser() {
                                 <div className="row mb-4">
                                     <div className="col-sm-12 text-end">
                                         <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-primary">Save User</button>
+                                       <SubmitButton
+                                                                  processing={processing}
+                                                                  actionText="Save User"
+                                      
+                                                              />
+                                      
                                     </div>
                                 </div>
 

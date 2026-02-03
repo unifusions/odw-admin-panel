@@ -1,3 +1,5 @@
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
+
 export default function Information() {
     return (
         <div className="content container-fluid">
@@ -1445,7 +1447,12 @@ export default function Information() {
 
                                 <div className="d-flex justify-content-end gap-3">
                                     <a className="btn btn-white" href="#">Learn more</a>
-                                    <button type="submit" className="btn btn-danger">Delete</button>
+                                     <SubmitButton variant="destructive"
+                                                                                    processing={processing}
+                                                                                    actionText=" Delete"
+                                                                                   
+                                                                                />
+                                   
                                 </div>
                             </div>
                         </div>

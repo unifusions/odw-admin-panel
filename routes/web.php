@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\Admin\AppointmentController;
@@ -25,7 +24,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SpecialistController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CitiesController;
-use App\Http\Controllers\Clinic\AppointmentController as ClinicAppointmentController;
+ 
 use App\Http\Controllers\Clinic\DashboardController as ClinicDashboardController;
 use App\Http\Controllers\DentalServicesController;
 use App\Http\Controllers\Patient\AppointmentController as PatientAppointmentController;
@@ -49,8 +48,8 @@ Route::get('send-test-mail', function () {
     // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
 })->name('sendtestmail');
 
-Route::get('privacy-policy', PrivacyPolicyController::class );
-Route::get('support', SupportController::class );
+Route::get('privacy-policy', PrivacyPolicyController::class);
+Route::get('support', SupportController::class);
 
 
 // Route::get('/login', [PreloginController::class, 'preLogin'])->name('login');
@@ -89,28 +88,28 @@ Route::middleware(['auth', 'role:super_admin'])->prefix('admin')->group(function
     Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::resource('appointments', AppointmentController::class);
     Route::put('/appointments/confirm/{appointment}', [AppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
-    
+
     Route::put('/appointments/reschedule/{appointment}', [AppointmentController::class, 'rescheduleAppointment'])->name('appointments.reschedule');
-    
+
     Route::get('/appointments/status/pending/', [AppointmentController::class, 'pendingAppointment'])->name('appointments.pending');
     Route::put('/appointments/status/cancel/{appointment}', [AppointmentController::class, 'cancelAppointment'])->name('appointments.cancel');
 
     Route::resource('second-opinion', SecondOpinionController::class);
 
-    Route::resource('second-opinion.replies', SecondOpinionReplyController::class)->only(['index','store']);
+    Route::resource('second-opinion.replies', SecondOpinionReplyController::class)->only(['index', 'store']);
     Route::post('second-opinion/{second_opinion}/status', [SecondOpinionController::class, 'updateStatus'])->name('second-opinion.status');
     Route::resource('estimates', EstimateController::class);
     Route::resource('estimates.replies', EstimateReplyController::class)->only('store');
     Route::post('estimates/{estimate}/status', [EstimateController::class, 'updateStatus'])->name('estimates.status');
-    
+
     Route::resource('compare-costs', CompareCostController::class);
 
     Route::patch('/compare-costs/{compare_cost}/toggle-featured', [CompareCostController::class, 'toggleFeatured'])
         ->name('compare-costs.toggle-featured');
 
     Route::resource('patients', PatientsController::class);
-Route::get('patients/{patient}/devices', [PatientsController::class,'getDevices'])->name('patients.devices');
-Route::post('patients/{patient}/devices/{device}', [PatientsController::class,'pushNotifications'])->name('patients.testnotification');
+    Route::get('patients/{patient}/devices', [PatientsController::class, 'getDevices'])->name('patients.devices');
+    Route::post('patients/{patient}/devices/{device}', [PatientsController::class, 'pushNotifications'])->name('patients.testnotification');
     Route::resource('clinics', ClinicsController::class);
     Route::post('/clinics/{clinic}/update-schedule', [ClinicsController::class, "updateSchedule"])->name('clinics.updateSchedule');
     Route::post('/clinics/{clinic}/update-services', [ClinicsController::class, "updateServices"])->name('clinics.updateServices');
@@ -145,16 +144,20 @@ Route::post('patients/{patient}/devices/{device}', [PatientsController::class,'p
 Route::middleware(['auth', 'role:clinic_admin'])->prefix('clinic/admin')->group(function () {
     Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.dashboard');
     Route::resource('users', UsersController::class);
-    Route::get('/appointments', [AdminClinicAppointmentController::class, 'index'])->name('clinic.appointments.index');;
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('clinic.appointments.index');
+    ;
     Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('clinic.appointments.pending');
     Route::put('/appointments/confirm/{appointment}', [AdminClinicAppointmentController::class, 'confirmAppointment'])->name('clinic.appointments.confirm');
     Route::put('/appointments/cancel/{appointment}', [AdminClinicAppointmentController::class, 'cancelAppointment'])->name('clinic.appointments.cancel');
-});
+ 
+
+
+    });
 
 Route::middleware(['auth', 'role:clinic_user'])->prefix('clinic/user')->group(function () {
     Route::get('/dashboard', ClinicDashboardController::class)->name('clinic.user.dashboard');
 
-    Route::get('/appointments', [AdminClinicAppointmentController::class, 'index'])->name('clinic.user.appointments.index');
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('clinic.user.appointments.index');
     Route::get('/appointments/pending', [AdminClinicAppointmentController::class, 'pendingAppointment'])->name('clinic.user.appointments.pending');
     Route::put('/appointments/confirm/{appointment}', [AdminClinicAppointmentController::class, 'confirmAppointment'])->name('clinic.user.appointments.confirm');
     Route::put('/appointments/cancel/{appointment}', [AdminClinicAppointmentController::class, 'cancelAppointment'])->name('clinic.user.appointments.cancel');
@@ -184,8 +187,8 @@ Route::get('preview-notification', function () {
         'type' => 'confirmed',
         'appointment' => Appointment::find(27)
     ]);
-}); 
-    
+});
+
 // Route::get('/files/{path}', [FilesController::class, 'show'])
 //     ->where('path', '.*')
 //     ->name('files.show');

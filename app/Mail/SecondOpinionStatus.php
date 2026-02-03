@@ -13,10 +13,10 @@ use Illuminate\Queue\SerializesModels;
 class SecondOpinionStatus extends Mailable
 {
     use Queueable, SerializesModels;
-
-    /**
-     * Create a new message instance.
-     */
+   public  $title = [
+    'replied' => "Your Second Opinion is Ready",
+    'requested' => "Second Opinion Request Received"
+    ];
     public function __construct(public SecondOpinion $secondopinion, public string $type)
     {
         //
@@ -28,7 +28,7 @@ class SecondOpinionStatus extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Second Opinion Status',
+                subject: "ODW : {$this->title[$this->type]} ",
         );
     }
 
@@ -40,8 +40,7 @@ class SecondOpinionStatus extends Mailable
         return new Content(
             view: 'mail.secondopinion.sonotification',
             with: [
-                'secondopinion',
-                $this->secondopinion,
+                'secondopinion' => $this->secondopinion,
                 'type' => $this->type,
             ]
         );

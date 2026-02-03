@@ -10,6 +10,8 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
+// to be deleted
 class SecondOpinionRequested extends Mailable
 {
     use Queueable, SerializesModels;
@@ -18,7 +20,11 @@ class SecondOpinionRequested extends Mailable
      * Create a new message instance.
      */
 
-  
+   public  $title = [
+    'replied' => "Your Second Opinion is Ready",
+    'requested' => "Second Opinion Request Received"
+    ];
+
     public function __construct(public SecondOpinion $secondopinion, public string $type)
     {
       
@@ -30,7 +36,7 @@ class SecondOpinionRequested extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'ODW : Second Opinion Requested',
+            subject: "ODW : {$this->title[$this->type]} ",
         );
     }
 

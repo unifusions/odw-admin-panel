@@ -48,7 +48,7 @@ const clinicAdminNavigation = [
     { name: "Appointments", href: '/clinic/admin/appointments', icon: Calendar, badge: 12 },
 
 
-    { name: "Patients", href: '/clinic/patients', icon: Users },
+    // { name: "Patients", href: '/clinic/patients', icon: Users },
 
 
 ];

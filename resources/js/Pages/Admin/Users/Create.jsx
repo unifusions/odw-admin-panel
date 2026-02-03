@@ -2,6 +2,7 @@
 import { Column, Row } from "@/Components/Components";
 import InputLabel from "@/Components/InputLabel";
 import TextInputWithLabel from "@/Components/TextInputWithLabel";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { Label } from "@/Components/ui/label";
@@ -44,7 +45,8 @@ export default function Create() {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Users
             </Button>
-            <Card className="max-w-lg">
+            <div className="grid grid-cols-2 gap-6">
+    <Card className="max-w-lg">
 
                 <form onSubmit={onsubmit} noValidate>
 
@@ -125,20 +127,27 @@ export default function Create() {
                     </CardContent>
 
 
-<CardFooter className="border-t border-border">
-    <Button type="submit">
-        Save User
-    </Button>
-</CardFooter>
+                    <CardFooter className="border-t border-border">
+                        <SubmitButton
+                            processing={processing}
+                            actionText="Add User"
+
+                        />
+
+                    </CardFooter>
 
 
 
                 </form>
             </Card>
 
-            {/* <div>
-                {JSON.stringify(clinics)}
-            </div> */}
+ <div>
+{/* {errors && errors.map((error) => )}  */}
+ </div>
+            
+            </div>
+        
+ 
         </AuthenticatedLayout>
     )
 }

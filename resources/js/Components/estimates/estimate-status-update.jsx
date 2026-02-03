@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Button } from "../ui/button";
 import { useForm } from "@inertiajs/react";
+import SubmitButton from "../ui-ext/SubmitButton";
 
 
 const status = [
@@ -13,7 +14,7 @@ const status = [
 export default function EstimateStatusUpdate({estimate}){
 
 
-    const {data, setData, post} = useForm({
+    const {data, setData, post, processing} = useForm({
         'status' : ''
     })
     const onsubmit = (e) =>{
@@ -50,13 +51,12 @@ export default function EstimateStatusUpdate({estimate}){
                                             ))}
                                         </SelectContent>
                                     </Select>
-                                    <Button
-                                        className="w-full"
-                                        type="submit"
-                                        // disabled={!selectedDoctor}
-                                    > 
-                                        Update Status
-                                    </Button>
+                                     <SubmitButton 
+                                                processing={processing}
+                                                actionText=" Update Status"
+                                               
+                                            />
+                                   
                                 </div>
 
                         </CardContent>

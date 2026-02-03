@@ -1,4 +1,5 @@
 
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import "flatpickr/dist/flatpickr.css";
 import Flatpickr from "react-flatpickr/"
 
@@ -156,7 +157,13 @@ export default function InsuranceDetails(second) {
 
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                     {/* <SubmitButton
+                                                processing={processing}
+                                                actionText="Save Changes"
+                    
+                                            /> */}
+                    
+                   
                 </div>
             </form>
 

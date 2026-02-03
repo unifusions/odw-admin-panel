@@ -5,6 +5,7 @@ import TextArea from "@/Components/TextArea";
 import { useForm } from "@inertiajs/react"
 import { useRef } from "react";
 import FileUploader from "@/components/FileUploader";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 
 export default function GiveEstimate({ estimate, isDisabled }) {
 
@@ -74,9 +75,12 @@ export default function GiveEstimate({ estimate, isDisabled }) {
                                 </Row>
                                 <div className="text-end">
                                     <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary" disabled={processing}>{processing ? <div className="spinner-border spinner-border-sm" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div> : 'Submit Estimation'} </button>
+                                     <SubmitButton
+                                                                processing={processing}
+                                                                actionText="Submit Estimate"
+                                    
+                                                            />
+                                    
 
                                 </div>
                             </form>

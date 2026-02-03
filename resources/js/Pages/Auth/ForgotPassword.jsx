@@ -1,8 +1,13 @@
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import SubmitButton from '@/Components/ui-ext/SubmitButton';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/Components/ui/card';
+import { Field, FieldGroup, FieldLabel } from '@/Components/ui/field';
+import { Input } from '@/Components/ui/input';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { Key } from 'lucide-react';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -32,35 +37,22 @@ export default function ForgotPassword({ status }) {
 `);
 
     return (
-        <GuestLayout>
-
-            <div className="position-fixed top-0 end-0 start-0 bg-img-start" style={{ height: '32rem', backgroundImage: `url("data:image/svg+xml,${bgSvg}")` }} >
-
-                <div className="shape shape-bottom zi-1">
-                    <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
-                        <polygon fill="#fff" points="0,273 1921,273 1921,0 "></polygon>
-                    </svg>
-                </div>
-
-            </div>
-
-            <div class="container py-5 py-sm-7">
-                <a class="d-flex justify-content-center mb-5" href="./index.html">
-                    <img class="zi-2" src="/images/odw-logo.png" alt="Image Description" style={{ width: '8rem' }} />
-                </a>
-
-                <div class="mx-auto" style={{ maxWidth: '30rem' }}>
-
-                    <div class="card card-lg mb-5">
-                        <div class="card-body">
+   
+<div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+          <div className="w-full max-w-sm">
+            <div className="flex flex-col gap-6">
+                <Card>
+                    <CardHeader>
+                                 <img className="h-15 text-center mx-auto mb-5" src="/images/odw-logo-h.png" alt="Logo" />
+                                <CardTitle>Forgot password?</CardTitle>
+                                <CardDescription>
+                                  Enter the email address you used when you joined and we'll send you instructions to reset your password.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
 
                             <form onSubmit={submit}>
-                                <div class="text-center">
-                                    <div class="mb-5">
-                                        <h1 class="display-5">Forgot password?</h1>
-                                        <p>Enter the email address you used when you joined and we'll send you instructions to reset your password.</p>
-                                    </div>
-                                </div>
+                                
                                 {status && (
                                     <div className="mb-4 text-sm font-medium text-green-600">
                                         {status}
@@ -68,41 +60,45 @@ export default function ForgotPassword({ status }) {
                                 )}
 
                                 <div class="mb-4">
-                                    <label class="form-label" for="resetPasswordSrEmail" tabindex="0">Your email</label>
-
-                                    <TextInput
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        value={data.email}
-                                        className="mt-1 block w-full"
-                                        isFocused={true}
-                                        onChange={(e) => setData('email', e.target.value)}
-                                    />
-                                    <InputError message={errors.email} className="mt-2" />
+                                    <FieldGroup>
+                                        <Field>
+                                         <FieldLabel htmlFor="email">Email</FieldLabel>
+                                            <Input
+                                                id="email"
+                                                type="email"
+                                                placeholder="email@example.com"
+                                                value={data.email}
+                                                isFocused={true}
+                                                 onChange={(e) => setData('email', e.target.value)}
+                                                required
+                                            />
+                                              <InputError message={errors.email} className="mt-2" />
+                                        </Field>
+                                         <SubmitButton 
+                                                processing={processing}
+                                                actionText="Reset Password"
+                                                icon={Key}
+                                            />
+                                            {/* <Link
+                                                    href={route('login')}
+                                                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                                                >
+                                                    Forgot your password?
+                                                </Link> */}
+                                    </FieldGroup>
+                                   
+ 
                                 </div>
 
 
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-
-                                    <div class="text-center">
-                                        <a class="btn btn-link" href={route('login')}>
-                                            <i class="bi-chevron-left"></i> Back to Sign in
-                                        </a>
-                                    </div>
-                                </div>
+                              
                             </form>
-
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
+                            </CardContent>
+                </Card>
             </div>
-        </GuestLayout>
+          </div>
+            
+ 
+       </div>
     );
 }

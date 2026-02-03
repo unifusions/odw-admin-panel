@@ -1,5 +1,6 @@
 import TextArea from "@/Components/TextArea";
 import TextInputWithLabel from "@/Components/TextInputWithLabel"
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { Button } from "@/Components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card";
 import { Input } from "@/Components/ui/input";
@@ -196,7 +197,12 @@ export default function ClinicInformation({ clinic }) {
 
                     </CardContent>
                     <CardFooter>
-                        <Button type="submit" className="btn btn-primary mt-3">Update Information</Button>
+                         <SubmitButton
+                                                    processing={processing}
+                                                    actionText="Update Information"
+                        
+                                                />
+                        
                     </CardFooter>
                 </Card>
 

@@ -2,6 +2,7 @@ import DentistIcon from "@/Components/Icons/DentistIcon";
 import InputLabel from "@/Components/InputLabel";
 import TextArea from "@/Components/TextArea";
 import TextInput from "@/Components/TextInput";
+import SubmitButton from "@/Components/ui-ext/SubmitButton";
 import { useForm, router } from "@inertiajs/react";
 import axios from "axios";
 import { useRef, useState } from "react"
@@ -165,7 +166,12 @@ export default function AddDentist() {
 
                                 <div className="text-end">
                                     <button type="button" className="btn btn-white me-3" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary">Save Dentist</button>
+                                  
+ <SubmitButton
+                            processing={processing}
+                            actionText="Save Dentist"
+
+                        />
 
                                 </div>
 

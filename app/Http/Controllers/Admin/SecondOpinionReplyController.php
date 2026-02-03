@@ -57,9 +57,9 @@ class SecondOpinionReplyController extends Controller
                 'file_type' => $file->extension(),
             ]);
             if ($soreply) {
-                // $second_opinion->status = "answered";
+                $second_opinion->status = "answered";
                  $soreply->isReplied();
-                // $second_opinion->save();
+                $second_opinion->save();
             }
         }
 
