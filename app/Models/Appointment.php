@@ -152,22 +152,22 @@ class Appointment extends Model
     {
         $this->update(['status' => 'confirmed',
         'is_confirmed' => true]);
-        $this->notifyPatient();
+        $this->notifyPatient('confirmed');
     }
 
 
-    protected function notifyPatient()
+    public function notifyPatient($status)
     {
         $user = $this->patient->user;
 
         if (!$user) {
             return;
         }
-        $user->notify(new AppointmentStatusPushNotification($this, 'confirmed'));
+        $user->notify(new AppointmentStatusPushNotification($this, $status));
 
         foreach ($user->devices as $device) {
             $device->notify(
-                new AppointmentStatusPushNotification($this, 'confirmed')
+                new AppointmentStatusPushNotification($this, $status)
             );
         }
 

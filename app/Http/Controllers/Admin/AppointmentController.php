@@ -100,7 +100,7 @@ class AppointmentController extends Controller
         $appointment->status = 'cancelled';
         $appointment->is_confirmed = false;
         $appointment->save();
-
+        $appointment->notifyPatient('cancelled');
         return redirect()->back()->with(['success' => 'Appointment has been cancelled']);
     }
 
@@ -122,6 +122,7 @@ class AppointmentController extends Controller
         $appointment->time_slot = $request->new_slot;
         $appointment->reschedule_requested_by = 'clinic';
         $appointment->save();
+        $appointment->notifyPatient('rescheduled');
         return redirect()->back()->with(['success' => 'Appointment has been rescheduled']);
 
     }
