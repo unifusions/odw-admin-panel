@@ -35,6 +35,10 @@ class Insurance extends Model
 
     ];
 
+    protected $casts = [
+        'dob' =>'datetime:M/d/Y'
+    ];
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);

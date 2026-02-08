@@ -80,14 +80,15 @@ class SecondOpinionController extends Controller
 
     public function updateStatus(Request $request, SecondOpinion $second_opinion)
     {
-
+ 
+  
         $second_opinion->status = $request->status;
         $second_opinion->save();
 
-        if ($request->status == "closed")
+        
             // Mail::to($second_opinion->patient->user->email)->send(new SecondOpinionClosed($second_opinion->patient->first_name));
         $second_opinion->save();
-        return redirect()->back()->with(['message' => 'Successfully updated the status']);
+        return redirect()->route('second-opinion.show', $second_opinion)->with(['message' => 'Successfully updated the status']);
     }
 
     public function markAsClosed(Request $request, SecondOpinion $second_opinion)

@@ -41,13 +41,9 @@ import QuickActions from "@/Components/secondopinions/quick-actions";
 import PatientCard from "@/Components/patients/patient-card";
 import SoReplyCard from "@/Components/secondopinions/so-reply-card";
 import SoReply from "@/Components/secondopinions/so-reply";
+import SoAttachments from "@/Components/secondopinions/so-attachments";
+import UpdateStatusAction from "@/Components/secondopinions/update-actions";
 
- 
-const so_status = [
-    "In Review",
-     
-    "Completed",
-];
 const statusConfig = {
   in_review: {
     label: "In Review",
@@ -247,33 +243,9 @@ const SecondOpinionView = () => {
                             <p className="text-sm text-muted-foreground">{opinion.description}</p>
                         </CardContent>
                     </Card>
+                    <SoAttachments attachments={opinion?.attachments} />
 
-                    {/* Attachments Card */}
-                    <Card className="shadow-card">
-                        <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                                <Paperclip className="h-5 w-5" />
-                                Attachments  
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="grid gap-3 sm:grid-cols-2">
-                                {   opinion?.attachments.map((attachment, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="flex items-center gap-3 rounded-lg border-border p-3 hover:bg-muted/50 cursor-pointer"
-                                    >
-                                        <FileText className="h-8 w-8 text-muted-foreground" />
-                                        <div>
-                                            <p className="text-sm font-medium">{attachment.file_name}.{attachment.file_type}</p>
-                                            <p className="text-xs text-muted-foreground">{attachment.file_type} Document</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </CardContent>
-                    </Card>
-
+                     
                     {/* Response Section */}
                     {replied ? <SoReplyCard opinion={opinion}/> :  
                         <SoReply so={opinion} />
@@ -282,51 +254,7 @@ const SecondOpinionView = () => {
 
                 {/* Right Column - Actions */}
                 <div className="space-y-6">
-                    {/* Assigned Doctor Card */}
-                    <Card className="shadow-card">
-                        <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                                <Stethoscope className="h-5 w-5" />
-                                Assign Status
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            {opinion.assignedDoctor ? (
-                                <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
-                                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                        <User className="h-5 w-5 text-primary" />
-                                    </div>
-                                    <div>
-                                        <p className="font-medium">{opinion.assignedDoctor}</p>
-                                        <p className="text-xs text-muted-foreground">Reviewing case</p>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="space-y-4">
-                                    <Select  >
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select a doctor" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {so_status.map((sos) => (
-                                                <SelectItem key={sos} value={sos}>
-                                                    {sos}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                    <Button
-                                        className="w-full"
-                                        onClick={handleAssignDoctor}
-                                        // disabled={!selectedDoctor}
-                                    >
-                                        <Stethoscope className="h-4 w-4 mr-2" />
-                                        Assign Status
-                                    </Button>
-                                </div>
-                            )}
-                        </CardContent>
-                    </Card>
+                 <UpdateStatusAction opinion={opinion} />
 
                    {opinion.patient && <PatientCard patient={opinion.patient} />}  
 

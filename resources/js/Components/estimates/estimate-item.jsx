@@ -85,7 +85,7 @@ export default function EstimateItem({ estimate }) {
 
                             <div className="flex items-center gap-2 mt-2">
                                 <Shield className="h-4 w-4 text-muted-foreground" />
-
+ 
                                 <span className="text-sm text-muted-foreground">
                                     {estimate?.insurance ? estimate?.insurance?.insurance_provider : 'No Insurance Attached'}
                                 </span>

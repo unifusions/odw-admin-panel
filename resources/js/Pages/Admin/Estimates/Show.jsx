@@ -19,6 +19,7 @@ import EstimateReply from "@/Components/estimates/estimate-reply";
 import EstimateReplied from "@/Components/estimates/estimate-replied";
 import { LinkButton } from "@/Components/ui/link-button";
 import EstimateStatusUpdate from "@/Components/estimates/estimate-status-update";
+import EstimateInsuranceCard from "@/Components/estimates/estimate-insurance";
 
 const sumByKey = (array = [], key) => {
     return array.reduce((sum, item) => {
@@ -182,8 +183,8 @@ export default function Show() {
                             </div>
                         </CardContent>
                     </Card>
-
-                    {/* Patient Notes */}
+ 
+  {/* Patient Notes */}
                     {estimate?.description && (
                         <Card className="shadow-card">
                             <CardHeader>
@@ -200,6 +201,12 @@ export default function Show() {
                         </Card>
                     )}
 
+                    {/* Insurance */}
+
+                    {estimate?.insurance && <EstimateInsuranceCard insurance={estimate.insurance} />}
+
+ 
+                  
                     {/* Response Section */}
                     {replied ? <EstimateReplied reply={estimate?.replies} /> : <EstimateReply estimate={estimate} />}
                 </div>
@@ -228,12 +235,12 @@ export default function Show() {
 
 
                     {/* Insurance Card */}
-                    {estimate.insuranceProvider && (
+                    {estimate?.insurance && (
                         <Card className="shadow-card">
                             <CardHeader>
                                 <CardTitle className="text-lg flex items-center gap-2">
                                     <Shield className="h-5 w-5" />
-                                    Insurance Verification
+                                    Insurance Details
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-4">

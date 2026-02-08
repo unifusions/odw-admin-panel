@@ -19,7 +19,7 @@ class EstimateController extends Controller
         return Inertia::render(
             'Admin/Estimates/Index',
             [
-                'estimates' => Estimate::with('user', 'patient', 'dentalservice','services','dentalcares', 'replies')->orderByDesc('created_at')->paginate(25),
+                'estimates' => Estimate::with('user', 'patient', 'dentalservice','services','dentalcares', 'replies','insurance')->orderByDesc('created_at')->paginate(25),
                          'est_pending_count'=> Estimate::where('status', 'pending')->count(),
                   'est_review_count'=> Estimate::where('status', 'in_review')->count(),
                   'est_replied_count'=> Estimate::where('status', 'answered')->count(),
@@ -54,7 +54,7 @@ class EstimateController extends Controller
 
         // dd($estimate->dentalservice);
         $estimate->load('patient', 'patient.user',
-        'dentalservice', 'replies',
+        'dentalservice', 'replies', 'insurance.attachments',
         'patient.insurances',  'services.dentalcare', 'dentalcares');
         
         return Inertia::render(
