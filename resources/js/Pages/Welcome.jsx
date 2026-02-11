@@ -134,20 +134,23 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
               
               {/* App Store Badges */}
               <div id="download" className="flex flex-wrap items-center gap-4">
-                <a href="#" className="transition-transform hover:scale-105">
+                  <a href="https://apps.apple.com/in/app/onedentalworld/id6756610992" className="transition-transform hover:scale-105" target="_blank">
                   <img 
-                    // src={appStoreBadge} 
+                    src="/images/common/get-it-on-apple.svg" 
                     alt="Download on the App Store" 
                     className="h-12"
                   />
                 </a>
-                <a href="#" className="transition-transform hover:scale-105">
+
+                <a href="https://play.google.com/store/apps/details?id=com.onedentalworld" className="transition-transform hover:scale-105" target="_blank">
                   <img 
-                    // src={googlePlayBadge} 
-                    alt="Get it on Google Play" 
+                    src="/images/common/get-it-on-google.png"
+                      alt="Get it on Google Play" 
+                  
                     className="h-12"
                   />
                 </a>
+              
               </div>
             </div>
 
@@ -391,10 +394,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 </div>
                 
                 <CardContent className="flex flex-col justify-center p-8 md:p-12">
-                  <div className="mb-6 flex items-center gap-3">
+                  {/* <div className="mb-6 flex items-center gap-3">
                     <Shield className="h-6 w-6 text-primary" />
                     <span className="font-medium text-foreground">HIPAA Compliant</span>
-                  </div>
+                  </div> */}
                   
                   <div className="mb-6 flex items-center gap-3">
                     <Clock className="h-6 w-6 text-primary" />
@@ -407,16 +410,16 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                   
                   {/* App Store Badges */}
                   <div className="flex flex-col gap-3 sm:flex-row">
-                    <a href="#" className="transition-transform hover:scale-105">
+                    <a href="https://apps.apple.com/in/app/onedentalworld/id6756610992" className="transition-transform hover:scale-105">
                       <img 
-                        // src={appStoreBadge} 
+                      src="/images/common/get-it-on-apple.svg" 
                         alt="Download on the App Store" 
                         className="h-10"
                       />
                     </a>
-                    <a href="#" className="transition-transform hover:scale-105">
+                    <a href="https://play.google.com/store/apps/details?id=com.onedentalworld" className="transition-transform hover:scale-105">
                       <img 
-                        // src={googlePlayBadge} 
+                        src="/images/common/get-it-on-google.png"
                         alt="Get it on Google Play" 
                         className="h-10"
                       />
