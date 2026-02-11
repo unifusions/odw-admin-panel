@@ -20,7 +20,10 @@ class AppointmentController extends Controller
         $pendingBookings = Appointment::where('status', 'pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
         $cancelledBookings = Appointment::where('status', 'cancelled')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
         $allBookings = Appointment::where('patient_id', $patient)
-    ->whereDate('appointment_date', '>', now())
+   ->whereBetween('appointment_date', [
+        now()->subMonths(3)->startOfDay(),
+        now()->endOfDay()
+    ])
     ->orderByRaw("
         CASE status
             WHEN 'confirmed' THEN 1
