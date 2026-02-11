@@ -18,7 +18,7 @@ class AppointmentController extends Controller
         $patient = $request->patient_id;
         $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
         $pendingBookings = Appointment::where('status', 'pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
-        $cancelledBookings = Appointment::where('status', 'cencelled')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
+        $cancelledBookings = Appointment::where('status', 'cancelled')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
         return response()->json([
             'open' => $openBookings->map(function ($booking) {
                 return [
