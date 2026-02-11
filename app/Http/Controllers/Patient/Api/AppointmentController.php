@@ -18,6 +18,7 @@ class AppointmentController extends Controller
         $patient = $request->patient_id;
         $openBookings = Appointment::where('status', 'confirmed')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
         $pendingBookings = Appointment::where('status', 'pending')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
+        $cancelledBookings = Appointment::where('status', 'cencelled')->where('patient_id', $patient)->whereDate('appointment_date', '>', now())->orderBy('appointment_date', 'asc')->get();
         return response()->json([
             'open' => $openBookings->map(function ($booking) {
                 return [
@@ -38,6 +39,26 @@ class AppointmentController extends Controller
                 ];
             }),
             'pending' =>  $pendingBookings->map(function ($booking) {
+                // dd($booking->dentalservice);
+                return [
+                    'appointment_id' => $booking->id,
+                    'service' => $booking->dentalservice,
+                    'clinic' => optional($booking->clinic)->name,
+                    // 'branch' => $booking->clinicbranch->name,
+                    'appointment_date' => $booking->appointment_date,
+                    'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),
+                    'dentist' => $booking->dentist,
+                    'provider' => $booking->appointable ? [
+                        'id' => $booking->appointable->id,
+                        'type' => class_basename($booking->appointable_type), // Dentist or Specialist
+                        'name' => $booking->appointable->name ?? '',
+                        'data' => $booking->appointable,
+                    ] : 'no provider',
+                    'status' => $booking->status,
+
+                ];
+            }),
+            'cancelled' =>  $cancelledBookings->map(function ($booking) {
                 // dd($booking->dentalservice);
                 return [
                     'appointment_id' => $booking->id,
