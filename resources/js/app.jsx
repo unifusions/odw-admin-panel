@@ -9,7 +9,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 // import { applyTheme } from './Helpers/ThemeLoader';
 import { useEffect } from 'react';
-
+import LoadingOverlay from './Components/ui-ext/LoadingOverlay';
 // import('../css/dark.css');
 
 const appName = import.meta.env.VITE_APP_NAME || 'One Dental World';
@@ -49,9 +49,12 @@ createInertiaApp({
 
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(  <>
+            <LoadingOverlay />
+            <App {...props} />
+        </>);
     },
     progress: {
-        color: '#asda',
+        color: '#2a9d90',
     },
 });

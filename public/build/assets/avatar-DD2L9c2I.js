@@ -1,1 +1,0 @@
-import{j as e}from"./app-gTnaJgA3.js";function m({text:s}){return e.jsxs("div",{className:"flex items-center gap-3",children:[e.jsx("div",{className:"flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary",children:s==null?void 0:s.split(" ").map(r=>r[0]).join("")}),e.jsx("span",{className:"font-medium",children:s})]})}export{m as A};
