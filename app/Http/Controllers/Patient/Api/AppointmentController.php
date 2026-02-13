@@ -32,7 +32,7 @@ class AppointmentController extends Controller
             ELSE 4
         END
     ")
-    ->orderBy('appointment_date', 'asc')
+    ->orderBy('appointment_date', 'desc')
     ->get();
 
         return response()->json([
