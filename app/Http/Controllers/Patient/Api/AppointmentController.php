@@ -39,10 +39,10 @@ class AppointmentController extends Controller
             'all' => $allBookings->map(function ($booking) {
                 return [
                     'appointment_id' => $booking->id,
-                    'service' => $booking->dentalservice->name ?? '',
+                    'service' => $booking?->dentalservice?->name ?? '',
                     'clinic' => $booking?->clinic?->name,
                     // 'branch' => $booking->clinicbranch->name,
-                    'appointment_date' => $booking->appointment_date,
+                    'appointment_date' => $booking?->appointment_date,
                     'appointment_time' =>  Carbon::parse($booking->time_slot)->format('g:i a'),
                     'dentist' => $booking->dentist,
                     'provider' => $booking->appointable ? [
