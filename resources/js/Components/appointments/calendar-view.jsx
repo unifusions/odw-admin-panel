@@ -17,6 +17,7 @@ import {
   addWeeks,
   subWeeks,
   isSameMonth,
+  parse,
 } from "date-fns";
 import { cn } from "@/lib/utils";
 
@@ -28,9 +29,16 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { formatShortDate } from "@/lib/util";
 
 
 // type CalendarView = "month" | "week" | "day";
+const normalizeTime = (timeStr) => {
+   if (!timeStr) return null;
+
+  const parsed = parse(timeStr, "HH:mm:ss", new Date());
+  return format(parsed, "hh:mm a");
+};
 
 const statusConfig = {
   confirmed: { label: "Confirmed", class: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" },
@@ -40,12 +48,17 @@ const statusConfig = {
 };
 
 const parseDateString = (dateStr) => {
-  return new Date(dateStr);
+    if (!dateStr) return null;
+
+  const [year, month, day] = dateStr.split("-").map(Number);
+  return new Date(year, month - 1, day); // Local time
 };
 
 const timeSlots = [
-  "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
-  "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"
+  "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM","10:30 AM", "11:00 AM", "12:00 PM",
+  "01:00 PM","01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
+   "04:00 PM", "04:30 PM", 
+   "05:00 PM","05:30 PM", "06:00 PM"
 ];
 
 export function AppointmentCalendar({
@@ -60,6 +73,7 @@ export function AppointmentCalendar({
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
 
   const getAppointmentsForDay = (date) => {
+     
     return appointments?.filter((apt) => isSameDay(parseDateString(apt?.appointment_date), date))
       .sort((a, b) => a?.time_slot.localeCompare(b?.time_slot));
   };
@@ -146,10 +160,10 @@ export function AppointmentCalendar({
                   isToday && "bg-primary/5 border-primary"
                 )}
               >
-
+ 
                 <div
                   className={cn(
-                    "text-sm font-medium mb-2",
+                    "text-sm font-medium mb-2", 
                     isToday && "text-primary",
                     !isCurrentMonth && "text-muted-foreground"
                   )}
@@ -233,13 +247,13 @@ export function AppointmentCalendar({
                 <div
                   key={time}
                   className="w-20 shrink-0 text-xs text-muted-foreground py-3 text-right pr-2"
-                >
+                >  
                   {time}
                 </div>
                 {weekDays.map((date) => {
                   const dayAppointments = getAppointmentsForDay(date);
                   const slotAppointments = dayAppointments.filter(
-                    (apt) => apt.time === time
+                    (apt) => normalizeTime(apt.time_slot) === time
                   );
                   const isToday = isSameDay(date, new Date());
 
@@ -247,21 +261,22 @@ export function AppointmentCalendar({
                     <div
                       key={`${date.toISOString()}-${time}`}
                       className={cn(
-                        "min-h-[60px] p-1 border border-border rounded transition-colors",
+                        "min-h-[60px] p-1 border border-border rounded transition-colors  ",
                         isToday && "bg-primary/5"
                       )}
                     >
+                 
                       {slotAppointments.map((apt) => (
                         <button
                           key={apt.id}
                           onClick={(e) => handleAppointmentClick(apt, e)}
                           className={cn(
-                            "w-full text-left px-2 py-1.5 rounded text-xs transition-all hover:scale-[1.02]",
+                            "w-full text-left px-2 py-1.5 rounded text-xs transition-all hover:scale-[1.02] my-1",
                             statusConfig[apt.status].class
                           )}
                         >
-                          <div className="font-medium truncate">{apt.patientName}</div>
-                          <div className="truncate opacity-80">{apt.type}</div>
+                          <div className="font-medium truncate">{apt?.patient?.first_name}</div>
+                          <div className="truncate opacity-80">{apt?.appointable?.name}</div>
                         </button>
                       ))}
                     </div>
@@ -308,9 +323,11 @@ export function AppointmentCalendar({
         {/* Time Slots */}
         <ScrollArea className="h-[500px]">
           <div className="space-y-1">
+        
             {timeSlots.map((time) => {
+             
               const slotAppointments = dayAppointments.filter(
-                (apt) => apt.time === time
+                (apt) => normalizeTime(apt.time_slot) === time
               );
 
               return (
@@ -328,22 +345,25 @@ export function AppointmentCalendar({
                       </div>
                     ) : (
                       <div className="space-y-2">
+                        
                         {slotAppointments.map((apt) => (
                           <button
                             key={apt.id}
                             onClick={(e) => handleAppointmentClick(apt, e)}
                             className={cn(
-                              "w-full text-left p-3 rounded-lg transition-all hover:scale-[1.01]",
+                              "w-full text-left p-3 rounded-lg transition-all hover:scale-[1.01] flex flex-col gap-1",
                               statusConfig[apt.status].class
                             )}
                           >
+                          
                             <div className="flex items-center justify-between">
                               <div>
-                                <div className="font-semibold">{apt.patientName}</div>
-                                <div className="text-sm opacity-80">{apt.type}</div>
+                                <div className="font-semibold">{apt?.patient?.first_name}</div>
+                                   <div className="text-sm font-medium">{apt?.appointable?.name}</div>
                               </div>
                               <div className="text-right">
-                                <div className="text-sm font-medium">{apt.doctor}</div>
+                                {/* <div className="text-sm opacity-80">{apt.appointable_label}</div> */}
+                             
                                 <Badge variant="outline" className="mt-1">
                                   {statusConfig[apt.status].label}
                                 </Badge>
@@ -464,7 +484,7 @@ export function AppointmentCalendar({
                     <CalendarIcon className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <p className="text-sm text-muted-foreground">Date</p>
-                      <p className="font-medium">{selectedAppointment.appointment_date}</p>
+                      <p className="font-medium">{formatShortDate(selectedAppointment.appointment_date) }</p>
                     </div>
                   </div>
 

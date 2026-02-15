@@ -1,1 +1,0 @@
-import{r as e,y as p}from"./app-DZnB_zxq.js";function x(){const[r,t]=e.useState(!1),[a,s]=e.useState(!1),[n,u]=e.useState(null),[l,c]=e.useState(null),[i,m]=e.useState(null);return{open:r,setOpen:t,loading:a,item:n,confirm:(o,f,d=o.id)=>{u(o),c(f),m(d),t(!0)},destroy:()=>{s(!0),p.delete(route(l,i),{preserveScroll:!0,onFinish:()=>{s(!1),t(!1)}})}}}export{x as u};
