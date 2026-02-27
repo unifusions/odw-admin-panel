@@ -11,7 +11,7 @@ import { Card, CardContent, CardFooter } from "@/Components/ui/card";
 import { Label } from "@/Components/ui/label";
 import { Textarea } from "@/Components/ui/textarea";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Head, router, useForm, usePage } from "@inertiajs/react";
 import { ArrowLeft } from "lucide-react";
 import ReactSelect from "react-select";
 
@@ -54,6 +54,7 @@ export default function Create() {
         <>
             <AuthenticatedLayout
                 header="Specialists"
+                pageTitle={"Specialists"}
             >  <Button
                     variant="ghost"
                     className="mb-4"

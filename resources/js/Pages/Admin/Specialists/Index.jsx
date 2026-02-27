@@ -7,6 +7,8 @@ import SpecialistIcon from "@/Components/Icons/SpecialistIcon";
 import DeleteConfirmModal from "@/Components/DeleteConfirmModal";
 import ProviderCard from "@/Components/provider-card";
 import DataPagination from "@/Components/Pagination";
+import DentistIcon from "@/Components/Icons/DentistIcon";
+import { LinkButton } from "@/Components/ui/link-button";
 
 export default function Index() {
 
@@ -20,6 +22,13 @@ export default function Index() {
                 <SpecialistIcon />   Add Specialist
             </Link>}
         >
+
+              <LinkButton className="mb-3" href={route('specialists.create')} >
+            
+                                <DentistIcon fill='#FFFFFF' />
+                                Add Specialists
+                            </LinkButton>
+
  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{ specialists.data.map((dentist, index) => <ProviderCard provider={dentist} providerLink={route('specialists.edit', {specialist:dentist})} />)}</div>
 
          <DataPagination links={specialists.links} />
