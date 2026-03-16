@@ -38,4 +38,8 @@ return [
         'project_id' => env('FCM_PROJECT_ID'),
     ],
 
+    'vapi' => [
+        'key' => env('VAPI_KEY'),
+    ],
+
 ];

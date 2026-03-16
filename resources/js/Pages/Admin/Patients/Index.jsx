@@ -42,7 +42,7 @@ export default function Index({ patients }) {
             onClick={() => navigate(`/patients/${patient.id}`)}
           >
 
-            <CardHeader className="pb-3">
+            <CardHeader >
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-lg font-semibold text-primary">
@@ -87,10 +87,10 @@ export default function Index({ patients }) {
                 <Phone className="h-4 w-4" />
                 <span>{patient.phone_number}</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              {/* <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" />
                 <span className="truncate">{patient?.address}</span>
-              </div>
+              </div> */}
               <div className="border-t border-border pt-3 mt-3">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Last Visit</span>

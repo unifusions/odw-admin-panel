@@ -43,6 +43,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
+
 Route::get('send-test-mail', function () {
     return view('mail.otp');
     // Mail::to('siyamkumar@gmail.com')->send(new SendOtpMail('656280'));
@@ -203,3 +204,6 @@ Route::get('/secure-file/{path}', [FilesController::class, 'show'])
 // Route::middleware('api')->prefix('api')->group(function () {
 //     require __DIR__ . '/api.php';
 // });
+
+
+require __DIR__ . '/webhook.php';

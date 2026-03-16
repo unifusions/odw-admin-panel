@@ -103,7 +103,8 @@ export default function Login({ status, canResetPassword }) {
                                          
                                              
                                         </Field>
-                                        
+                                    
+                                        {errors && JSON.stringify(errors)}
                                     </FieldGroup>
                                 </form>
                             </CardContent>
