@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Notifications\Events\NotificationFailed;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         
+      if (app()->environment('production')) {
+        URL::forceScheme('https');
+    }
+    // URL::forceScheme('https');
 
         Vite::prefetch(concurrency: 3);
 
