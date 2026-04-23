@@ -22,7 +22,7 @@ class RegistrationController extends Controller
     public function login(Request $request)
     {
 
-    return $request->cityName ;
+    return $request->input('cityName') ;
         $input = $request->input('loginInput');
         $isEmail = false;
         $isPhone = false;
