@@ -21,8 +21,8 @@ class RegistrationController extends Controller
 
     public function login(Request $request)
     {
-
-    
+ 
+    return ($request->all());
         $input = $request->input('loginInput');
         $isEmail = false;
         $isPhone = false;
