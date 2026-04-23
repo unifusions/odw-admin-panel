@@ -18,6 +18,7 @@ import {
   subWeeks,
   isSameMonth,
   parse,
+  isPast,
 } from "date-fns";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +35,7 @@ import { formatShortDate } from "@/lib/util";
 
 // type CalendarView = "month" | "week" | "day";
 const normalizeTime = (timeStr) => {
-   if (!timeStr) return null;
+  if (!timeStr) return null;
 
   const parsed = parse(timeStr, "HH:mm:ss", new Date());
   return format(parsed, "hh:mm a");
@@ -48,17 +49,17 @@ const statusConfig = {
 };
 
 const parseDateString = (dateStr) => {
-    if (!dateStr) return null;
+  if (!dateStr) return null;
 
   const [year, month, day] = dateStr.split("-").map(Number);
   return new Date(year, month - 1, day); // Local time
 };
 
 const timeSlots = [
-  "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM","10:30 AM", "11:00 AM", "12:00 PM",
-  "01:00 PM","01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
-   "04:00 PM", "04:30 PM", 
-   "05:00 PM","05:30 PM", "06:00 PM"
+  "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "12:00 PM",
+  "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
+  "04:00 PM", "04:30 PM",
+  "05:00 PM", "05:30 PM", "06:00 PM"
 ];
 
 export function AppointmentCalendar({
@@ -73,7 +74,7 @@ export function AppointmentCalendar({
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
 
   const getAppointmentsForDay = (date) => {
-     
+
     return appointments?.filter((apt) => isSameDay(parseDateString(apt?.appointment_date), date))
       .sort((a, b) => a?.time_slot.localeCompare(b?.time_slot));
   };
@@ -118,6 +119,12 @@ export function AppointmentCalendar({
 
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+  const createAppointment = (isPastDay, date) => {
+    if(!isPastDay)
+     alert(date);
+     
+  }
+
   // Month View
   const renderMonthView = () => {
     const monthStart = startOfMonth(currentDate);
@@ -150,26 +157,31 @@ export function AppointmentCalendar({
             const dayAppointments = getAppointmentsForDay(date);
             const isCurrentMonth = isSameMonth(date, currentDate);
             const isToday = isSameDay(date, new Date());
-
+            const isPastDay = isPast(date);
             return (
               <div
                 key={index}
                 className={cn(
                   "min-h-[120px] p-2 border border-border rounded-lg transition-colors",
                   !isCurrentMonth && "bg-muted/30 opacity-50",
-                  isToday && "bg-primary/5 border-primary"
+                  isToday && "bg-primary/5 border-primary",
+                  isPastDay && "bg-muted/30"
                 )}
+
+                 onClick={createAppointment(isPastDay, date)}
               >
- 
+
                 <div
                   className={cn(
-                    "text-sm font-medium mb-2", 
+                    "text-sm font-medium mb-2",
                     isToday && "text-primary",
-                    !isCurrentMonth && "text-muted-foreground"
+                    !isCurrentMonth && "text-muted-foreground",
+
                   )}
                 >
                   {format(date, "d")}
                 </div>
+
                 <div className="space-y-1">
                   {dayAppointments.slice(0, 3).map((apt) => (
                     <button
@@ -247,7 +259,7 @@ export function AppointmentCalendar({
                 <div
                   key={time}
                   className="w-20 shrink-0 text-xs text-muted-foreground py-3 text-right pr-2"
-                >  
+                >
                   {time}
                 </div>
                 {weekDays.map((date) => {
@@ -265,7 +277,7 @@ export function AppointmentCalendar({
                         isToday && "bg-primary/5"
                       )}
                     >
-                 
+
                       {slotAppointments.map((apt) => (
                         <button
                           key={apt.id}
@@ -323,9 +335,9 @@ export function AppointmentCalendar({
         {/* Time Slots */}
         <ScrollArea className="h-[500px]">
           <div className="space-y-1">
-        
+
             {timeSlots.map((time) => {
-             
+
               const slotAppointments = dayAppointments.filter(
                 (apt) => normalizeTime(apt.time_slot) === time
               );
@@ -345,7 +357,7 @@ export function AppointmentCalendar({
                       </div>
                     ) : (
                       <div className="space-y-2">
-                        
+
                         {slotAppointments.map((apt) => (
                           <button
                             key={apt.id}
@@ -355,15 +367,15 @@ export function AppointmentCalendar({
                               statusConfig[apt.status].class
                             )}
                           >
-                          
+
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="font-semibold">{apt?.patient?.first_name}</div>
-                                   <div className="text-sm font-medium">{apt?.appointable?.name}</div>
+                                <div className="text-sm font-medium">{apt?.appointable?.name}</div>
                               </div>
                               <div className="text-right">
                                 {/* <div className="text-sm opacity-80">{apt.appointable_label}</div> */}
-                             
+
                                 <Badge variant="outline" className="mt-1">
                                   {statusConfig[apt.status].label}
                                 </Badge>
@@ -484,7 +496,7 @@ export function AppointmentCalendar({
                     <CalendarIcon className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <p className="text-sm text-muted-foreground">Date</p>
-                      <p className="font-medium">{formatShortDate(selectedAppointment.appointment_date) }</p>
+                      <p className="font-medium">{formatShortDate(selectedAppointment.appointment_date)}</p>
                     </div>
                   </div>
 
@@ -508,14 +520,14 @@ export function AppointmentCalendar({
                     <User className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <p className="text-sm text-muted-foreground">Provider  </p>
-                     
+
                       <p className="font-medium">{selectedAppointment?.appointable?.name ?? 'Next Available Provider'} </p>
                       {selectedAppointment?.appointable && <Badge variant="outline">{selectedAppointment?.appointable_label}</Badge>}
                     </div>
                   </div>
                 </div>
 
-                
+
 
                 {/* Contact Info (mock data) */}
                 <div className="p-3 rounded-lg border border-border">
