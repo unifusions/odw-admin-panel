@@ -22,7 +22,7 @@ class RegistrationController extends Controller
     public function login(Request $request)
     {
 
-    return $request->input('cityName') ;
+    
         $input = $request->input('loginInput');
         $isEmail = false;
         $isPhone = false;
@@ -65,7 +65,7 @@ class RegistrationController extends Controller
                 $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
                 $twilio->sendSms($user->phone, $otpMessage);
             }
-            return response()->json(['otp' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
+            return response()->json(['otpDigits' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
         } else {
             $token = $user->createToken('authToken')->plainTextToken;
 
@@ -155,7 +155,7 @@ class RegistrationController extends Controller
     {
 
         // +18777804236
-
+return response()->json($request->input('cityName'),200);
         $user = false;
         $input = $request->input('loginInput');
 
