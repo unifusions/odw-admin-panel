@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendOtpMail;
 use App\Models\Patient;
 use App\Models\User;
+use App\Services\AuthenticationLog;
 use App\Services\FcmNotificationService;
 use App\Services\TwilioService;
 use Illuminate\Http\Request;
@@ -21,8 +22,8 @@ class RegistrationController extends Controller
 
     public function login(Request $request)
     {
- 
-    return ($request->all());
+
+
         $input = $request->input('loginInput');
         $isEmail = false;
         $isPhone = false;
@@ -37,12 +38,9 @@ class RegistrationController extends Controller
             $user = User::where('email', $input)->first();
         } else {
             $isEmail = false;
-
             $input = preg_replace("/[^0-9]/", "", $input);
-
             if (preg_match('/^\+?[0-9]{7,15}$/', $input)) {
                 // It's a phone number (7-15 digits, allowing optional + at the start)
-
                 $isPhone = true;
                 $user = User::where('phone', $input)->first();
             } else {
@@ -55,20 +53,24 @@ class RegistrationController extends Controller
         }
 
         $otp = rand(100000, 999999);
-        $key =   'otp_' . $input;
+        $key = 'otp_' . $input;
         if ($user && $user->role !== "") {
             Cache::put($key, $otp, now()->addMinutes(10));
-            if ($isEmail) {
-                Mail::to($input)->send(new SendOtpMail($otp));
+
+            if (!app()->environment('local')) {
+                if ($isEmail) {
+                    Mail::to($input)->send(new SendOtpMail($otp));
+                }
+                if ($isPhone) {
+                    $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
+                    $twilio->sendSms($user->phone, $otpMessage);
+                }
             }
-            if ($isPhone) {
-                $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
-                $twilio->sendSms($user->phone, $otpMessage);
-            }
+
+
             return response()->json(['otpDigits' => $otp, 'user' => $user, 'loginInput' => $input, 'isEmail' => $isEmail]);
         } else {
             $token = $user->createToken('authToken')->plainTextToken;
-
             $user->load('patient');
             return response()->json(['message' => 'Bypassing verification', 'token' => $token, 'user' => $user]);
         }
@@ -79,20 +81,15 @@ class RegistrationController extends Controller
         // dd($request->input('phone'));
 
         $email = $request->input('email');
-        $phone =  preg_replace("/[^0-9]/", "", $request->input('phone'));
-
+        $phone = preg_replace("/[^0-9]/", "", $request->input('phone'));
         $user = null;
-
         $twilio = new TwilioService();
-
         if ($email) {
             $user = User::where('email', $email)->first();
         }
-
         if (!$user && $phone) { // Only search by phone if no user found by email
             $user = User::where('phone', $phone)->first(); // Assuming 'phone_number' is your phone column
         }
-
 
         if ($user) {
             // User found, you can now check for the other field if needed
@@ -114,7 +111,6 @@ class RegistrationController extends Controller
                 'phone' => $phone,
                 'password' => Hash::make(uniqid()),
                 'status' => false,
-
             ]);
 
             $patient = Patient::create([
@@ -132,7 +128,6 @@ class RegistrationController extends Controller
 
         $otp = rand(100000, 999999);
         $key = 'otp_' . $phone;
-
         $otpMessage = "Your OneDentalWorld Verification code is : {$otp}";
         $twilio->sendSms($newUser->phone, $otpMessage);
         // $key = 'otp_' . $request->email;
@@ -143,7 +138,6 @@ class RegistrationController extends Controller
         // return response()->json(['status' => 'success', 'message' => $message, 'otp' => $otp]);
 
         return response()->json([
-
             'otp' => $otp,
             'user' => $newUser,
             'loginInput' => $phone,
@@ -151,18 +145,16 @@ class RegistrationController extends Controller
         ], 200);
     }
 
-    public function verifyOtp(Request $request)
+    public function verifyOtp(Request $request, AuthenticationLog $authenticationLog)
     {
 
-        // +18777804236
-return response()->json($request->input('cityName'),200);
         $user = false;
         $input = $request->input('loginInput');
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
             // It's an email
             $status = true;
-            $user = User::where('email',  $input)->first();
+            $user = User::where('email', $input)->first();
         } else {
             $input = preg_replace("/[^0-9]/", "", $input);
             if (preg_match('/^\+?[0-9]{7,15}$/', $input))
@@ -182,7 +174,7 @@ return response()->json($request->input('cityName'),200);
 
             Cache::forget($key);
             $token = $user->createToken('authToken')->plainTextToken;
-
+            $authenticationLog->logSuccessfulLogin($user, $input);
             $user->load('patient');
             return response()->json(['message' => 'OTP verified', 'token' => $token, 'user' => $user]);
         } else {
@@ -209,7 +201,7 @@ return response()->json($request->input('cityName'),200);
         $isEmail = $request->input('isEmail');
 
         $otp = rand(100000, 999999);
-        $key =   'otp_' . $input;
+        $key = 'otp_' . $input;
         Cache::put($key, $otp, now()->addMinutes(10));
 
         if ($isEmail) {

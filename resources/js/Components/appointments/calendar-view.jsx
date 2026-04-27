@@ -120,9 +120,9 @@ export function AppointmentCalendar({
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const createAppointment = (isPastDay, date) => {
-    if(!isPastDay)
-     alert(date);
-     
+    if (!isPastDay)
+      console.log(date);
+
   }
 
   // Month View
@@ -168,7 +168,7 @@ export function AppointmentCalendar({
                   isPastDay && "bg-muted/30"
                 )}
 
-                 onClick={createAppointment(isPastDay, date)}
+                onClick={createAppointment(isPastDay, date)}
               >
 
                 <div
