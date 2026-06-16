@@ -56,12 +56,8 @@ Route::get('support', SupportController::class);
 // Route::post('/two-factor', [PreloginController::class, 'checkUser'])->name('checkuser');
 Route::post('/authentication', [PreloginController::class, 'verifyOtp'])->name('verifyotp');
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('welcome');
+    
 })->name('home');
 
 Route::get('/states', StatesController::class);
