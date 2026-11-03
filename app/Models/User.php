@@ -203,6 +203,15 @@ class User extends Authenticatable
 {
     return $this->phone;
 }
+
+public function logs(){
+    return $this->hasMany(Log::class);
+}
+
+public function latestLog()
+{
+    return $this->hasOne(Log::class)->latestOfMany();
+}
     
     // public function routeNotificationForFcm()
     // {

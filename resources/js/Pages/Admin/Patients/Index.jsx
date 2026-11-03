@@ -42,7 +42,9 @@ export default function Index({ patients }) {
             onClick={() => navigate(`/patients/${patient.id}`)}
           >
 
-            <CardHeader >
+            <CardHeader className="pb-3">
+             
+         
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-lg font-semibold text-primary">
@@ -79,6 +81,8 @@ export default function Index({ patients }) {
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
+ 
+                  
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
                 <span className="truncate">{patient.email}</span>
@@ -93,12 +97,12 @@ export default function Index({ patients }) {
               </div> */}
               <div className="border-t border-border pt-3 mt-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Last Visit</span>
-                  <span className="font-medium">{patient?.lastVisit}</span>
+                  <span className="text-muted-foreground">Last Location</span>
+                  <span className="font-medium">{patient?.user?.latest_log?.location}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm mt-1">
-                  <span className="text-muted-foreground">Total Visits</span>
-                  <span className="font-medium">{patient?.totalVisits}</span>
+                  <span className="text-muted-foreground">Last Access</span>
+                  <span className="font-medium">{patient?.user?.latest_log?.created_at}</span>
                 </div>
                 {patient?.upcomingAppointment && (
                   <div className="flex items-center justify-between text-sm mt-1">

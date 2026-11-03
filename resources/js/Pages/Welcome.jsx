@@ -127,7 +127,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                   Simplified!
                 </span>
               </h1>
-              
+                
               <p className="mb-8 text-lg text-muted-foreground md:text-xl">
                 Book appointments, compare costs, and get expert advice—all in one app.
               </p>

@@ -19,7 +19,7 @@ class PatientsController extends Controller
     {
         return Inertia::render(
             'Admin/Patients/Index',
-            ['patients' => Patient::paginate(25)]
+            ['patients' => Patient::with('user.latestLog')->paginate(25)]
         );
     }
 
